@@ -1,0 +1,17 @@
+// The three ways a boolean reaches the database: a native BOOLEAN column, one stored as 0/1
+// (BOOLEAN_FROM_INTEGER) and one stored as 'Y'/'N' (BOOLEAN_FROM_TEXT). All three are conditions
+// on their own, and all three read back as true/false — how a dialect stores it is the schema's
+// business, not the query's.
+
+SELECT
+ check_type t
+  OUT t.nr 1
+  OUT t.type_boolean native 2
+  OUT t.bool_from_int from_int 3
+  OUT t.bool_from_text from_text 4
+  FILTER
+    t.bool_from_text
+   AND
+    t.bool_from_int
+   AND
+    t.type_boolean

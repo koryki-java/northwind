@@ -1,0 +1,5 @@
+// rpad: right-pad the postal code to width ten with spaces.
+
+SELECT
+ customers c
+  OUT rpad(c.postal_code, 10, ' ') padded 1

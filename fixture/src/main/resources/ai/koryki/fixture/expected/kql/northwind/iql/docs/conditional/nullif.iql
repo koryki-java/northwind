@@ -1,0 +1,7 @@
+// nullif: treat a reorder level of 0 as "not set" rather than as a real threshold.
+
+SELECT
+ products p
+  OUT p.product_id 1
+  OUT nullif(p.reorder_level, 0) reorder_level_or_blank 2
+  ORDER p.product_id ASC 1

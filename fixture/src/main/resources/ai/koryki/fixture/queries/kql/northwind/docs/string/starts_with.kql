@@ -1,0 +1,3 @@
+// starts_with: does the company name start with A?
+FIND customers c
+FETCH starts_with(c.company_name, 'A') is_a

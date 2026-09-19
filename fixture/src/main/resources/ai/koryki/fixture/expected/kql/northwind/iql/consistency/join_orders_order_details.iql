@@ -1,0 +1,9 @@
+SELECT
+ order_details d
+  JOIN same_order orders o
+    OUT o.order_id 1
+    OUT count(o.order_id) 2
+    GROUP o.order_id 1
+    HAVING 
+     count(o.order_id) > 1
+  OWNER

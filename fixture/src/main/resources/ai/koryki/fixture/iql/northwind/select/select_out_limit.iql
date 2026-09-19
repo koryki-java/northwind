@@ -1,0 +1,7 @@
+// find customers, give company_name, no header
+
+SELECT
+    customers c
+        OUT c.company_name
+        LIMIT 5
+

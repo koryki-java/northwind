@@ -1,0 +1,11 @@
+// clock_now: the current wall-clock timestamp.
+// ignore=duckdb
+// ignore=sqlite
+// ignore=oracle
+// ignore=postgresql
+// ignore=mssql
+// ignore=mariadb
+// ignore=trino
+// ignore=snowflake
+FIND orders o
+FETCH clock_now() wall_clock_ts

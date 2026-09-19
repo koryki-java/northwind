@@ -1,0 +1,2 @@
+FIND spediteur s
+FETCH count(s)

@@ -1,0 +1,14 @@
+// sum, avg, min and max over every numeric width the schema has. The type-check corpus covered no
+// aggregate at all, so the return types the catalog declares — sum and min/max hand back the
+// argument's own type, avg always comes back fractional — were never held against what the engines
+// actually return. Engines widen a sum to avoid overflow, and they do not agree on how far.
+FIND check_type c
+FETCH sum(c.type_smallint) sum_smallint,
+      sum(c.type_integer)  sum_integer,
+      sum(c.type_bigint)   sum_bigint,
+      sum(c.type_decimal)  sum_decimal,
+      sum(c.type_double)   sum_double,
+      avg(c.type_integer)  avg_integer,
+      avg(c.type_decimal)  avg_decimal,
+      min(c.type_decimal)  min_decimal,
+      max(c.type_double)   max_double

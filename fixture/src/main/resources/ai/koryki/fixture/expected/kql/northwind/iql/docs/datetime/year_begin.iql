@@ -1,0 +1,8 @@
+// year_begin: first day of the order's year.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT year_begin(o.order_date) y_begin 2
+  ORDER o.order_id ASC 1
+LIMIT 20

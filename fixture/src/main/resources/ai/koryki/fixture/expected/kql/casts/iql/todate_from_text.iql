@@ -1,0 +1,5 @@
+SELECT
+ orders o
+  OUT o.order_id 1
+ALL
+ OUT to_date('1996-07-04') date_val 2

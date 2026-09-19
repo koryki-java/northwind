@@ -1,0 +1,8 @@
+// years_between: whole years from order to shipment.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT years_between(o.order_date, o.shipped_date) years 2
+  ORDER o.order_id ASC 1
+LIMIT 20

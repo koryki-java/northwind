@@ -1,0 +1,2 @@
+"sum_smallint", "sum_integer", "sum_bigint", "sum_decimal", "sum_double", "avg_integer", "avg_decimal", "min_decimal", "max_double"
+"32000", "2147483647", "9223372036854775807", "12345.6789", "1.61803", "2147480000", "12345.7", "12345.6789", "1.61803"

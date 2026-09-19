@@ -1,0 +1,3 @@
+FIND customers c
+FILTER c.customer_id = 'ALFKI'
+FETCH c.company_name, coalesce(c.region, 'N/A') region_or_default

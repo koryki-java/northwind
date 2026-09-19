@@ -1,0 +1,9 @@
+-- add (+): 30 days after the order date.
+SELECT
+  o.order_id
+, o.order_date + NUMTODSINTERVAL(30, 'DAY') AS due_date
+FROM
+ orders o
+ORDER BY
+  o.order_id ASC
+FETCH FIRST 20 ROWS ONLY

@@ -1,0 +1,4 @@
+// year_begin: first day of the order's year.
+FIND orders o
+FETCH o.order_id ASC, year_begin(o.order_date) y_begin
+LIMIT 20

@@ -1,0 +1,3 @@
+// to_time: keep the time part of a TIMESTAMP.
+FIND check_type c
+FETCH to_time(c.type_timestamp) as_time

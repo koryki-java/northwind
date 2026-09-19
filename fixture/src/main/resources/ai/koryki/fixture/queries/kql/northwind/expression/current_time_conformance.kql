@@ -1,0 +1,11 @@
+// today(), now() and clock_now() return a different value on every run, so their doc samples are
+// ignored on all eight dialects — which left them verified nowhere, and the CSV goldens beside them
+// asserting nothing: today's still carried the header of a query it no longer matched.
+//
+// The values are not stable, but their relationships are, and those are what the engines must agree
+// on. This is the check the doc samples cannot be.
+FIND orders o
+FILTER o.order_id = 10248
+FETCH case(year(today()) >= 2026, 'yes', 'no')             today_is_current,
+      case(year(now()) = year(today()), 'yes', 'no')       now_agrees_with_today,
+      case(year(clock_now()) = year(today()), 'yes', 'no') clock_now_agrees_with_today

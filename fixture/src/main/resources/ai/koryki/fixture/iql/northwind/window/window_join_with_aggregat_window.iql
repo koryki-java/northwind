@@ -1,0 +1,8 @@
+SELECT
+ order_details d
+  OUT sum(multiply(d.unit_price, d.quantity)) sum 2
+  JOIN same_order orders o
+     JOIN same_customer customers c
+       OUT count(c.company_name) OVER (PARTITION d.unit_price ORDER c.company_name ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) 1
+     OWNER
+  OWNER

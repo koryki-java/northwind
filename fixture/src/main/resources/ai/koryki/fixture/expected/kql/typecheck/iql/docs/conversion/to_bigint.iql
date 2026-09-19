@@ -1,0 +1,5 @@
+// to_bigint: to a 64-bit integer.
+
+SELECT
+ check_type c
+  OUT to_bigint(c.type_integer) as_bigint 1

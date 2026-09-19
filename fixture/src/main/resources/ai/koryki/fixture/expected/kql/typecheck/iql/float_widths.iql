@@ -1,0 +1,17 @@
+// The two approximate-numeric widths side by side, from the same written literal. type_float is
+// 4 bytes (REAL, FLOAT, BINARY_FLOAT) and type_double 8 — except on SQLite and Snowflake, which
+// have no 32-bit type at all, so both columns are doubles there.
+// What this pins is the FLOAT *family*, in the .json type golden. Before it, no tested schema
+// exercised that family at all: the type-check schema had no 32-bit column, and type_double was
+// declared DECIMAL although it is binary floating point.
+// The width itself is deliberately NOT asserted, because a shared CSV golden cannot carry it: a
+// 32-bit float holds about seven significant digits, so its relative error is around 1e-7 — below
+// the 1e-5 tolerance the comparison needs for genuine floating-point aggregation. No literal makes
+// the difference visible here, and the SQL goldens do not carry column types either. The width
+// lives in each dialect's DDL and in its db.json (dialectType: REAL, FLOAT, BINARY_FLOAT) — it is
+// declared and documented, but no golden asserts it.
+
+SELECT
+ check_type c
+  OUT c.type_float single 1
+  OUT c.type_double double_precision 2

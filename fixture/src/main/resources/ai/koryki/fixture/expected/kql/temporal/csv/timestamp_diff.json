@@ -1,0 +1,8 @@
+intraday : INTERVAL
+multiday : INTERVAL
+negative : INTERVAL
+zero : INTERVAL
+instant_minus_unix : INTERVAL
+instant_minus_java : INTERVAL
+unix_minus_java : INTERVAL
+self_3h20min30s : INTERVAL

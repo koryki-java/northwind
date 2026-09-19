@@ -1,0 +1,4 @@
+// day: the day-of-month of the order date.
+FIND orders o
+FETCH o.order_id ASC, day(o.order_date) order_day
+LIMIT 20

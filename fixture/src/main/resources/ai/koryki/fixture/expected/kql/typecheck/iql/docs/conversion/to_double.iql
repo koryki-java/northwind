@@ -1,0 +1,5 @@
+// to_double: to double-precision floating point.
+
+SELECT
+ check_type c
+  OUT to_double(c.type_decimal) as_double 1

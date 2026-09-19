@@ -1,0 +1,3 @@
+FIND products p
+FILTER p.product_name = 'Chai'
+FETCH p.product_name, char_length(p.product_name) name_len

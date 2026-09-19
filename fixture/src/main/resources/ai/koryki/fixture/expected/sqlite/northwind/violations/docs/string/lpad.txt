@@ -1,0 +1,1 @@
+unsupported: Function [3:7-3:34]: function 'lpad' is not supported by this dialect

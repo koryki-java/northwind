@@ -1,0 +1,11 @@
+// now: the current timestamp.
+// ignore=duckdb
+// ignore=sqlite
+// ignore=oracle
+// ignore=postgresql
+// ignore=mssql
+// ignore=mariadb
+// ignore=trino
+// ignore=snowflake
+FIND orders o
+FETCH now() current_ts

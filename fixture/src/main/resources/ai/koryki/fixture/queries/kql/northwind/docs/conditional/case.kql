@@ -1,0 +1,4 @@
+// case: classify orders by freight.
+FIND orders o
+FETCH o.order_id ASC, case(o.freight > 100, 'high', 'low') freight_tier
+LIMIT 20

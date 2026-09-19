@@ -1,0 +1,3 @@
+unsupported: Function [5:7-5:32]: function 'to_number' is not supported by this dialect
+unsupported: Function [5:40-5:65]: function 'to_number' is not supported by this dialect
+unsupported: Function [6:7-6:30]: function 'to_number' is not supported by this dialect

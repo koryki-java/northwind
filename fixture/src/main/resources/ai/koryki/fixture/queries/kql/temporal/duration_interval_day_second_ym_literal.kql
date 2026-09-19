@@ -1,0 +1,5 @@
+// intentionally ignored in dialects not supporting required INTERVALs
+
+FIND check_temporal c
+FILTER c.interval_day_second > 1y2mo
+FETCH c.interval_day_second interval_day_second

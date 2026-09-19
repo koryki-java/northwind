@@ -1,0 +1,4 @@
+// substring: first three characters of the company name.
+
+FIND kunden c
+FETCH substring(c.firma, 1, 3) abbrev

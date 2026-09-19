@@ -1,0 +1,5 @@
+// log10: base-10 logarithm.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, log10(1000) base_ten_log
+LIMIT 20

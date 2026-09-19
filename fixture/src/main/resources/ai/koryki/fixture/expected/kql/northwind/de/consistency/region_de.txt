@@ -1,0 +1,2 @@
+FIND region r
+FETCH count(r)

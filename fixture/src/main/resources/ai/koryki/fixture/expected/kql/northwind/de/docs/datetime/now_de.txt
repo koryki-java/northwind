@@ -1,0 +1,4 @@
+// now: the current timestamp.
+
+FIND bestellungen o
+FETCH now() current_ts

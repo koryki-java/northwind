@@ -1,0 +1,12 @@
+// row_number: number each customer's orders from their earliest, without collapsing any rows.
+
+SELECT
+ customers c
+  OUT c.customer_id 1
+  FILTER
+    c.country = 'France'
+  JOIN same_customer orders o
+    OUT o.order_id 2
+  OWNER
+ALL
+ OUT row_number() OVER (PARTITION c.customer_id ORDER o.order_id) nth 3

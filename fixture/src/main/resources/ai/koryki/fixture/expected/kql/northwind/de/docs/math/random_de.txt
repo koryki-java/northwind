@@ -1,0 +1,4 @@
+// random: a random value in [0, 1).
+
+FIND bestellungen o
+FETCH random() r

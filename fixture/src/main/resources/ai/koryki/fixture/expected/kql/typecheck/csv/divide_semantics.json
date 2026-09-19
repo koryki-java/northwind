@@ -1,0 +1,4 @@
+int_div_same : INTEGER
+int_div : INTEGER
+dec_div : DECIMAL
+by_zero : INTEGER

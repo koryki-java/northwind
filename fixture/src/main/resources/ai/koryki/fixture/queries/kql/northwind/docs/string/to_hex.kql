@@ -1,0 +1,3 @@
+// to_hex: hexadecimal of a number.
+FIND customers c
+FETCH to_hex(255) hex_ff

@@ -1,0 +1,3 @@
+FIND bestellposition d, bestellungen o
+FILTER count(o.bestell_id) > 1
+FETCH o.bestell_id, count(o.bestell_id)

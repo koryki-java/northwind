@@ -1,0 +1,13 @@
+// The same BETWEEN must mean the same range wherever it stands. The half-open rewrite used to visit
+// only filter and having, so a condition reaching the projection through case(...) stayed inclusive
+// while the identical condition in a FILTER was widened to cover the whole day — see the sibling
+// fixture timestamp_between, which renders exactly this bound as >= lower AND < 2023-01-01 00:00:00.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  FILTER
+    o.order_id < 10253
+  ORDER o.order_id ASC 1
+ALL
+ OUT case(o.delivered_date BETWEEN "2022-07-01 00:00:00" AND "2022-12-31 23:59:59", 'in', 'out') second_half_2022 2

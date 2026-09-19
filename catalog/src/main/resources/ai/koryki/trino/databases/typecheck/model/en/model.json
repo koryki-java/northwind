@@ -1,0 +1,104 @@
+{
+  "name": "typecheck",
+  "label": null,
+  "comment": null,
+  "description": "Demo database for type checking. Which physical type each column has differs per dialect — that is what the dialectType in the accompanying db.json records.",
+  "entities": [
+    {
+      "name": "check_type",
+      "label": "Check Type",
+      "comment": null,
+      "description": null,
+      "attributes": [
+        {
+          "name": "nr",
+          "label": "Nr",
+          "comment": null,
+          "description": "Row identifier (primary key)"
+        },
+        {
+          "name": "type_smallint",
+          "label": "type_smallint",
+          "comment": null,
+          "description": "2-byte signed integer (-32,768 to 32,767)"
+        },
+        {
+          "name": "type_integer",
+          "label": "type_integer",
+          "comment": null,
+          "description": "4-byte signed integer (-2^31 to 2^31-1)"
+        },
+        {
+          "name": "type_bigint",
+          "label": "type_bigint",
+          "comment": null,
+          "description": "8-byte signed integer (-2^63 to 2^63-1)"
+        },
+        {
+          "name": "type_decimal",
+          "label": "type_decimal",
+          "comment": null,
+          "description": "Fixed-point exact numeric with 18 significant digits and 4 decimal places"
+        },
+        {
+          "name": "type_double",
+          "label": "type_double",
+          "comment": null,
+          "description": "8-byte IEEE 754 double-precision float (~15 significant digits)"
+        },
+        {
+          "name": "type_float",
+          "label": "type_float",
+          "comment": null,
+          "description": "4-byte IEEE 754 single-precision float (~7 significant digits); lower precision than DOUBLE"
+        },
+        {
+          "name": "type_boolean",
+          "label": "type_boolean",
+          "comment": null,
+          "description": "Logical true/false value"
+        },
+        {
+          "name": "type_date",
+          "label": "type_date",
+          "comment": null,
+          "description": "Calendar date (year, month, day)"
+        },
+        {
+          "name": "type_time",
+          "label": "type_time",
+          "comment": null,
+          "description": "Time of day"
+        },
+        {
+          "name": "type_timestamp",
+          "label": "type_timestamp",
+          "comment": null,
+          "description": "Date and time with fractional seconds; no timezone"
+        },
+        {
+          "name": "bool_from_int",
+          "label": "Boolean from integer",
+          "comment": null,
+          "description": "Boolean encoded as a 0/1 integer"
+        },
+        {
+          "name": "bool_from_text",
+          "label": "Boolean from text",
+          "comment": null,
+          "description": "Boolean encoded as a single character such as Y/N"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "name": "same_check",
+      "comment": "both tables refer to the same data record",
+      "description": null,
+      "relations": [
+        "pk_check"
+      ]
+    }
+  ]
+}

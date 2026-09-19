@@ -1,0 +1,12 @@
+// lead: the mirror of lag — the next order's freight for the same customer.
+
+SELECT
+ customers c
+  OUT c.customer_id 1
+  FILTER
+    c.country = 'France'
+  JOIN same_customer orders o
+    OUT o.order_id 2
+    OUT o.freight 3
+    OUT lead(o.freight) OVER (PARTITION c.customer_id ORDER o.order_id) next_freight 4
+  OWNER

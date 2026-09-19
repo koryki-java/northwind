@@ -1,0 +1,5 @@
+// to_text: render an integer column as text.
+
+SELECT
+ check_type c
+  OUT to_text(c.type_integer) integer_text 1

@@ -1,0 +1,4 @@
+// row_number: number each customer's orders from their earliest, without collapsing any rows.
+FIND customers c, orders o
+FILTER c.country = 'France'
+FETCH c.customer_id, o.order_id, row_number() OVER (PARTITION c.customer_id ORDER o.order_id) nth

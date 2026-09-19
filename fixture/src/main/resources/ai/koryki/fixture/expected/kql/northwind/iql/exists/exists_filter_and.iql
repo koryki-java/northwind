@@ -1,0 +1,15 @@
+// Regression: an EXISTS filter with two pushable conjuncts crashed with
+// UnsupportedOperationException (fixed-size children list, exists filter
+// skipped Normalizer). Both conjuncts must be pushed onto source o.
+
+SELECT
+ customers c
+  OUT c.company_name 1
+ALL
+ FILTER
+   EXISTS (c same_customer orders o
+   FILTER
+     o.ship_via = 2
+    AND
+     o.freight > 10
+  )

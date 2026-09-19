@@ -1,0 +1,6 @@
+intraday : INTERVAL
+multiday : INTERVAL
+roundtrip : INTERVAL
+instant_vs_epoch_millis : INTERVAL
+epoch_secs_vs_naive : INTERVAL
+naive_vs_instant_negative : INTERVAL

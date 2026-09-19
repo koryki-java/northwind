@@ -1,0 +1,3 @@
+SELECT
+ check_type c
+  OUT to_integer(c.type_smallint) 1

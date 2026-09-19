@@ -1,0 +1,4 @@
+// DATE upper: rewritten to >= lower AND < upper+1d
+FIND orders o
+FILTER o.order_date BETWEEN "2022-01-01" AND "2022-12-31"
+FETCH o.order_id, o.order_date

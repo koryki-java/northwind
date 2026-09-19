@@ -1,0 +1,3 @@
+today_is_current : TEXT
+now_agrees_with_today : TEXT
+clock_now_agrees_with_today : TEXT

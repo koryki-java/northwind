@@ -1,0 +1,2 @@
+FIND check_type c
+FETCH to_integer(c.type_smallint)

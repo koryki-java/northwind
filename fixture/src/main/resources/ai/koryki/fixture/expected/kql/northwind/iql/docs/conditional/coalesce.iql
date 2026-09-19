@@ -1,0 +1,5 @@
+// coalesce: region, falling back to country.
+
+SELECT
+ customers c
+  OUT coalesce(c.region, c.country) region_or_country 1

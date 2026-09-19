@@ -1,0 +1,6 @@
+// Unary minus: negative number literal in filter comparison.
+// All order details with unit price above -1 (unary minus on numeric literal).
+
+FIND order_details od, orders o
+FILTER od.unit_price > -1.0 AND o.customer_id = 'VINET'
+FETCH od.order_id, od.unit_price

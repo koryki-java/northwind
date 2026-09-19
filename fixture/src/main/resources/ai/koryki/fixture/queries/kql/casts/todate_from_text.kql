@@ -1,0 +1,2 @@
+FIND orders o
+FETCH o.order_id, to_date('1996-07-04') date_val

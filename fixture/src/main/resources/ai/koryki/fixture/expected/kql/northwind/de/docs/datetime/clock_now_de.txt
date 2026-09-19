@@ -1,0 +1,4 @@
+// clock_now: the current wall-clock timestamp.
+
+FIND bestellungen o
+FETCH clock_now() wall_clock_ts

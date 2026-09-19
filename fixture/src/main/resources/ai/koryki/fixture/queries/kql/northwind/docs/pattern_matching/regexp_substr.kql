@@ -1,0 +1,3 @@
+// regexp_substr: first run of digits in a phone number.
+FIND customers c
+FETCH regexp_substr(c.phone, '[0-9]+') first_digits

@@ -1,0 +1,5 @@
+// tan: trigonometric tangent, argument in radians.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, round(tan(0), 6) tangent_of_zero
+LIMIT 20

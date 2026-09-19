@@ -1,0 +1,5 @@
+// years_between: whole years from order to shipment.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, years_between(o.bestelldatum, o.versand_datum) years
+LIMIT 20

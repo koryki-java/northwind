@@ -1,0 +1,7 @@
+// round: order freight rounded to one decimal place.
+
+SELECT
+ orders o
+  OUT round(o.freight, 1) freight_rounded 1
+  FILTER
+    o.customer_id = 'TOMSP'

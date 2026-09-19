@@ -1,0 +1,1 @@
+unsupported: Expression [4:32-4:40]: duration '1h2min3s' is a DAY TO SECOND amount and the other side is YEAR TO MONTH — this dialect keeps the two interval types apart and cannot compare them

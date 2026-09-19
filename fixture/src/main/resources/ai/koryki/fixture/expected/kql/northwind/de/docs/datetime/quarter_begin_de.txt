@@ -1,0 +1,5 @@
+// quarter_begin: first day of the order's quarter.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, quarter_begin(o.bestelldatum) q_begin
+LIMIT 20

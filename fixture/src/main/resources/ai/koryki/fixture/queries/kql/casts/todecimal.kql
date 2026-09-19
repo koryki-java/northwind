@@ -1,0 +1,2 @@
+FIND order_details od
+FETCH od.order_id, to_decimal(od.discount, 5, 2) discount_decimal

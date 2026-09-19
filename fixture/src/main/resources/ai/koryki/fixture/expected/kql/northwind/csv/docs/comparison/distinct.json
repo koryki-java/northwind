@@ -1,0 +1,3 @@
+Id : TEXT
+customer_region : TEXT
+order_region : TEXT

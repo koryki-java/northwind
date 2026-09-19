@@ -1,0 +1,8 @@
+// An explicit join marked optional: LEFT OUTER JOIN, with the columns still in the ON clause.
+
+SELECT
+ employee_territories et1
+  OUT et1.employee_id 1
+  JOIN OPTIONAL [employee_id=employee_id, territory_id=territory_id] employee_territories et2
+    OUT et2.territory_id 2
+  OWNER

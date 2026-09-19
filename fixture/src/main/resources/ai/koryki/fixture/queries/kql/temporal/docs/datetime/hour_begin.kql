@@ -1,0 +1,3 @@
+// hour_begin: the start of a TIMESTAMP's hour -- the bucket an hourly trend groups by.
+FIND check_temporal c
+FETCH hour_begin(c.timestamp_timestamp) start_of_hour

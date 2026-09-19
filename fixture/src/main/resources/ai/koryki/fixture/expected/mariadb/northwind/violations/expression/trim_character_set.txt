@@ -1,0 +1,2 @@
+unsupported: Function [12:7-12:30]: function 'trim' is not supported by this dialect with 2 argument(s)
+unsupported: Function [12:34-12:57]: function 'trim' is not supported by this dialect with 2 argument(s)

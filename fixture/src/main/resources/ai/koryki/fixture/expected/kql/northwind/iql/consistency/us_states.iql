@@ -1,0 +1,3 @@
+SELECT
+ us_states u
+  OUT count(u.state_id) 1

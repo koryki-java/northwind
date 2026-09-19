@@ -1,0 +1,5 @@
+// max: latest order date.
+
+SELECT
+ orders o
+  OUT max(o.order_date) latest 1

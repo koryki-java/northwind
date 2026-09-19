@@ -1,0 +1,4 @@
+// The left-hand column does not exist on the left entity. Naming it must be reported with its
+// position, not fail somewhere in the renderer.
+FIND employee_territories et1, [no_such_column=territory_id] employee_territories et2
+FETCH et1.employee_id

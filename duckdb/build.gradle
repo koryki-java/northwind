@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+description = 'The Northwind sample database for DuckDB: DDL, data scripts and the prebuilt database file'
+
+// The program that builds northwind.duckdb from the scripts. A source set of its own, so neither it
+// nor the DuckDB driver ends up in the published jar or its POM.
+sourceSets {
+    builder
+}
+
+dependencies {
+    builderImplementation libs.duckdb
+
+    testImplementation sourceSets.builder.output
+    testImplementation libs.duckdb
+    testImplementation platform(libs.junit.bom)
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+test {
+    useJUnitPlatform()
+}
+
+def databaseDir = 'src/main/resources/ai/koryki/duckdb/databases/northwind'
+def builtDatabase = layout.buildDirectory.file('northwind.duckdb')
+
+tasks.register('buildDatabase', JavaExec) {
+    group = 'build'
+    description = 'Builds build/northwind.duckdb from the scripts in db/.'
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.duckdb.BuildDatabase'
+    inputs.dir("$databaseDir/db")
+            .withPathSensitivity(PathSensitivity.RELATIVE)
+            .withPropertyName('scripts')
+    outputs.file(builtDatabase)
+    args(file("$databaseDir/db").path, builtDatabase.get().asFile.path)
+}
+
+tasks.register('updateDatabase') {
+    group = 'build'
+    description = 'Replaces the committed northwind.duckdb with a fresh build from the scripts.'
+    dependsOn 'buildDatabase'
+    def source = builtDatabase
+    def target = file("$databaseDir/northwind.duckdb")
+    doLast {
+        java.nio.file.Files.copy(source.get().asFile.toPath(), target.toPath(),
+                java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+        logger.lifecycle("Replaced $target")
+    }
+}
+
+// So that `updateDatabase test` checks and packages the database just written.
+tasks.named('processResources') { mustRunAfter 'updateDatabase' }
+tasks.named('test') { mustRunAfter 'updateDatabase' }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'koryki-northwind-duckdb'
+            pom {
+                name = 'koryki-northwind-duckdb'
+            }
+        }
+    }
+}

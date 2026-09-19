@@ -1,0 +1,3 @@
+Id : INTEGER
+Product name : TEXT
+stock_status : TEXT

@@ -1,0 +1,13 @@
+// Unary minus: negated field and negated arithmetic expression in FETCH.
+
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT negate(od.discount) 2
+  OUT negate((multiply(od.unit_price, od.quantity))) 3
+  FILTER
+    od.discount > 0
+  JOIN same_order orders o
+    FILTER
+      o.customer_id = 'VINET'
+  OWNER

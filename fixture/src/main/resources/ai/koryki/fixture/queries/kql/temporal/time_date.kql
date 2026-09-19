@@ -1,0 +1,2 @@
+FIND check_temporal c
+FETCH c.time_date

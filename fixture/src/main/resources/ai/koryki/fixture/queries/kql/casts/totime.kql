@@ -1,0 +1,2 @@
+FIND orders o
+FETCH o.order_id, to_time(o.delivered_date) order_time

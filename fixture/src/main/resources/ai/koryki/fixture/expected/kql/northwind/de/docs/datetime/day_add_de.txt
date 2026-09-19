@@ -1,0 +1,5 @@
+// day_add: seven days after the order date.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, day_add(o.bestelldatum, 7) plus_week
+LIMIT 20

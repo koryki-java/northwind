@@ -1,0 +1,2 @@
+"smallint_text", "integer_text", "bigint_text", "decimal_text", "double_text"
+"32000", "2147483647", "9223372036854775807", "12345.6789", "1.618034"

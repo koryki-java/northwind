@@ -1,0 +1,4 @@
+// reverse: company name reversed.
+
+FIND kunden c
+FETCH reverse(c.firma) reversed

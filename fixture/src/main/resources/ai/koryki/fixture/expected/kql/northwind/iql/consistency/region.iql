@@ -1,0 +1,3 @@
+SELECT
+ region r
+  OUT count(r.region_id) 1

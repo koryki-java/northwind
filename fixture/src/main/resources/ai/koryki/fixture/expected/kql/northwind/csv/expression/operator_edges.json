@@ -1,0 +1,3 @@
+m : INTEGER
+shifted : TIMESTAMP
+rounded : DECIMAL

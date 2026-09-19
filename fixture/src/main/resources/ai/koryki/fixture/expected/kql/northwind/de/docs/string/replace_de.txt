@@ -1,0 +1,4 @@
+// replace: remove dashes from a phone number.
+
+FIND kunden c
+FETCH replace(c.telefon, '-', '') no_dashes

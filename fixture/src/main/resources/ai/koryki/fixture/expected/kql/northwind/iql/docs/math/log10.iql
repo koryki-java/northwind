@@ -1,0 +1,9 @@
+// log10: base-10 logarithm.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT log10(1000) base_ten_log 2
+LIMIT 20

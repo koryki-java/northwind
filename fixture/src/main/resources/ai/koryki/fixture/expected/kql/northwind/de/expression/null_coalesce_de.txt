@@ -1,0 +1,3 @@
+FIND kunden c
+FILTER c.kunden_id = 'ALFKI'
+FETCH c.firma, coalesce(c.region, 'N/A') region_or_default

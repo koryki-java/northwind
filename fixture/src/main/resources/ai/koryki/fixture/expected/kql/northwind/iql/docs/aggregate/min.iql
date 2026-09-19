@@ -1,0 +1,5 @@
+// min: earliest order date.
+
+SELECT
+ orders o
+  OUT min(o.order_date) earliest 1

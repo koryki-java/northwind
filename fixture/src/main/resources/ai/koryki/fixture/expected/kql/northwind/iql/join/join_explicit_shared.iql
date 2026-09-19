@@ -1,0 +1,12 @@
+// An explicitly written join instead of a named criterion. Both sides use the same column names,
+// so the shorthand form applies and stands for [employee_id=employee_id, territory_id=territory_id].
+// Only columns the model exposes as attributes can be named here, exactly as everywhere else in
+// KQL -- order_details, for instance, carries product_id in the schema but not in the model, so the
+// composite join over it is reachable only through its criterion.
+
+SELECT
+ employee_territories et1
+  OUT et1.employee_id 1
+  OUT et1.territory_id 2
+  JOIN [employee_id=employee_id, territory_id=territory_id] employee_territories et2
+  OWNER

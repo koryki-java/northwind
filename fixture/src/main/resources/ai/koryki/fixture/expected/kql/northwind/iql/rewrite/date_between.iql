@@ -1,0 +1,8 @@
+// DATE upper: rewritten to >= lower AND < upper+1d
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT o.order_date 2
+  FILTER
+    o.order_date BETWEEN "2022-01-01" AND "2022-12-31"

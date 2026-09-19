@@ -1,0 +1,4 @@
+// month_begin: first day of the order's month.
+FIND orders o
+FETCH o.order_id ASC, month_begin(o.order_date) m_begin
+LIMIT 20

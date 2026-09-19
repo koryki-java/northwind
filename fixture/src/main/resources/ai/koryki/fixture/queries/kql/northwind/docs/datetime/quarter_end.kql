@@ -1,0 +1,4 @@
+// quarter_end: last day of the order's quarter.
+FIND orders o
+FETCH o.order_id ASC, quarter_end(o.order_date) q_end
+LIMIT 20

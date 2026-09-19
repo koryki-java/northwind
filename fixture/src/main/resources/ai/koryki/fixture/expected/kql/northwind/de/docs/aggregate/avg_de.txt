@@ -1,0 +1,4 @@
+// avg: average line-item unit price.
+
+FIND bestellposition od
+FETCH avg(od.preis_je_einheit) avg_price

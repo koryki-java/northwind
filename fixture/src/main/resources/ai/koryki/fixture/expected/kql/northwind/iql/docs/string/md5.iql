@@ -1,0 +1,5 @@
+// md5: MD5 hash of the company name.
+
+SELECT
+ customers c
+  OUT md5(c.company_name) hash 1

@@ -1,0 +1,4 @@
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT to_decimal(od.discount, 5, 2) discount_decimal 2

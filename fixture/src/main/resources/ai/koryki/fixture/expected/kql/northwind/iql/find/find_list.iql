@@ -1,0 +1,16 @@
+// FIND with list of links without alias
+
+SELECT
+ orders o
+  FILTER
+    o.order_date BETWEEN "2023-01-01" AND "2023-12-31"
+  JOIN same_order order_details od
+    OUT sum(to_decimal(multiply(to_decimal(od.unit_price, 18, 6), to_decimal(od.quantity, 18, 6)), 18, 6)) 2
+    ORDER sum(to_decimal(multiply(to_decimal(od.unit_price, 18, 6), to_decimal(od.quantity, 18, 6)), 18, 6)) DESC 2
+     JOIN same_product products p
+        JOIN same_category categories c
+          OUT c.category_name 1
+          GROUP c.category_name 1
+        OWNER
+     OWNER
+  OWNER

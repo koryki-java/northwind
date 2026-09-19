@@ -1,0 +1,4 @@
+// years_between: whole years from order to shipment.
+FIND orders o
+FETCH o.order_id ASC, years_between(o.order_date, o.shipped_date) years
+LIMIT 20

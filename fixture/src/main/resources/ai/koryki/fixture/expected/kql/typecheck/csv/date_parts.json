@@ -1,0 +1,7 @@
+q : INTEGER
+wk : INTEGER
+dow : INTEGER
+dom : INTEGER
+doy : INTEGER
+wk_begin : DATE
+wk_end : DATE

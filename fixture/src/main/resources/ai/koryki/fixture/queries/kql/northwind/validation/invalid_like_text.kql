@@ -1,0 +1,5 @@
+// LIKE requires TEXT on both sides; freight is numeric, so this must be
+// rejected with a validation error (see OperatorFunctions / FunctionValidator).
+FIND orders o
+FILTER o.freight LIKE '5%'
+FETCH o.order_id, o.freight

@@ -1,0 +1,11 @@
+// The column order is part of the meaning and has to survive into the ON clause. This is
+// join_explicit_shared with the two columns swapped: the same rows come back, but the comparisons
+// must appear in the written order. An implementation that sorts the columns or keeps them in a set
+// would pass the result check and fail here.
+
+SELECT
+ employee_territories et1
+  OUT et1.employee_id 1
+  OUT et1.territory_id 2
+  JOIN [territory_id=territory_id, employee_id=employee_id] employee_territories et2
+  OWNER

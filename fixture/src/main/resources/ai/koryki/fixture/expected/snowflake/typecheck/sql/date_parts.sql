@@ -1,0 +1,12 @@
+-- The calendar parts, all ISO-8601. 2026-05-17 is a Sunday — the case the engines disagree on
+-- most, answering 0, 1 or 7 natively — and it falls in ISO week 20, quarter 2, on day 137.
+SELECT
+  quarter(t.type_date) AS q
+, WEEKISO(t.type_date) AS wk
+, DAYOFWEEKISO(t.type_date) AS dow
+, day(t.type_date) AS dom
+, dayofyear(t.type_date) AS doy
+, DATEADD(day, -(DAYOFWEEKISO(t.type_date) - 1), t.type_date) AS wk_begin
+, DATEADD(day, 7 - DAYOFWEEKISO(t.type_date), t.type_date) AS wk_end
+FROM
+ check_type t

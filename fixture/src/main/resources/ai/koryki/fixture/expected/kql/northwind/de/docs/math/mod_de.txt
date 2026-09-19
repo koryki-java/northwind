@@ -1,0 +1,5 @@
+// mod: order id modulo 7.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, mod(o.bestell_id, 7) bucket
+LIMIT 20

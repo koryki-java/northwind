@@ -1,0 +1,5 @@
+// left: first two characters of the postal code.
+
+SELECT
+ customers c
+  OUT left(c.postal_code, 2) prefix 1

@@ -1,0 +1,6 @@
+// log: logarithm to an explicit base — the base comes first.
+// T-SQL takes LOG(value, base), the other way round from every other engine, so this
+// pins the value rather than just the rendering: log(2, 8) must be 3 everywhere.
+FIND orders o
+FETCH o.order_id ASC, log(2, 8) log_base_two
+LIMIT 20

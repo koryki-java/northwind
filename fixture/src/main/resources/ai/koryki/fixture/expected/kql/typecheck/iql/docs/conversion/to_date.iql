@@ -1,0 +1,5 @@
+// to_date: drop the time part of a TIMESTAMP.
+
+SELECT
+ check_type c
+  OUT to_date(c.type_timestamp) as_date 1

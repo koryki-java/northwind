@@ -1,0 +1,2 @@
+FIND bestellposition d
+FETCH count(d)

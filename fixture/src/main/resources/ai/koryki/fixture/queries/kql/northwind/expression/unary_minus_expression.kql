@@ -1,0 +1,5 @@
+// Unary minus: negated field and negated arithmetic expression in FETCH.
+
+FIND order_details od, orders o
+FILTER od.discount > 0.0 AND o.customer_id = 'VINET'
+FETCH od.order_id, -od.discount, -(od.unit_price * od.quantity)

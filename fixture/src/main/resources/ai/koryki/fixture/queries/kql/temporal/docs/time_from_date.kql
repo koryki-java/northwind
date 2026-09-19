@@ -1,0 +1,3 @@
+// time_from_date: read a TIME held in the time part of a DATE column (TIME_FROM_DATE encoding).
+FIND check_temporal c
+FETCH c.time_from_date wall_time

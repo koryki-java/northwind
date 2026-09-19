@@ -1,0 +1,8 @@
+// month_begin: first day of the order's month.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT month_begin(o.order_date) m_begin 2
+  ORDER o.order_id ASC 1
+LIMIT 20

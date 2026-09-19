@@ -1,0 +1,6 @@
+SELECT
+ customers c
+  OUT upper(c.company_name) name_upper 1
+  OUT lower(c.company_name) name_lower 2
+  FILTER
+    c.customer_id = 'ALFKI'

@@ -1,0 +1,2 @@
+unsupported: Function [8:7-8:36]: function 'regexp_substr' is not supported by this dialect
+unsupported: Function [8:45-8:83]: function 'regexp_substr' is not supported by this dialect

@@ -1,0 +1,8 @@
+// month: the month component of the order date.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT month(o.order_date) order_month 2
+  ORDER o.order_id ASC 1
+LIMIT 20

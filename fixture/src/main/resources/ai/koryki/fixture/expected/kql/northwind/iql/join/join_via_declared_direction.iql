@@ -1,0 +1,11 @@
+// The same link the way its relation is declared. Belongs beside join_via_reverse_direction:
+// the two are one question asked from either end, and must arrive at the same join and the same
+// rows.
+
+SELECT
+ orders o
+  OUT count(o.order_id) orders 2
+  JOIN same_shipper shippers s
+    OUT s.company_name shipper 1
+    GROUP s.company_name 1
+  OWNER

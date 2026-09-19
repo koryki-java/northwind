@@ -1,0 +1,3 @@
+// bit_length: length of the company name in bits.
+FIND customers c
+FETCH bit_length(c.company_name) name_bits

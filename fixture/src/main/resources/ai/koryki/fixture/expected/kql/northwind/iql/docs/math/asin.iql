@@ -1,0 +1,9 @@
+// asin: inverse sine, result in radians.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT round(asin(1), 6) arcsine_of_one 2
+LIMIT 20

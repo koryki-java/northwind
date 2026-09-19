@@ -1,0 +1,4 @@
+// max: latest order date.
+
+FIND bestellungen o
+FETCH max(o.bestelldatum) latest

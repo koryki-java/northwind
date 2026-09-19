@@ -1,0 +1,5 @@
+// dayofweek: which weekday the order was placed on, Monday = 1.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, dayofweek(o.bestelldatum) order_weekday
+LIMIT 20

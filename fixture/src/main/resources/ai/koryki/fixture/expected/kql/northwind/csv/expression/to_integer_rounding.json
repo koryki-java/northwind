@@ -1,0 +1,5 @@
+i_pos : INTEGER
+i_neg : INTEGER
+i_half : INTEGER
+b_pos : INTEGER
+s_pos : INTEGER

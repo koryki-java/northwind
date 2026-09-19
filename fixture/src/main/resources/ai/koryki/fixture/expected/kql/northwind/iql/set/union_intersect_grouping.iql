@@ -1,0 +1,23 @@
+// Regression: set-operation grouping must survive rendering and the IQL round-trip.
+// (A UNION B) INTERSECT C re-associated to A UNION (B INTERSECT C) when rendered flat,
+// because SQL gives INTERSECT higher precedence.
+
+(
+SELECT
+ customers c
+  OUT c.customer_id id 1
+  FILTER
+    c.contact_name LIKE 'A%'
+UNION
+SELECT
+ customers c
+  OUT c.customer_id id 1
+  FILTER
+    c.contact_name LIKE 'B%'
+)
+INTERSECT
+SELECT
+ customers c
+  OUT c.customer_id id 1
+  FILTER
+    c.country = 'Mexico'

@@ -1,0 +1,6 @@
+// find customers, give company_name
+
+SELECT
+    customers c
+        OUT c.company_name cn
+        OUT c.customer_id id

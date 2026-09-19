@@ -1,0 +1,12 @@
+// <= : order lines at or below a discount ceiling.
+
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT od.product_id 2
+  OUT od.discount 3
+  FILTER
+    od.discount <= 0.1
+  ORDER od.order_id ASC 1
+  ORDER od.product_id ASC 2
+LIMIT 20

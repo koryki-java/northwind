@@ -1,0 +1,5 @@
+// translate: transliterate German umlauts.
+
+SELECT
+ customers c
+  OUT translate(c.company_name, 'äöü', 'aou') ascii_name 1

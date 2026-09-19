@@ -1,0 +1,4 @@
+// trim: strip surrounding whitespace.
+
+FIND kunden c
+FETCH trim(c.firma) trimmed

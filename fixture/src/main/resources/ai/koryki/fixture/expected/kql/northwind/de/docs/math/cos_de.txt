@@ -1,0 +1,5 @@
+// cos: trigonometric cosine, argument in radians.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, round(cos(0), 6) cosine_of_zero
+LIMIT 20

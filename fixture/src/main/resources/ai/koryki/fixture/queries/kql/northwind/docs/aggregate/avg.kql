@@ -1,0 +1,3 @@
+// avg: average line-item unit price.
+FIND order_details od
+FETCH avg(od.unit_price) avg_price

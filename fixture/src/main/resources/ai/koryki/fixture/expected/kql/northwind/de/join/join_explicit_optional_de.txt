@@ -1,0 +1,4 @@
+// An explicit join marked optional: LEFT OUTER JOIN, with the columns still in the ON clause.
+
+FIND mitarbeiter_gebiet et1, [mitarbeiter_id, gebiet_id] + mitarbeiter_gebiet et2
+FETCH et1.mitarbeiter_id, et2.gebiet_id

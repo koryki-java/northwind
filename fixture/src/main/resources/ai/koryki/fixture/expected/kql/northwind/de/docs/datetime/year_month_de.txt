@@ -1,0 +1,5 @@
+// year_month: the order's month as a sortable YYYYMM key.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, year_month(o.bestelldatum) order_year_month
+LIMIT 20

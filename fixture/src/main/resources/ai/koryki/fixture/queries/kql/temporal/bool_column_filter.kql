@@ -1,0 +1,6 @@
+// A boolean column standing alone as a filter condition. bool_from_int is BOOLEAN_FROM_INTEGER,
+// physically 0/1, so the predicate is derived from the encoding rather than passed through bare —
+// which is what makes this work on engines that have no boolean type to put in a WHERE clause.
+FIND check_temporal c
+FILTER c.bool_from_int
+FETCH c.nr, c.bool_from_int

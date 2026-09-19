@@ -1,0 +1,6 @@
+// > : orders with freight above a threshold.
+
+FIND bestellungen o
+FILTER o.fracht > 100
+FETCH o.bestell_id ASC, o.fracht
+LIMIT 20

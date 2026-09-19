@@ -1,0 +1,4 @@
+// ltrim: strip leading whitespace.
+
+FIND kunden c
+FETCH ltrim(c.plz) left_trimmed

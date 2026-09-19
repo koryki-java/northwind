@@ -1,0 +1,1 @@
+unsupported: Function [7:38-7:68]: function 'concat_ws' is not supported by this dialect

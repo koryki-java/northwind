@@ -1,0 +1,4 @@
+// position: position of a dash within the phone.
+
+FIND kunden c
+FETCH position('-', c.telefon) dash_pos

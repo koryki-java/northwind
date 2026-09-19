@@ -1,0 +1,4 @@
+// dayofyear: how far into the year the order date is.
+FIND orders o
+FETCH o.order_id ASC, dayofyear(o.order_date) order_dayofyear
+LIMIT 20

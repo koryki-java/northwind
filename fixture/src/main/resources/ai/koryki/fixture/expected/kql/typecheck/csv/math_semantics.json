@@ -1,0 +1,6 @@
+log_base : FLOAT
+mod_normal : INTEGER
+mod_zero : INTEGER
+neg_trunc : DECIMAL
+neg_floor : DECIMAL
+neg_trunc_scale : DECIMAL

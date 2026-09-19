@@ -1,0 +1,4 @@
+// year_add: one year after the order date.
+FIND orders o
+FETCH o.order_id ASC, year_add(o.order_date, 1) next_year
+LIMIT 20

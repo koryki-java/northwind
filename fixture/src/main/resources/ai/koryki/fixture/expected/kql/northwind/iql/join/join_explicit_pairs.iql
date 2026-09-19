@@ -1,0 +1,10 @@
+// The pair form of join_explicit_shared. [a, b] is only shorthand for [a=a, b=b], so the SQL below
+// must be identical to that fixture's, comment lines aside -- if the two ever diverge, the two
+// grammar branches have grown apart.
+
+SELECT
+ employee_territories et1
+  OUT et1.employee_id 1
+  OUT et1.territory_id 2
+  JOIN [employee_id=employee_id, territory_id=territory_id] employee_territories et2
+  OWNER

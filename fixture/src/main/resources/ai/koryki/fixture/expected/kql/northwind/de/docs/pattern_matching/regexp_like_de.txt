@@ -1,0 +1,4 @@
+// regexp_like: does the company name start with A?
+
+FIND kunden c
+FETCH regexp_like(c.firma, '^A') starts_with_a

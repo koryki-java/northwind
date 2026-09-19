@@ -1,0 +1,2 @@
+FIND products p
+FETCH p.product_name, to_bigint(p.units_in_stock) stock_bigint

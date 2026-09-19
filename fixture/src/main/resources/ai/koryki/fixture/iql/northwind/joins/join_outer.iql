@@ -1,0 +1,10 @@
+// Find customers contacts and orderdate
+// Use one non optional join
+
+SELECT
+    customers c
+        OUT c.contact_name
+        JOIN OPTIONAL same_customer orders o
+            OUT o.order_date
+        OWNER
+

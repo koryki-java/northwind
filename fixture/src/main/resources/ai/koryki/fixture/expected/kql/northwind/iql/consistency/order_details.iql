@@ -1,0 +1,3 @@
+SELECT
+ order_details d
+  OUT count(d.order_id) 1

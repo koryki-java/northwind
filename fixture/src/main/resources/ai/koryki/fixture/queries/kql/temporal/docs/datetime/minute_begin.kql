@@ -1,0 +1,3 @@
+// minute_begin: the start of a TIMESTAMP's minute.
+FIND check_temporal c
+FETCH minute_begin(c.timestamp_timestamp) start_of_minute

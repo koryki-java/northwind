@@ -1,0 +1,14 @@
+// link in regular order, link first followed by table
+
+WITH ord AS (
+ SELECT
+  orders o
+   OUT to_decimal(o.freight, 16, 8) f 1
+   OUT o.customer_id i 2
+)
+SELECT
+ customers c
+  OUT c.contact_name 1
+  JOIN same_customer ord o
+    OUT o.f 2
+  OWNER

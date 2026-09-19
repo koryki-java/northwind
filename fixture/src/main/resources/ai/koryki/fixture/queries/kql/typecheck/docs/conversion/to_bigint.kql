@@ -1,0 +1,3 @@
+// to_bigint: to a 64-bit integer.
+FIND check_type c
+FETCH to_bigint(c.type_integer) as_bigint

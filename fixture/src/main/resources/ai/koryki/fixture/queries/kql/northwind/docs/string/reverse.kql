@@ -1,0 +1,3 @@
+// reverse: company name reversed.
+FIND customers c
+FETCH reverse(c.company_name) reversed

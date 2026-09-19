@@ -1,0 +1,10 @@
+// Flag products that need reordering: on-hand stock below the reorder level (case as a two-way
+// ternary — case(condition, then, else)).
+
+SELECT
+ products p
+  OUT p.product_id 1
+  OUT p.product_name 2
+  ORDER p.product_id ASC 1
+ALL
+ OUT case(p.units_in_stock < p.reorder_level, 'reorder', 'ok') stock_status 3

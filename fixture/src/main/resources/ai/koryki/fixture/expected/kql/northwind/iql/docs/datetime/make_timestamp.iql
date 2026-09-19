@@ -1,0 +1,9 @@
+// make_timestamp: build a TIMESTAMP from its parts.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT make_timestamp(2024, 1, 31, 14, 30, 0) built 2
+LIMIT 20

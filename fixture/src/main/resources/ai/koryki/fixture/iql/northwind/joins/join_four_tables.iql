@@ -1,0 +1,15 @@
+SELECT
+     customers c
+        OUT c.contact_name h1
+    JOIN same_customer orders o
+        OUT o.order_date h2
+        JOIN same_order order_details od
+            OUT od.unit_price h3
+            FILTER od.unit_price > 5
+        OWNER
+    OWNER
+    JOIN same_customer customer_customer_demo ccd
+        JOIN same_customer_demographic customer_demographics cd
+            OUT cd.customer_desc h4
+        OWNER
+    OWNER

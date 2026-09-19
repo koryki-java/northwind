@@ -1,0 +1,6 @@
+whole_two : INTEGER
+not_complete_one : INTEGER
+signed_minus28 : INTEGER
+end_leap : DATE
+end_q2 : DATE
+end_year : DATE

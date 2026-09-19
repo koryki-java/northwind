@@ -1,0 +1,4 @@
+Id : TEXT
+Id : INTEGER
+Freight : DECIMAL
+next_freight : DECIMAL

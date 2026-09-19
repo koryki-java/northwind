@@ -1,0 +1,5 @@
+// find customers, give company_name, no header
+
+SELECT
+ customers c
+  OUT count(c.customer_id) 1

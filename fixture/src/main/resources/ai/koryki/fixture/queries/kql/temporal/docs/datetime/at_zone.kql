@@ -1,0 +1,3 @@
+// at_zone: read a model-zone wall-clock value in another zone.
+FIND check_temporal c
+FETCH at_zone(c.ts_diff_base, 'America/New_York') in_new_york

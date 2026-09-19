@@ -1,0 +1,5 @@
+// to_text overload resolution for the remaining families (BOOLEAN, TEXT, BLOB, INTERVAL, UUID, JSON).
+
+SELECT
+ check_type c
+  OUT to_text(c.type_boolean) boolean_text 1

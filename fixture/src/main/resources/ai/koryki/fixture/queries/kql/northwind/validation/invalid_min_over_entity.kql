@@ -1,0 +1,6 @@
+// An entity means "the rows", and only count and count_distinct can answer that. There is no
+// smallest order line, so this has no answer -- but it used to get one: IdentityRule replaced the
+// entity with its first key column and min(od) quietly became min(od.order_id) = 10248, the lowest
+// order number offered as the answer to a question about order lines.
+FIND order_details od
+FETCH min(od) m

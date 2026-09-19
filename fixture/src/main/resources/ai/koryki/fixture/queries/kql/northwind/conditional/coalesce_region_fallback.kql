@@ -1,0 +1,8 @@
+// A customer's region is frequently missing — fall back to the country for display.
+// coalesce returns the first non-null of its arguments.
+
+FIND customers c
+FETCH
+  c.customer_id ASC,
+  c.company_name,
+  coalesce(c.region, c.country)  region_or_country

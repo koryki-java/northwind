@@ -1,0 +1,3 @@
+nr : INTEGER
+unix_epoch : TIMESTAMP
+java_epoch : TIMESTAMP

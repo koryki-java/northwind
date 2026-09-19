@@ -1,0 +1,5 @@
+base_time : TIME
+plus_two_hours : TIME
+plus_ninety_minutes : TIME
+minus_three_hours : TIME
+plus_interval : TIME

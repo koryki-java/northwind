@@ -1,0 +1,8 @@
+// to_char: format the order date as YYYY-MM.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT to_char(o.order_date, 'YYYY-MM') ym 2
+  ORDER o.order_id ASC 1
+LIMIT 20

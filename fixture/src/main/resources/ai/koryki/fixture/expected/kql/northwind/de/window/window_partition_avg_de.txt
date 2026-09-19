@@ -1,0 +1,7 @@
+// Partition average: compare each product's price to its category average.
+// OVER (PARTITION ...) with no ORDER and no frame spans the entire partition,
+// so avg() returns the same category-wide value for every row in that category.
+
+FIND produkte p, p kategorien c
+FILTER c.kategorie_id IN (3, 4, 7)
+FETCH c.kategorie_name ASC, p.produkt_name ASC, p.preis_je_einheit, avg(p.preis_je_einheit) OVER (PARTITION c.kategorie_name) category_avg_price

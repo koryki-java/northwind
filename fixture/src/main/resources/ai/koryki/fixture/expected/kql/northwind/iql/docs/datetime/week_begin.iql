@@ -1,0 +1,8 @@
+// week_begin: Monday of the order's week — the sortable weekly grouping key.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT week_begin(o.order_date) week_start 2
+  ORDER o.order_id ASC 1
+LIMIT 20

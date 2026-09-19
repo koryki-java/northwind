@@ -1,0 +1,8 @@
+// = : orders shipped to a specific city.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT o.ship_city 2
+  FILTER
+    o.ship_city = 'London'

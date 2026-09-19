@@ -1,0 +1,3 @@
+// right: last four characters of the phone number.
+FIND customers c
+FETCH right(c.phone, 4) last_four

@@ -1,0 +1,5 @@
+// hour: the hour component of a TIMESTAMP.
+
+SELECT
+ check_temporal c
+  OUT hour(c.timestamp_timestamp) hour_of_day 1

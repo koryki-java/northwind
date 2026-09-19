@@ -1,0 +1,7 @@
+// to_date accepts 1, 2, or 3 arguments; this 5-arg call must be rejected by arity
+// validation. Regression for #2: dialect conversion functions (to_date/to_time/
+// to_timestamp/to_interval) must carry a FunctionSignature per arity, otherwise
+// FunctionRegistry.collides evicts the canonical signature and FunctionValidator
+// skips all arity checks (the call would then only fail at render time).
+FIND orders o
+FETCH to_date(o.order_date, o.order_date, o.order_date, o.order_date, o.order_date)

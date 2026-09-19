@@ -1,0 +1,3 @@
+FIND order_details d
+FETCH
+sum(d.unit_price)

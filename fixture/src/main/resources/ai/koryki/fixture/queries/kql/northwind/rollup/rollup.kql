@@ -1,0 +1,5 @@
+// GROUP BY ROLLUP: subtotal rows per country plus a grand total.
+// Dialect note — SQLite has no ROLLUP at all and must reject this before execution
+// (SqliteValidator). MariaDB spells it as a trailing WITH ROLLUP and runs it.
+FIND customers c, orders o
+FETCH c.country, count(o) ROLLUP

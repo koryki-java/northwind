@@ -1,0 +1,2 @@
+schema.unknown-column: Field [3:7-3:26]: unknown column 'interval_interval' on check_temporal
+schema.unknown-column: Field [2:8-2:27]: unknown column 'interval_interval' on check_temporal

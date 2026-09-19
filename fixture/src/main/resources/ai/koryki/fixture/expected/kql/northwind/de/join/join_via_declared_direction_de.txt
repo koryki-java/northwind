@@ -1,0 +1,6 @@
+// The same link the way its relation is declared. Belongs beside join_via_reverse_direction:
+// the two are one question asked from either end, and must arrive at the same join and the same
+// rows.
+
+FIND bestellungen o, o VIA gleicher_spediteur spediteur s
+FETCH s.firma shipper, count(o) orders

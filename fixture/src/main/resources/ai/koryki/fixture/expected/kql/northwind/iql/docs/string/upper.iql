@@ -1,0 +1,5 @@
+// upper: company name in upper case.
+
+SELECT
+ customers c
+  OUT upper(c.company_name) shout 1

@@ -1,0 +1,4 @@
+// year: the year component of the order date.
+FIND orders o
+FETCH o.order_id ASC, year(o.order_date) order_year
+LIMIT 20

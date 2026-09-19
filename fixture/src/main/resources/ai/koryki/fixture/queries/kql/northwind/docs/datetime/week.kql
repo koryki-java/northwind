@@ -1,0 +1,4 @@
+// week: the ISO-8601 week number of the order date.
+FIND orders o
+FETCH o.order_id ASC, week(o.order_date) order_week
+LIMIT 20

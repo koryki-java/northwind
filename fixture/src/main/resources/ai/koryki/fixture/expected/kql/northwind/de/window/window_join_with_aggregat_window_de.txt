@@ -1,0 +1,3 @@
+FIND bestellposition d, d VIA gleiche_bestellung bestellungen o, o VIA gleicher_kunde kunden c
+FILTER c.firma LIKE 'A%'
+FETCH sum(to_decimal(multiply(to_decimal(d.preis_je_einheit, 32, 12), to_decimal(d.menge, 32, 12)), 32, 12)) OVER (PARTITION c.firma) sum, count(c.firma) OVER (PARTITION to_decimal(d.preis_je_einheit, 32, 12) ORDER c.firma ROWS BETWEEN  1 PRECEDING AND  CURRENT ROW)

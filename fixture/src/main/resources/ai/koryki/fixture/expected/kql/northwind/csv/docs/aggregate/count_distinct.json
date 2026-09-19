@@ -1,0 +1,3 @@
+Country : TEXT
+customers : INTEGER
+orders : INTEGER

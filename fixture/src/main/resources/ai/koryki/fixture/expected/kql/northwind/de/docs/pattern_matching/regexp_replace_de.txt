@@ -1,0 +1,5 @@
+// regexp_replace: strip non-digits from a phone number.
+// Every match is replaced, on every dialect — the levelling that makes this sample mean what it says.
+
+FIND kunden c
+FETCH regexp_replace(c.telefon, '[^0-9]', '') digits_only

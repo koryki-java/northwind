@@ -1,0 +1,6 @@
+SELECT
+ customers c
+  OUT trim(c.company_name) trimmed 1
+  OUT char_length(trim(c.company_name)) trimmed_len 2
+  FILTER
+    c.customer_id = 'ALFKI'

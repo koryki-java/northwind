@@ -1,0 +1,2 @@
+unsupported: Expression [8:2-8:9]: duration '1y2mo3d' mixes calendar units (y, q, mo) with clock units, and this dialect keeps YEAR TO MONTH and DAY TO SECOND apart with no type spanning both. Adding it to a date works; using it as a value does not
+unsupported: Expression [9:2-9:9]: duration '1y2mo1d' mixes calendar units (y, q, mo) with clock units, and this dialect keeps YEAR TO MONTH and DAY TO SECOND apart with no type spanning both. Adding it to a date works; using it as a value does not

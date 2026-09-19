@@ -1,0 +1,11 @@
+// KQL keywords are upper case — the lexer defines them as literals and ID is lower-case only,
+// so a lower-case `distinct` never reaches the DISTINCT alternative of the `operator` rule. It
+// becomes a *custom* operator instead, and that used to be worse than the escape hatch it looked
+// like: nothing was passed through, because negatedOperatorTemplate normalises its argument and
+// returned the ANSI `IS NOT DISTINCT FROM`, while the MariaDB (`<=>`) and Oracle (`DECODE`)
+// overrides compare exactly and never fired. Both engines reject that form — ERROR 1064 and
+// ORA-00908 — and the "not a KQL operator" warning was suppressed by the same upper-case retry.
+// A case-only difference from a real operator is now a named error naming the correct spelling.
+FIND customers c, c orders o
+FILTER NOT c.region distinct o.ship_region
+FETCH c.customer_id

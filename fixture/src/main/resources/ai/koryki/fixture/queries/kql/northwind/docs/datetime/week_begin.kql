@@ -1,0 +1,4 @@
+// week_begin: Monday of the order's week — the sortable weekly grouping key.
+FIND orders o
+FETCH o.order_id ASC, week_begin(o.order_date) week_start
+LIMIT 20

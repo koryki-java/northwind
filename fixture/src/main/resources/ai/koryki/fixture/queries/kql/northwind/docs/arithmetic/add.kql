@@ -1,0 +1,4 @@
+// add (+): 30 days after the order date.
+FIND orders o
+FETCH o.order_id ASC, o.order_date + 30d due_date
+LIMIT 20

@@ -1,0 +1,5 @@
+// FIND with list of links without alias
+
+FIND orders o, order_details od, products p, categories c
+FILTER o.order_date BETWEEN "2023-01-01" AND "2023-12-31"
+FETCH c.category_name, sum(to_decimal(to_decimal(od.unit_price, 18,6) * to_decimal(od.quantity, 18,6), 18,6)) DESC

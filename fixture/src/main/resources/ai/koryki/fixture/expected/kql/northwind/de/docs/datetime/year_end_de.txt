@@ -1,0 +1,5 @@
+// year_end: last day of the order's year.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, year_end(o.bestelldatum) y_end
+LIMIT 20

@@ -1,0 +1,3 @@
+FIND products p
+FILTER p.product_id = 1
+FETCH p.product_name, floor(p.unit_price) price_floor, ceil(p.unit_price) price_ceil

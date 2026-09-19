@@ -1,0 +1,6 @@
+// now: the current timestamp.
+
+SELECT
+ orders o
+ALL
+ OUT now() current_ts 1

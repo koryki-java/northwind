@@ -1,0 +1,12 @@
+// trunc: truncate toward zero, never rounding up.
+
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT od.product_id 2
+  OUT trunc(od.unit_price) whole_price 3
+  ORDER od.order_id ASC 1
+  ORDER od.product_id ASC 2
+ALL
+ OUT trunc(19.99, 1) one_decimal 4
+LIMIT 20

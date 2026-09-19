@@ -1,0 +1,4 @@
+Id : INTEGER
+Customer : TEXT
+Ship City : TEXT
+cities : TEXT

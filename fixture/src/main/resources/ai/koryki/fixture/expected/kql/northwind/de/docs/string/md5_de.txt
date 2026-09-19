@@ -1,0 +1,4 @@
+// md5: MD5 hash of the company name.
+
+FIND kunden c
+FETCH md5(c.firma) hash

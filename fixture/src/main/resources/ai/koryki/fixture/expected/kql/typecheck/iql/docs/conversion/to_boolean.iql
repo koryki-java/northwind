@@ -1,0 +1,5 @@
+// to_boolean: zero is false, non-zero is true.
+
+SELECT
+ check_type c
+  OUT to_boolean(c.type_integer) flag 1

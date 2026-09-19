@@ -1,0 +1,9 @@
+// sin: trigonometric sine, argument in radians.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT round(sin(0), 6) sine_of_zero 2
+LIMIT 20

@@ -1,0 +1,5 @@
+// DATE upper: rewritten to >= lower AND < upper+1d
+
+FIND bestellungen o
+FILTER o.bestelldatum BETWEEN "2022-01-01" AND "2022-12-31"
+FETCH o.bestell_id, o.bestelldatum

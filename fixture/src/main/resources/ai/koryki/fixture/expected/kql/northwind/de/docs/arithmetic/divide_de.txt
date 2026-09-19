@@ -1,0 +1,4 @@
+// divide (/): unit cost of a line item.
+
+FIND bestellposition od
+FETCH od.preis_je_einheit / od.menge unit_cost

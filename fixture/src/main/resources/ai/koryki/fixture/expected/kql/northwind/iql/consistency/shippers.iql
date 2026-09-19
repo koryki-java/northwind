@@ -1,0 +1,3 @@
+SELECT
+ shippers s
+  OUT count(s.shipper_id) 1

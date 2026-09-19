@@ -1,0 +1,4 @@
+// week_end: Sunday of the order's week.
+FIND orders o
+FETCH o.order_id ASC, week_end(o.order_date) week_close
+LIMIT 20

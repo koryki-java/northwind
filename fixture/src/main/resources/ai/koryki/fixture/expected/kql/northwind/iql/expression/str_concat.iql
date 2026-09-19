@@ -1,0 +1,6 @@
+SELECT
+ employees e
+  OUT concat(e.first_name, ' ', e.last_name) full_name 1
+  OUT concat(e.title_of_courtesy, ' ', e.last_name) formal 2
+  FILTER
+    e.employee_id = 1

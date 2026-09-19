@@ -1,0 +1,5 @@
+// < : order lines priced below a threshold.
+FIND order_details od
+FILTER od.unit_price < 10
+FETCH od.order_id ASC, od.product_id ASC, od.unit_price
+LIMIT 20

@@ -1,0 +1,5 @@
+// position: position of a dash within the phone.
+
+SELECT
+ customers c
+  OUT position('-', c.phone) dash_pos 1

@@ -1,0 +1,8 @@
+// dayofweek: which weekday the order was placed on, Monday = 1.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT dayofweek(o.order_date) order_weekday 2
+  ORDER o.order_id ASC 1
+LIMIT 20

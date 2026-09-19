@@ -1,0 +1,5 @@
+// to_float: to single-precision floating point.
+
+SELECT
+ check_type c
+  OUT to_float(c.type_decimal) as_float 1

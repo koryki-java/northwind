@@ -1,0 +1,8 @@
+// minus (-): shipping delay in whole days.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT minus(o.shipped_date, o.order_date) ship_delay 2
+  ORDER o.order_id ASC 1
+LIMIT 20

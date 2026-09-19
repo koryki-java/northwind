@@ -1,0 +1,4 @@
+// FIND join with composite key
+
+FIND order_details od1, VIA same_order_detail order_details od2
+FETCH sum(od1.unit_price * od2.quantity) DESC

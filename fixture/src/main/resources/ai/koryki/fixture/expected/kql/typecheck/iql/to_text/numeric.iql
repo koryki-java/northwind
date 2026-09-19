@@ -1,0 +1,9 @@
+// to_text overload resolution for the numeric families (INTEGER, DECIMAL).
+
+SELECT
+ check_type c
+  OUT to_text(c.type_smallint) smallint_text 1
+  OUT to_text(c.type_integer) integer_text 2
+  OUT to_text(c.type_bigint) bigint_text 3
+  OUT to_text(c.type_decimal) decimal_text 4
+  OUT to_text(c.type_double) double_text 5

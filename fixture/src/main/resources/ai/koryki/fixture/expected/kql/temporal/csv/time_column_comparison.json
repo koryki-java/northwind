@@ -1,0 +1,3 @@
+nr : INTEGER
+from_integer : TIME
+from_string : TIME

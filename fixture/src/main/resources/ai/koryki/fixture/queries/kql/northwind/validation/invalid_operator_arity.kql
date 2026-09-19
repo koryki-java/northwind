@@ -1,0 +1,6 @@
+// An operator without its right-hand operand used to reach the renderer: `IN` produced IN (),
+// invalid on all eight dialects with neither violation nor warning. Operators now carry the same
+// arity check functions always had.
+FIND orders o
+FILTER o.ship_city IN
+FETCH o.order_id

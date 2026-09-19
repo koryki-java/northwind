@@ -1,0 +1,5 @@
+// octet_length: length of the company name in bytes.
+
+SELECT
+ customers c
+  OUT octet_length(c.company_name) name_bytes 1

@@ -1,0 +1,13 @@
+// ROLLUP combined with ORDER BY on the same SELECT.
+// Dialect note — MariaDB rejects the combination (server error 1221) and SQLite rejects
+// the ROLLUP itself; both must fail validation rather than the driver.
+
+SELECT
+ customers c
+  OUT c.country 1
+  GROUP c.country 1
+  ORDER c.country ASC 1
+  JOIN same_customer orders o
+    OUT count(o.order_id) 2
+  OWNER
+ROLLUP

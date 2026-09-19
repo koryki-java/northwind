@@ -1,0 +1,5 @@
+// to_boolean converts a number to a yes/no value: 0 is false, anything else is true.
+// units_in_stock rather than discontinued — the latter is now declared BOOLEAN_FROM_INTEGER, so it
+// is already a yes/no value and needs no conversion.
+FIND products p
+FETCH p.product_name, to_boolean(p.units_in_stock) has_stock

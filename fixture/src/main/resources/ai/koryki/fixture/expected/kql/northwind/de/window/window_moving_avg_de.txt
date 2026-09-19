@@ -1,0 +1,6 @@
+// Moving average: 3-row sliding average of price within each category.
+// ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING includes the row before, the
+// current row, and the row after — so the window slides across sorted prices.
+
+FIND produkte p, p kategorien c
+FETCH c.kategorie_name ASC, p.preis_je_einheit ASC, p.produkt_name, avg(p.preis_je_einheit) OVER (PARTITION c.kategorie_name ORDER p.preis_je_einheit, p.produkt_name ROWS BETWEEN  1 PRECEDING AND  1 FOLLOWING) moving_avg_price

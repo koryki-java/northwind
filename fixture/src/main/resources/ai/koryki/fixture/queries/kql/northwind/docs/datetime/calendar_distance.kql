@@ -1,0 +1,4 @@
+// calendar_distance: calendar span from order to shipment (NULL when not yet shipped).
+FIND orders o
+FETCH o.order_id ASC, calendar_distance(o.order_date, o.shipped_date) span
+LIMIT 20

@@ -1,0 +1,20 @@
+SELECT
+    customers c
+        OUT c.contact_name
+        // FILTER c.contact_name like 'A%'
+    JOIN same_customer orders o
+        OUT o.order_date
+        // FILTER o.order_date > DATE '2025-01-01'
+        JOIN OPTIONAL same_order order_details d
+            OUT d.unit_price
+            FILTER d.unit_price > 5
+        OWNER
+    OWNER
+ALL FILTER
+c.contact_name LIKE 'A%'
+AND
+c.contact_name LIKE 'B%'
+AND
+c.contact_name LIKE 'C%'
+OR
+c.contact_name LIKE 'D%'

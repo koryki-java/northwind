@@ -1,0 +1,18 @@
+// Running total: cumulative freight per employee, ordered by date.
+// ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW accumulates all rows
+// from the start of the employee's partition up to the current row.
+
+SELECT
+ orders o
+  OUT o.order_date 2
+  OUT o.order_id 3
+  OUT o.freight 4
+  OUT sum(o.freight) OVER (PARTITION e.employee_id ORDER o.order_date, o.order_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) cumulative_freight 5
+  ORDER o.order_date ASC 2
+  ORDER o.order_id ASC 3
+  JOIN same_employee employees e
+    OUT e.employee_id 1
+    FILTER
+      e.employee_id < 4
+    ORDER e.employee_id ASC 1
+  OWNER

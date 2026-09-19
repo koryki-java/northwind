@@ -1,0 +1,5 @@
+// Naive DATE + duration: a calendar-only duration keeps DATE; a clock component promotes to TIMESTAMP.
+FIND check_temporal c
+FETCH
+  c.date_date date_date,
+  c.date_date + 1y2mo1d1h30min plus_1year2month1day90min

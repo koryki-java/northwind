@@ -1,0 +1,3 @@
+// lower: company name in lower case.
+FIND customers c
+FETCH lower(upper(c.company_name)) quiet

@@ -1,0 +1,20 @@
+// Regression: alias reuse between the outer query and a nested EXISTS is legal
+// (each is its own scope), but the push rules resolved aliases by walking the whole
+// subtree last-match-wins, so the outer conjunct o.freight > 10 was moved onto the
+// EXISTS' inner source instead of the outer orders o. It must stay on the outer o.
+
+SELECT
+ customers c
+  OUT c.company_name 2
+  JOIN same_customer orders o
+    OUT o.order_id 1
+    FILTER
+      o.freight > 10
+    ORDER o.order_id ASC 1
+  OWNER
+ALL
+ FILTER
+   EXISTS (c same_customer orders o
+   FILTER
+     o.ship_via = 2
+  )

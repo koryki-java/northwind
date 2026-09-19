@@ -1,0 +1,4 @@
+SELECT
+ products p
+  OUT p.product_name 1
+  OUT to_bigint(p.units_in_stock) stock_bigint 2

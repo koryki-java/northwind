@@ -1,0 +1,5 @@
+// power: freight squared.
+
+SELECT
+ orders o
+  OUT power(o.freight, 2) squared 1

@@ -1,0 +1,6 @@
+SELECT
+ customers c
+  OUT c.company_name 1
+  OUT coalesce(c.region, 'N/A') region_or_default 2
+  FILTER
+    c.customer_id = 'ALFKI'

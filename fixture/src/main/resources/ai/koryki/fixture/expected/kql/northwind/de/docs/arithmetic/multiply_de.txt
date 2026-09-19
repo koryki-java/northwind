@@ -1,0 +1,5 @@
+// multiply (*): gross amount of a line item.
+
+FIND bestellposition od
+FETCH od.bestell_id ASC, od.produkt_id ASC, round(od.preis_je_einheit * od.menge, 2) gross
+LIMIT 20

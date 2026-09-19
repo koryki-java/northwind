@@ -1,0 +1,2 @@
+FIND categories c
+FETCH count(c)

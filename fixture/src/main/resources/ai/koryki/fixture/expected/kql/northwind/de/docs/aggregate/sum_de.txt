@@ -1,0 +1,4 @@
+// sum: total quantity ordered across all lines.
+
+FIND bestellposition od
+FETCH sum(od.menge) total_quantity

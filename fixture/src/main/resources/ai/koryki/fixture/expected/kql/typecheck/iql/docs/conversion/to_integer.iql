@@ -1,0 +1,5 @@
+// to_integer: truncate a decimal to a 32-bit integer.
+
+SELECT
+ check_type c
+  OUT to_integer(c.type_decimal) as_int 1

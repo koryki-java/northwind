@@ -1,0 +1,5 @@
+// lag: each order alongside the previous order's freight for the same customer — the shape behind
+// "compare with the period before".
+FIND customers c, orders o
+FILTER c.country = 'France'
+FETCH c.customer_id, o.order_id, o.freight, lag(o.freight) OVER (PARTITION c.customer_id ORDER o.order_id) previous_freight

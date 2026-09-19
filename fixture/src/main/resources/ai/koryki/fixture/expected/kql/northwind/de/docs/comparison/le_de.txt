@@ -1,0 +1,6 @@
+// <= : order lines at or below a discount ceiling.
+
+FIND bestellposition od
+FILTER od.rabatt <= 0.1
+FETCH od.bestell_id ASC, od.produkt_id ASC, od.rabatt
+LIMIT 20

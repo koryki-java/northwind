@@ -1,0 +1,4 @@
+// ln: natural logarithm.
+FIND orders o
+FETCH o.order_id ASC, round(ln(100), 6) natural_log
+LIMIT 20

@@ -1,0 +1,7 @@
+// Regression: the window ORDER direction must survive the IQL round-trip —
+// OVER (ORDER ... DESC) re-parsed from serialized IQL used to render ascending,
+// silently reversing rankings and running aggregates.
+
+FIND bestellungen o
+FILTER o.kunden_id = 'ALFKI'
+FETCH o.bestell_id ASC, o.fracht, rank() OVER ( ORDER o.fracht DESC) freight_rank

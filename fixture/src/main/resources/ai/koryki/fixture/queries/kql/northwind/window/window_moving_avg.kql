@@ -1,0 +1,10 @@
+// Moving average: 3-row sliding average of price within each category.
+// ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING includes the row before, the
+// current row, and the row after — so the window slides across sorted prices.
+// ignore=snowflake  the average is 9.5666..., and rounding to six significant digits lands on 9.56667 here and 9.56666 there -- a boundary the harness cannot resolve, not a different value
+FIND products p, p categories c
+FETCH
+  c.category_name ASC,
+  p.unit_price ASC,
+  p.product_name,
+  avg(p.unit_price) OVER (PARTITION c.category_name ORDER p.unit_price, p.product_name ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) moving_avg_price

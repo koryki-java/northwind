@@ -1,0 +1,1 @@
+unsupported: Expression [4:32-4:37]: duration '1y2mo' is a YEAR TO MONTH amount and the other side is DAY TO SECOND — this dialect keeps the two interval types apart and cannot compare them

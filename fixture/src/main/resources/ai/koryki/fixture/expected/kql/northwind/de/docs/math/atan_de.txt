@@ -1,0 +1,5 @@
+// atan: inverse tangent, result in radians.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, round(atan(0), 6) arctangent_of_zero
+LIMIT 20

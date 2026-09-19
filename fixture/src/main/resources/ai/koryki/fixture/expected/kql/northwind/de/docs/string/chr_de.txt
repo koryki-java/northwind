@@ -1,0 +1,4 @@
+// chr: character for a code point.
+
+FIND kunden c
+FETCH chr(65) letter_a

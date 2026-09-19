@@ -1,0 +1,3 @@
+// rpad: right-pad the postal code to width ten with spaces.
+FIND customers c
+FETCH rpad(c.postal_code, 10, ' ') padded

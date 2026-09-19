@@ -1,0 +1,5 @@
+// lower: company name in lower case.
+
+SELECT
+ customers c
+  OUT lower(upper(c.company_name)) quiet 1

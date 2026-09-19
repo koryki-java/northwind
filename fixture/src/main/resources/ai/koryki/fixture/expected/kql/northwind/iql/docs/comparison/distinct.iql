@@ -1,0 +1,17 @@
+// DISTINCT : null-safe difference — a missing value counts as a difference, and two missing values
+// count as equal. The same distinctness FETCH DISTINCT uses when it collapses duplicate rows.
+// Negated here to ask the opposite: which French orders ship to the customer's own region? Both are
+// blank for every French customer, so <> would return nothing — two unknowns are never "different".
+
+SELECT
+ customers c
+  OUT c.customer_id 1
+  OUT c.region customer_region 2
+  FILTER
+    c.country = 'France'
+  JOIN same_customer orders o
+    OUT o.ship_region order_region 3
+  OWNER
+ALL
+ FILTER
+   NOT c.region DISTINCT o.ship_region

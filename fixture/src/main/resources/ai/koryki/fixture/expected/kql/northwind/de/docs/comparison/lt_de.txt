@@ -1,0 +1,6 @@
+// < : order lines priced below a threshold.
+
+FIND bestellposition od
+FILTER od.preis_je_einheit < 10
+FETCH od.bestell_id ASC, od.produkt_id ASC, od.preis_je_einheit
+LIMIT 20

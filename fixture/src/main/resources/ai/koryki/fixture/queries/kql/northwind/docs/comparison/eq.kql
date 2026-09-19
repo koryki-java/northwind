@@ -1,0 +1,4 @@
+// = : orders shipped to a specific city.
+FIND orders o
+FILTER o.ship_city = 'London'
+FETCH o.order_id, o.ship_city

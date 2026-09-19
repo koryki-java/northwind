@@ -1,0 +1,8 @@
+// week: the ISO-8601 week number of the order date.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT week(o.order_date) order_week 2
+  ORDER o.order_id ASC 1
+LIMIT 20

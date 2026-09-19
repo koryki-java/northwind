@@ -1,0 +1,5 @@
+// least: the smaller of two values in the same row.
+
+FIND bestellposition od
+FETCH od.bestell_id ASC, od.produkt_id ASC, least(od.menge, 10) capped_quantity
+LIMIT 20

@@ -1,0 +1,7 @@
+// A placeholder standing for a set of values. This one was already rejected before the placeholder
+// rule existed, but by the operator arity check and with its message: "no right-hand operand".
+// That names the wrong cause -- the operand is not missing, it is a hole the caller fills. Without
+// the dialect catalog wired, which is what carries the arity check, it rendered IN () instead.
+FIND customers c
+FILTER c.country IN #laender
+FETCH c.company_name

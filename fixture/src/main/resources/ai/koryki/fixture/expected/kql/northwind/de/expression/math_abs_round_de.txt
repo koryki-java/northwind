@@ -1,0 +1,3 @@
+FIND produkte p
+FILTER p.produkt_name = 'Chai'
+FETCH p.produkt_name, round(p.preis_je_einheit, 0) price_rounded, abs(p.preis_je_einheit - 20) diff_from_20

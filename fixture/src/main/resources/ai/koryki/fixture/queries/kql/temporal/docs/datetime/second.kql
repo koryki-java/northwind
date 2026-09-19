@@ -1,0 +1,3 @@
+// second: the second component of a TIMESTAMP.
+FIND check_temporal c
+FETCH second(c.timestamp_timestamp) second_of_minute

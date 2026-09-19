@@ -1,0 +1,3 @@
+// coalesce: region, falling back to country.
+FIND customers c
+FETCH coalesce(c.region, c.country) region_or_country

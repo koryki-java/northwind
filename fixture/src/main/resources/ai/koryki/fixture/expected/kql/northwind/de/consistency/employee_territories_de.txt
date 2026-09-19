@@ -1,0 +1,2 @@
+FIND mitarbeiter_gebiet t
+FETCH count(t)

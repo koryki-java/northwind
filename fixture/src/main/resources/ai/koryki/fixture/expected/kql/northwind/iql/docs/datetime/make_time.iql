@@ -1,0 +1,9 @@
+// make_time: build a TIME from hour, minute and second.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT make_time(14, 30, 0) built 2
+LIMIT 20

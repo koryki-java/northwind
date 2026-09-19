@@ -1,0 +1,3 @@
+FIND customers c
+FILTER c.customer_id = 'ALFKI'
+FETCH replace(c.company_name, 'Futterkiste', 'GmbH') renamed, replace(c.city, 'Berlin', 'München') city_renamed

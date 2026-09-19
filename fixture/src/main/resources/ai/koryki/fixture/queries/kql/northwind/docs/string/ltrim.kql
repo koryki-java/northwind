@@ -1,0 +1,3 @@
+// ltrim: strip leading whitespace.
+FIND customers c
+FETCH ltrim(c.postal_code) left_trimmed

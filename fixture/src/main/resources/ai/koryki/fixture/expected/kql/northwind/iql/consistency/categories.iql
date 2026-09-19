@@ -1,0 +1,3 @@
+SELECT
+ categories c
+  OUT count(c.category_id) 1

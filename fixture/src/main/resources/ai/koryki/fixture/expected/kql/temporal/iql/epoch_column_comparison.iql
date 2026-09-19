@@ -1,0 +1,13 @@
+// Two columns of one family stored under DIFFERENT encodings, compared with each other:
+// timestamp_unix_epoche is EPOCH:SECONDS, timestamp_java_epoche is EPOCH:MILLIS. Neither side is a
+// literal, so the literal-encoding hooks do not apply — the operands are reconciled onto their
+// lossless common encoding instead. That is millis: seconds -> millis is an exact scale-up, the
+// reverse would truncate. So the SECONDS side is scaled up rather than the MILLIS side truncated.
+
+SELECT
+ check_temporal c
+  OUT c.nr nr 1
+  OUT c.timestamp_unix_epoche unix_epoch 2
+  OUT c.timestamp_java_epoche java_epoch 3
+  FILTER
+    c.timestamp_unix_epoche = c.timestamp_java_epoche

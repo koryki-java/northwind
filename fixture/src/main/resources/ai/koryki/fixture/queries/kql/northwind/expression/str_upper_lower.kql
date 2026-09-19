@@ -1,0 +1,3 @@
+FIND customers c
+FILTER c.customer_id = 'ALFKI'
+FETCH upper(c.company_name) name_upper, lower(c.company_name) name_lower

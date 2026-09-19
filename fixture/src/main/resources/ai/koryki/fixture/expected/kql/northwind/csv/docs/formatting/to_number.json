@@ -1,0 +1,3 @@
+plain : DECIMAL
+padded : DECIMAL
+signed : DECIMAL

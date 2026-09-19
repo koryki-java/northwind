@@ -1,0 +1,4 @@
+// min: earliest order date.
+
+FIND bestellungen o
+FETCH min(o.bestelldatum) earliest

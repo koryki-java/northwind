@@ -1,0 +1,3 @@
+FIND employees e
+FILTER e.employee_id = 1
+FETCH concat(e.first_name, ' ', e.last_name) full_name, concat(e.title_of_courtesy, ' ', e.last_name) formal

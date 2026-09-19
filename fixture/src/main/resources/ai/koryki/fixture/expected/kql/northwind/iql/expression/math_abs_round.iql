@@ -1,0 +1,7 @@
+SELECT
+ products p
+  OUT p.product_name 1
+  OUT round(p.unit_price, 0) price_rounded 2
+  OUT abs(minus(p.unit_price, 20)) diff_from_20 3
+  FILTER
+    p.product_name = 'Chai'

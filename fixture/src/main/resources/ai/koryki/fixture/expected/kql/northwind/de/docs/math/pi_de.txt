@@ -1,0 +1,5 @@
+// pi: the mathematical constant pi.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, pi() pi_value
+LIMIT 20

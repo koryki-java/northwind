@@ -1,0 +1,3 @@
+Id : INTEGER
+Product : INTEGER
+gross : DECIMAL

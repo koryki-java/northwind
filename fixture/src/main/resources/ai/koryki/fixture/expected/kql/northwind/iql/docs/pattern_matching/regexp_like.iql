@@ -1,0 +1,5 @@
+// regexp_like: does the company name start with A?
+
+SELECT
+ customers c
+  OUT regexp_like(c.company_name, '^A') starts_with_a 1

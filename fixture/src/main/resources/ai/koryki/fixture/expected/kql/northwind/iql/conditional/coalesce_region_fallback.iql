@@ -1,0 +1,9 @@
+// A customer's region is frequently missing — fall back to the country for display.
+// coalesce returns the first non-null of its arguments.
+
+SELECT
+ customers c
+  OUT c.customer_id 1
+  OUT c.company_name 2
+  OUT coalesce(c.region, c.country) region_or_country 3
+  ORDER c.customer_id ASC 1

@@ -1,0 +1,5 @@
+// replace: remove dashes from a phone number.
+
+SELECT
+ customers c
+  OUT replace(c.phone, '-', '') no_dashes 1

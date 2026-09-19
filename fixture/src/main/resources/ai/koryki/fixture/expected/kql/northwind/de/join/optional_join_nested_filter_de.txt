@@ -1,0 +1,8 @@
+// Regression: a filter pushed onto a source nested below an optional join rendered
+// nowhere — collectInnerFilter skips the optional subtree for WHERE, and only the
+// optional source's own filter reached the ON clause. The nested filter must render
+// in its own join's ON clause.
+
+FIND kunden c, c + bestellungen o, o bestellposition od
+FILTER od.menge > 100
+FETCH c.firma ASC, od.bestell_id ASC, od.menge

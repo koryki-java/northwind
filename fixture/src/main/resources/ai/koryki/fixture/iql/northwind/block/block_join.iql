@@ -1,0 +1,12 @@
+WITH ord AS (
+SELECT
+    orders o
+        OUT o.freight f
+        OUT o.customer_id i
+)
+SELECT
+    customers c
+        OUT c.contact_name
+        OUT o.f
+    JOIN same_customer ord o
+    OWNER

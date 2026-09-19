@@ -1,0 +1,8 @@
+// BETWEEN's AND belongs to the range and binds tighter than the logical AND, so the trailing
+// predicate is a second condition, not the upper bound. That is the reading PostgreSQL documents:
+// https://www.postgresql.org/docs/current/functions-comparison.html
+// Both must survive — the range test and the bare predicate behind it.
+
+FIND produkte p
+FILTER p.preis_je_einheit BETWEEN 4 AND 15 AND p.ausgelistet
+FETCH p.produkt_id ASC, p.produkt_name, p.preis_je_einheit

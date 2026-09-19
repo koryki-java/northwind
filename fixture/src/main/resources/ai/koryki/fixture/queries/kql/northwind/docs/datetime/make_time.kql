@@ -1,0 +1,4 @@
+// make_time: build a TIME from hour, minute and second.
+FIND orders o
+FETCH o.order_id ASC, make_time(14, 30, 0) built
+LIMIT 20

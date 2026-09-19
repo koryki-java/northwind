@@ -1,0 +1,3 @@
+Product name : TEXT
+price_floor : DECIMAL
+price_ceil : DECIMAL

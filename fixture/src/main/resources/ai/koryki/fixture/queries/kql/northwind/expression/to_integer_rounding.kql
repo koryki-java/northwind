@@ -1,0 +1,8 @@
+// The integer conversions round, they do not truncate — and they must agree on every dialect.
+// Measured before this was pinned: SQLite's bare CAST truncated (1.7 -> 1) while duckdb,
+// postgresql, oracle, mariadb and trino rounded (1.7 -> 2). SQL Server needs the same collar.
+// Half-way values round away from zero.
+FIND products p
+FILTER p.product_id = 1
+FETCH to_integer(1.7) i_pos, to_integer(-1.7) i_neg, to_integer(2.5) i_half,
+      to_bigint(1.7) b_pos, to_smallint(1.7) s_pos

@@ -1,0 +1,4 @@
+// abs: absolute value of a number.
+FIND orders o
+FETCH o.order_id ASC, abs(-17.4) magnitude
+LIMIT 20

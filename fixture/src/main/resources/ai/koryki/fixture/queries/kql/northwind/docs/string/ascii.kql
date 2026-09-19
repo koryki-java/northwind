@@ -1,0 +1,3 @@
+// ascii: code point of the first character.
+FIND customers c
+FETCH ascii(c.company_name) first_code

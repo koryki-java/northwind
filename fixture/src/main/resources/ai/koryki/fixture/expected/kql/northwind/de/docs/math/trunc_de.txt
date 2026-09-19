@@ -1,0 +1,5 @@
+// trunc: truncate toward zero, never rounding up.
+
+FIND bestellposition od
+FETCH od.bestell_id ASC, od.produkt_id ASC, trunc(od.preis_je_einheit) whole_price, trunc(19.99, 1) one_decimal
+LIMIT 20

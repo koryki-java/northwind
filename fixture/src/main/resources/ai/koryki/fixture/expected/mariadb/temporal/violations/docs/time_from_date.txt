@@ -1,0 +1,1 @@
+schema.unknown-column: Field [3:7-3:23]: unknown column 'time_from_date' on check_temporal

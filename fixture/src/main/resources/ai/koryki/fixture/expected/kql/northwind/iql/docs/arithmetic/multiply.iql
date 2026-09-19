@@ -1,0 +1,10 @@
+// multiply (*): gross amount of a line item.
+
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT od.product_id 2
+  OUT round(multiply(od.unit_price, od.quantity), 2) gross 3
+  ORDER od.order_id ASC 1
+  ORDER od.product_id ASC 2
+LIMIT 20

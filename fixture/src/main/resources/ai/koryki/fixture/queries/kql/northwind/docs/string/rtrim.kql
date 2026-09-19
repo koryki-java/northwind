@@ -1,0 +1,3 @@
+// rtrim: strip trailing whitespace.
+FIND customers c
+FETCH rtrim(c.postal_code) right_trimmed

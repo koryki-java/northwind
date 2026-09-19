@@ -1,0 +1,8 @@
+// test
+WITH product_revenue AS (
+  FIND orders o, o order_details od, od products p, p categories c
+  FILTER c.category_name = 'Beverages'
+  FETCH c.category_name catname, p.product_name prodname, sum(od.unit_price * od.quantity) revenue
+)
+FIND product_revenue pr
+FETCH pr.catname ASC, pr.prodname, pr.revenue, rank() OVER (PARTITION pr.catname ORDER pr.revenue DESC) rnk ASC

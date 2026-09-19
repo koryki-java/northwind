@@ -1,0 +1,5 @@
+// make_date: build a DATE from year, month and day.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, make_date(2024, 1, 31) built
+LIMIT 20

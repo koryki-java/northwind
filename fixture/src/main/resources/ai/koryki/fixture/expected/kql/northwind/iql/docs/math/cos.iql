@@ -1,0 +1,9 @@
+// cos: trigonometric cosine, argument in radians.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT round(cos(0), 6) cosine_of_zero 2
+LIMIT 20

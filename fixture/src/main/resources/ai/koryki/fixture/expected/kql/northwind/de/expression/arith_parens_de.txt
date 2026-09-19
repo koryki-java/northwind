@@ -1,0 +1,7 @@
+// Regression: explicit arithmetic grouping must survive the IQL round-trip —
+// (unit_price + 1) * quantity re-parsed from serialized IQL used to render
+// unit_price + 1 * quantity, silently changing the value.
+
+FIND bestellposition od
+FILTER od.menge > 100
+FETCH od.bestell_id ASC, od.produkt_id ASC, (od.preis_je_einheit + 1) * od.menge adjusted

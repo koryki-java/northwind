@@ -1,0 +1,2 @@
+Id : INTEGER
+ship_delay : INTERVAL

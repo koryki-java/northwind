@@ -1,0 +1,12 @@
+// A backslash in a string literal reaches the database as a backslash — on every dialect.
+// MariaDB reads backslashes inside literals as escape characters, unlike the SQL standard and
+// unlike every other dialect here, so '\d+' arrived as 'd+' and matched nothing. Measured: this
+// query returned blank on MariaDB and 030 everywhere else. The POSIX class is the control — it
+// needs no backslash and agreed all along.
+
+SELECT
+ customers c
+  OUT regexp_substr(c.phone, '\d+') digits 1
+  OUT regexp_substr(c.phone, '[[:digit:]]+') posix 2
+  FILTER
+    c.customer_id = 'ALFKI'

@@ -1,0 +1,3 @@
+twice_clock : INTERVAL
+thrice_year_month : INTERVAL
+date_plus_two_days : DATE

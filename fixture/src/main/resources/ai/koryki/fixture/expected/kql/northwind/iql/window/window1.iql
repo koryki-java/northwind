@@ -1,0 +1,21 @@
+SELECT
+ order_details d
+  OUT to_decimal(d.unit_price, 18, 6) 4
+  OUT d.quantity 5
+  OUT to_decimal(multiply(to_decimal(d.unit_price, 18, 6), to_decimal(d.quantity, 18, 6)), 18, 6) product_total 6
+  OUT sum(to_decimal(multiply(to_decimal(d.unit_price, 18, 6), to_decimal(d.quantity, 18, 6)), 18, 6)) OVER (PARTITION o.order_id ORDER o.order_id) order_total 7
+  JOIN same_order orders o
+    OUT o.order_id 1
+    FILTER
+      o.order_date BETWEEN "2023-01-01" AND "2023-12-31"
+    ORDER o.order_id ASC 1
+     JOIN same_customer customers c
+       OUT c.company_name 3
+       FILTER
+         c.company_name LIKE 'C%'
+     OWNER
+  OWNER
+  JOIN same_product products p
+    OUT p.product_name 2
+    ORDER p.product_name ASC 2
+  OWNER

@@ -1,0 +1,4 @@
+// upper: company name in upper case.
+
+FIND kunden c
+FETCH upper(c.firma) shout

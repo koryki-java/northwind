@@ -1,0 +1,3 @@
+SELECT
+ territories t
+  OUT count(t.territory_id) 1

@@ -1,0 +1,4 @@
+// today: the current date.
+
+FIND bestellungen o
+FETCH today() todays_date

@@ -1,0 +1,5 @@
+// to_varchar: render a value as bounded text.
+
+SELECT
+ check_type c
+  OUT to_varchar(c.type_integer, 40) as_text 1

@@ -1,0 +1,7 @@
+// count_distinct over a window: distinct customers per country, alongside each customer, without
+// collapsing the rows. Only four engines allow DISTINCT inside a window aggregate; the other four
+// mark the function windowUnsupported and refuse at transpile time (see CountDistinctWindowTest).
+
+FIND kunden c
+FILTER c.land = 'France'
+FETCH c.kunden_id, c.land, count_distinct(c.kunden_id) OVER (PARTITION c.land) per_country

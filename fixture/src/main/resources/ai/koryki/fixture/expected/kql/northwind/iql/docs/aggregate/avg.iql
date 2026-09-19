@@ -1,0 +1,5 @@
+// avg: average line-item unit price.
+
+SELECT
+ order_details od
+  OUT avg(od.unit_price) avg_price 1

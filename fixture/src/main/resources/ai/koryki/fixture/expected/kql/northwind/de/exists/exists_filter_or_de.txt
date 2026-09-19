@@ -1,0 +1,10 @@
+// Regression: an EXISTS filter that cannot be pushed onto a single source
+// (top-level OR) was silently dropped from the rendered SQL, so the EXISTS
+// matched every customer with any order. It must render in the subselect WHERE.
+
+FIND kunden c
+FILTER 
+ EXISTS (c bestellungen o
+ FILTER o.fracht > 100 OR o.spediteur_via = 2
+ )
+FETCH c.firma

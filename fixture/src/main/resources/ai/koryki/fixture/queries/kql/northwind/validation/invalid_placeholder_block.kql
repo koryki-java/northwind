@@ -1,0 +1,6 @@
+// The second placeholder form: a block bound to a sub-query the caller injects. Unbound, the block
+// has no set, and the analysis raised a NullPointerException in SelectScopeCollector before any
+// validator could speak. The block id is reported instead, positioned on the block.
+WITH ord #p
+FIND ord o
+FETCH o.order_id

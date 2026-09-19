@@ -1,0 +1,4 @@
+// ascii: code point of the first character.
+
+FIND kunden c
+FETCH ascii(c.firma) first_code

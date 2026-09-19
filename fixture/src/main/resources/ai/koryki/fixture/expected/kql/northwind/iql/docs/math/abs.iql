@@ -1,0 +1,9 @@
+// abs: absolute value of a number.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT abs(negate(17.4)) magnitude 2
+LIMIT 20

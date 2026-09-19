@@ -1,0 +1,7 @@
+Id : INTEGER
+Product name : TEXT
+Name : TEXT
+4 : DECIMAL
+Quantity : INTEGER
+product_total : DECIMAL
+order_total : DECIMAL

@@ -1,0 +1,4 @@
+SELECT
+ products p
+  OUT p.product_name 1
+  OUT to_text(p.unit_price) unit_price_text 2

@@ -1,0 +1,2 @@
+FIND products p
+FETCH p.product_name, to_text(p.unit_price) unit_price_text

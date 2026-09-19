@@ -1,0 +1,3 @@
+// day_begin: midnight at the start of a TIMESTAMP's day.
+FIND check_temporal c
+FETCH day_begin(c.timestamp_timestamp) start_of_day

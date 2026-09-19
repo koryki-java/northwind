@@ -1,0 +1,13 @@
+// Ranked freight per country - fetch-item ordering with explicit sort priorities.
+// Locks two behaviors: the ORDER BY clause must be sorted by the explicit
+// priority numbers (DESC 1 before ASC 2), not by fetch position, and the order
+// expressions are the same instances as the output expressions (metadata
+// correlation for result headers).
+
+SELECT
+ orders o
+  OUT o.ship_country country 1
+  OUT sum(o.freight) freight 2
+  GROUP o.ship_country 1
+  ORDER o.ship_country ASC 2
+  ORDER sum(o.freight) DESC 1

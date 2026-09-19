@@ -1,0 +1,4 @@
+// count_distinct: how many different customers ordered from each country — not how many orders,
+// which is what plain count would give. The one function every BI tool exposes under its own name.
+FIND customers c, orders o
+FETCH c.country, count_distinct(c.customer_id) customers, count(o.order_id) orders

@@ -1,0 +1,5 @@
+// reverse: company name reversed.
+
+SELECT
+ customers c
+  OUT reverse(c.company_name) reversed 1

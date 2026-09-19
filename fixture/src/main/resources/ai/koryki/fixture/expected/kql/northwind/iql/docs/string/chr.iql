@@ -1,0 +1,6 @@
+// chr: character for a code point.
+
+SELECT
+ customers c
+ALL
+ OUT chr(65) letter_a 1

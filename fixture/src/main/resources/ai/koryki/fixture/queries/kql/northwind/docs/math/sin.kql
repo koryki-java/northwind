@@ -1,0 +1,4 @@
+// sin: trigonometric sine, argument in radians.
+FIND orders o
+FETCH o.order_id ASC, round(sin(0), 6) sine_of_zero
+LIMIT 20

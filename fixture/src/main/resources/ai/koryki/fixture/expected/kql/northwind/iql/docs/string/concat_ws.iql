@@ -1,0 +1,5 @@
+// concat_ws: join city and country with a separator.
+
+SELECT
+ customers c
+  OUT concat_ws(', ', c.city, c.country) location 1

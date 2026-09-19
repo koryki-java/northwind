@@ -1,0 +1,5 @@
+// ltrim: strip leading whitespace.
+
+SELECT
+ customers c
+  OUT ltrim(c.postal_code) left_trimmed 1

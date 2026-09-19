@@ -1,0 +1,4 @@
+// to_char: format the order date as YYYY-MM.
+FIND orders o
+FETCH o.order_id ASC, to_char(o.order_date, 'YYYY-MM') ym
+LIMIT 20

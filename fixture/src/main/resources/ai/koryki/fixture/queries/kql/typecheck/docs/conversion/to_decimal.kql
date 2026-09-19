@@ -1,0 +1,3 @@
+// to_decimal: fixed-point with precision and scale.
+FIND check_type c
+FETCH to_decimal(c.type_double, 10, 2) as_money

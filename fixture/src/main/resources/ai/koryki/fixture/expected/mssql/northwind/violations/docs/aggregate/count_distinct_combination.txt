@@ -1,0 +1,1 @@
+unsupported: Function [8:7-8:49]: function 'count_distinct' is not supported by this dialect with 2 argument(s) — count distinct combinations with count_distinct(concat(a, <separator>, b)), and pick a separator that cannot occur in the values — without one, (1, 23) and (12, 3) are the same combination

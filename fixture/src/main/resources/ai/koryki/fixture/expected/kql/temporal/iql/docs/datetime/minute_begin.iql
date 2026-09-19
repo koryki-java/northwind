@@ -1,0 +1,5 @@
+// minute_begin: the start of a TIMESTAMP's minute.
+
+SELECT
+ check_temporal c
+  OUT minute_begin(c.timestamp_timestamp) start_of_minute 1

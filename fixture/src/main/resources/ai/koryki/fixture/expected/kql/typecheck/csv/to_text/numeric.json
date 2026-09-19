@@ -1,0 +1,5 @@
+smallint_text : TEXT
+integer_text : TEXT
+bigint_text : TEXT
+decimal_text : TEXT
+double_text : TEXT

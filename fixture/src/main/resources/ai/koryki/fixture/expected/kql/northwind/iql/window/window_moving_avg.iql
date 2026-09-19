@@ -1,0 +1,14 @@
+// Moving average: 3-row sliding average of price within each category.
+// ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING includes the row before, the
+// current row, and the row after — so the window slides across sorted prices.
+
+SELECT
+ products p
+  OUT p.unit_price 2
+  OUT p.product_name 3
+  OUT avg(p.unit_price) OVER (PARTITION c.category_name ORDER p.unit_price, p.product_name ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) moving_avg_price 4
+  ORDER p.unit_price ASC 2
+  JOIN same_category categories c
+    OUT c.category_name 1
+    ORDER c.category_name ASC 1
+  OWNER

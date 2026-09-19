@@ -1,0 +1,3 @@
+// to_date: drop the time part of a TIMESTAMP.
+FIND check_type c
+FETCH to_date(c.type_timestamp) as_date

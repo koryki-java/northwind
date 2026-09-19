@@ -1,0 +1,9 @@
+SELECT
+ orders o
+  OUT o.order_date 1
+  FILTER
+    o.customer_id = 'SUPRD'
+  GROUP o.order_date 1
+  JOIN same_order order_details od
+    OUT sum(multiply(multiply(od.unit_price, od.quantity), (minus(1, od.discount)))) total 2
+  OWNER

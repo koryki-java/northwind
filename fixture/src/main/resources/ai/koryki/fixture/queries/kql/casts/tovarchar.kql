@@ -1,0 +1,2 @@
+FIND customers c
+FETCH c.company_name, to_varchar(c.postal_code, 10) postal_short

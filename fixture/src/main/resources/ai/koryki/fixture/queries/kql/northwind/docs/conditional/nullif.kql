@@ -1,0 +1,3 @@
+// nullif: treat a reorder level of 0 as "not set" rather than as a real threshold.
+FIND products p
+FETCH p.product_id ASC, nullif(p.reorder_level, 0) reorder_level_or_blank

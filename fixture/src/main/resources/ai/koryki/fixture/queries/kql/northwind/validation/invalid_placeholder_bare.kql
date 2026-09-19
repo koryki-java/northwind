@@ -1,0 +1,6 @@
+// The same placeholder without an operator. This one was the dangerous case: it rendered
+// WHERE o.freight null -- syntactically wrong on every engine, but produced with neither violation
+// nor warning, so the failure surfaced at the database with a message pointing nowhere useful.
+FIND orders o
+FILTER o.freight #x
+FETCH o.order_id

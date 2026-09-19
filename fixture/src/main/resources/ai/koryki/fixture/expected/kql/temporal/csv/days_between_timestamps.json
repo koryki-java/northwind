@@ -1,0 +1,4 @@
+two_hours_over_midnight : INTEGER
+fortysix_hours : INTEGER
+exactly_two_days : INTEGER
+backwards_two_hours : INTEGER

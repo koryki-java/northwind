@@ -1,0 +1,3 @@
+// repeat: a ten-character rule.
+FIND customers c
+FETCH repeat('-', 10) ruler

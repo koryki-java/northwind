@@ -1,0 +1,2 @@
+FIND order_details od
+FETCH od.order_id, to_integer(od.unit_price) unit_price_int

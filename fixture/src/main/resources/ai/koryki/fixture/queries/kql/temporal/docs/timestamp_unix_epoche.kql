@@ -1,0 +1,3 @@
+// timestamp_unix_epoche: read an instant stored as Unix epoch seconds (EPOCH:SECONDS encoding).
+FIND check_temporal c
+FETCH c.timestamp_unix_epoche unix_instant

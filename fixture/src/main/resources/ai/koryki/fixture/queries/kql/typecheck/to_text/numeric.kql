@@ -1,0 +1,9 @@
+// to_text overload resolution for the numeric families (INTEGER, DECIMAL).
+// ignore=mssql  to_text of a double prints six significant digits here, seven elsewhere -- the value agrees, its width does not, and the decimal column in the same row rules out normalising the text side (it carries nine digits that all dialects agree on)
+FIND check_type c
+FETCH
+  to_text(c.type_smallint) smallint_text,
+  to_text(c.type_integer)  integer_text,
+  to_text(c.type_bigint)   bigint_text,
+  to_text(c.type_decimal)  decimal_text,
+  to_text(c.type_double)   double_text

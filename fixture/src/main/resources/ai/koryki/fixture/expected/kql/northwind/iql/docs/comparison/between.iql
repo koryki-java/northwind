@@ -1,0 +1,10 @@
+// BETWEEN : orders in a date range — a temporal upper bound renders as a half-open interval.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT o.order_date 2
+  FILTER
+    o.order_date BETWEEN "2022-07-01" AND "2022-12-31"
+  ORDER o.order_id ASC 1
+LIMIT 20

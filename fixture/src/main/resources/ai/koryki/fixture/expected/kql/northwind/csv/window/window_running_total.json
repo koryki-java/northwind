@@ -1,0 +1,5 @@
+employee_id : INTEGER
+Order Date : DATE
+Id : INTEGER
+Freight : DECIMAL
+cumulative_freight : DECIMAL

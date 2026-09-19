@@ -1,0 +1,5 @@
+// acos: inverse cosine, result in radians.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, round(acos(1), 6) arccosine_of_one
+LIMIT 20

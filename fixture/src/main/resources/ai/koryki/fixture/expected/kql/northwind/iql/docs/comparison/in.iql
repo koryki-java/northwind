@@ -1,0 +1,8 @@
+// IN : orders shipped to any of a set of cities.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT o.ship_city 2
+  FILTER
+    o.ship_city IN ('London', 'Paris')

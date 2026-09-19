@@ -1,0 +1,5 @@
+// lpad: left-pad the postal code to width six with zeros.
+
+SELECT
+ customers c
+  OUT lpad(c.postal_code, 6, '0') padded 1

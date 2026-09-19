@@ -1,0 +1,4 @@
+// octet_length: length of the company name in bytes.
+
+FIND kunden c
+FETCH octet_length(c.firma) name_bytes

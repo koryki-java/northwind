@@ -1,0 +1,5 @@
+// <= : order lines at or below a discount ceiling.
+FIND order_details od
+FILTER od.discount <= 0.1
+FETCH od.order_id ASC, od.product_id ASC, od.discount
+LIMIT 20

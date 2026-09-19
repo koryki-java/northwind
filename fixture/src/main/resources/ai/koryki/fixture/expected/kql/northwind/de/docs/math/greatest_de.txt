@@ -1,0 +1,5 @@
+// greatest: the larger of two values in the same row.
+
+FIND bestellposition od
+FETCH od.bestell_id ASC, od.produkt_id ASC, round(greatest(od.preis_je_einheit, 20.0), 2) at_least_twenty
+LIMIT 20

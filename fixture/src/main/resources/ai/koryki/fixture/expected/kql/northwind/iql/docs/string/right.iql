@@ -1,0 +1,5 @@
+// right: last four characters of the phone number.
+
+SELECT
+ customers c
+  OUT right(c.phone, 4) last_four 1

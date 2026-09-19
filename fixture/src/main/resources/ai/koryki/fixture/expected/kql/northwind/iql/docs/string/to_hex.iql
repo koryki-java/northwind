@@ -1,0 +1,6 @@
+// to_hex: hexadecimal of a number.
+
+SELECT
+ customers c
+ALL
+ OUT to_hex(255) hex_ff 1

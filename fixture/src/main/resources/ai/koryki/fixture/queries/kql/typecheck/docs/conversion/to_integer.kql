@@ -1,0 +1,3 @@
+// to_integer: truncate a decimal to a 32-bit integer.
+FIND check_type c
+FETCH to_integer(c.type_decimal) as_int

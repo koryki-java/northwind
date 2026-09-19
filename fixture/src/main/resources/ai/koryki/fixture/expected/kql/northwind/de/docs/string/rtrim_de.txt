@@ -1,0 +1,4 @@
+// rtrim: strip trailing whitespace.
+
+FIND kunden c
+FETCH rtrim(c.plz) right_trimmed

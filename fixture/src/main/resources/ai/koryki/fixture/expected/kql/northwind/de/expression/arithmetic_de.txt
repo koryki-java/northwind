@@ -1,0 +1,3 @@
+FIND bestellungen o, o bestellposition od
+FILTER o.kunden_id = 'SUPRD'
+FETCH o.bestelldatum, sum(od.preis_je_einheit * od.menge * (1 - od.rabatt)) total

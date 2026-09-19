@@ -1,0 +1,10 @@
+SELECT
+ order_details d
+  OUT sum(to_decimal(multiply(to_decimal(d.unit_price, 32, 12), to_decimal(d.quantity, 32, 12)), 32, 12)) OVER (PARTITION c.company_name) sum 1
+  JOIN same_order orders o
+     JOIN same_customer customers c
+       OUT count(c.company_name) OVER (PARTITION to_decimal(d.unit_price, 32, 12) ORDER c.company_name ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) 2
+       FILTER
+         c.company_name LIKE 'A%'
+     OWNER
+  OWNER

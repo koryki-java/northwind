@@ -1,0 +1,4 @@
+// negate (-): arithmetic negation of freight.
+FIND orders o
+FETCH o.order_id ASC, -o.freight neg_freight
+LIMIT 20

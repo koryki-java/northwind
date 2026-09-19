@@ -1,0 +1,5 @@
+time_duration : INTERVAL
+day_time_duration : INTERVAL
+year_month_duration : INTERVAL
+year_month_day_duration : INTERVAL
+mixed_duration : INTERVAL

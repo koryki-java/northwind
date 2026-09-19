@@ -1,0 +1,6 @@
+// NOT : orders whose freight is not above a threshold.
+
+FIND bestellungen o
+FILTER NOT o.fracht > 100
+FETCH o.bestell_id ASC, o.fracht
+LIMIT 20

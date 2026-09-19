@@ -1,0 +1,12 @@
+// A link written against the direction its relation is declared in. fk_orders_shippers is
+// orders.ship_via -> shippers.shipper_id, and naming shippers first must still join ship_via to
+// shipper_id. Almost every relation hides a mistake here, because a foreign key usually carries
+// the name of the column it points at; this is the one in Northwind that does not.
+
+SELECT
+ shippers s
+  OUT s.company_name shipper 1
+  GROUP s.company_name 1
+  JOIN same_shipper orders o
+    OUT count(o.order_id) orders 2
+  OWNER

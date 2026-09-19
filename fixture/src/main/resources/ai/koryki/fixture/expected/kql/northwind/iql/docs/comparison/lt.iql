@@ -1,0 +1,12 @@
+// < : order lines priced below a threshold.
+
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT od.product_id 2
+  OUT od.unit_price 3
+  FILTER
+    od.unit_price < 10
+  ORDER od.order_id ASC 1
+  ORDER od.product_id ASC 2
+LIMIT 20

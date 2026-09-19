@@ -1,0 +1,5 @@
+// to_interval accepts exactly 2 or 6 arguments; this 3-arg call must be rejected.
+// 3 sits between the two valid arities, so this checks that arity matching is
+// per-overload (exact), not a min..max range. Regression for #2.
+FIND orders o
+FETCH to_interval(o.freight, 'DAY', o.freight)

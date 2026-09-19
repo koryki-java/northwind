@@ -1,0 +1,4 @@
+SELECT
+ products p
+  OUT p.product_name 1
+  OUT to_double(p.unit_price) price_double 2

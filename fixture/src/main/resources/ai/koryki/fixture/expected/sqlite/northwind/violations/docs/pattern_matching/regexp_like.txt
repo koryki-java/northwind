@@ -1,0 +1,1 @@
+unsupported: Function [3:7-3:40]: function 'regexp_like' is not supported by this dialect

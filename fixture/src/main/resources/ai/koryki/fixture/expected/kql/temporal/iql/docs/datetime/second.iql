@@ -1,0 +1,5 @@
+// second: the second component of a TIMESTAMP.
+
+SELECT
+ check_temporal c
+  OUT second(c.timestamp_timestamp) second_of_minute 1

@@ -1,0 +1,5 @@
+// rtrim: strip trailing whitespace.
+
+SELECT
+ customers c
+  OUT rtrim(c.postal_code) right_trimmed 1

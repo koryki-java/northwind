@@ -1,0 +1,5 @@
+// asin: inverse sine, result in radians.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, round(asin(1), 6) arcsine_of_one
+LIMIT 20

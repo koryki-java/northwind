@@ -1,0 +1,5 @@
+// OR : orders shipped to either of two cities.
+
+FIND bestellungen o
+FILTER o.versand_stadt = 'London' OR o.versand_stadt = 'Paris'
+FETCH o.bestell_id, o.versand_stadt

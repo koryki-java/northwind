@@ -1,0 +1,10 @@
+// least: the smaller of two values in the same row.
+
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT od.product_id 2
+  OUT least(od.quantity, 10) capped_quantity 3
+  ORDER od.order_id ASC 1
+  ORDER od.product_id ASC 2
+LIMIT 20

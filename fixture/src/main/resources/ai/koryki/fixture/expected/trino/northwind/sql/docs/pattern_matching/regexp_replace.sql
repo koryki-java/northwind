@@ -1,0 +1,6 @@
+-- regexp_replace: strip non-digits from a phone number.
+-- Every match is replaced, on every dialect — the levelling that makes this sample mean what it says.
+SELECT
+  regexp_replace(c.phone, '[^0-9]', '') AS digits_only
+FROM
+ customers c

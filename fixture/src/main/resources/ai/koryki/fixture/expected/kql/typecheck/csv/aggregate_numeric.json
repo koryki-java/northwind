@@ -1,0 +1,9 @@
+sum_smallint : INTEGER
+sum_integer : INTEGER
+sum_bigint : INTEGER
+sum_decimal : DECIMAL
+sum_double : FLOAT
+avg_integer : FLOAT
+avg_decimal : FLOAT
+min_decimal : DECIMAL
+max_double : FLOAT

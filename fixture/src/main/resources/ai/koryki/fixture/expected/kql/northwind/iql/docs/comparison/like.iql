@@ -1,0 +1,8 @@
+// LIKE : customers whose company name starts with 'A'.
+
+SELECT
+ customers c
+  OUT c.customer_id 1
+  OUT c.company_name 2
+  FILTER
+    c.company_name LIKE 'A%'

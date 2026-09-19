@@ -1,0 +1,11 @@
+// OR : orders shipped to either of two cities.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT o.ship_city 2
+ALL
+ FILTER
+   o.ship_city = 'London'
+  OR
+   o.ship_city = 'Paris'

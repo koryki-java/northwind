@@ -1,0 +1,7 @@
+// find customers, give company_name, no header
+
+SELECT
+ customers c
+  OUT c.company_name 1
+  ORDER c.company_name DESC 1
+LIMIT 5

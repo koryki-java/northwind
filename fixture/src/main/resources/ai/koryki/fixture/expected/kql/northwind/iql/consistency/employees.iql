@@ -1,0 +1,3 @@
+SELECT
+ employees e
+  OUT count(e.employee_id) 1

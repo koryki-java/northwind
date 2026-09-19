@@ -1,0 +1,3 @@
+// to_text: render an integer column as text.
+FIND check_type c
+FETCH to_text(c.type_integer) integer_text

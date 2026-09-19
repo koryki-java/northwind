@@ -1,0 +1,3 @@
+// lpad: left-pad the postal code to width six with zeros.
+FIND customers c
+FETCH lpad(c.postal_code, 6, '0') padded

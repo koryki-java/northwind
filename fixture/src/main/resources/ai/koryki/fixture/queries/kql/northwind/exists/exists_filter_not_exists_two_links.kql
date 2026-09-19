@@ -1,0 +1,5 @@
+// Find customers without orders
+
+FIND customers c
+FILTER NOT EXISTS (c orders o, order_details od)
+FETCH c.contact_name

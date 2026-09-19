@@ -1,0 +1,9 @@
+// filter, aggregate and group
+
+SELECT
+ customers c
+  OUT c.country country 1
+  OUT count(c.customer_id) cnt 2
+  GROUP c.country 1
+  HAVING 
+   count(c.customer_id) > 10

@@ -1,0 +1,9 @@
+SELECT
+    orders o
+        OUT count(o.freight) f
+        OUT (
+        SELECT
+            orders o
+                OUT count(o.freight) f
+        ) id
+

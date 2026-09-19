@@ -1,0 +1,1 @@
+unsupported: Select [4:1-5:37]: MariaDB does not support ORDER BY combined with ROLLUP (server error 1221: "Incorrect usage of CUBE/ROLLUP and ORDER BY"); remove the ORDER BY, or wrap the rollup query in a sub-select and sort the outer query.

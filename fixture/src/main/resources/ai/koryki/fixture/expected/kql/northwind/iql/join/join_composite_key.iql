@@ -1,0 +1,9 @@
+// FIND join with composite key
+
+SELECT
+ order_details od1
+  JOIN same_order_detail order_details od2
+  OWNER
+ALL
+ OUT sum(multiply(od1.unit_price, od2.quantity)) 1
+ ORDER sum(multiply(od1.unit_price, od2.quantity)) DESC 1

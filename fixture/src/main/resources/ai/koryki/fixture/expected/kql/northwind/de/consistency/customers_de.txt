@@ -1,0 +1,2 @@
+FIND kunden c
+FETCH count(c)

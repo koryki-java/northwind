@@ -1,0 +1,9 @@
+// case: classify orders by freight.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT case(o.freight > 100, 'high', 'low') freight_tier 2
+LIMIT 20

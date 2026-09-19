@@ -1,0 +1,6 @@
+// random: a random value in [0, 1).
+
+SELECT
+ orders o
+ALL
+ OUT random() r 1

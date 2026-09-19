@@ -1,0 +1,2 @@
+FIND us_states u
+FETCH count(u)

@@ -1,0 +1,18 @@
+WITH ord AS (
+SELECT
+    orders o
+        OUT o.freight
+        OUT o.customer_id
+),
+cust AS (
+SELECT
+    customers c
+        OUT c.contact_name
+        OUT c.customer_id i
+)
+SELECT
+    ord o
+        OUT o.freight
+    JOIN OPTIONAL same_customer cust c
+        OUT c.contact_name
+    OWNER

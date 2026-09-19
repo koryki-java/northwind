@@ -1,0 +1,5 @@
+// sin: trigonometric sine, argument in radians.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, round(sin(0), 6) sine_of_zero
+LIMIT 20

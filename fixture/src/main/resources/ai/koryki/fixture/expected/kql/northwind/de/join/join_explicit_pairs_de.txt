@@ -1,0 +1,6 @@
+// The pair form of join_explicit_shared. [a, b] is only shorthand for [a=a, b=b], so the SQL below
+// must be identical to that fixture's, comment lines aside -- if the two ever diverge, the two
+// grammar branches have grown apart.
+
+FIND mitarbeiter_gebiet et1, [mitarbeiter_id=mitarbeiter_id, gebiet_id=gebiet_id] mitarbeiter_gebiet et2
+FETCH et1.mitarbeiter_id, et1.gebiet_id

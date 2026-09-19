@@ -1,0 +1,7 @@
+unsupported: Expression [5:2-5:10]: duration '1h2min3s' cannot be a value on this dialect — it has no interval type. Adding it to a date works; using it as a value does not
+unsupported: Expression [6:2-6:4]: duration '1d' cannot be a value on this dialect — it has no interval type. Adding it to a date works; using it as a value does not
+unsupported: Expression [6:7-6:15]: duration '1h2min3s' cannot be a value on this dialect — it has no interval type. Adding it to a date works; using it as a value does not
+unsupported: Expression [7:2-7:7]: duration '1y2mo' cannot be a value on this dialect — it has no interval type. Adding it to a date works; using it as a value does not
+unsupported: Expression [8:2-8:9]: duration '1y2mo3d' cannot be a value on this dialect — it has no interval type. Adding it to a date works; using it as a value does not
+unsupported: Expression [9:2-9:9]: duration '1y2mo1d' cannot be a value on this dialect — it has no interval type. Adding it to a date works; using it as a value does not
+unsupported: Expression [9:12-9:20]: duration '1h2min3s' cannot be a value on this dialect — it has no interval type. Adding it to a date works; using it as a value does not

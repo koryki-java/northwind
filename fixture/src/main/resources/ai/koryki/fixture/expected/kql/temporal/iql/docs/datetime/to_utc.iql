@@ -1,0 +1,5 @@
+// to_utc: read a zoned wall-clock value and return it in UTC.
+
+SELECT
+ check_temporal c
+  OUT to_utc(c.ts_diff_base, 'America/New_York') as_utc 1

@@ -1,0 +1,4 @@
+// char_length: length of the company name in characters.
+
+FIND kunden c
+FETCH char_length(c.firma) name_len

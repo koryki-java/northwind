@@ -1,0 +1,9 @@
+// filter, aggregate and group
+
+SELECT
+    customers c
+        OUT c.country country
+        OUT count(c.customer_id) cnt
+        FILTER c.company_name LIKE 'abc%'
+        GROUP c.country
+        ROLLUP

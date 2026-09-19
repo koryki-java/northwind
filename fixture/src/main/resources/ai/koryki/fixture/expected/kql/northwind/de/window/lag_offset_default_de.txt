@@ -1,0 +1,7 @@
+// lag/lead carry an optional offset and an optional default, both declared in the catalog and
+// neither exercised anywhere — the corpus only ever called them with one argument. The default is
+// what the first (or last) rows of a partition get, where there is no neighbour to read.
+
+FIND bestellungen o
+FILTER o.bestell_id < 10253
+FETCH o.bestell_id ASC, lag(o.fracht, 2, 0) OVER ( ORDER o.bestell_id) two_back, lead(o.fracht, 2, 0) OVER ( ORDER o.bestell_id) two_ahead

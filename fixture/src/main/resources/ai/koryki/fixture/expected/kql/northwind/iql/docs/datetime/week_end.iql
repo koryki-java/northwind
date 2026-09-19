@@ -1,0 +1,8 @@
+// week_end: Sunday of the order's week.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT week_end(o.order_date) week_close 2
+  ORDER o.order_id ASC 1
+LIMIT 20

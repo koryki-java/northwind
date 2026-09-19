@@ -1,0 +1,851 @@
+{
+  "name" : "northwind",
+  "label" : null,
+  "comment" : null,
+  "description" : "Die northwind Databenbank speichert Verkäufe für die Northwind Firma.\nNorthwind verkauft Produkte an andere Kundenfirmen und kauft Produkte bei Herstellerfirmen ein.\nNorthwind Mitarbeiter bearbeiten Bestellungne und versenden die Produkte über Spediteure an die Kunden.",
+  "entities" : [ {
+    "name" : "kategorien",
+    "label" : "Kategorie",
+    "comment" : "Produkte werden in Kategorien verwaltet.",
+    "description" : "Warengruppen des Produktkatalogs. Kategorien bilden eine Hierarchie: eine Kategorie kann eine übergeordnete haben, dasselbe Produkt zählt also zur Unterkategorie und zu deren Wurzel. Mit parent_of/child_of läuft man den Baum ab, mit basiskategorie/gehoert_zu springt man direkt auf die oberste Ebene.",
+    "table" : "categories",
+    "attributes" : [ {
+      "name" : "kategorie_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Kategorie Id.",
+      "description" : "Bleibt bei Umbenennung der Kategorie stabil; zum Gruppieren daher besser geeignet als der Name.",
+      "column" : "category_id"
+    }, {
+      "name" : "kategorie_name",
+      "label" : "Name",
+      "comment" : "Name der Kategorie",
+      "description" : "Kurzer Katalogname wie 'Beverages' oder 'Seafood'; praktisch eindeutig, aber nicht erzwungen.",
+      "column" : "category_name"
+    }, {
+      "name" : "beschreibung",
+      "label" : "Beschreibung",
+      "comment" : "Beschreibung der Kategorie",
+      "description" : "Freitext dazu, was in die Kategorie gehört; als Kontext für Menschen nützlich, nicht zum Filtern.",
+      "column" : "description"
+    }, {
+      "name" : "bild",
+      "label" : "Bild",
+      "comment" : "Ein Bild um die Kategorie zu veranschaulichen",
+      "description" : "Binäre Bilddaten. Wer sie mitselektiert, überträgt den gesamten Blob — meist unerwünscht.",
+      "column" : "picture"
+    } ]
+  }, {
+    "name" : "kunden",
+    "label" : "Kunde",
+    "comment" : "Speichert Information zu den Firmen der Kunden mit Feldern wie firma, kontakt_name.",
+    "description" : "Die Firmen, an die Northwind verkauft. Eine Zeile je Firma, nicht je Person — die Kontaktfelder beschreiben eine benannte Ansprechperson dort. Land und Stadt sind Freitext und werden für Kartendarstellungen über den Namen mit der Länder-Referenz abgeglichen.",
+    "table" : "customers",
+    "attributes" : [ {
+      "name" : "kunden_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Kundennummer.",
+      "description" : "Ein fünfstelliger Buchstabencode, aus dem Firmennamen abgeleitet und keine laufende Nummer; er steht im Bestellkopf als Verweis auf diesen Kunden.",
+      "column" : "customer_id"
+    }, {
+      "name" : "firma",
+      "label" : "Firma",
+      "comment" : "Der Firmenname des Kunden",
+      "description" : "Der Firmenname und die Bezeichnung, die üblicherweise in Auswertungen erscheint.",
+      "column" : "company_name"
+    }, {
+      "name" : "kontakt_name",
+      "label" : "Kontakt",
+      "comment" : "Name der Kontaktperson",
+      "description" : "Eine benannte Person in der Firma; weitere Ansprechpartner führt die Tabelle nicht.",
+      "column" : "contact_name"
+    }, {
+      "name" : "kontakt_titel",
+      "label" : "Titel",
+      "comment" : "Der Titel der Kontaktperson,  (z.B. Owner, Sales Representative, Marketing Manager).",
+      "description" : "Freitext, dieselbe Rolle erscheint daher in mehreren Schreibweisen — beim Gruppieren zu beachten.",
+      "column" : "contact_title"
+    }, {
+      "name" : "adresse",
+      "label" : "Adresse",
+      "comment" : "Anschrift des Kunden.",
+      "description" : "Straße und Hausnummer in einer Zeile; eine zweite Adresszeile gibt es nicht.",
+      "column" : "address"
+    }, {
+      "name" : "stadt",
+      "label" : "Stadt",
+      "comment" : "Stadt der Kundenanschrift.",
+      "description" : "Freitext und nicht normalisiert — dieselbe Stadt kann in verschiedenen Schreibweisen vorkommen.",
+      "column" : "city"
+    }, {
+      "name" : "region",
+      "label" : "Region",
+      "comment" : "Region der Kundenanschrift.",
+      "description" : "Bundesstaat oder Provinz, außerhalb Nordamerikas häufig leer.",
+      "column" : "region"
+    }, {
+      "name" : "plz",
+      "label" : "PLZ",
+      "comment" : "Postleitzahl der Kundenanschrift.",
+      "description" : "Das Format richtet sich nach dem Land und ist deshalb länderübergreifend nicht vergleichbar.",
+      "column" : "postal_code"
+    }, {
+      "name" : "land",
+      "label" : "Land",
+      "comment" : "Land der Kundenanschrift.",
+      "description" : "So geschrieben wie in den Quelldaten ('UK', 'USA') — in dieser Form verbindet es sich mit der Länder-Referenz.",
+      "column" : "country"
+    }, {
+      "name" : "telefon",
+      "label" : "Telefon",
+      "comment" : "Telefonnummer der Kontaktperson.",
+      "description" : "Enthält landesübliche Formatierung und Trennzeichen; nicht wähl-normalisiert.",
+      "column" : "phone"
+    }, {
+      "name" : "mail",
+      "label" : "Mail",
+      "comment" : "Mail der Kontaktperson.",
+      "description" : "Adresse der benannten Kontaktperson, kein allgemeines Firmenpostfach.",
+      "column" : "mail"
+    } ]
+  }, {
+    "name" : "kunde_segment",
+    "label" : "Segment",
+    "comment" : "Speichert das Kundesegment.",
+    "description" : "Zuordnungstabelle zwischen Kunden und Segmenten. Ein Kunde kann mehreren Segmenten angehören und ein Segment vielen Kunden — eine Zählung über diese Tabelle zählt Kunden deshalb mehrfach, sofern nicht eindeutig aggregiert wird.",
+    "table" : "customer_customer_demo",
+    "attributes" : [ {
+      "name" : "kunde_id",
+      "label" : "Id",
+      "comment" : "Der Fremdschlüssel zum Kunden.",
+      "description" : "Eine Hälfte des zusammengesetzten Schlüssels; zusammen mit dem Segment bildet sie eine Zuordnung.",
+      "column" : "customer_id"
+    }, {
+      "name" : "kunden_typ_id",
+      "label" : "Typ Id",
+      "comment" : "Fremdschlüssel zum Kundentyp.",
+      "description" : "Die andere Hälfte des zusammengesetzten Schlüssels, sie zeigt auf den Segmentkatalog.",
+      "column" : "customer_type_id"
+    } ]
+  }, {
+    "name" : "kundensegment",
+    "label" : "Kundensegment",
+    "comment" : "Das Kundensegment, z.B. Retail, Wholesale, Corporate, etc.",
+    "description" : "Der Segmentkatalog selbst. Klein und selten geändert: er benennt die Segmente, denen Kunden zugeordnet werden, und enthält selbst keine Kundendaten.",
+    "table" : "customer_demographics",
+    "attributes" : [ {
+      "name" : "kundenbeschreibung",
+      "label" : "Beschreibung",
+      "comment" : "Die Beschreibung des Kundensegments.",
+      "description" : "Benennt das Segment, etwa Einzel- oder Großhandel; dieser Wert erscheint in Auswertungen.",
+      "column" : "customer_desc"
+    } ]
+  }, {
+    "name" : "mitarbeiter",
+    "label" : "Mitarbeiter",
+    "comment" : "Speichert die Information zu Mitarbeitern wie Namen und Titel.",
+    "description" : "Die Belegschaft, die Bestellungen aufnimmt und bearbeitet. Die Tabelle verweist auf sich selbst: berichtet_an zeigt auf die vorgesetzte Person, die Führungskette lässt sich also in beide Richtungen ablaufen. Arbeitszeiten und Pausenminuten beschreiben den Tagesplan, nicht den Aufwand je Bestellung.",
+    "table" : "employees",
+    "attributes" : [ {
+      "name" : "mitarbeiter_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Mitarbeiternummer.",
+      "description" : "Zugleich Ziel von berichtet_an — derselbe Schlüssel tritt in der Führungshierarchie also zweimal auf.",
+      "column" : "employee_id"
+    }, {
+      "name" : "nachname",
+      "label" : "Nachname",
+      "comment" : "Nachname des Mitarbeiters.",
+      "description" : "Nachname; für eine Anzeige mit dem Vornamen zu kombinieren, da keiner für sich eindeutig ist.",
+      "column" : "last_name"
+    }, {
+      "name" : "vorname",
+      "label" : "Vorname",
+      "comment" : "Vorname des Mitarbeiters.",
+      "description" : "Vorname.",
+      "column" : "first_name"
+    }, {
+      "name" : "titel",
+      "label" : "Titel",
+      "comment" : "Titel des Mitarbeiters für die Rolle in der Firma.",
+      "description" : "Funktionsbezeichnung wie 'Sales Representative'; Freitext, keine kontrollierte Liste.",
+      "column" : "title"
+    }, {
+      "name" : "anrede",
+      "label" : "Anrede",
+      "comment" : "Die Anrede",
+      "description" : "Anrede wie Herr, Frau oder Dr.; dient allein der Ansprache.",
+      "column" : "title_of_courtesy"
+    }, {
+      "name" : "geburtsdatum",
+      "label" : "Geburtsdatum",
+      "comment" : "Geburtsdatum des Mitarbeiters.",
+      "description" : "Nur Datum, keine Uhrzeit; das Alter ist gegen ein Stichdatum zu berechnen.",
+      "column" : "birth_date"
+    }, {
+      "name" : "einstellungsdatum",
+      "label" : "Einstellungsdatum",
+      "comment" : "Einstellungsdatum des Mitarbeiters.",
+      "description" : "Beginn der Beschäftigung; zusammen mit dem Geburtsdatum ergibt sich das Alter bei Einstellung.",
+      "column" : "hire_date"
+    }, {
+      "name" : "arbeitsbeginn",
+      "label" : "Arbeitszeit von",
+      "comment" : "Tägliche Arbeitszeit von",
+      "description" : "Täglicher Arbeitsbeginn, als Tageszeit ohne Datum gespeichert.",
+      "column" : "working_hour_from"
+    }, {
+      "name" : "arbeitsende",
+      "label" : "Arbeitszeit bis",
+      "comment" : "Tägliche Arbeitszeit von.",
+      "description" : "Tägliches Arbeitsende; zusammen mit Beginn und Pause ergibt sich die Nettoarbeitszeit.",
+      "column" : "working_hour_to"
+    }, {
+      "name" : "pausen_minuten",
+      "label" : "Pause",
+      "comment" : "Pause in Minuten.",
+      "description" : "Unbezahlte Pause in Minuten, von der Spanne zwischen Beginn und Ende abzuziehen.",
+      "column" : "break_minutes"
+    }, {
+      "name" : "adresse",
+      "label" : "Adresse",
+      "comment" : "Anschrift des Mitarbeiters.",
+      "description" : "Privatanschrift der Mitarbeiterin oder des Mitarbeiters, kein Firmenstandort.",
+      "column" : "address"
+    }, {
+      "name" : "stadt",
+      "label" : "Stadt",
+      "comment" : "Stadt der Mitarbeiteranschrift",
+      "description" : "Stadt der Privatanschrift.",
+      "column" : "city"
+    }, {
+      "name" : "region",
+      "label" : "Region",
+      "comment" : "Region Mitarbeiteranschrift",
+      "description" : "Bundesstaat oder Provinz der Privatanschrift; häufig leer.",
+      "column" : "region"
+    }, {
+      "name" : "plz",
+      "label" : "PLZ",
+      "comment" : "Postleitzahl Mitarbeiteranschrift.",
+      "description" : "Postleitzahl der Privatanschrift.",
+      "column" : "postal_code"
+    }, {
+      "name" : "land",
+      "label" : "Land",
+      "comment" : "Land Mitarbeiteranschrift",
+      "description" : "Land der Privatanschrift.",
+      "column" : "country"
+    }, {
+      "name" : "telefon_privat",
+      "label" : "Telefon",
+      "comment" : "private Telefonnummer des Mitarbeiters.",
+      "description" : "Private Rufnummer; die interne Durchwahl steht getrennt davon.",
+      "column" : "home_phone"
+    }, {
+      "name" : "durchwahl",
+      "label" : "Durchwahl",
+      "comment" : "Die interne Telefondurchwahl des Mitarbeiters.",
+      "description" : "Die interne Telefondurchwahl, bis zu vier Zeichen.",
+      "column" : "extension"
+    }, {
+      "name" : "foto",
+      "label" : "Foto",
+      "comment" : "Portraitfoto des Mitarbeiters",
+      "description" : "Binäre Bilddaten; sie in einer Abfrage mitzuübertragen ist selten beabsichtigt.",
+      "column" : "photo"
+    }, {
+      "name" : "notiz",
+      "label" : "Notiz",
+      "comment" : "Notizen zum Mitarbeiter",
+      "description" : "Längerer Fließtext zu Werdegang und Hintergrund; Freitext.",
+      "column" : "notes"
+    }, {
+      "name" : "foto_pfad",
+      "label" : "Pfad",
+      "comment" : "URL zum Foto",
+      "description" : "Ablageort des Bildes als Pfad oder URL; die Datei selbst gehört nicht zur Datenbank.",
+      "column" : "photo_path"
+    } ]
+  }, {
+    "name" : "mitarbeiter_gebiet",
+    "label" : "Mitarbeiter-Gebiet",
+    "comment" : "Speichert die Zuordnung von Mitarbeiten zu Gebieten.",
+    "description" : "Zuordnungstabelle zwischen Mitarbeitern und Vertriebsgebieten. Beide Seiten sind mehrwertig — wer mehrere Gebiete betreut, erscheint hier mehrfach.",
+    "table" : "employee_territories",
+    "attributes" : [ {
+      "name" : "mitarbeiter_id",
+      "label" : "Mitarbeiter Id",
+      "comment" : "Der Fremdschlüssel zum Mitarbeiter.",
+      "description" : "Eine Hälfte des zusammengesetzten Schlüssels der Zuordnung.",
+      "column" : "employee_id"
+    }, {
+      "name" : "gebiet_id",
+      "label" : "Gebiet Id",
+      "comment" : "Der Fremdschlüssel zum Gebiet.",
+      "description" : "Die andere Hälfte; zusammen machen sie eine Person für ein Gebiet zuständig.",
+      "column" : "territory_id"
+    } ]
+  }, {
+    "name" : "bestellungen",
+    "label" : "Bestellung",
+    "comment" : "Bestellung zu Kunden, Fremdschlüssel zur Bestellung und Kunden.",
+    "description" : "Der Bestellkopf: wer wann bestellt hat, wohin geliefert wird und was die Fracht kostet. Die Beträge der Bestellung stehen nicht hier, sondern in den Positionen. Die vier Daten (bestellt, gewünscht, versandt, zugestellt) erlauben es, Durchlaufzeiten und Verzüge gegeneinander zu messen.",
+    "table" : "orders",
+    "attributes" : [ {
+      "name" : "bestell_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Bestellnummer.",
+      "description" : "Laufende Bestellnummer; auf sie beziehen sich die Bestellpositionen.",
+      "column" : "order_id"
+    }, {
+      "name" : "kunden_id",
+      "label" : "Kunde",
+      "comment" : "Der Fremdschlüssel zum Kunden.",
+      "description" : "Verweist auf den Kunden, der die Bestellung aufgegeben hat; der Link same_customer führt zum Kundensatz.",
+      "column" : "customer_id"
+    }, {
+      "name" : "bestelldatum",
+      "label" : "Bestelldatum",
+      "comment" : "Das Bestelldatum",
+      "description" : "Wann die Bestellung aufgegeben wurde — der übliche Bezugspunkt für Zeitraumvergleiche.",
+      "column" : "order_date"
+    }, {
+      "name" : "wunsch_datum",
+      "label" : "Wunschdatum",
+      "comment" : "Das Datum für die gewünschte Lieferung",
+      "description" : "Das vom Kunden gewünschte Lieferdatum; der Vergleich mit der Zustellung zeigt, ob die Zusage gehalten wurde.",
+      "column" : "required_date"
+    }, {
+      "name" : "versand_datum",
+      "label" : "Versanddatum",
+      "comment" : "Das Versanddatum.",
+      "description" : "Wann die Ware das Lager verlassen hat; leer, solange die Bestellung offen ist.",
+      "column" : "shipped_date"
+    }, {
+      "name" : "zustell_datum",
+      "label" : "Zustelldatum",
+      "comment" : "Das Zustelldatum.",
+      "description" : "Wann die Ware beim Kunden ankam; der Abstand zum Versanddatum ist die Transportzeit.",
+      "column" : "delivered_date"
+    }, {
+      "name" : "spediteur_via",
+      "label" : "Via",
+      "comment" : "Der Fremdschlüssel zum Spediteur.",
+      "description" : "Verweist auf den Spediteur; der Frachtbetrag dieser Zeile ist das, was dieser berechnet hat.",
+      "column" : "ship_via"
+    }, {
+      "name" : "fracht",
+      "label" : "Fracht",
+      "comment" : "Die berechneten Frachtkosten.",
+      "description" : "Die für diese Bestellung berechneten Frachtkosten, ein Betrag und kein Gewicht. Sie gehören nicht zum Positionsumsatz und sind gesondert hinzuzurechnen.",
+      "column" : "freight"
+    }, {
+      "name" : "spediteur",
+      "label" : "Spediteur",
+      "comment" : "Name des Spediteur.",
+      "description" : "Empfängername auf dem Versandschein; meist, aber nicht zwingend der Firmenname des Kunden.",
+      "column" : "ship_name"
+    }, {
+      "name" : "versand_adresse",
+      "label" : "Versandadresse",
+      "comment" : "Versandadresse, erste Zeile.",
+      "description" : "Lieferanschrift dieser Bestellung; sie kann von der Anschrift des Kunden abweichen.",
+      "column" : "ship_address"
+    }, {
+      "name" : "versand_stadt",
+      "label" : "Stadt",
+      "comment" : "Stadt der Versandadresse.",
+      "description" : "Stadt der Lieferanschrift.",
+      "column" : "ship_city"
+    }, {
+      "name" : "versand_region",
+      "label" : "Region",
+      "comment" : "Region Versandadresse.",
+      "description" : "Bundesstaat oder Provinz der Lieferanschrift; häufig leer.",
+      "column" : "ship_region"
+    }, {
+      "name" : "versand_plz",
+      "label" : "PLZ",
+      "comment" : "Postleitzahl Versandadresse.",
+      "description" : "Postleitzahl der Lieferanschrift, im Format des Ziellandes.",
+      "column" : "ship_postal_code"
+    }, {
+      "name" : "versand_land",
+      "label" : "Versand Land",
+      "comment" : "Das Land der Firma, an die versandt wird.",
+      "description" : "Zielland, geschrieben wie in den Adressdaten und über den Namen mit der Länder-Referenz verbunden.",
+      "column" : "ship_country"
+    } ]
+  }, {
+    "name" : "bestellposition",
+    "label" : "Bestellposition",
+    "comment" : "Die Bestelolposition verknüpft die Bestellung mit den Produkten und weiteren Informationen zur Bestellung",
+    "description" : "Die Bestellpositionen — eine Zeile je Produkt einer Bestellung. Der Umsatz entsteht hier als preis_je_einheit * menge * (1 - rabatt); der Preis ist der zum Bestellzeitpunkt eingefrorene und kann vom heutigen Produktpreis abweichen.",
+    "table" : "order_details",
+    "attributes" : [ {
+      "name" : "bestell_id",
+      "label" : "Id",
+      "comment" : "Fremdschlüssel für die Bestellung.",
+      "description" : "Zusammen mit dem Produkt bildet er den Schlüssel der Position; dasselbe Produkt kommt je Bestellung höchstens einmal vor.",
+      "column" : "order_id"
+    },{
+      "name" : "preis_je_einheit",
+      "label" : "Preis je Einheit",
+      "comment" : "Preis je Einheit.",
+      "description" : "Der zum Bestellzeitpunkt vereinbarte Preis; er ist hier eingefroren und folgt späteren Preisänderungen nicht.",
+      "column" : "unit_price"
+    }, {
+      "name" : "produkt_id",
+      "label" : "Produkt",
+      "comment" : "Der Fremdschlüssel zum Produkt.",
+      "description" : "Verweist auf das Produkt dieser Position; der Link same_product führt zum Produktsatz.",
+      "column" : "product_id"
+    }, {
+      "name" : "menge",
+      "label" : "Menge",
+      "comment" : "Anzahl der bestellten Einheiten.",
+      "description" : "Anzahl bestellter Einheiten dieses Produkts, in dessen eigener Einheit.",
+      "column" : "quantity"
+    }, {
+      "name" : "rabatt",
+      "label" : "Rabatt",
+      "comment" : "Der gewährte Rabatt für das Produkt in dieser Bestellung.",
+      "description" : "Ein Anteil zwischen 0 und 1, kein Prozentwert — 0,15 bedeutet fünfzehn Prozent Nachlass.",
+      "column" : "discount"
+    } ]
+  }, {
+    "name" : "produkte",
+    "label" : "Produkt",
+    "comment" : "Speichert Produkte einschließlich Namen, Lieferanten, Kategorie und Preis je Einheit",
+    "description" : "Der verkäufliche Katalog. Die Lagerzahlen sind aktuelle Werte ohne Historie und taugen deshalb nicht zur Rekonstruktion früherer Verfügbarkeit. Ausgelistete Produkte bleiben erhalten, weil vergangene Bestellungen weiter auf sie verweisen.",
+    "table" : "products",
+    "attributes" : [ {
+      "name" : "produkt_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Produktnummer.",
+      "description" : "Bleibt auch nach Auslistung gültig, weil vergangene Bestellungen weiter darauf verweisen.",
+      "column" : "product_id"
+    }, {
+      "name" : "produkt_name",
+      "label" : "Name",
+      "comment" : "Produktname",
+      "description" : "Katalogname, wie er Kunden gegenüber erscheint.",
+      "column" : "product_name"
+    }, {
+      "name" : "kategorie_id",
+      "label" : "Kategorie",
+      "comment" : "Der Fremdschlüssel zur Kategorie.",
+      "description" : "Verweist auf die Katalogruppe des Produkts; der Link same_category führt zum Kategoriesatz.",
+      "column" : "category_id"
+    }, {
+      "name" : "menge_je_einheit",
+      "label" : "Menge je Einheit",
+      "comment" : "Menge je Einheit.",
+      "description" : "Beschreibt die Gebindeform als Freitext, etwa '24 - 12 oz bottles'; keine Zahl und nicht für Berechnungen geeignet.",
+      "column" : "quantity_per_unit"
+    }, {
+      "name" : "preis_je_einheit",
+      "label" : "Preis je Einheit",
+      "comment" : "Preis je Einheit",
+      "description" : "Der aktuelle Listenpreis; für historische Umsätze ist der auf der Position gespeicherte Preis maßgeblich.",
+      "column" : "unit_price"
+    }, {
+      "name" : "anzahl_im_lager",
+      "label" : "im Lager",
+      "comment" : "Anzahl Einheiten im Lager.",
+      "description" : "Aktueller Lagerbestand, ohne Historie.",
+      "column" : "units_in_stock"
+    }, {
+      "name" : "anzahl_in_bestellung",
+      "label" : "in Bestellung",
+      "comment" : "Anzahl der bestellten Einheiten.",
+      "description" : "Beim Hersteller bestellte, noch nicht eingetroffene Einheiten.",
+      "column" : "units_on_order"
+    }, {
+      "name" : "bestell_level",
+      "label" : "Bestelllevel",
+      "comment" : "Anzahl der minimalen Einheiten im Lager bevor das Produkt beim Lieferanten neu bestellt werden soll",
+      "description" : "Die Schwelle, ab der nachbestellt werden soll; im Vergleich mit dem Bestand zeigt sie Lücken.",
+      "column" : "reorder_level"
+    }, {
+      "name" : "ausgelistet",
+      "label" : "ausgelistet",
+      "comment" : "Gibt an ob das Produkt noch lieferbar ist, ausgelistete Produkte sind nicht lieferbar",
+      "description" : "Kennzeichnet nicht mehr verkaufte Produkte; sie bleiben für historische Bestellungen im Katalog.",
+      "column" : "discontinued"
+    } ]
+  }, {
+    "name" : "region",
+    "label" : "Region",
+    "comment" : "Die Region in der das Produkt verkauft wird",
+    "description" : "Die gröbste Ebene der Vertriebsgeographie: Gebiete gehören zu einer Region, und Mitarbeiter erreichen Kunden über Gebiete.",
+    "table" : "region",
+    "attributes" : [ {
+      "name" : "region_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Id der Region.",
+      "description" : "Kleiner Schlüsselvorrat — es gibt nur eine Handvoll Regionen.",
+      "column" : "region_id"
+    }, {
+      "name" : "region_beschreibung",
+      "label" : "Beschreibung",
+      "comment" : "Beschreibung Region",
+      "description" : "Der Regionsname, etwa Eastern oder Western; in den Quelldaten mit nachgestellten Leerzeichen.",
+      "column" : "region_description"
+    } ]
+  }, {
+    "name" : "spediteur",
+    "label" : "Spediteur",
+    "comment" : "Speichert die Information zu Spediteuren",
+    "description" : "Die Spediteure, die Bestellungen ausliefern. Der Bestellkopf verweist über spediteur_via auf sie; der Frachtbetrag dort ist das, was dieser Spediteur berechnet hat.",
+    "table" : "shippers",
+    "attributes" : [ {
+      "name" : "spediteur_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Id des Spediteurs.",
+      "description" : "Wird vom Bestellkopf über spediteur_via referenziert.",
+      "column" : "shipper_id"
+    }, {
+      "name" : "firma",
+      "label" : null,
+      "comment" : "Firmenname des Spediteur",
+      "description" : "Name des Spediteurs, wie er in Auswertungen erscheint.",
+      "column" : "company_name"
+    }, {
+      "name" : "telefon",
+      "label" : "Telefon",
+      "comment" : "Telefonnummer.",
+      "description" : "Kontaktnummer des Spediteurs.",
+      "column" : "phone"
+    } ]
+  }, {
+    "name" : "hersteller",
+    "label" : "Hersteller",
+    "comment" : "Speichert die Hersteller für Produkte",
+    "description" : "Die Firmen, bei denen Northwind einkauft. Jedes Produkt hat genau einen Hersteller — Kennzahlen je Hersteller entstehen daher durch Aggregation über die Produkte.",
+    "table" : "suppliers",
+    "attributes" : [ {
+      "name" : "hersteller_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Herstellerid.",
+      "description" : "Jedes Produkt trägt genau einen davon — Kennzahlen je Hersteller entstehen durch Aggregation über Produkte.",
+      "column" : "supplier_id"
+    }, {
+      "name" : "firma",
+      "label" : "Firma",
+      "comment" : "Firmenname des Herstellers",
+      "description" : "Name der liefernden Firma.",
+      "column" : "company_name"
+    }, {
+      "name" : "kontakt",
+      "label" : "Kontakt",
+      "comment" : "Name des Ansprechpartners, Kontaktperson",
+      "description" : "Die zu kontaktierende Person beim Hersteller.",
+      "column" : "contact_name"
+    }, {
+      "name" : "kontakt_titel",
+      "label" : "Titel",
+      "comment" : "Titel der Kontaktperson",
+      "description" : "Rolle dieser Person; Freitext.",
+      "column" : "contact_title"
+    }, {
+      "name" : "adresse",
+      "label" : "Adresse",
+      "comment" : "Adresse der Kontaktperson",
+      "description" : "Straßenanschrift des Herstellers.",
+      "column" : "address"
+    }, {
+      "name" : "stadt",
+      "label" : "Stadt",
+      "comment" : "Stadt der Adresse der Kontaktperson",
+      "description" : "Stadt der Herstelleranschrift.",
+      "column" : "city"
+    }, {
+      "name" : "region",
+      "label" : "Region",
+      "comment" : "Region des Herstellers.",
+      "description" : "Bundesstaat oder Provinz der Herstelleranschrift; häufig leer.",
+      "column" : "region"
+    }, {
+      "name" : "plz",
+      "label" : "PLZ",
+      "comment" : "Postleitzahl des Herstellers.",
+      "description" : "Postleitzahl der Herstelleranschrift.",
+      "column" : "postal_code"
+    }, {
+      "name" : "land",
+      "label" : "Land",
+      "comment" : "Das Land des Herstellers.",
+      "description" : "Land des Herstellers, in derselben Schreibweise wie bei den Kunden.",
+      "column" : "country"
+    }, {
+      "name" : "telefon",
+      "label" : null,
+      "comment" : "Telefonnummer der Kontaktperson des Herstellers",
+      "description" : "Kontaktnummer beim Hersteller.",
+      "column" : "phone"
+    }, {
+      "name" : "mail",
+      "label" : "Mail",
+      "comment" : "Mail des Herstellers.",
+      "description" : "Kontaktadresse beim Hersteller.",
+      "column" : "mail"
+    }, {
+      "name" : "homepage",
+      "label" : "Homepage",
+      "comment" : "Homepage des Herstellers.",
+      "description" : "Webadresse; Freitext und in den Quelldaten teils mit Auszeichnung versehen.",
+      "column" : "homepage"
+    } ]
+  }, {
+    "name" : "gebiete",
+    "label" : "Gebiet",
+    "comment" : "Speichert die Gebiete.",
+    "description" : "Vertriebsgebiete, die mittlere Ebene zwischen Region und Mitarbeiter. Die Gebietsnamen sind US-Städte- und Bezirksnamen.",
+    "table" : "territories",
+    "attributes" : [ {
+      "name" : "gebiet_id",
+      "label" : "Id",
+      "comment" : "Die eindeutige Id für das Gebiet.",
+      "description" : "Als Text gehalten, nicht als Zahl, und in den Quelldaten aufgefüllt.",
+      "column" : "territory_id"
+    }, {
+      "name" : "gebiet_beschreibung",
+      "label" : "Beschreibung",
+      "comment" : "Beschreibung des Gebiets.",
+      "description" : "Name des Gebiets, meist eine US-Stadt oder ein Bezirk; in den Quelldaten mit nachgestellten Leerzeichen.",
+      "column" : "territory_description"
+    } ]
+  }, {
+    "name" : "us_staaten",
+    "label" : "US Staaten",
+    "comment" : "US Staaten.",
+    "table" : "us_states",
+    "description" : "Referenzliste der US-Bundesstaaten, mit der die Kürzel in den Regionsfeldern der Adressen aufgelöst werden.",
+    "attributes" : [ {
+      "name" : "staat_id",
+      "label" : "Id",
+      "comment" : "Ein Surrogat-Primärschlüssel, der jeden Bundesstaat eindeutig identifiziert.",
+      "description" : "Schlüssel der Bundesstaaten-Referenz.",
+      "column" : "state_id"
+    }, {
+      "name" : "staat_name",
+      "label" : "Name",
+      "comment" : "Der Name des US-Bundesstaates.",
+      "description" : "Ausgeschriebener Name des Bundesstaates; er löst die Kürzel in den Regionsfeldern der Adressen auf.",
+      "column" : "state_name"
+    } ]
+  }, {
+    "name" : "laender",
+    "label" : "Land",
+    "comment" : "Länder, auf die Kunden-, Lieferanten-, Mitarbeiter- und Lieferadressen verweisen, mit geographischen Koordinaten und Umriss für Kartenvisualisierungen.",
+    "table" : "countries",
+    "description" : "Geographische Referenz, die über den Ländernamen verbunden wird und nicht über einen Fremdschlüssel — die Adressfelder enthalten Freitext wie 'UK' oder 'USA'. Sie liefert Koordinaten und Umrisse, damit Ergebnisse auf einer Karte dargestellt werden können.",
+    "attributes" : [ {
+      "name" : "land_name",
+      "label" : "Name",
+      "comment" : "Der Ländername, wie er in den Adressspalten verwendet wird (z. B. 'Germany', 'UK', 'USA').",
+      "description" : "Der Verbindungsschlüssel zu den Adressfeldern — der Abgleich erfolgt über den Namen, die Schreibweise muss daher genau übereinstimmen.",
+      "column" : "country_name"
+    }, {
+      "name" : "iso_code",
+      "label" : "ISO-Code",
+      "comment" : "Der ISO-3166-1-alpha-2-Code des Landes.",
+      "description" : "Zweibuchstabiger Code, nützlich für eine schreibweisenunabhängige Beschriftung.",
+      "column" : "iso_code"
+    }, {
+      "name" : "kontinent",
+      "label" : "Kontinent",
+      "comment" : "Der Kontinent, zu dem das Land gehört.",
+      "description" : "Fasst Länder für grobe regionale Verdichtungen zusammen.",
+      "column" : "continent"
+    }, {
+      "name" : "breitengrad",
+      "label" : "Breitengrad",
+      "comment" : "Breitengrad des Beschriftungspunkts (Zentroid) des Landes, in Grad.",
+      "description" : "Grad, nördlich des Äquators positiv; der Beschriftungspunkt, nicht der geometrische Mittelpunkt.",
+      "column" : "latitude"
+    }, {
+      "name" : "laengengrad",
+      "label" : "Längengrad",
+      "comment" : "Längengrad des Beschriftungspunkts (Zentroid) des Landes, in Grad.",
+      "description" : "Grad, östlich von Greenwich positiv.",
+      "column" : "longitude"
+    }, {
+      "name" : "geometrie",
+      "label" : "Geometrie",
+      "comment" : "Vereinfachter Landesumriss als GeoJSON-(Multi)Polygon für Choroplethenkarten.",
+      "description" : "Vereinfachter Umriss als GeoJSON-Text; umfangreich und zum Zeichnen gedacht, nicht zum Filtern.",
+      "column" : "geometry"
+    } ]
+  } ],
+  "links" : [ {
+    "name" : "gleiches_produkt",
+    "label" : null,
+    "canonical" : "same_product",
+    "comment" : "Beide Datensätze verweisen auf das gleiche Produkt",
+    "description" : "Verbindet eine Bestellposition mit dem verkauften Produkt.",
+    "nature" : null,
+    "relations" : [ "fk_order_details_products", "pk_products" ]
+  }, {
+    "name" : "gleiches_kundensegment",
+    "label" : null,
+    "canonical" : "same_customer_demographic",
+    "comment" : "Beide Datensätze verweisen auf das gleiche Kundensegment",
+    "description" : "Verbindet eine Zuordnungszeile mit dem Segmentkatalog.",
+    "nature" : null,
+    "relations" : [ "fk_customer_customer_demo_customer_demographics", "pk_customer_demographics" ]
+  }, {
+    "name" : "gleicher_spediteur",
+    "label" : null,
+    "canonical" : "same_shipper",
+    "comment" : "beide Tabellen verweisen auf denselben Spediteur-Datensatz",
+    "description" : "Verbindet den Bestellkopf mit dem ausliefernden Spediteur.",
+    "nature" : null,
+    "relations" : [ "fk_orders_shippers", "pk_shippers" ]
+  }, {
+    "name" : "basiskategorie",
+    "label" : null,
+    "canonical" : "root_category_of",
+    "comment" : "Die erste Kategorie ist Basiskategorie der zweiten Kategorie.",
+    "description" : "Springt direkt an die Spitze des Kategorienbaums und überspringt die Zwischenebenen.",
+    "nature" : null,
+    "relations" : [ "fk_categories_categories_root" ]
+  }, {
+    "name" : "gehoert_zu",
+    "label" : null,
+    "canonical" : "belongs_to_root",
+    "comment" : "Die erste Kategorie is direkt oder indirekt eine Unterkategorie der zweiten Kategorie (Basiskategorie)",
+    "description" : "Die Gegenrichtung: von einer beliebigen Kategorie zu ihrer Wurzel, gleich wie tief sie liegt.",
+    "nature" : "inverse",
+    "relations" : [ "fk_categories_categories_root" ]
+  }, {
+    "name" : "gleicher_lieferant",
+    "label" : null,
+    "canonical" : "same_supplier",
+    "comment" : "Beide Datensätze verweisen auf den gleichen Lieferanten",
+    "description" : "Verbindet ein Produkt mit der Firma, die es liefert.",
+    "nature" : null,
+    "relations" : [ "fk_products_suppliers", "pk_suppliers" ]
+  }, {
+    "name" : "gleicher_mitarbeiter",
+    "label" : null,
+    "canonical" : "same_employee",
+    "comment" : "Beide Datensätze verweisen auf den gleichen Mitarbeiter",
+    "description" : "Verbindet eine Bestellung oder Gebietszuordnung mit der zuständigen Person.",
+    "nature" : null,
+    "relations" : [ "fk_employee_territories_employees", "fk_orders_employees", "pk_employees" ]
+  }, {
+    "name" : "gleiches_gebiet",
+    "label" : null,
+    "canonical" : "same_territory",
+    "comment" : "Beide Datensätze verweisen auf das gleiche Gebiet",
+    "description" : "Verbindet eine Zuordnungszeile mit dem Gebietskatalog.",
+    "nature" : null,
+    "relations" : [ "fk_employee_territories_territories", "pk_territories" ]
+  }, {
+    "name" : "gleiches_kunden_kundensegment",
+    "label" : null,
+    "canonical" : "same_customer_customer_demo",
+    "comment" : "Beide Datensätze verweisen auf das gleiche Kunden-Kundensegment",
+    "description" : "Verbindet die Kundenseite der Segmentzuordnung.",
+    "nature" : null,
+    "relations" : [ "pk_customer_customer_demo" ]
+  }, {
+    "name" : "gleicher_staat",
+    "label" : null,
+    "canonical" : "same_us_state",
+    "comment" : "Beide Datensätze verweisen auf den gleichen Staat",
+    "description" : "Löst ein Bundesstaatskürzel in einer Adresse zum Staatseintrag auf.",
+    "nature" : null,
+    "relations" : [ "pk_usstates" ]
+  }, {
+    "name" : "gleiche_region",
+    "label" : null,
+    "canonical" : "same_region",
+    "comment" : "Beide Datensätze verweisen auf die gleiche Region",
+    "description" : "Verbindet ein Gebiet mit der Region, zu der es gehört.",
+    "nature" : null,
+    "relations" : [ "fk_territories_region", "pk_region" ]
+  }, {
+    "name" : "gleiche_bestelldetails",
+    "label" : null,
+    "canonical" : "same_order_detail",
+    "comment" : "Beide Datensätze verweisen auf die gleiche Bestellposition",
+    "description" : "Verbindet ein Produkt zurück mit den Positionen, die es verkauft haben.",
+    "nature" : null,
+    "relations" : [ "pk_order_details" ]
+  }, {
+    "name" : "berichtet_an",
+    "label" : null,
+    "canonical" : "reports_to",
+    "comment" : "Der erste Mitarbeiter berichtet an den zweiten Mirarbeiter.",
+    "description" : "Aufwärts in der Hierarchie: von einer Person zur vorgesetzten. Optional zu verwenden, denn an der Spitze gibt es keine.",
+    "nature" : null,
+    "relations" : [ "fk_employees_employees" ]
+  }, {
+    "name" : "vorgesetzter_von",
+    "label" : null,
+    "canonical" : "supervisor_of",
+    "comment" : "Der erste Mitarbeiter ist der Vorgesetzte des zweiten Mitarbeiters.",
+    "description" : "Abwärts: von der vorgesetzten Person zu den ihr unterstellten.",
+    "nature" : "inverse",
+    "relations" : [ "fk_employees_employees" ]
+  }, {
+    "name" : "uebergeordnete_kategorie",
+    "label" : null,
+    "canonical" : "parent_of",
+    "comment" : "Die erste Kategorie ist der zweiten Kategorie übergeordnet.",
+    "description" : "Eine Ebene aufwärts im Kategorienbaum.",
+    "nature" : null,
+    "relations" : [ "fk_categories_categories_super" ]
+  }, {
+    "name" : "kind_von",
+    "label" : null,
+    "canonical" : "child_of",
+    "comment" : "Die erste Kategorie ist eine Unterkategorie der zweiten.",
+    "description" : "Eine Ebene abwärts im Kategorienbaum.",
+    "nature" : "inverse",
+    "relations" : [ "fk_categories_categories_super" ]
+  }, {
+    "name" : "gleiches_mitarbeitergebiet",
+    "label" : null,
+    "canonical" : "same_employee_territory",
+    "comment" : "Beide Datensätze verweisen auf das gleiche Mitarbeitergebiet",
+    "description" : "Verbindet mit der Mitarbeiter-Gebiets-Zuordnung.",
+    "nature" : null,
+    "relations" : [ "pk_employee_territories" ]
+  }, {
+    "name" : "gleiche_kategorie",
+    "label" : null,
+    "canonical" : "same_category",
+    "comment" : "Beide Datensätze verweisen auf die gleiche Kategorie",
+    "description" : "Verbindet ein Produkt mit seiner Kategorie.",
+    "nature" : null,
+    "relations" : [ "fk_products_categories", "pk_categories" ]
+  }, {
+    "name" : "gleiche_bestellung",
+    "label" : null,
+    "canonical" : "same_order",
+    "comment" : "Beide Datensätze verweisen auf die gleiche Bestellung",
+    "description" : "Verbindet eine Bestellposition mit ihrem Bestellkopf.",
+    "nature" : null,
+    "relations" : [ "fk_order_details_orders", "pk_orders" ]
+  }, {
+    "name" : "gleicher_kunde",
+    "label" : null,
+    "canonical" : "same_customer",
+    "comment" : "Beide Datensätze verweisen auf den gleichen Kundendatensatz",
+    "description" : "Verbindet eine Bestellung mit dem Kunden, der sie aufgegeben hat.",
+    "nature" : null,
+    "relations" : [ "fk_customer_customer_demo_customers", "fk_orders_customers", "pk_customers" ]
+  }, {
+    "name" : "gleiches_land",
+    "label" : null,
+    "canonical" : "same_country",
+    "comment" : "Beide Datensätze verweisen auf das gleiche Land; Adressland und Lieferland verweisen namentlich auf die Länder-Referenztabelle",
+    "description" : "Verbindet ein Adress- oder Lieferland mit der geographischen Referenz — über den Namen, die Schreibweise muss also passen.",
+    "nature" : null,
+    "relations" : [ "fk_customers_countries", "fk_suppliers_countries", "fk_employees_countries", "fk_orders_countries", "pk_countries" ]
+  } ]
+}

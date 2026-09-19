@@ -1,0 +1,5 @@
+// regexp_substr: first run of digits in a phone number.
+
+SELECT
+ customers c
+  OUT regexp_substr(c.phone, '[0-9]+') first_digits 1

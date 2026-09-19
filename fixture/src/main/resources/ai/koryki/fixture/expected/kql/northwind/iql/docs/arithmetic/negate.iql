@@ -1,0 +1,8 @@
+// negate (-): arithmetic negation of freight.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT negate(o.freight) neg_freight 2
+  ORDER o.order_id ASC 1
+LIMIT 20

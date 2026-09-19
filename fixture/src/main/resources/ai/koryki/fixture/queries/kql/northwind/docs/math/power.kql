@@ -1,0 +1,5 @@
+// power: freight squared.
+// ignore=oracle  power() differs from the reference in the sixth significant digit (119.903 vs 119.902) -- below what the harness resolves after rounding, above what it can call equal
+// ignore=postgresql  same as the oracle case: power() lands on the other side of the sixth digit
+FIND orders o
+FETCH power(o.freight, 2) squared

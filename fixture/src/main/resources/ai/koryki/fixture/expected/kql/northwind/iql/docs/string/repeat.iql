@@ -1,0 +1,6 @@
+// repeat: a ten-character rule.
+
+SELECT
+ customers c
+ALL
+ OUT repeat('-', 10) ruler 1

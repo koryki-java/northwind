@@ -1,0 +1,4 @@
+// LIKE : customers whose company name starts with 'A'.
+FIND customers c
+FILTER c.company_name LIKE 'A%'
+FETCH c.customer_id, c.company_name

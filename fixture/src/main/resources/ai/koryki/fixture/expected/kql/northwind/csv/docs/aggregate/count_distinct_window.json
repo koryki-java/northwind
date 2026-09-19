@@ -1,0 +1,3 @@
+Id : TEXT
+Country : TEXT
+per_country : INTEGER

@@ -1,0 +1,13 @@
+// Regression: explicit arithmetic grouping must survive the IQL round-trip —
+// (unit_price + 1) * quantity re-parsed from serialized IQL used to render
+// unit_price + 1 * quantity, silently changing the value.
+
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT od.product_id 2
+  OUT multiply((add(od.unit_price, 1)), od.quantity) adjusted 3
+  FILTER
+    od.quantity > 100
+  ORDER od.order_id ASC 1
+  ORDER od.product_id ASC 2

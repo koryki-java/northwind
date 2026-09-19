@@ -1,0 +1,4 @@
+none : TEXT
+last_three : TEXT
+longer_than_input : TEXT
+from_second : TEXT

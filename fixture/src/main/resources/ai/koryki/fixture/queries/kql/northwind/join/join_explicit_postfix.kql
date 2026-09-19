@@ -1,0 +1,5 @@
+// The join written after the source instead of before it. The grammar accepts both placements; the
+// formatter normalises to the leading one, as it always did for VIA.
+
+FIND employee_territories et1, employee_territories et2 [employee_id, territory_id]
+FETCH et1.employee_id, et1.territory_id

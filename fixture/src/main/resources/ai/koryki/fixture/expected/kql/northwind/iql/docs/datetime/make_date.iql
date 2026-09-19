@@ -1,0 +1,9 @@
+// make_date: build a DATE from year, month and day.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT make_date(2024, 1, 31) built 2
+LIMIT 20

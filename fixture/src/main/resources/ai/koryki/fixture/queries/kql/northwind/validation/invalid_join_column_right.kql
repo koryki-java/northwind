@@ -1,0 +1,4 @@
+// The right-hand column does not exist on the right entity. This is also how a pair written the
+// wrong way round surfaces.
+FIND employee_territories et1, [employee_id=no_such_column] employee_territories et2
+FETCH et1.employee_id

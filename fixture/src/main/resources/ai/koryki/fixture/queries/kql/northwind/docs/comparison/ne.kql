@@ -1,0 +1,5 @@
+// <> : orders shipped anywhere but one city.
+FIND orders o
+FILTER o.ship_city <> 'London'
+FETCH o.order_id ASC, o.ship_city
+LIMIT 20

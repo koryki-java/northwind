@@ -1,0 +1,18 @@
+// Regression: EXISTS filter conjuncts referencing the outer query either
+// NPE'd (outer-alias-only conjunct: c.country) or were silently dropped
+// (mixed-alias conjunct: o.ship_city = c.city). Both must stay as residual
+// filter and render correlated in the subselect WHERE; o.freight is pushed.
+
+SELECT
+ customers c
+  OUT c.company_name 1
+ALL
+ FILTER
+   EXISTS (c same_customer orders o
+   FILTER
+     o.freight > 10
+   FILTER
+     o.ship_city = c.city
+    AND
+     c.country = 'Germany'
+  )

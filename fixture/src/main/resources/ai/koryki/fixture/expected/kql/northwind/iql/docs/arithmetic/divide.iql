@@ -1,0 +1,5 @@
+// divide (/): unit cost of a line item.
+
+SELECT
+ order_details od
+  OUT divide(od.unit_price, od.quantity) unit_cost 1

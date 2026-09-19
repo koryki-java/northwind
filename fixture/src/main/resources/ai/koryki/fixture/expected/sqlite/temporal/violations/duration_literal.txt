@@ -1,0 +1,1 @@
+unsupported: Expression [2:7-2:15]: duration '1h2min3s' cannot be a value on this dialect — it has no interval type. Adding it to a date works; using it as a value does not

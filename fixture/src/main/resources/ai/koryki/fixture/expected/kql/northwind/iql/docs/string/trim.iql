@@ -1,0 +1,5 @@
+// trim: strip surrounding whitespace.
+
+SELECT
+ customers c
+  OUT trim(c.company_name) trimmed 1

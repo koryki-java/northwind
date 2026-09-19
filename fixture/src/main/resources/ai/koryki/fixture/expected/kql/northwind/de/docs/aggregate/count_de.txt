@@ -1,0 +1,4 @@
+// count: number of orders.
+
+FIND bestellungen o
+FETCH count(o.bestell_id) order_count

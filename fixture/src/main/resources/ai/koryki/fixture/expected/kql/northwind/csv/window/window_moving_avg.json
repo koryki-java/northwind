@@ -1,0 +1,4 @@
+Name : TEXT
+Unit price : DECIMAL
+Product name : TEXT
+moving_avg_price : FLOAT

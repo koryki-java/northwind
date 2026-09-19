@@ -1,0 +1,4 @@
+// to_text overload resolution for the remaining families (BOOLEAN, TEXT, BLOB, INTERVAL, UUID, JSON).
+FIND check_type c
+FETCH
+  to_text(c.type_boolean)  boolean_text

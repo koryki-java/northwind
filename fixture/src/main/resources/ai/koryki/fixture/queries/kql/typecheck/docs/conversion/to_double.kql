@@ -1,0 +1,3 @@
+// to_double: to double-precision floating point.
+FIND check_type c
+FETCH to_double(c.type_decimal) as_double

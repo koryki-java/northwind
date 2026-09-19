@@ -1,0 +1,6 @@
+// TIME stored as an ISO text string (TIME_FROM_STRING): arithmetic decodes to seconds, adds, re-wraps.
+FIND check_temporal c
+FETCH
+  c.time_from_string time_from_string,
+  c.time_from_string + 1h time_from_string_plus1h,
+  c.time_from_string - 1h time_from_string_minus1h

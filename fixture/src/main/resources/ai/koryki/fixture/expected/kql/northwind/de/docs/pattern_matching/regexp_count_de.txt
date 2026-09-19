@@ -1,0 +1,4 @@
+// regexp_count: occurrences of 'sales' in the notes.
+
+FIND mitarbeiter e
+FETCH regexp_count(e.notiz, 'sales') sales_mentions

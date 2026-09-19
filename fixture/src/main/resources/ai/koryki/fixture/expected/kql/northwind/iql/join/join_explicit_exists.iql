@@ -1,0 +1,10 @@
+// An explicit join inside EXISTS. The exists path reads the clause through the same helper as the
+// link path; without that they drift, and only a fixture using exists would notice.
+
+SELECT
+ employee_territories et1
+  OUT et1.employee_id 1
+ALL
+ FILTER
+   EXISTS (et1 [employee_id=employee_id, territory_id=territory_id] employee_territories et2
+  )

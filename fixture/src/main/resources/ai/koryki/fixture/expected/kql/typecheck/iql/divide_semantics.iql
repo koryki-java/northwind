@@ -1,0 +1,12 @@
+// Division has two things the engines disagree on natively, both normalised here.
+// int_div: 7/2 truncates to 3 on postgresql, mssql, trino and sqlite unless the dividend is cast.
+// by_zero: a zero divisor errors on four engines, is NULL on two and Infinity on duckdb; the
+// NULLIF guard makes it NULL everywhere. dec_div shows the guard is skipped for a literal divisor.
+
+SELECT
+ check_type t
+  OUT divide(t.type_integer, t.type_integer) int_div_same 1
+  OUT divide(t.type_decimal, t.type_smallint) dec_div 3
+  OUT divide(t.type_integer, (minus(t.type_integer, t.type_integer))) by_zero 4
+ALL
+ OUT divide(7, 2) int_div 2

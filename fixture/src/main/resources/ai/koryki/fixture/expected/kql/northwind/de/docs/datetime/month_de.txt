@@ -1,0 +1,5 @@
+// month: the month component of the order date.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, month(o.bestelldatum) order_month
+LIMIT 20

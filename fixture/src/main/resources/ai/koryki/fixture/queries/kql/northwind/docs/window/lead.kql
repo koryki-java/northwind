@@ -1,0 +1,4 @@
+// lead: the mirror of lag — the next order's freight for the same customer.
+FIND customers c, orders o
+FILTER c.country = 'France'
+FETCH c.customer_id, o.order_id, o.freight, lead(o.freight) OVER (PARTITION c.customer_id ORDER o.order_id) next_freight

@@ -1,0 +1,8 @@
+// quarter_end: last day of the order's quarter.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT quarter_end(o.order_date) q_end 2
+  ORDER o.order_id ASC 1
+LIMIT 20

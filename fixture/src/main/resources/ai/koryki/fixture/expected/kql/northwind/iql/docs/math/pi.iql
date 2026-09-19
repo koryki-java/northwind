@@ -1,0 +1,9 @@
+// pi: the mathematical constant pi.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT pi() pi_value 2
+LIMIT 20

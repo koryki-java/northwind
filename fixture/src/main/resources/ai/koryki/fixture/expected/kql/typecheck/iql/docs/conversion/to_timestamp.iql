@@ -1,0 +1,5 @@
+// to_timestamp: extend a DATE to midnight.
+
+SELECT
+ check_type c
+  OUT to_timestamp(c.type_date) as_ts 1

@@ -1,0 +1,3 @@
+SELECT
+ customers c
+  OUT count(c.customer_id) 1

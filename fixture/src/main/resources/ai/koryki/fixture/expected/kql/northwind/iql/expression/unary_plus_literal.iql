@@ -1,0 +1,9 @@
+// Unary plus: positive number literal in filter comparison.
+// Unary plus is a no-op and should render identically to the bare literal.
+
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT od.discount 2
+  FILTER
+    od.discount > 0.1

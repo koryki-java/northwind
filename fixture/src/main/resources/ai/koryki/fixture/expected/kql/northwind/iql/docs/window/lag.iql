@@ -1,0 +1,13 @@
+// lag: each order alongside the previous order's freight for the same customer — the shape behind
+// "compare with the period before".
+
+SELECT
+ customers c
+  OUT c.customer_id 1
+  FILTER
+    c.country = 'France'
+  JOIN same_customer orders o
+    OUT o.order_id 2
+    OUT o.freight 3
+    OUT lag(o.freight) OVER (PARTITION c.customer_id ORDER o.order_id) previous_freight 4
+  OWNER

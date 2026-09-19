@@ -1,0 +1,6 @@
+// AND : orders with freight within bounds (two comparisons).
+
+FIND bestellungen o
+FILTER o.fracht > 10 AND o.fracht < 100
+FETCH o.bestell_id ASC, o.fracht
+LIMIT 20

@@ -1,0 +1,6 @@
+// Running per-customer concatenation: an aggregate (string_agg) used as a window function.
+// Regression for the OVER clause surviving templated dialect overrides.
+
+FIND orders o
+FILTER o.customer_id = 'ALFKI' OR o.customer_id = 'ANATR'
+FETCH o.order_id ASC, o.customer_id, o.ship_city, string_agg(o.ship_city, ',') OVER (PARTITION o.customer_id ORDER o.order_id) cities

@@ -1,0 +1,11 @@
+// A frame on a ranking function. rank() reads the whole partition by definition, so a frame has
+// nothing to narrow, and the SQL standard bars the combination.
+//
+// Measured before this was refused: MariaDB, SQL Server, Oracle and Trino each rejected it with
+// their own driver message; DuckDB, PostgreSQL and SQLite ignored the frame; and Snowflake accepted
+// it and returned a DIFFERENT number — 2 where the others said 5. That last one is why this is an
+// error and not a warning.
+FIND orders o
+FILTER o.order_id < 10253
+FETCH o.order_id ASC,
+      rank() OVER (ORDER o.freight ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) r

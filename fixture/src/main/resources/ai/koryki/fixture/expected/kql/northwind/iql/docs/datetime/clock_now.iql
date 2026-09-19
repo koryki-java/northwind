@@ -1,0 +1,6 @@
+// clock_now: the current wall-clock timestamp.
+
+SELECT
+ orders o
+ALL
+ OUT clock_now() wall_clock_ts 1

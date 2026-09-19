@@ -1,0 +1,1 @@
+unsupported: Function [6:33-6:89]: function 'count_distinct' does not support an OVER clause in this dialect

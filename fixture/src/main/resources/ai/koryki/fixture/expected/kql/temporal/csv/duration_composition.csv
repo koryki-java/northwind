@@ -1,0 +1,6 @@
+"time_duration", "day_time_duration", "year_month_duration", "year_month_day_duration", "mixed_duration"
+"1h2min3s", "1d1h2min3s", "1y2mo", "1y2mo3d", "1y2mo1d1h2min3s"
+"1h2min3s", "1d1h2min3s", "1y2mo", "1y2mo3d", "1y2mo1d1h2min3s"
+"1h2min3s", "1d1h2min3s", "1y2mo", "1y2mo3d", "1y2mo1d1h2min3s"
+"1h2min3s", "1d1h2min3s", "1y2mo", "1y2mo3d", "1y2mo1d1h2min3s"
+"1h2min3s", "1d1h2min3s", "1y2mo", "1y2mo3d", "1y2mo1d1h2min3s"

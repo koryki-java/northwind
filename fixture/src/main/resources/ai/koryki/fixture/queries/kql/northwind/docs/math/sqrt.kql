@@ -1,0 +1,4 @@
+// sqrt: square root of freight.
+FIND orders o
+FETCH o.order_id ASC, sqrt(o.freight) root
+LIMIT 20

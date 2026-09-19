@@ -1,0 +1,2 @@
+FIND territories t
+FETCH count(t)

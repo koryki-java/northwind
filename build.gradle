@@ -1,0 +1,90 @@
+rootProject.allprojects {
+
+    version = rootProject.version
+
+    group = rootProject.group
+
+    tasks.withType(Javadoc).configureEach {
+        options.addStringOption('Xdoclint:-missing', '-quiet')
+    }
+
+    pluginManager.withPlugin('java-base') {
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(21)
+            }
+        }
+    }
+}
+
+// Shared by every published module (catalog, duckdb); each sets only its artifactId, POM name and
+// description. 'fixture' is not published: implementations read it from a checkout (see SPEC.md).
+subprojects {
+    pluginManager.withPlugin('maven-publish') {
+        apply plugin: 'signing'
+
+        java {
+            withSourcesJar()
+            withJavadocJar()
+        }
+
+        // LICENSE and NOTICE in every jar, sources and javadoc included: whoever gets an artifact
+        // gets the terms with it. NOTICE also carries the MIT notice for the Northwind-derived
+        // content, which the MIT License requires in all copies.
+        tasks.withType(Jar).configureEach {
+            from(rootProject.file('LICENSE')) { into 'META-INF' }
+            from(rootProject.file('NOTICE')) { into 'META-INF' }
+        }
+
+        // group+name, so JPMS does not guess the module name from the jar's file name.
+        tasks.named('jar') {
+            manifest {
+                attributes('Automatic-Module-Name': "${project.group}.${project.name}".toString())
+            }
+        }
+
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+                    from components.java
+                    pom {
+                        // A provider, because the module's own 'description = ...' runs after this.
+                        description.set(project.provider { project.description })
+                        url = 'https://github.com/koryki-java/northwind'
+                        licenses {
+                            license {
+                                name = 'The Apache License, Version 2.0'
+                                url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                            }
+                        }
+                        developers {
+                            developer {
+                                id = 'j0hannesz'
+                                name = 'Johannes Zemlin'
+                                email = 'johannes.zemlin@mailbox.org'
+                            }
+                        }
+                        scm {
+                            connection = 'scm:git:https://github.com/koryki-java/northwind.git'
+                            developerConnection = 'scm:git:git@github.com:koryki-java/northwind.git'
+                            url = 'https://github.com/koryki-java/northwind'
+                        }
+                    }
+                }
+            }
+        }
+
+        // Signed only where the keys are set (the release workflow, which checks for them), so
+        // publishToMavenLocal works without keys however it is launched.
+        def signingKey = providers.environmentVariable('SIGNING_KEY').orNull
+        if (signingKey) {
+            signing {
+                useInMemoryPgpKeys(
+                        providers.environmentVariable('SIGNING_KEY_ID').orNull,
+                        signingKey,
+                        providers.environmentVariable('SIGNING_PASSWORD').orNull)
+                sign publishing.publications.mavenJava
+            }
+        }
+    }
+}

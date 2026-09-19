@@ -1,0 +1,4 @@
+// concat_ws: join city and country with a separator.
+
+FIND kunden c
+FETCH concat_ws(', ', c.stadt, c.land) location

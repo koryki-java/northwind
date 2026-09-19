@@ -1,0 +1,8 @@
+// year_month: the order's month as a sortable YYYYMM key.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT year_month(o.order_date) order_year_month 2
+  ORDER o.order_id ASC 1
+LIMIT 20

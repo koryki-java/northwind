@@ -1,0 +1,9 @@
+// acos: inverse cosine, result in radians.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  ORDER o.order_id ASC 1
+ALL
+ OUT round(acos(1), 6) arccosine_of_one 2
+LIMIT 20

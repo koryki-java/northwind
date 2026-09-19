@@ -1,0 +1,5 @@
+// ceil: round freight up to a whole number.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, ceil(o.fracht) rounded_up
+LIMIT 20

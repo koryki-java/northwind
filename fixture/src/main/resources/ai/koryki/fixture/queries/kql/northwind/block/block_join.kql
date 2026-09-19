@@ -1,0 +1,8 @@
+// link in regular order, link first followed by table
+
+WITH ord AS (
+FIND orders o
+FETCH to_decimal(o.freight, 16, 8) f, o.customer_id i
+)
+FIND customers c, c VIA same_customer ord o
+FETCH c.contact_name, o.f

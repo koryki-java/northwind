@@ -1,0 +1,11 @@
+// random: a random value in [0, 1).
+// ignore=duckdb
+// ignore=sqlite
+// ignore=oracle
+// ignore=postgresql
+// ignore=mssql
+// ignore=mariadb
+// ignore=trino
+// ignore=snowflake
+FIND orders o
+FETCH random() r

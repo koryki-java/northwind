@@ -1,0 +1,3 @@
+Id : TEXT
+Id : INTEGER
+nth : INTEGER

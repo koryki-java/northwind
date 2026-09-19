@@ -1,0 +1,3 @@
+// max: latest order date.
+FIND orders o
+FETCH max(o.order_date) latest

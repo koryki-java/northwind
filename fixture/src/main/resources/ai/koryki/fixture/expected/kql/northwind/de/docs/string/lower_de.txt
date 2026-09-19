@@ -1,0 +1,4 @@
+// lower: company name in lower case.
+
+FIND kunden c
+FETCH lower(upper(c.firma)) quiet

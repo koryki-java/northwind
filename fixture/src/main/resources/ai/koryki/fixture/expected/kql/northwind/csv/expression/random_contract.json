@@ -1,0 +1,3 @@
+varies_per_row : TEXT
+never_negative : TEXT
+never_reaches_one : TEXT

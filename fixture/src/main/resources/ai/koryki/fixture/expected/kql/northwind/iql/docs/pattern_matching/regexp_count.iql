@@ -1,0 +1,5 @@
+// regexp_count: occurrences of 'sales' in the notes.
+
+SELECT
+ employees e
+  OUT regexp_count(e.notes, 'sales') sales_mentions 1

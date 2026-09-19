@@ -1,0 +1,4 @@
+// minus (-): shipping delay in whole days.
+FIND orders o
+FETCH o.order_id ASC, o.shipped_date - o.order_date ship_delay
+LIMIT 20

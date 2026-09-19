@@ -1,0 +1,5 @@
+// to_decimal: fixed-point with precision and scale.
+
+SELECT
+ check_type c
+  OUT to_decimal(c.type_double, 10, 2) as_money 1

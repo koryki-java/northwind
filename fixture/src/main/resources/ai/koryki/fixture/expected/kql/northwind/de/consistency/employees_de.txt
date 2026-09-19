@@ -1,0 +1,2 @@
+FIND mitarbeiter e
+FETCH count(e)

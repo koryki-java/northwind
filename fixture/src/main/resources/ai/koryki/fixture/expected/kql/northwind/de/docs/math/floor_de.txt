@@ -1,0 +1,5 @@
+// floor: round freight down to a whole number.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, floor(o.fracht) rounded_down
+LIMIT 20

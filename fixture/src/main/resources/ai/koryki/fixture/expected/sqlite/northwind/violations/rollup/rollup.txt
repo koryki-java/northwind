@@ -1,0 +1,1 @@
+unsupported: Select [4:1-5:33]: ROLLUP is not supported by SQLite

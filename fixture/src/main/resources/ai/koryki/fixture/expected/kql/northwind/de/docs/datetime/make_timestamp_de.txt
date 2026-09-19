@@ -1,0 +1,5 @@
+// make_timestamp: build a TIMESTAMP from its parts.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, make_timestamp(2024, 1, 31, 14, 30, 0) built
+LIMIT 20

@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # The version catalog (gradle/libs.versions.toml) and the nmcp settings plugin.
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      gradle-minor-and-patch:
+        patterns: ["*"]
+        update-types: [minor, patch]
+    ignore:
+      # Builds duckdb/northwind.duckdb. It moves only together with core's DuckDB version:
+      # a newer driver may write a storage format core cannot read (see libs.versions.toml).
+      - dependency-name: org.duckdb:duckdb_jdbc
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: ["*"]

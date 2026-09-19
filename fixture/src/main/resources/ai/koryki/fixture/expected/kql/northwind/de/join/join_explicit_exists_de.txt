@@ -1,0 +1,8 @@
+// An explicit join inside EXISTS. The exists path reads the clause through the same helper as the
+// link path; without that they drift, and only a fixture using exists would notice.
+
+FIND mitarbeiter_gebiet et1
+FILTER 
+ EXISTS (et1 [mitarbeiter_id, gebiet_id] mitarbeiter_gebiet et2
+ )
+FETCH et1.mitarbeiter_id

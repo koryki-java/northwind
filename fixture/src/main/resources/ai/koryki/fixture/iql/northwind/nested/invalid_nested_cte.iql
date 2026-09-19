@@ -1,0 +1,19 @@
+SELECT
+    orders o
+        OUT count(o.freight) f
+        OUT (
+        WITH ord AS (
+        SELECT
+            orders o
+                OUT o.freight f
+                OUT o.customer_id
+        )
+        SELECT
+                orders o
+                    OUT count(o.freight) f
+        UNION
+             SELECT
+                 orders o
+                     OUT count(o.freight) f
+        ) id
+

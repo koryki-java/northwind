@@ -1,0 +1,10 @@
+// rank: position by freight, heaviest first. Equal freights share a rank and the next one skips.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT o.freight 2
+  FILTER
+    o.ship_country = 'France'
+ALL
+ OUT rank() OVER ( ORDER o.freight DESC) freight_rank 3

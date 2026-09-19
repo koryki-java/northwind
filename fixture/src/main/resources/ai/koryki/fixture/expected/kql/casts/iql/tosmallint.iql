@@ -1,0 +1,4 @@
+SELECT
+ order_details od
+  OUT od.order_id 1
+  OUT to_smallint(od.quantity) qty_smallint 2

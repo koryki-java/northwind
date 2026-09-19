@@ -1,0 +1,5 @@
+// split_part: first dash-separated field of the phone.
+
+SELECT
+ customers c
+  OUT split_part(c.phone, '-', 1) first_field 1

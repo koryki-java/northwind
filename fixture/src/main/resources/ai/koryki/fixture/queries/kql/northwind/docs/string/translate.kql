@@ -1,0 +1,3 @@
+// translate: transliterate German umlauts.
+FIND customers c
+FETCH translate(c.company_name, 'äöü', 'aou') ascii_name

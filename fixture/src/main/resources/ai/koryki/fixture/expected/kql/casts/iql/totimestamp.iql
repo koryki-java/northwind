@@ -1,0 +1,4 @@
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT to_timestamp(o.order_date) ordered_at 2

@@ -1,0 +1,3 @@
+time_from_integer : TIME
+time_from_integer_plus1h : TIME
+time_from_integer_minus1h : TIME

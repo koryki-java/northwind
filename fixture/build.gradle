@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+description = 'Shared KQL/IQL test-fixture corpus. Not published to Maven Central -- see SPEC.md ' +
+        'at the repo root: consumed directly from a checkout (submodule) by every implementation, ' +
+        'Java included.'
+
+dependencies {
+    testImplementation platform(libs.junit.bom)
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+test {
+    useJUnitPlatform()
+    // CorpusIntegrityTest reads the corpus from the source tree, not from the classpath.
+    inputs.dir('src/main/resources/ai/koryki/fixture')
+            .withPropertyName('corpus')
+            .withPathSensitivity(PathSensitivity.RELATIVE)
+}

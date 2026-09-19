@@ -1,0 +1,4 @@
+// DATE BETWEEN inside NOT EXISTS — rewrite must reach into the exists filter
+FIND customers c
+FILTER NOT EXISTS (c orders o FILTER o.order_date BETWEEN "2023-01-01" AND "2023-12-31")
+FETCH c.company_name

@@ -1,0 +1,3 @@
+// overlay: mask the first two characters of the phone.
+FIND customers c
+FETCH overlay(c.phone, 'XX', 1, 2) masked

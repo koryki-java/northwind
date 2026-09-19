@@ -1,0 +1,5 @@
+// AND : orders with freight within bounds (two comparisons).
+FIND orders o
+FILTER o.freight > 10 AND o.freight < 100
+FETCH o.order_id ASC, o.freight
+LIMIT 20

@@ -1,0 +1,5 @@
+// to_smallint: to a 16-bit integer.
+
+SELECT
+ check_type c
+  OUT to_smallint(c.type_smallint) as_smallint 1

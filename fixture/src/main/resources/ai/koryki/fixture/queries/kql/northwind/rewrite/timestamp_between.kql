@@ -1,0 +1,4 @@
+// TIMESTAMP upper: rewritten to >= lower AND < start of next day
+FIND orders o
+FILTER o.delivered_date BETWEEN "2022-07-01 00:00:00" AND "2022-12-31 23:59:59"
+FETCH o.order_id, o.delivered_date

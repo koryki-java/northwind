@@ -1,0 +1,3 @@
+FIND mitarbeiter e
+FILTER e.mitarbeiter_id = 1
+FETCH concat(e.vorname, ' ', e.nachname) full_name, concat(e.anrede, ' ', e.nachname) formal

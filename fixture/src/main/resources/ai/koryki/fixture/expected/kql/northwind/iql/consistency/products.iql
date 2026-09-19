@@ -1,0 +1,3 @@
+SELECT
+ products p
+  OUT count(p.product_id) 1

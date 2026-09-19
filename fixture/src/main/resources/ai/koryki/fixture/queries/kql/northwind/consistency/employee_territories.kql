@@ -1,0 +1,2 @@
+FIND employee_territories t
+FETCH count(t)

@@ -1,0 +1,5 @@
+// find customers, give company_name, filter by company_name
+
+FIND kunden c
+FILTER c.firma LIKE '%n%' AND (c.kunden_id LIKE '%A%' OR c.stadt = 'Berlin')
+FETCH c.firma

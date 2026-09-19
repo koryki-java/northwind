@@ -1,0 +1,5 @@
+// dense_rank: like rank, but the numbering has no gaps after a tie.
+
+FIND bestellungen o
+FILTER o.versand_land = 'France'
+FETCH o.bestell_id, o.fracht, dense_rank() OVER ( ORDER o.fracht DESC) freight_rank

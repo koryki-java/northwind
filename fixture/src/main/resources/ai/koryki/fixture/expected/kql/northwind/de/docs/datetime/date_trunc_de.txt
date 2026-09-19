@@ -1,0 +1,5 @@
+// date_trunc: truncate the order date to the month.
+
+FIND bestellungen o
+FETCH o.bestell_id ASC, date_trunc('month', o.bestelldatum) month_start
+LIMIT 20

@@ -1,0 +1,4 @@
+// left: first two characters of the postal code.
+
+FIND kunden c
+FETCH left(c.plz, 2) prefix

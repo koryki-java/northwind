@@ -1,0 +1,10 @@
+// > : orders with freight above a threshold.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT o.freight 2
+  FILTER
+    o.freight > 100
+  ORDER o.order_id ASC 1
+LIMIT 20

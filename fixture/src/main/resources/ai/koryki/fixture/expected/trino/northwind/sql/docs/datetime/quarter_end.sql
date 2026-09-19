@@ -1,0 +1,9 @@
+-- quarter_end: last day of the order's quarter.
+SELECT
+  o.order_id
+, last_day_of_month(date_trunc('quarter', o.order_date) + INTERVAL '2' MONTH) AS q_end
+FROM
+ orders o
+ORDER BY
+  o.order_id ASC
+FETCH FIRST 20 ROWS ONLY

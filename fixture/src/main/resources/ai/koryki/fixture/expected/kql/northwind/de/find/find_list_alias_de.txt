@@ -1,0 +1,5 @@
+// FIND with list of links with alias
+
+FIND bestellungen o, o bestellposition od, od produkte p, p kategorien c
+FILTER o.bestelldatum BETWEEN "2023-01-01" AND "2023-12-31"
+FETCH c.kategorie_name, sum(to_decimal(to_decimal(od.preis_je_einheit, 32, 8) * to_decimal(od.menge, 32, 8), 32, 8)) DESC

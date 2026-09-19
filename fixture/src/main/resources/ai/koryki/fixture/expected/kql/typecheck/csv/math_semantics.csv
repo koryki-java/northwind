@@ -1,0 +1,2 @@
+"log_base", "mod_normal", "mod_zero", "neg_trunc", "neg_floor", "neg_trunc_scale"
+"3", "1", "", "-1", "-2", "-19.9"

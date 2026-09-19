@@ -1,0 +1,28 @@
+// test
+
+WITH product_revenue AS (
+ SELECT
+  orders o
+   JOIN same_order order_details od
+     OUT sum(multiply(od.unit_price, od.quantity)) revenue 3
+      JOIN same_product products p
+        OUT p.product_name prodname 2
+        GROUP p.product_name 2
+         JOIN same_category categories c
+           OUT c.category_name catname 1
+           FILTER
+             c.category_name = 'Beverages'
+           GROUP c.category_name 1
+         OWNER
+      OWNER
+   OWNER
+)
+SELECT
+ product_revenue pr
+  OUT pr.catname 1
+  OUT pr.prodname 2
+  OUT pr.revenue 3
+  ORDER pr.catname ASC 1
+ALL
+ OUT rank() OVER (PARTITION pr.catname ORDER pr.revenue DESC) rnk 4
+ ORDER rank() OVER (PARTITION pr.catname ORDER pr.revenue DESC) ASC 4

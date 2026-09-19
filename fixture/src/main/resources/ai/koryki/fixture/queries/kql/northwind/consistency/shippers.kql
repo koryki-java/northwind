@@ -1,0 +1,2 @@
+FIND shippers s
+FETCH count(s)

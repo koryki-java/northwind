@@ -1,0 +1,6 @@
+// >= : order lines at or above a quantity threshold.
+
+FIND bestellposition od
+FILTER od.menge >= 10
+FETCH od.bestell_id ASC, od.produkt_id ASC, od.menge
+LIMIT 20

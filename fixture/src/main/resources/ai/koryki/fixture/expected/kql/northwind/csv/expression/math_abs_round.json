@@ -1,0 +1,3 @@
+Product name : TEXT
+price_rounded : DECIMAL
+diff_from_20 : DECIMAL

@@ -1,0 +1,3 @@
+FIND customers c
+FILTER c.customer_id = 'ALFKI'
+FETCH trim(c.company_name) trimmed, char_length(trim(c.company_name)) trimmed_len

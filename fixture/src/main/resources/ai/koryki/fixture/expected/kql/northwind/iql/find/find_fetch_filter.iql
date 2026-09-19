@@ -1,0 +1,7 @@
+// find customers, give company_name, filter by company_name
+
+SELECT
+ customers c
+  OUT c.company_name 1
+  FILTER
+    c.company_name LIKE 'abc%'

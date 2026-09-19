@@ -1,0 +1,2 @@
+FIND order_details od
+FETCH od.order_id, to_float(od.discount) discount_float

@@ -1,0 +1,4 @@
+// find customers, give company_name, no header
+
+FIND kunden c
+FETCH c.firma, c.kunden_id id

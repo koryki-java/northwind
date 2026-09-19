@@ -1,0 +1,8 @@
+// Regression: a comparison followed by a bare boolean predicate. The pair alternative of
+// unary_logical_expression — meant for BETWEEN — used to apply after ANY operator, so
+// `unit_price > 10 AND discontinued` bound `discontinued` as a third operand of `>`, and the
+// template `{0} > {1}` never rendered it. The predicate vanished without a violation or a warning,
+// and the filter returned every product over 10 — discontinued or not.
+FIND products p
+FILTER p.unit_price > 10 AND p.discontinued
+FETCH p.product_id ASC, p.product_name, p.unit_price

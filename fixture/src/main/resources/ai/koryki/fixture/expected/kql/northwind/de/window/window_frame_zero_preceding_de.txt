@@ -1,0 +1,7 @@
+// A frame bound of 0 is a real bound, not an absent one — 0 PRECEDING is valid SQL and means the
+// current row. It used to render as a bare PRECEDING, which every one of the eight dialects
+// rejects, because "no count" and "count is zero" were the same state in the model.
+
+FIND bestellungen o
+FILTER o.kunden_id = 'VINET'
+FETCH o.bestell_id ASC, sum(o.fracht) OVER ( ORDER o.bestell_id ROWS BETWEEN  0 PRECEDING AND  1 FOLLOWING) window_sum

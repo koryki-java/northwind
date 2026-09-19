@@ -1,0 +1,6 @@
+// today: the current date.
+
+SELECT
+ orders o
+ALL
+ OUT today() todays_date 1

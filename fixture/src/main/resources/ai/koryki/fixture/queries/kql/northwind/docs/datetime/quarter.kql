@@ -1,0 +1,4 @@
+// quarter: which quarter of the year the order falls in.
+FIND orders o
+FETCH o.order_id ASC, quarter(o.order_date) order_quarter
+LIMIT 20

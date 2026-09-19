@@ -1,0 +1,7 @@
+-- count() without an argument must render COUNT(*). It used to render count(), which duckdb,
+-- sqlite and trino accept but postgresql, mssql, mariadb, oracle and snowflake reject — and the
+-- reference dialect being one of the three permissive ones is why it went unnoticed.
+SELECT
+  COUNT(*) AS rows_total
+FROM
+ orders o

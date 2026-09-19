@@ -1,0 +1,3 @@
+FIND kunden c
+FILTER c.kunden_id = 'ALFKI'
+FETCH substring(c.firma, 1, 7) prefix, substring(c.stadt, 1, 3) city_prefix

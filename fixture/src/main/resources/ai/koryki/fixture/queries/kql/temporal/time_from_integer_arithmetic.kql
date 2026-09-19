@@ -1,0 +1,6 @@
+// TIME stored as an HHMMSS integer (TIME_FROM_INTEGER): arithmetic decodes to seconds, adds, re-wraps.
+FIND check_temporal c
+FETCH
+  c.time_from_integer time_from_integer,
+  c.time_from_integer + 1h time_from_integer_plus1h,
+  c.time_from_integer - 1h time_from_integer_minus1h

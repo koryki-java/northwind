@@ -1,0 +1,4 @@
+// find customers, give company_name, no header
+
+FIND customers c
+FETCH DISTINCT c.company_name

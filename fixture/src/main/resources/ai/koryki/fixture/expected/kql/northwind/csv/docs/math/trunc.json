@@ -1,0 +1,4 @@
+Id : INTEGER
+Product : INTEGER
+whole_price : DECIMAL
+one_decimal : DECIMAL

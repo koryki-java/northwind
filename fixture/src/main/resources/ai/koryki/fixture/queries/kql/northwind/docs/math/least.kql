@@ -1,0 +1,4 @@
+// least: the smaller of two values in the same row.
+FIND order_details od
+FETCH od.order_id ASC, od.product_id ASC, least(od.quantity, 10) capped_quantity
+LIMIT 20

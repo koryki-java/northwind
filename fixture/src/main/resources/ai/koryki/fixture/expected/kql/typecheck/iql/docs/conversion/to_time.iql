@@ -1,0 +1,5 @@
+// to_time: keep the time part of a TIMESTAMP.
+
+SELECT
+ check_type c
+  OUT to_time(c.type_timestamp) as_time 1

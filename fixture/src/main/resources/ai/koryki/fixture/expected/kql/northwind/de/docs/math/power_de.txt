@@ -1,0 +1,4 @@
+// power: freight squared.
+
+FIND bestellungen o
+FETCH power(o.fracht, 2) squared

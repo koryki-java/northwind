@@ -1,0 +1,6 @@
+// find customers, give company_name, no header
+
+SELECT DISTINCT
+    customers c
+        OUT c.company_name
+

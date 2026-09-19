@@ -1,0 +1,2 @@
+FIND products p
+FETCH count(p)

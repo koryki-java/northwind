@@ -1,0 +1,4 @@
+// Both sides name a column that does not exist. Each is reported, rather than the first one
+// aborting the run -- a query with several mistakes should reveal them in one go.
+FIND employee_territories et1, [no_such_left=no_such_right] employee_territories et2
+FETCH et1.employee_id

@@ -1,0 +1,3 @@
+// initcap: title-case the contact name.
+FIND customers c
+FETCH initcap(c.contact_name) titled

@@ -1,0 +1,4 @@
+// concat: join first and last name.
+
+FIND mitarbeiter e
+FETCH concat(e.vorname, ' ', e.nachname) full_name

@@ -1,0 +1,11 @@
+SELECT
+    customers c
+        OUT c.contact_name
+        FILTER c. contact_name LIKE 'abc%'
+    JOIN same_customer orders o
+        OUT o.order_date
+        JOIN OPTIONAL same_order order_details d
+            OUT d.unit_price
+            FILTER d.unit_price > 5
+        OWNER
+    OWNER

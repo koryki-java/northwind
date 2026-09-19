@@ -1,0 +1,4 @@
+// FIND join with composite key
+
+FIND bestellposition od1, VIA gleiche_bestelldetails bestellposition od2
+FETCH sum(od1.preis_je_einheit * od2.menge) DESC

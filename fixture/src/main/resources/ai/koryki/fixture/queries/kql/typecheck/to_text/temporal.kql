@@ -1,0 +1,6 @@
+// to_text overload resolution for the temporal families (DATE, TIME, TIMESTAMP).
+FIND check_type c
+FETCH
+  to_text(c.type_date)      date_text,
+  to_text(c.type_time)      time_text,
+  to_text(c.type_timestamp) timestamp_text

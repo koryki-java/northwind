@@ -1,0 +1,3 @@
+// to_timestamp: extend a DATE to midnight.
+FIND check_type c
+FETCH to_timestamp(c.type_date) as_ts

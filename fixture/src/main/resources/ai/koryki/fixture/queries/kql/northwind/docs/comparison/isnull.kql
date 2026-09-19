@@ -1,0 +1,4 @@
+// ISNULL : orders not yet shipped.
+FIND orders o
+FILTER o.shipped_date ISNULL
+FETCH o.order_id, o.shipped_date

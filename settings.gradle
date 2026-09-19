@@ -1,0 +1,30 @@
+plugins {
+    id("com.gradleup.nmcp.settings") version "1.6.2"
+}
+nmcpSettings {
+    centralPortal {
+        username = providers.gradleProperty("centralPortalUsername").orNull
+        password = providers.gradleProperty("centralPortalPassword").orNull
+        publishingType = "USER_MANAGED"
+        publicationName = "$rootProject.name:$version"
+    }
+}
+
+
+rootProject.name = 'northwind'
+
+dependencyResolutionManagement {
+    // Do not allow subprojects to define other repositories
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
+    // No mavenLocal(): nothing here depends on another koryki artifact, and a local repository
+    // would let a stale or half-written copy of a third-party library win over Central.
+    repositories {
+        mavenCentral()
+    }
+}
+
+
+include 'fixture'
+include 'catalog'
+include 'duckdb'

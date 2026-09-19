@@ -1,0 +1,4 @@
+// rpad: right-pad the postal code to width ten with spaces.
+
+FIND kunden c
+FETCH rpad(c.plz, 10, ' ') padded

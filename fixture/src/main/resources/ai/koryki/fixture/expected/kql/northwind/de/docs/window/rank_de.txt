@@ -1,0 +1,5 @@
+// rank: position by freight, heaviest first. Equal freights share a rank and the next one skips.
+
+FIND bestellungen o
+FILTER o.versand_land = 'France'
+FETCH o.bestell_id, o.fracht, rank() OVER ( ORDER o.fracht DESC) freight_rank

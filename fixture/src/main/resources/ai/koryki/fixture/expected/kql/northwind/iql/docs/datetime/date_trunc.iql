@@ -1,0 +1,8 @@
+// date_trunc: truncate the order date to the month.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT date_trunc('month', o.order_date) month_start 2
+  ORDER o.order_id ASC 1
+LIMIT 20

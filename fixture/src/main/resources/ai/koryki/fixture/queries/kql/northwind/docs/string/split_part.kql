@@ -1,0 +1,3 @@
+// split_part: first dash-separated field of the phone.
+FIND customers c
+FETCH split_part(c.phone, '-', 1) first_field

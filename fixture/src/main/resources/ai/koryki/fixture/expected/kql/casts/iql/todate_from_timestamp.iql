@@ -1,0 +1,4 @@
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT to_date(o.delivered_date) delivered_day 2

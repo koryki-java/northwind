@@ -1,0 +1,5 @@
+// round: order freight rounded to one decimal place.
+
+FIND orders o
+FILTER o.customer_id = 'TOMSP'
+FETCH round(o.freight, 1) freight_rounded

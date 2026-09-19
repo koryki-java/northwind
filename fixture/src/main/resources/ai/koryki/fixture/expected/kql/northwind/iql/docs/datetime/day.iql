@@ -1,0 +1,8 @@
+// day: the day-of-month of the order date.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT day(o.order_date) order_day 2
+  ORDER o.order_id ASC 1
+LIMIT 20

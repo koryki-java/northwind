@@ -1,0 +1,5 @@
+// filter, aggregate and group
+
+FIND kunden c
+FILTER count(c.kunden_id) > 10
+FETCH c.land country, count(c.kunden_id) cnt ROLLUP

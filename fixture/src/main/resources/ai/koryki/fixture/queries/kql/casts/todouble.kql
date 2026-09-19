@@ -1,0 +1,2 @@
+FIND products p
+FETCH p.product_name, to_double(p.unit_price) price_double

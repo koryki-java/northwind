@@ -1,0 +1,3 @@
+FIND bestellposition d, d bestellungen o, d produkte p, o kunden c
+FILTER o.bestelldatum BETWEEN "2023-01-01" AND "2023-12-31" AND c.firma LIKE 'C%'
+FETCH o.bestell_id ASC, p.produkt_name ASC, c.firma, to_decimal(d.preis_je_einheit, 18, 6), d.menge, to_decimal(to_decimal(d.preis_je_einheit, 18, 6) * to_decimal(d.menge, 18, 6), 18, 6) product_total, sum(to_decimal(to_decimal(d.preis_je_einheit, 18, 6) * to_decimal(d.menge, 18, 6), 18, 6)) OVER (PARTITION o.bestell_id ORDER o.bestell_id) order_total

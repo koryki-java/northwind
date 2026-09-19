@@ -1,0 +1,4 @@
+// tan: trigonometric tangent, argument in radians.
+FIND orders o
+FETCH o.order_id ASC, round(tan(0), 6) tangent_of_zero
+LIMIT 20

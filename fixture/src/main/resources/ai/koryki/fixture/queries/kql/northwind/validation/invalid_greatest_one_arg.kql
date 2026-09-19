@@ -1,0 +1,4 @@
+// greatest needs at least two values. With one it was accepted and meant different things:
+// MariaDB refused it, SQLite read max(x) as the aggregate and silently collapsed every row into one.
+FIND orders o
+FETCH greatest(o.freight) g

@@ -1,0 +1,6 @@
+SELECT
+ customers c
+  OUT replace(c.company_name, 'Futterkiste', 'GmbH') renamed 1
+  OUT replace(c.city, 'Berlin', 'München') city_renamed 2
+  FILTER
+    c.customer_id = 'ALFKI'

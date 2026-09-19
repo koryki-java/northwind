@@ -1,0 +1,5 @@
+// IN : orders shipped to any of a set of cities.
+
+FIND bestellungen o
+FILTER o.versand_stadt IN ('London', 'Paris')
+FETCH o.bestell_id, o.versand_stadt

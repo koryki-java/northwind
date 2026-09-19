@@ -1,0 +1,11 @@
+SELECT
+ customers c
+  OUT c.contact_name cn 1
+  FILTER
+    c.contact_name LIKE 'a%'
+UNION
+SELECT
+ customers c
+  OUT c.contact_name cn 1
+  FILTER
+    c.contact_name LIKE 'b%'

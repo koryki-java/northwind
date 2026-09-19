@@ -1,0 +1,4 @@
+// cos: trigonometric cosine, argument in radians.
+FIND orders o
+FETCH o.order_id ASC, round(cos(0), 6) cosine_of_zero
+LIMIT 20

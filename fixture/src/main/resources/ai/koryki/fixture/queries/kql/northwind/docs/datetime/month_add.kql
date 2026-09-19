@@ -1,0 +1,4 @@
+// month_add: one month after the order date.
+FIND orders o
+FETCH o.order_id ASC, month_add(o.order_date, 1) next_month
+LIMIT 20

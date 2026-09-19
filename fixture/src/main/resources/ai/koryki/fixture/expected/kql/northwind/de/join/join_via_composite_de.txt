@@ -1,0 +1,6 @@
+// The counterpart to join_explicit_shared, written with the named criterion instead. Both describe
+// the same join, so their SQL must agree -- this is the check of the new form against the
+// established one rather than against itself.
+
+FIND mitarbeiter_gebiet et1, VIA gleiches_mitarbeitergebiet mitarbeiter_gebiet et2
+FETCH et1.mitarbeiter_id, et1.gebiet_id

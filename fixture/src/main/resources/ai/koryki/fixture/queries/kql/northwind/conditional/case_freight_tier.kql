@@ -1,0 +1,9 @@
+// Bucket each order's freight cost into a shipping tier — a searched CASE with two predicates
+// (case(cond1, result1, cond2, result2, else)).
+
+FIND orders o
+FILTER o.order_id < 10253
+FETCH
+  o.order_id ASC,
+  o.freight,
+  case(o.freight > 100, 'premium', o.freight > 30, 'standard', 'economy')  freight_tier

@@ -1,0 +1,7 @@
+// Regression (PushGroupRule): a GROUP BY key spanning two aliases — concat over c and o —
+// cannot be pushed down to a single table, so it must stay at the SELECT-level GROUP BY and
+// must NOT be dropped. count(...) triggers GROUP BY inference; the multi-alias scalar becomes
+// the group key. If the un-pushable branch drops it, the concat disappears from GROUP BY.
+
+FIND customers c, c orders o
+FETCH concat(c.country, o.ship_country) route, count(o.order_id) orders

@@ -1,0 +1,4 @@
+// month_end: last day of the order's month.
+FIND orders o
+FETCH o.order_id ASC, month_end(o.order_date) m_end
+LIMIT 20

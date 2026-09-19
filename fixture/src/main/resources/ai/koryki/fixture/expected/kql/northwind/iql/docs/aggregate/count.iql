@@ -1,0 +1,5 @@
+// count: number of orders.
+
+SELECT
+ orders o
+  OUT count(o.order_id) order_count 1

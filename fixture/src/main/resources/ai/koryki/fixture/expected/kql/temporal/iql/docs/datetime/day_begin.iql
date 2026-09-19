@@ -1,0 +1,5 @@
+// day_begin: midnight at the start of a TIMESTAMP's day.
+
+SELECT
+ check_temporal c
+  OUT day_begin(c.timestamp_timestamp) start_of_day 1

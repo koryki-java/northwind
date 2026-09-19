@@ -1,0 +1,4 @@
+calendar_only : DATE
+date_plus_clock : TIMESTAMP
+timestamp_plus_clock : TIMESTAMP
+negated : TIMESTAMP

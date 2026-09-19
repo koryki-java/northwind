@@ -1,0 +1,9 @@
+// A fetch item may carry a display label after its alias: `alias "Label"`. It names the column for
+// a reader without renaming it for the query -- the alias stays the identifier, the label is what a
+// UI shows. It reaches no SQL, which is why losing it went unnoticed: KQLFormatter dropped it while
+// IQLSerializer kept it, and the round-trip compares the generated SQL.
+FIND orders o
+FILTER o.order_id < 10250
+FETCH
+  o.order_id id "Order number",
+  o.freight cost "Shipping cost" DESC

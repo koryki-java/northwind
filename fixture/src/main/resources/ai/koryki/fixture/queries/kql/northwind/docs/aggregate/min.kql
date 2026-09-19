@@ -1,0 +1,3 @@
+// min: earliest order date.
+FIND orders o
+FETCH min(o.order_date) earliest

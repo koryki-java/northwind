@@ -1,0 +1,5 @@
+// BETWEEN : orders in a date range — a temporal upper bound renders as a half-open interval.
+FIND orders o
+FILTER o.order_date BETWEEN "2022-07-01" AND "2022-12-31"
+FETCH o.order_id ASC, o.order_date
+LIMIT 20

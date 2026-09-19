@@ -1,0 +1,681 @@
+{
+  "name" : "northwind",
+  "label" : null,
+  "comment" : null,
+  "description" : "The northwind database stores salaries for the northwind company.\nNorthwind sells products to other customer companies and buys products from supplier companies.\nNorthwind employees manage orders and ship products via shippers to customers.",
+  "entities" : [ {
+    "name" : "categories",
+    "label" : "Category",
+    "comment" : "Organizes products into different categories.",
+    "description" : "Product catalogue groups. Categories form a hierarchy: a category may have a parent, so the same product rolls up into a sub-category and its root. Use the parent_of/child_of links to walk the tree and root_category_of/belongs_to_root to jump straight to the top level.",
+    "attributes" : [ {
+      "name" : "category_id",
+      "label" : "Id",
+      "comment" : "A surrogate primary key that uniquely identifies a category.",
+      "description" : "Stable across renames of the category; use it for grouping rather than the name."
+    }, {
+      "name" : "category_name",
+      "label" : "Name",
+      "comment" : "Name of a category",
+      "description" : "Short catalogue name such as 'Beverages' or 'Seafood'; unique in practice but not enforced."
+    }, {
+      "name" : "description",
+      "label" : "Description",
+      "comment" : "Description of a category",
+      "description" : "Free prose about what belongs in the category; useful as context for a human, not for filtering."
+    }, {
+      "name" : "picture",
+      "label" : "Picture",
+      "comment" : "A picture to visualize the category",
+      "description" : "Binary image data. Selecting it in a query transfers the whole blob — usually not what you want."
+    } ]
+  }, {
+    "name" : "customers",
+    "label" : "Customer",
+    "comment" : "Contains information about the company's customers, with fields like company_name, contact_name.",
+    "description" : "The companies Northwind sells to. One row per company, not per person — the contact fields describe a single named person at that company. Country and city are free text and are matched by name against the countries lookup for map visualisations.",
+    "attributes" : [ {
+      "name" : "customer_id",
+      "label" : "Id",
+      "comment" : "A surrogate primary key used to uniquely identify each customer.",
+      "description" : "A five-letter code derived from the company name, not a running number; it appears in the order header as the link to this customer."
+    }, {
+      "name" : "company_name",
+      "label" : "Name",
+      "comment" : "The cusomers company name",
+      "description" : "The legal company name and the label normally shown in reports."
+    }, {
+      "name" : "contact_name",
+      "label" : "Contact",
+      "comment" : "Name of a contact person",
+      "description" : "One named person at the company; the table holds no further contacts."
+    }, {
+      "name" : "contact_title",
+      "label" : "Title",
+      "comment" : "The title or role the contact person has in the customer company (e.g. Owner, Sales Representative, Marketing Manager).",
+      "description" : "Free text, so the same role appears in several spellings — group with care."
+    }, {
+      "name" : "address",
+      "label" : "Address",
+      "comment" : "The first address line of the customer.",
+      "description" : "Street and number as one line; there is no second address line."
+    }, {
+      "name" : "city",
+      "label" : "City",
+      "comment" : "The city of the customer address.",
+      "description" : "Free text and not normalised — the same city may occur with different spellings."
+    }, {
+      "name" : "region",
+      "label" : "Region",
+      "comment" : "The region of the customer address.",
+      "description" : "State or province, and often empty outside North America."
+    }, {
+      "name" : "postal_code",
+      "label" : "Postal code",
+      "comment" : "The postal code of the customer address.",
+      "description" : "Format follows the country and is therefore not comparable across countries."
+    }, {
+      "name" : "country",
+      "label" : "Country",
+      "comment" : "The country of the customer address.",
+      "description" : "Written as in the source data ('UK', 'USA'), which is how it joins the countries lookup."
+    }, {
+      "name" : "phone",
+      "label" : "Phone",
+      "comment" : "The telephone number to call the contact person.",
+      "description" : "Includes national formatting and separators; not normalised for dialling."
+    }, {
+      "name" : "mail",
+      "label" : "Mail",
+      "comment" : "The mail of the contact person.",
+      "description" : "Contact address of the named person, not a general company inbox."
+    } ]
+  }, {
+    "name" : "customer_customer_demo",
+    "label" : "Customer-Demo",
+    "comment" : "Stores the relationships between customer and costomer demographics.",
+    "description" : "Junction table assigning customers to segments. A customer can carry several segments and a segment many customers, so counting customers over this table double-counts unless the query aggregates distinctly.",
+    "attributes" : [ {
+      "name" : "customer_id",
+      "label" : "Customer Id",
+      "comment" : "A foreign key identifying the customer.",
+      "description" : "Half of the composite key; together with the segment it forms one assignment."
+    }, {
+      "name" : "customer_type_id",
+      "label" : "Type-Id",
+      "comment" : "A foreign key identifying the customer demographic.",
+      "description" : "The other half of the composite key, pointing at the segment catalogue."
+    } ]
+  }, {
+    "name" : "customer_demographics",
+    "label" : "Customer Demographics",
+    "comment" : "A customer democraphics describes customer segments, e.g. Retail, Wholesale, Corporate, etc.",
+    "description" : "The segment catalogue itself. Small and slow-moving: it names the segments customers are assigned to, without any customer data of its own.",
+    "attributes" : [ {
+      "name" : "customer_desc",
+      "label" : "Description",
+      "comment" : "A description to the customer demographic.",
+      "description" : "Names the segment, e.g. retail or wholesale; this is the value shown in reports."
+    } ]
+  }, {
+    "name" : "employees",
+    "label" : "Employee",
+    "comment" : "Stores employee information, such as their names and titles.",
+    "description" : "Northwind staff who take and process orders. The table is self-referencing: reports_to points to the supervisor, so the management chain can be walked in either direction. Working hours and break minutes describe the daily schedule, not per-order effort.",
+    "attributes" : [ {
+      "name" : "employee_id",
+      "label" : null,
+      "comment" : "A surrogate primary key used to uniquely identify each employee.",
+      "description" : "Also the target of reports_to, so the same key appears twice in the management hierarchy."
+    }, {
+      "name" : "last_name",
+      "label" : "Last Name",
+      "comment" : "Last name of employee.",
+      "description" : "Family name; combine with the first name for a display label, as neither is unique on its own."
+    }, {
+      "name" : "first_name",
+      "label" : "First Name",
+      "comment" : "First name of employee.",
+      "description" : "Given name."
+    }, {
+      "name" : "title",
+      "label" : "Title",
+      "comment" : "The title or role the employee has in the company",
+      "description" : "Job title such as 'Sales Representative'; free text and not a controlled list."
+    }, {
+      "name" : "title_of_courtesy",
+      "label" : "Courtesy",
+      "comment" : "The employees courtesy",
+      "description" : "Salutation such as Mr., Ms. or Dr.; purely for addressing the person."
+    }, {
+      "name" : "birth_date",
+      "label" : "Date of Birth",
+      "comment" : "The employees date of birth.",
+      "description" : "Date only, no time; age must be derived against a reference date."
+    }, {
+      "name" : "hire_date",
+      "label" : "Hire Date",
+      "comment" : "The date the employee was hired.",
+      "description" : "Start of employment; together with the birth date it gives the age at hiring."
+    }, {
+      "name" : "working_hour_from",
+      "label" : "Workinghour from",
+      "comment" : "Workinghour from.",
+      "description" : "Daily start time, stored as a time of day without a date."
+    }, {
+      "name" : "working_hour_to",
+      "label" : "Workinghour to",
+      "comment" : "Workinghour to.",
+      "description" : "Daily end time; with the start time and the break it yields the net working time."
+    }, {
+      "name" : "break_minutes",
+      "label" : "Break minutes",
+      "comment" : "Break minutes.",
+      "description" : "Unpaid break in minutes, to be subtracted from the span between start and end."
+    }, {
+      "name" : "address",
+      "label" : "Address",
+      "comment" : "The address line of the employee.",
+      "description" : "Private address of the employee, not a company location."
+    }, {
+      "name" : "city",
+      "label" : "City",
+      "comment" : "The city of the employee address",
+      "description" : "City of the private address."
+    }, {
+      "name" : "region",
+      "label" : "Region",
+      "comment" : "The region of the employee address.",
+      "description" : "State or province of the private address; often empty."
+    }, {
+      "name" : "postal_code",
+      "label" : "Postal Code",
+      "comment" : "The postal code of the employee address.",
+      "description" : "Postal code of the private address."
+    }, {
+      "name" : "country",
+      "label" : "Country",
+      "comment" : "The country of the employee address",
+      "description" : "Country of the private address."
+    }, {
+      "name" : "home_phone",
+      "label" : "Phone",
+      "comment" : "The telephone number of the employee.",
+      "description" : "Private number; the internal extension is held separately."
+    }, {
+      "name" : "extension",
+      "label" : "Extension",
+      "comment" : "The internal telephone extension of the employee.",
+      "description" : "The internal telephone extension, up to four characters — not a supplementary note."
+    }, {
+      "name" : "photo",
+      "label" : "Phota",
+      "comment" : "The portrait photo of the employee",
+      "description" : "Binary image data; transferring it in a query is rarely intended."
+    }, {
+      "name" : "notes",
+      "label" : "Notes",
+      "comment" : "Notes to the employee",
+      "description" : "Longer prose on background and career; free text."
+    }, {
+      "name" : "photo_path",
+      "label" : "Path",
+      "comment" : "Path or URL to the photo",
+      "description" : "Where the picture lives, as a path or URL; the file itself is not part of the database."
+    } ]
+  }, {
+    "name" : "employee_territories",
+    "label" : "Employee-Territory",
+    "comment" : "Stores the relationships between employees and territories.",
+    "description" : "Junction table assigning employees to sales territories. Both sides are many, so an employee covering several territories appears several times here.",
+    "attributes" : [ {
+      "name" : "employee_id",
+      "label" : "Employee Id",
+      "comment" : "A foreign key identifying the employee.",
+      "description" : "Half of the composite key of the assignment."
+    }, {
+      "name" : "territory_id",
+      "label" : "Territory Id",
+      "comment" : "A foreign key identifying the territory.",
+      "description" : "The other half; together they make an employee responsible for a territory."
+    } ]
+  }, {
+    "name" : "orders",
+    "label" : "Order",
+    "comment" : "Holds records of customer orders, including OrderID, OrderDate, and CustomerID.",
+    "description" : "The order header: who ordered, when, where it ships and what the carriage cost. Amounts of the order itself are not here — they live in the line items. The four dates (ordered, required, shipped, delivered) let lead times and delays be measured against one another.",
+    "attributes" : [ {
+      "name" : "order_id",
+      "label" : "Id",
+      "comment" : "A surrogate primary key used to uniquely identify each order.",
+      "description" : "Running order number; it is what the line items refer back to."
+    }, {
+      "name" : "customer_id",
+      "label" : "Customer",
+      "comment" : "A foreign key identifying the customer.",
+      "description" : "Points at the customer who placed the order; the same_customer link joins to the customer record."
+    }, {
+      "name" : "order_date",
+      "label" : "Order Date",
+      "comment" : "The date the order was placed.",
+      "description" : "When the order was placed — the usual reference point for period comparisons."
+    }, {
+      "name" : "required_date",
+      "label" : "Required Date",
+      "comment" : "The date the customer requires the order",
+      "description" : "The delivery date the customer asked for; comparing it with the delivery shows whether the promise was kept."
+    }, {
+      "name" : "shipped_date",
+      "label" : "Shipped Date",
+      "comment" : "The date the order is shipped.",
+      "description" : "When the goods left the warehouse; empty while the order is still open."
+    }, {
+      "name" : "delivered_date",
+      "label" : "Delivered Date",
+      "comment" : "The date the order was delivered.",
+      "description" : "When the goods reached the customer; the gap to the shipping date is the transit time."
+    }, {
+      "name" : "ship_via",
+      "label" : "Via",
+      "comment" : "A foreign key identifying the shipper.",
+      "description" : "Points at the carrier; the freight amount in this row is what that carrier charged."
+    }, {
+      "name" : "freight",
+      "label" : "Freight",
+      "comment" : "The shipping freight.",
+      "description" : "The carriage charged for this order, as an amount — not a weight. It is not part of the line-item revenue and has to be added separately."
+    }, {
+      "name" : "ship_name",
+      "label" : "Ship Name",
+      "comment" : "The name of the company to ship the order to.",
+      "description" : "Consignee on the shipping label; usually, but not always, the customer's company name."
+    }, {
+      "name" : "ship_address",
+      "label" : "Ship Address",
+      "comment" : "The address of the company the ship goes to.",
+      "description" : "Delivery address of this order, which may differ from the customer's own address."
+    }, {
+      "name" : "ship_city",
+      "label" : "Ship City",
+      "comment" : "The city of the company the ship goes to.",
+      "description" : "City of the delivery address."
+    }, {
+      "name" : "ship_region",
+      "label" : "Ship Region",
+      "comment" : "The region of the company the ship goes to.",
+      "description" : "State or province of the delivery address; often empty."
+    }, {
+      "name" : "ship_postal_code",
+      "label" : "Ship Postal Code",
+      "comment" : "The postal code of the company the ship goes to.",
+      "description" : "Postal code of the delivery address, in the format of the destination country."
+    }, {
+      "name" : "ship_country",
+      "label" : "Ship Country",
+      "comment" : "The country of the company the ship goes to.",
+      "description" : "Destination country, written as in the address data and joined to the countries lookup by name."
+    } ]
+  }, {
+    "name" : "order_details",
+    "label" : "Order Details",
+    "comment" : "Links orders to products, detailing which products are included in each order.",
+    "description" : "The line items — one row per product in an order. Revenue is computed here as unit_price * quantity * (1 - discount); the unit price is the price frozen at order time and may differ from today's product price.",
+    "attributes" : [ {
+      "name" : "order_id",
+      "label" : "Id",
+      "comment" : "A foreign key identifying the order.",
+      "description" : "Together with the product it forms the key of the line; the same product appears at most once per order."
+    },{
+      "name" : "unit_price",
+      "label" : "Unit Price",
+      "comment" : "The unit price valid to the order.",
+      "description" : "The price agreed at order time; it is frozen here and does not follow later price changes."
+    }, {
+      "name" : "product_id",
+      "label" : "Product",
+      "comment" : "A foreign key identifying the product.",
+      "description" : "Points at the product this line orders; the same_product link joins to the product record."
+    }, {
+      "name" : "quantity",
+      "label" : "Quantity",
+      "comment" : "The quantity of the order.",
+      "description" : "Number of units ordered of this product, in the product's own unit."
+    }, {
+      "name" : "discount",
+      "label" : "Discount",
+      "comment" : "The discount to the order.",
+      "description" : "A share between 0 and 1, not a percentage — 0.15 means fifteen percent off."
+    } ]
+  }, {
+    "name" : "products",
+    "label" : "Product",
+    "comment" : "Stores details about products, including name, supplier, category, and unit price.",
+    "description" : "The sellable catalogue. Stock figures are current values, not history, so they cannot be used to reconstruct past availability. Discontinued products stay in the table because past orders still reference them.",
+    "attributes" : [ {
+      "name" : "product_id",
+      "label" : "Id",
+      "comment" : "A surrogate primary key used to uniquely identify each product.",
+      "description" : "Stays valid after a product is discontinued, because past orders keep referring to it."
+    }, {
+      "name" : "product_name",
+      "label" : "Product name",
+      "comment" : "The name of the product.",
+      "description" : "Catalogue name as shown to customers."
+    }, {
+      "name" : "category_id",
+      "label" : "Category",
+      "comment" : "A foreign key identifying the category.",
+      "description" : "Points at the catalogue group the product belongs to; the same_category link joins to the category record."
+    }, {
+      "name" : "quantity_per_unit",
+      "label" : "Quantity per Unit",
+      "comment" : "The quantity per unit the product is sold.",
+      "description" : "Describes the packing as free text, e.g. '24 - 12 oz bottles'; not a number and not usable for arithmetic."
+    }, {
+      "name" : "unit_price",
+      "label" : "Unit price",
+      "comment" : "The unit price the product is sold before discount.",
+      "description" : "The current list price; historical revenue must use the price stored on the line item."
+    }, {
+      "name" : "units_in_stock",
+      "label" : "in Stock",
+      "comment" : "The units in stock.",
+      "description" : "Current stock level, without history."
+    }, {
+      "name" : "units_on_order",
+      "label" : "in Order",
+      "comment" : "The units on order.",
+      "description" : "Units ordered from the supplier but not yet received."
+    }, {
+      "name" : "reorder_level",
+      "label" : "Reoder Level",
+      "comment" : "Minimum units on stock before ordering new products.",
+      "description" : "The threshold at which reordering is due; compare it with the stock to find gaps."
+    }, {
+      "name" : "discontinued",
+      "label" : "Discontinued",
+      "comment" : "Signs whether the product is discontinued",
+      "description" : "Marks products no longer sold; they remain in the catalogue for historical orders."
+    } ]
+  }, {
+    "name" : "region",
+    "label" : "Region",
+    "comment" : "The region products are sold to.",
+    "description" : "The coarsest level of the sales geography: territories belong to a region, and employees reach customers through territories.",
+    "attributes" : [ {
+      "name" : "region_id",
+      "label" : "Id",
+      "comment" : "A surrogate primary key used to uniquely identify each region.",
+      "description" : "Small key set — there are only a handful of regions."
+    }, {
+      "name" : "region_description",
+      "label" : "Description",
+      "comment" : "A description to the region.",
+      "description" : "The region name, e.g. Eastern or Western; note the trailing blanks in the source data."
+    } ]
+  }, {
+    "name" : "shippers",
+    "label" : "Shipper",
+    "comment" : "Stores information to shippers.",
+    "description" : "The carriers that deliver orders. Referenced from the order header via ship_via; the freight amount there is what this carrier charged.",
+    "attributes" : [ {
+      "name" : "shipper_id",
+      "label" : "Id",
+      "comment" : "A surrogate primary key used to uniquely identify each shipper.",
+      "description" : "Referenced from the order header via ship_via."
+    }, {
+      "name" : "company_name",
+      "label" : "Name",
+      "comment" : "The name of the shipping company.",
+      "description" : "Name of the carrier as it appears in reports."
+    }, {
+      "name" : "phone",
+      "label" : "Phone",
+      "comment" : "The telephone number.",
+      "description" : "Contact number of the carrier."
+    } ]
+  }, {
+    "name" : "suppliers",
+    "label" : "Supplier",
+    "comment" : "Stores information about suppliers delivering products.",
+    "description" : "The companies Northwind buys from. Each product has exactly one supplier, so supplier-level figures are obtained by aggregating over products.",
+    "attributes" : [ {
+      "name" : "supplier_id",
+      "label" : null,
+      "comment" : "A surrogate primary key used to uniquely identify each supplier.",
+      "description" : "Each product carries exactly one of these, so supplier figures come from aggregating products."
+    }, {
+      "name" : "company_name",
+      "label" : "Name",
+      "comment" : "The name of the suppliers company.",
+      "description" : "Name of the supplying company."
+    }, {
+      "name" : "contact_name",
+      "label" : "Contact",
+      "comment" : "The name of the person to get in contact to the supplier.",
+      "description" : "The named person to approach at the supplier."
+    }, {
+      "name" : "contact_title",
+      "label" : "Title",
+      "comment" : "The title or role of the person to get in contact to the supplier.",
+      "description" : "Role of that person; free text."
+    }, {
+      "name" : "address",
+      "label" : "Address",
+      "comment" : "Address of the contact person.",
+      "description" : "Street address of the supplier."
+    }, {
+      "name" : "city",
+      "label" : "City",
+      "comment" : "City of the contact person.",
+      "description" : "City of the supplier address."
+    }, {
+      "name" : "region",
+      "label" : "Region",
+      "comment" : "Region of the supplier.",
+      "description" : "State or province of the supplier address; often empty."
+    }, {
+      "name" : "postal_code",
+      "label" : "Postal Code",
+      "comment" : "Postal code of the supplier.",
+      "description" : "Postal code of the supplier address."
+    }, {
+      "name" : "country",
+      "label" : "Country",
+      "comment" : "Country for the supplier.",
+      "description" : "Country of the supplier, in the same spelling used for customers."
+    }, {
+      "name" : "phone",
+      "label" : "Phone",
+      "comment" : "Telephone number of the contact person.",
+      "description" : "Contact number at the supplier."
+    }, {
+      "name" : "mail",
+      "label" : "Mail",
+      "comment" : "Mail of the company.",
+      "description" : "Contact address at the supplier."
+    }, {
+      "name" : "homepage",
+      "label" : "Homepage",
+      "comment" : "Homepage of the supplier company.",
+      "description" : "Web address; free text and sometimes carrying markup from the source data."
+    } ]
+  }, {
+    "name" : "territories",
+    "label" : "Territory",
+    "comment" : "Stores Territories.",
+    "description" : "Sales territories, the middle level between region and employee. Territory names are US city and area names.",
+    "attributes" : [ {
+      "name" : "territory_id",
+      "label" : "Id",
+      "comment" : "A surrogate primary key used to uniquely identify each territory.",
+      "description" : "Held as text, not a number, and padded in the source data."
+    }, {
+      "name" : "territory_description",
+      "label" : "Description",
+      "comment" : "Description of the territory.",
+      "description" : "Name of the territory, usually a US city or district; trailing blanks in the source data."
+    } ]
+  }, {
+    "name" : "us_states",
+    "label" : "US States",
+    "comment" : "US States.",
+    "description" : "Lookup of US states, used to resolve the state abbreviations that appear in address regions.",
+    "attributes" : [ {
+      "name" : "state_id",
+      "label" : "Id",
+      "comment" : "A surrogate primary key used to uniquely identify each state.",
+      "description" : "Key of the state lookup."
+    }, {
+      "name" : "state_name",
+      "label" : "Name",
+      "comment" : "The name of the US state.",
+      "description" : "Full state name, resolving the abbreviations found in address regions."
+    } ]
+  }, {
+    "name" : "countries",
+    "label" : "Country",
+    "comment" : "Countries referenced by customer, supplier, employee and order shipping addresses, with geographic coordinates and outline for map visualisations.",
+    "description" : "Geographic lookup joined by country name, not by a foreign key — the address fields hold free text such as 'UK' or 'USA'. It supplies coordinates and outlines so results can be drawn on a map.",
+    "attributes" : [ {
+      "name" : "country_name",
+      "label" : "Name",
+      "comment" : "The country name as used in the address columns (e.g. 'Germany', 'UK', 'USA').",
+      "description" : "The join key to the address fields — matched by name, so spelling must agree exactly."
+    }, {
+      "name" : "iso_code",
+      "label" : "ISO Code",
+      "comment" : "The ISO 3166-1 alpha-2 code of the country.",
+      "description" : "Two-letter code, useful for stable labelling independent of spelling."
+    }, {
+      "name" : "continent",
+      "label" : "Continent",
+      "comment" : "The continent the country belongs to.",
+      "description" : "Groups countries for coarse regional roll-ups."
+    }, {
+      "name" : "latitude",
+      "label" : "Latitude",
+      "comment" : "Latitude of the country label point (centroid), in degrees.",
+      "description" : "Degrees, positive north of the equator; the label point, not the geometric centre."
+    }, {
+      "name" : "longitude",
+      "label" : "Longitude",
+      "comment" : "Longitude of the country label point (centroid), in degrees.",
+      "description" : "Degrees, positive east of Greenwich."
+    }, {
+      "name" : "geometry",
+      "label" : "Geometry",
+      "comment" : "Simplified country outline as a GeoJSON (Multi)Polygon, for choropleth maps.",
+      "description" : "Simplified outline as GeoJSON text; large, and meant for drawing rather than for filtering."
+    } ]
+  } ],
+  "links" : [ {
+    "name" : "same_product",
+    "comment" : "both tables refer to the same product data record",
+    "description" : "Joins a line item to the product it sells.",
+    "relations" : [ "fk_order_details_products", "pk_products" ]
+  }, {
+    "name" : "same_customer_demographic",
+    "comment" : "both tables refer to the same customer-demographic data record",
+    "description" : "Joins an assignment row to the segment catalogue.",
+    "relations" : [ "fk_customer_customer_demo_customer_demographics", "pk_customer_demographics" ]
+  }, {
+    "name" : "same_shipper",
+    "comment" : "both tables refer to the same shipper data record",
+    "description" : "Joins the order header to the carrier that delivered it.",
+    "relations" : [ "fk_orders_shippers", "pk_shippers" ]
+  }, {
+    "name" : "root_category_of",
+    "comment" : "The category is the topmost root category of the second category",
+    "description" : "Jumps straight to the top of the category tree, skipping the intermediate levels.",
+    "relations" : [ "fk_categories_categories_root" ]
+  }, {
+    "name" : "belongs_to_root",
+    "nature" : "inverse",
+    "comment" : "The category is a direct or indirect subcategory for the second category (root category)",
+    "description" : "The reverse direction: from any category to its root, however deep it sits.",
+    "relations" : [ "fk_categories_categories_root" ]
+  }, {
+    "name" : "same_supplier",
+    "comment" : "both tables refer to the same supplier data record",
+    "description" : "Joins a product to the company that supplies it.",
+    "relations" : [ "fk_products_suppliers", "pk_suppliers" ]
+  }, {
+    "name" : "same_employee",
+    "comment" : "both tables refer to the same employee data record",
+    "description" : "Joins an order or a territory assignment to the member of staff.",
+    "relations" : [ "fk_employee_territories_employees", "fk_orders_employees", "pk_employees" ]
+  }, {
+    "name" : "same_territory",
+    "comment" : "both tables refer to the same territory data record",
+    "description" : "Joins an assignment row to the territory catalogue.",
+    "relations" : [ "fk_employee_territories_territories", "pk_territories" ]
+  }, {
+    "name" : "same_customer_customer_demo",
+    "comment" : "both tables refer to the same customer-demographic data record",
+    "description" : "Joins the customer side of the segment assignment.",
+    "relations" : [ "pk_customer_customer_demo" ]
+  }, {
+    "name" : "same_us_state",
+    "comment" : "both tables refer to the same state data record",
+    "description" : "Resolves a state abbreviation in an address to the state entry.",
+    "relations" : [ "pk_usstates" ]
+  }, {
+    "name" : "same_region",
+    "comment" : "both tables refer to the same region data record",
+    "description" : "Joins a territory to the region it belongs to.",
+    "relations" : [ "fk_territories_region", "pk_region" ]
+  }, {
+    "name" : "same_order_detail",
+    "comment" : "both tables refer to the same order-detail data record",
+    "description" : "Joins back from a product to the line items that sold it.",
+    "relations" : [ "pk_order_details" ]
+  }, {
+    "name" : "reports_to",
+    "comment" : "the first employee reports to the second employee.",
+    "description" : "Upwards in the hierarchy: from an employee to the supervisor. Use the optional form, because the top of the chain has none.",
+    "relations" : [ "fk_employees_employees" ]
+  }, {
+    "name" : "supervisor_of",
+    "nature" : "inverse",
+    "comment" : "the first employee is supervisor of the second employee.",
+    "description" : "Downwards: from a supervisor to the staff reporting to them.",
+    "relations" : [ "fk_employees_employees" ]
+  }, {
+    "name" : "parent_of",
+    "comment" : "this first category is a supercategory of the second.",
+    "description" : "One level up the category tree.",
+    "relations" : [ "fk_categories_categories_super" ]
+  }, {
+    "name" : "child_of",
+    "nature" : "inverse",
+    "comment" : "this first category is a subcategory of the second.",
+    "description" : "One level down the category tree.",
+    "relations" : [ "fk_categories_categories_super" ]
+  }, {
+    "name" : "same_employee_territory",
+    "comment" : "both tables refer to the same territory data record",
+    "description" : "Joins to the employee-territory assignment.",
+    "relations" : [ "pk_employee_territories" ]
+  }, {
+    "name" : "same_category",
+    "comment" : "both tables refer to the same category data record",
+    "description" : "Joins a product to its category.",
+    "relations" : [ "fk_products_categories", "pk_categories" ]
+  }, {
+    "name" : "same_order",
+    "comment" : "both tables refer to the same order data record",
+    "description" : "Joins a line item to its order header.",
+    "relations" : [ "fk_order_details_orders", "pk_orders" ]
+  }, {
+    "name" : "same_customer",
+    "comment" : "both tables refer to the same customer data record",
+    "description" : "Joins an order to the customer who placed it.",
+    "relations" : [ "fk_customer_customer_demo_customers", "fk_orders_customers", "pk_customers" ]
+  }, {
+    "name" : "same_country",
+    "comment" : "both tables refer to the same country data record; address country and order ship-to country reference the countries lookup by name",
+    "description" : "Joins an address or ship-to country to the geographic lookup — by name, so spelling has to match.",
+    "relations" : [ "fk_customers_countries", "fk_suppliers_countries", "fk_employees_countries", "fk_orders_countries", "pk_countries" ]
+  } ]
+}

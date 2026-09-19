@@ -1,0 +1,3 @@
+date_new_york : DATE
+date_new_york_plus1q : DATE
+date_new_york_plus1h : TIMESTAMP

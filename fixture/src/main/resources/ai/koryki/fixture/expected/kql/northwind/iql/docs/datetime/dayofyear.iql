@@ -1,0 +1,8 @@
+// dayofyear: how far into the year the order date is.
+
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT dayofyear(o.order_date) order_dayofyear 2
+  ORDER o.order_id ASC 1
+LIMIT 20

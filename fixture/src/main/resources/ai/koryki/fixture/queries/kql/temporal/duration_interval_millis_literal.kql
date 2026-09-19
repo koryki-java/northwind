@@ -1,0 +1,3 @@
+FIND check_temporal c
+FILTER c.interval_millis > 1h2min3s
+FETCH c.interval_millis interval_millis

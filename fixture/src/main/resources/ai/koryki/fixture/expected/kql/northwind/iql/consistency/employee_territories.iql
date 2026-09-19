@@ -1,0 +1,3 @@
+SELECT
+ employee_territories t
+  OUT count(t.employee_id) 1

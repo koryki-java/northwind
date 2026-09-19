@@ -1,0 +1,2 @@
+FIND bestellposition d
+FETCH sum(d.preis_je_einheit)

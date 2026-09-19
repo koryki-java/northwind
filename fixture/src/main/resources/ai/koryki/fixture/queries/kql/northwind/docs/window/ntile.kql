@@ -1,0 +1,4 @@
+// ntile: split the orders into four groups of near-equal size by freight — quartiles.
+FIND orders o
+FILTER o.ship_country = 'France'
+FETCH o.order_id, o.freight, ntile(4) OVER (ORDER o.freight) quartile

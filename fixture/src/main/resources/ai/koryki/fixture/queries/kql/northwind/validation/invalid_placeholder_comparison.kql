@@ -1,0 +1,7 @@
+// A placeholder marks a position the caller fills before the query runs. Unbound, it used to be
+// rejected for the wrong reason: the comparison template found no right operand and reported
+// "template {0} > {1} references argument {1} but only 1 were provided" -- an internal message
+// about a SQL template, not about the query. Now the placeholder itself is reported, on the #x.
+FIND orders o
+FILTER o.freight > #x
+FETCH o.order_id

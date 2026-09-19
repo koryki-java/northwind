@@ -1,0 +1,4 @@
+SELECT
+ orders o
+  OUT o.order_id 1
+  OUT to_time(o.delivered_date) order_time 2

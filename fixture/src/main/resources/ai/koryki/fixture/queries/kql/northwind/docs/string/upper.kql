@@ -1,0 +1,4 @@
+// upper: company name in upper case.
+// ignore=sqlite  core SQLite folds ASCII only, so umlauts come back unchanged
+FIND customers c
+FETCH upper(c.company_name) shout

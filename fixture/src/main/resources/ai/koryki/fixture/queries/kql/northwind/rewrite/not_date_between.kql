@@ -1,0 +1,4 @@
+// NOT BETWEEN — BETWEEN rewritten first, NOT wraps the half-open AND
+FIND orders o
+FILTER NOT o.order_date BETWEEN "2022-01-01" AND "2022-12-31"
+FETCH o.order_id, o.order_date

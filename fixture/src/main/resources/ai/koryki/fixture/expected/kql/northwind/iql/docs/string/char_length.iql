@@ -1,0 +1,5 @@
+// char_length: length of the company name in characters.
+
+SELECT
+ customers c
+  OUT char_length(c.company_name) name_len 1
