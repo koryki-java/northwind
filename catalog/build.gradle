@@ -19,9 +19,9 @@ test {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = 'koryki-catalog'
+            artifactId = 'koryki-northwind-catalog'
             pom {
-                name = 'koryki-catalog'
+                name = 'koryki-northwind-catalog'
             }
         }
     }
