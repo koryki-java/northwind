@@ -1,3 +1,8 @@
+// The Java level, stated once: the toolchain compiles against it and the jar manifests report it as
+// Build-Jdk-Spec. Two literals would drift apart at the next raise, and the manifest would then name
+// a level nothing was built with. At script level, so both closures below see it.
+def javaVersion = 21
+
 rootProject.allprojects {
 
     version = rootProject.version
@@ -11,7 +16,7 @@ rootProject.allprojects {
     pluginManager.withPlugin('java-base') {
         java {
             toolchain {
-                languageVersion = JavaLanguageVersion.of(21)
+                languageVersion = JavaLanguageVersion.of(javaVersion)
             }
         }
     }
@@ -31,7 +36,40 @@ subprojects {
         // LICENSE and NOTICE in every jar, sources and javadoc included: whoever gets an artifact
         // gets the terms with it. NOTICE also carries the MIT notice for the Northwind-derived
         // content, which the MIT License requires in all copies.
+        //
+        // The same goes for the JAR specification's package versioning, which is why it sits in this
+        // block and not in the 'jar'-only one below: a sources or javadoc jar found loose on a disk
+        // should name its release too. Implementation-Version is what
+        // Package.getImplementationVersion() hands back for a class loaded from this jar, and the
+        // first thing to ask for in a bug report.
+        //
+        // The title is READ FROM THE PUBLICATION, not built from the project name: this module is
+        // called 'duckdb' but goes to Central as koryki-northwind-duckdb, and a manifest naming a
+        // koryki-duckdb that exists in another repository would be worse than no title at all. A
+        // provider, because the module's own 'artifactId = ...' runs after this block -- same reason
+        // as the description below.
+        //
+        // Specification-Version is major.minor and nothing more: Package.isCompatibleWith parses it
+        // as a dotted number sequence and throws NumberFormatException on the '-SNAPSHOT' the
+        // snapshot publish appends. Implementation-Version is the free-form one and keeps the suffix.
+        //
+        // Nothing here comes from the machine that builds: no Built-By, no host, no build timestamp.
+        // Those three are what usually makes two builds of the same commit differ byte for byte, and
+        // the first of them would put a user name into every jar on Central.
         tasks.withType(Jar).configureEach {
+            manifest {
+                def artifact = project.provider { publishing.publications.mavenJava.artifactId }
+                attributes(
+                        'Implementation-Title': artifact,
+                        'Implementation-Version': project.version.toString(),
+                        'Implementation-Vendor': 'koryki',
+                        'Specification-Title': artifact,
+                        'Specification-Version': project.version.toString()
+                                .replaceFirst('[-+].*$', '').split('\\.').take(2).join('.'),
+                        'Specification-Vendor': 'koryki',
+                        'Build-Jdk-Spec': javaVersion.toString(),
+                        'Created-By': "Gradle ${gradle.gradleVersion}".toString())
+            }
             from(rootProject.file('LICENSE')) { into 'META-INF' }
             from(rootProject.file('NOTICE')) { into 'META-INF' }
         }
