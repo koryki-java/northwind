@@ -1,3 +1,14 @@
+// apply false: only put on the classpath here, so every subproject applies the same resolved
+// version instead of each re-declaring it (and risking a different one).
+plugins {
+    alias(libs.plugins.spotless) apply false
+}
+
+// The Java level, stated once: the toolchain compiles against it and the jar manifests report it as
+// Build-Jdk-Spec. Two literals would drift apart at the next raise, and the manifest would then name
+// a level nothing was built with. At script level, so both closures below see it.
+def javaVersion = 21
+
 rootProject.allprojects {
 
     version = rootProject.version
@@ -11,7 +22,7 @@ rootProject.allprojects {
     pluginManager.withPlugin('java-base') {
         java {
             toolchain {
-                languageVersion = JavaLanguageVersion.of(21)
+                languageVersion = JavaLanguageVersion.of(javaVersion)
             }
         }
     }
@@ -20,6 +31,31 @@ rootProject.allprojects {
 // Shared by every published module (catalog, duckdb); each sets only its artifactId, POM name and
 // description. 'fixture' is not published: implementations read it from a checkout (see SPEC.md).
 subprojects {
+    // AOSP variant (4-space indent) to match this codebase's existing style, rather than
+    // google-java-format's 2-space default. `check` depends on spotlessCheck automatically.
+    pluginManager.withPlugin('java') {
+        apply plugin: 'com.diffplug.spotless'
+        spotless {
+            java {
+                googleJavaFormat(libs.versions.google.java.format.get()).aosp()
+            }
+        }
+
+        // xml, for tooling (SonarQube, Codecov) that might read it later; html, to look at
+        // locally. No coverage gate: a report is not the same decision as a minimum to enforce.
+        apply plugin: 'jacoco'
+        test {
+            finalizedBy jacocoTestReport
+        }
+        jacocoTestReport {
+            dependsOn test
+            reports {
+                xml.required = true
+                html.required = true
+            }
+        }
+    }
+
     pluginManager.withPlugin('maven-publish') {
         apply plugin: 'signing'
 
@@ -31,7 +67,40 @@ subprojects {
         // LICENSE and NOTICE in every jar, sources and javadoc included: whoever gets an artifact
         // gets the terms with it. NOTICE also carries the MIT notice for the Northwind-derived
         // content, which the MIT License requires in all copies.
+        //
+        // The same goes for the JAR specification's package versioning, which is why it sits in this
+        // block and not in the 'jar'-only one below: a sources or javadoc jar found loose on a disk
+        // should name its release too. Implementation-Version is what
+        // Package.getImplementationVersion() hands back for a class loaded from this jar, and the
+        // first thing to ask for in a bug report.
+        //
+        // The title is READ FROM THE PUBLICATION, not built from the project name: this module is
+        // called 'duckdb' but goes to Central as koryki-northwind-duckdb, and a manifest naming a
+        // koryki-duckdb that exists in another repository would be worse than no title at all. A
+        // provider, because the module's own 'artifactId = ...' runs after this block -- same reason
+        // as the description below.
+        //
+        // Specification-Version is major.minor and nothing more: Package.isCompatibleWith parses it
+        // as a dotted number sequence and throws NumberFormatException on the '-SNAPSHOT' the
+        // snapshot publish appends. Implementation-Version is the free-form one and keeps the suffix.
+        //
+        // Nothing here comes from the machine that builds: no Built-By, no host, no build timestamp.
+        // Those three are what usually makes two builds of the same commit differ byte for byte, and
+        // the first of them would put a user name into every jar on Central.
         tasks.withType(Jar).configureEach {
+            manifest {
+                def artifact = project.provider { publishing.publications.mavenJava.artifactId }
+                attributes(
+                        'Implementation-Title': artifact,
+                        'Implementation-Version': project.version.toString(),
+                        'Implementation-Vendor': 'koryki',
+                        'Specification-Title': artifact,
+                        'Specification-Version': project.version.toString()
+                                .replaceFirst('[-+].*$', '').split('\\.').take(2).join('.'),
+                        'Specification-Vendor': 'koryki',
+                        'Build-Jdk-Spec': javaVersion.toString(),
+                        'Created-By': "Gradle ${gradle.gradleVersion}".toString())
+            }
             from(rootProject.file('LICENSE')) { into 'META-INF' }
             from(rootProject.file('NOTICE')) { into 'META-INF' }
         }
@@ -78,11 +147,26 @@ subprojects {
         // publishToMavenLocal works without keys however it is launched.
         def signingKey = providers.environmentVariable('SIGNING_KEY').orNull
         if (signingKey) {
+            // Gradle wants the short key ID: eight hex digits. What one has at hand is the
+            // fingerprint the way gpg prints it -- forty digits, in spaced groups, sometimes with
+            // an 0x in front -- and handing that over fails the release in the signing task with
+            // "The key ID must be in a valid form". Its last eight digits ARE the short ID, so
+            // reduce it here rather than let the format of a pasted secret stop a release.
+            def keyId = providers.environmentVariable('SIGNING_KEY_ID').orNull
+                    ?.replaceAll('\\s', '')
+                    ?.replaceFirst('(?i)^0x', '')
+            if (keyId && keyId.length() > 8) {
+                keyId = keyId.substring(keyId.length() - 8)
+            }
+            def signingPassword = providers.environmentVariable('SIGNING_PASSWORD').orNull
             signing {
-                useInMemoryPgpKeys(
-                        providers.environmentVariable('SIGNING_KEY_ID').orNull,
-                        signingKey,
-                        providers.environmentVariable('SIGNING_PASSWORD').orNull)
+                if (keyId) {
+                    useInMemoryPgpKeys(keyId, signingKey, signingPassword)
+                } else {
+                    // No ID given: the key signs with its primary key, which is what this
+                    // overload assumes. An unset secret arrives as an empty string, not as null.
+                    useInMemoryPgpKeys(signingKey, signingPassword)
+                }
                 sign publishing.publications.mavenJava
             }
         }

@@ -33,13 +33,13 @@ import java.util.stream.Stream;
  */
 public final class BuildDatabase {
 
-    private BuildDatabase() {
-    }
+    private BuildDatabase() {}
 
     /** {@code <scripts directory> <database file>} */
     public static void main(String[] args) throws IOException, SQLException {
         if (args.length != 2) {
-            throw new IllegalArgumentException("usage: BuildDatabase <scripts directory> <database file>");
+            throw new IllegalArgumentException(
+                    "usage: BuildDatabase <scripts directory> <database file>");
         }
         build(Path.of(args[0]), Path.of(args[1]));
     }
@@ -50,8 +50,9 @@ public final class BuildDatabase {
         Files.deleteIfExists(Path.of(database + ".wal"));
         Files.createDirectories(database.toAbsolutePath().getParent());
 
-        try (Connection connection = DriverManager.getConnection("jdbc:duckdb:" + database.toAbsolutePath());
-             Statement statement = connection.createStatement()) {
+        try (Connection connection =
+                        DriverManager.getConnection("jdbc:duckdb:" + database.toAbsolutePath());
+                Statement statement = connection.createStatement()) {
             connection.setAutoCommit(false);
             // The driver runs a whole script per call, parsed by DuckDB itself.
             for (Path script : scripts(scripts)) {

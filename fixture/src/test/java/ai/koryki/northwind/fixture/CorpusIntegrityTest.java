@@ -16,8 +16,7 @@
  */
 package ai.koryki.northwind.fixture;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,8 +29,8 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * Checks the corpus against SPEC.md without running any implementation. Harnesses walk from each
@@ -48,26 +47,37 @@ class CorpusIntegrityTest {
     private static final Pattern IGNORE_MARKER = Pattern.compile("// ignore=(\\S*)");
 
     /** Where the queries of one golden tree live, and which suffix each kind of golden carries. */
-    private record Goldens(Path queries, String extension, Map<String, List<String>> suffixes) {
-    }
+    private record Goldens(Path queries, String extension, Map<String, List<String>> suffixes) {}
 
-    private static final Goldens KQL_GOLDENS = new Goldens(QUERIES, ".kql", Map.of(
-            "csv", List.of(".csv", ".json"),
-            "sql", List.of(".sql"),
-            "iql", List.of(".iql"),
-            "de", List.of("_de.txt")));
+    private static final Goldens KQL_GOLDENS =
+            new Goldens(
+                    QUERIES,
+                    ".kql",
+                    Map.of(
+                            "csv", List.of(".csv", ".json"),
+                            "sql", List.of(".sql"),
+                            "iql", List.of(".iql"),
+                            "de", List.of("_de.txt")));
 
-    private static final Goldens IQL_GOLDENS = new Goldens(IQL, ".iql", Map.of(
-            "sql", List.of(".sql")));
+    private static final Goldens IQL_GOLDENS =
+            new Goldens(IQL, ".iql", Map.of("sql", List.of(".sql")));
 
-    private static final Goldens DIALECT_GOLDENS = new Goldens(QUERIES, ".kql", Map.of(
-            "sql", List.of(".sql"),
-            "violations", List.of(".txt")));
+    private static final Goldens DIALECT_GOLDENS =
+            new Goldens(
+                    QUERIES,
+                    ".kql",
+                    Map.of(
+                            "sql", List.of(".sql"),
+                            "violations", List.of(".txt")));
 
     @BeforeAll
     static void corpusIsThere() {
-        assertTrue(Files.isDirectory(QUERIES) && Files.isDirectory(EXPECTED),
-                () -> "no corpus at " + CORPUS.toAbsolutePath() + " -- run from the fixture module directory");
+        assertTrue(
+                Files.isDirectory(QUERIES) && Files.isDirectory(EXPECTED),
+                () ->
+                        "no corpus at "
+                                + CORPUS.toAbsolutePath()
+                                + " -- run from the fixture module directory");
     }
 
     @Test
@@ -83,7 +93,9 @@ class CorpusIntegrityTest {
                 problems.add(rel(file));
             }
         }
-        assertNone("files that are not queries (a changed extension silently disables a fixture)", problems);
+        assertNone(
+                "files that are not queries (a changed extension silently disables a fixture)",
+                problems);
     }
 
     @Test
@@ -115,8 +127,10 @@ class CorpusIntegrityTest {
                 }
             }
         }
-        assertNone("SQL goldens for queries the dialect rejects (see the violation golden beside"
-                + " each); a harness never reads them", problems);
+        assertNone(
+                "SQL goldens for queries the dialect rejects (see the violation golden beside"
+                        + " each); a harness never reads them",
+                problems);
     }
 
     @Test
@@ -140,16 +154,20 @@ class CorpusIntegrityTest {
         if (rel.getNameCount() < 4) {
             return null;
         }
-        Goldens goldens = switch (rel.getName(0).toString()) {
-            case "kql" -> KQL_GOLDENS;
-            case "iql" -> IQL_GOLDENS;
-            default -> DIALECT_GOLDENS;
-        };
+        Goldens goldens =
+                switch (rel.getName(0).toString()) {
+                    case "kql" -> KQL_GOLDENS;
+                    case "iql" -> IQL_GOLDENS;
+                    default -> DIALECT_GOLDENS;
+                };
         Path schema = rel.getName(1);
         String name = rel.subpath(3, rel.getNameCount()).toString();
-        for (String suffix : goldens.suffixes().getOrDefault(rel.getName(2).toString(), List.of())) {
+        for (String suffix :
+                goldens.suffixes().getOrDefault(rel.getName(2).toString(), List.of())) {
             if (name.endsWith(suffix)) {
-                return goldens.queries().resolve(schema).resolve(strip(name, suffix) + goldens.extension());
+                return goldens.queries()
+                        .resolve(schema)
+                        .resolve(strip(name, suffix) + goldens.extension());
             }
         }
         return null;
@@ -196,7 +214,8 @@ class CorpusIntegrityTest {
     }
 
     private static void assertNone(String what, List<String> problems) {
-        assertTrue(problems.isEmpty(),
+        assertTrue(
+                problems.isEmpty(),
                 () -> problems.size() + " " + what + ":\n  " + String.join("\n  ", problems));
     }
 }
