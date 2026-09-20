@@ -16,11 +16,8 @@
  */
 package ai.koryki.northwind.catalog;
 
-import org.junit.jupiter.api.Test;
-import tools.jackson.core.JacksonException;
-import tools.jackson.core.StreamReadFeature;
-import tools.jackson.databind.DeserializationFeature;
-import tools.jackson.databind.json.JsonMapper;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,19 +25,25 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.StreamReadFeature;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 class CatalogJsonTest {
 
     private static final Path RESOURCES = Path.of("src/main/resources");
 
-    /** A duplicate key is legal JSON that parsers resolve differently, so the catalog must not have one. */
-    private static final JsonMapper STRICT = JsonMapper.builder()
-            .enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION)
-            .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
-            .build();
+    /**
+     * A duplicate key is legal JSON that parsers resolve differently, so the catalog must not have
+     * one.
+     */
+    private static final JsonMapper STRICT =
+            JsonMapper.builder()
+                    .enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION)
+                    .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+                    .build();
 
     @Test
     void everyCatalogFileIsStrictJson() throws IOException {
@@ -58,7 +61,11 @@ class CatalogJsonTest {
                 problems.add(RESOURCES.relativize(file) + ": " + e.getOriginalMessage());
             }
         }
-        assertTrue(problems.isEmpty(),
-                () -> problems.size() + " catalog files are not strict JSON:\n  " + String.join("\n  ", problems));
+        assertTrue(
+                problems.isEmpty(),
+                () ->
+                        problems.size()
+                                + " catalog files are not strict JSON:\n  "
+                                + String.join("\n  ", problems));
     }
 }

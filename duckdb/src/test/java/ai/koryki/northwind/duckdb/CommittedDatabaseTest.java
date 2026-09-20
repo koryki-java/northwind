@@ -16,8 +16,8 @@
  */
 package ai.koryki.northwind.duckdb;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -27,9 +27,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * The committed {@code northwind.duckdb} is a build product of the scripts next to it; this fails
@@ -37,48 +36,91 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class CommittedDatabaseTest {
 
-    private static final Path DATABASE_DIR = Path.of("src/main/resources/ai/koryki/duckdb/databases/northwind");
+    private static final Path DATABASE_DIR =
+            Path.of("src/main/resources/ai/koryki/duckdb/databases/northwind");
 
     @Test
     void committedDatabaseMatchesItsScripts(@TempDir Path tmp) throws Exception {
         Path fresh = tmp.resolve("fresh.duckdb");
         BuildDatabase.build(DATABASE_DIR.resolve("db"), fresh);
 
-        try (Connection connection = DriverManager.getConnection("jdbc:duckdb:" + fresh.toAbsolutePath());
-             Statement statement = connection.createStatement()) {
-            statement.execute("ATTACH '" + DATABASE_DIR.resolve("northwind.duckdb").toAbsolutePath()
-                    + "' AS committed (READ_ONLY)");
+        try (Connection connection =
+                        DriverManager.getConnection("jdbc:duckdb:" + fresh.toAbsolutePath());
+                Statement statement = connection.createStatement()) {
+            statement.execute(
+                    "ATTACH '"
+                            + DATABASE_DIR.resolve("northwind.duckdb").toAbsolutePath()
+                            + "' AS committed (READ_ONLY)");
 
-            assertEquals(schema(statement, "fresh"), schema(statement, "committed"),
+            assertEquals(
+                    schema(statement, "fresh"),
+                    schema(statement, "committed"),
                     "tables, columns, constraints or views differ -- run ./gradlew :duckdb:updateDatabase");
 
             List<String> differing = new ArrayList<>();
-            for (String table : strings(statement, "SELECT table_name FROM duckdb_tables() WHERE database_name = 'fresh' ORDER BY 1")) {
+            for (String table :
+                    strings(
+                            statement,
+                            "SELECT table_name FROM duckdb_tables() WHERE database_name = 'fresh' ORDER BY 1")) {
                 String t = '"' + table.replace("\"", "\"\"") + '"';
-                long onlyInScripts = count(statement, "SELECT count(*) FROM (SELECT * FROM fresh.main." + t
-                        + " EXCEPT ALL SELECT * FROM committed.main." + t + ")");
-                long onlyInFile = count(statement, "SELECT count(*) FROM (SELECT * FROM committed.main." + t
-                        + " EXCEPT ALL SELECT * FROM fresh.main." + t + ")");
+                long onlyInScripts =
+                        count(
+                                statement,
+                                "SELECT count(*) FROM (SELECT * FROM fresh.main."
+                                        + t
+                                        + " EXCEPT ALL SELECT * FROM committed.main."
+                                        + t
+                                        + ")");
+                long onlyInFile =
+                        count(
+                                statement,
+                                "SELECT count(*) FROM (SELECT * FROM committed.main."
+                                        + t
+                                        + " EXCEPT ALL SELECT * FROM fresh.main."
+                                        + t
+                                        + ")");
                 if (onlyInScripts + onlyInFile > 0) {
-                    differing.add(table + ": " + onlyInScripts + " rows only in the scripts, " + onlyInFile
-                            + " only in northwind.duckdb");
+                    differing.add(
+                            table
+                                    + ": "
+                                    + onlyInScripts
+                                    + " rows only in the scripts, "
+                                    + onlyInFile
+                                    + " only in northwind.duckdb");
                 }
             }
-            assertTrue(differing.isEmpty(), () -> "northwind.duckdb does not match its scripts -- run"
-                    + " ./gradlew :duckdb:updateDatabase\n  " + String.join("\n  ", differing));
+            assertTrue(
+                    differing.isEmpty(),
+                    () ->
+                            "northwind.duckdb does not match its scripts -- run"
+                                    + " ./gradlew :duckdb:updateDatabase\n  "
+                                    + String.join("\n  ", differing));
         }
     }
 
     private static List<String> schema(Statement statement, String database) throws SQLException {
         String where = "WHERE database_name = '" + database + "'";
         List<String> schema = new ArrayList<>();
-        schema.addAll(strings(statement, "SELECT 'column ' || table_name || '.' || column_name || ' ' || data_type"
-                + " || CASE WHEN is_nullable THEN '' ELSE ' NOT NULL' END FROM duckdb_columns() " + where
-                + " ORDER BY table_name, column_index"));
-        schema.addAll(strings(statement, "SELECT 'constraint ' || table_name || ' ' || constraint_text"
-                + " FROM duckdb_constraints() " + where + " ORDER BY 1"));
-        schema.addAll(strings(statement, "SELECT 'view ' || view_name || ' ' || sql FROM duckdb_views() "
-                + where + " AND NOT internal ORDER BY 1"));
+        schema.addAll(
+                strings(
+                        statement,
+                        "SELECT 'column ' || table_name || '.' || column_name || ' ' || data_type"
+                                + " || CASE WHEN is_nullable THEN '' ELSE ' NOT NULL' END FROM duckdb_columns() "
+                                + where
+                                + " ORDER BY table_name, column_index"));
+        schema.addAll(
+                strings(
+                        statement,
+                        "SELECT 'constraint ' || table_name || ' ' || constraint_text"
+                                + " FROM duckdb_constraints() "
+                                + where
+                                + " ORDER BY 1"));
+        schema.addAll(
+                strings(
+                        statement,
+                        "SELECT 'view ' || view_name || ' ' || sql FROM duckdb_views() "
+                                + where
+                                + " AND NOT internal ORDER BY 1"));
         return schema;
     }
 

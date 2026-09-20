@@ -1,3 +1,9 @@
+// apply false: only put on the classpath here, so every subproject applies the same resolved
+// version instead of each re-declaring it (and risking a different one).
+plugins {
+    alias(libs.plugins.spotless) apply false
+}
+
 // The Java level, stated once: the toolchain compiles against it and the jar manifests report it as
 // Build-Jdk-Spec. Two literals would drift apart at the next raise, and the manifest would then name
 // a level nothing was built with. At script level, so both closures below see it.
@@ -25,6 +31,17 @@ rootProject.allprojects {
 // Shared by every published module (catalog, duckdb); each sets only its artifactId, POM name and
 // description. 'fixture' is not published: implementations read it from a checkout (see SPEC.md).
 subprojects {
+    // AOSP variant (4-space indent) to match this codebase's existing style, rather than
+    // google-java-format's 2-space default. `check` depends on spotlessCheck automatically.
+    pluginManager.withPlugin('java') {
+        apply plugin: 'com.diffplug.spotless'
+        spotless {
+            java {
+                googleJavaFormat(libs.versions.google.java.format.get()).aosp()
+            }
+        }
+    }
+
     pluginManager.withPlugin('maven-publish') {
         apply plugin: 'signing'
 
