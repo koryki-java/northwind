@@ -19,7 +19,7 @@ Only the maintainer can see the report.
 
 A report is easiest to act on when it names:
 
-- the affected artifact and version (e.g. `ai.koryki.northwind:koryki-catalog:0.1.0`) or commit,
+- the affected artifact and version (e.g. `ai.koryki.northwind:koryki-northwind-catalog:0.1.2`) or commit,
 - what an attacker can achieve, and under which conditions,
 - the steps, or a file, to reproduce it,
 - whether and when you intend to disclose it yourself.
@@ -38,7 +38,7 @@ The project is maintained by one person only; sorry, no guaranteed response time
 
 This repository publishes **data, not code**:
 
-- `ai.koryki.northwind:koryki-catalog` — schema catalogs as JSON,
+- `ai.koryki.northwind:koryki-northwind-catalog` — schema catalogs as JSON,
 - `ai.koryki.northwind:koryki-northwind-duckdb` — SQL scripts and a prebuilt DuckDB database file.
 
 Both jars contain no classes and declare no dependencies. The fixture corpus under `fixture/` is not
@@ -91,11 +91,11 @@ a jar against the release key:
 gpg --keyserver hkps://keys.openpgp.org --recv-keys DBB344DBC587AA7A8A3B7BB2334E2F44352285EC
 
 # 2. Download the jar and its signature.
-curl -O https://repo1.maven.org/maven2/ai/koryki/northwind/koryki-catalog/0.1.0/koryki-catalog-0.1.0.jar
-curl -O https://repo1.maven.org/maven2/ai/koryki/northwind/koryki-catalog/0.1.0/koryki-catalog-0.1.0.jar.asc
+curl -O https://repo1.maven.org/maven2/ai/koryki/northwind/koryki-northwind-catalog/0.1.2/koryki-northwind-catalog-0.1.2.jar
+curl -O https://repo1.maven.org/maven2/ai/koryki/northwind/koryki-northwind-catalog/0.1.2/koryki-northwind-catalog-0.1.2.jar.asc
 
 # 3. Verify.
-gpg --verify koryki-catalog-0.1.0.jar.asc koryki-catalog-0.1.0.jar
+gpg --verify koryki-northwind-catalog-0.1.2.jar.asc koryki-northwind-catalog-0.1.2.jar
 ```
 
 The jar is genuine when gpg reports `Good signature` **and** the line `using EDDSA key` shows

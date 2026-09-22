@@ -7,7 +7,7 @@ corpus. It is a project of its own so that every implementation runs against the
 
 | Module | Holds | Consumed as |
 |---|---|---|
-| [`catalog`](catalog/README.md) | `db.json` (physical schema) and `model.json` (semantic layer) of the test databases | Maven artifact `ai.koryki.northwind:koryki-catalog` |
+| [`catalog`](catalog/README.md) | `db.json` (physical schema) and `model.json` (semantic layer) of the test databases | Maven artifact `ai.koryki.northwind:koryki-northwind-catalog` |
 | `duckdb` | the Northwind database for DuckDB: DDL, data scripts and the prebuilt `northwind.duckdb` | Maven artifact `ai.koryki.northwind:koryki-northwind-duckdb` |
 | `fixture` | KQL and IQL queries with their expected SQL, results and rejections per dialect | a checkout of this repository, not published |
 
@@ -17,7 +17,7 @@ The databases of the other dialects are set up by their modules in `core`.
 
 ### catalog
 
-`koryki-catalog` is an ordinary dependency. Most projects need it only for tests; use
+`koryki-northwind-catalog` is an ordinary dependency. Most projects need it only for tests; use
 `implementation` / `compile` scope instead if your main code reads the catalog, as `koryki-northwind`
 in `core` does.
 
@@ -25,7 +25,7 @@ Gradle (Groovy DSL):
 
 ```groovy
 dependencies {
-    testImplementation 'ai.koryki.northwind:koryki-catalog:0.1.0'
+    testImplementation 'ai.koryki.northwind:koryki-northwind-catalog:0.1.2'
 }
 ```
 
@@ -33,7 +33,7 @@ Gradle (Kotlin DSL):
 
 ```kotlin
 dependencies {
-    testImplementation("ai.koryki.northwind:koryki-catalog:0.1.0")
+    testImplementation("ai.koryki.northwind:koryki-northwind-catalog:0.1.2")
 }
 ```
 
@@ -42,8 +42,8 @@ Maven:
 ```xml
 <dependency>
   <groupId>ai.koryki.northwind</groupId>
-  <artifactId>koryki-catalog</artifactId>
-  <version>0.1.0</version>
+  <artifactId>koryki-northwind-catalog</artifactId>
+  <version>0.1.2</version>
   <scope>test</scope>
 </dependency>
 ```
@@ -60,13 +60,13 @@ files directly:
 
 ```groovy
 dependencies {
-    testRuntimeOnly 'ai.koryki.northwind:koryki-northwind-duckdb:0.1.0'
+    testRuntimeOnly 'ai.koryki.northwind:koryki-northwind-duckdb:0.1.2'
 }
 ```
 
 ```kotlin
 dependencies {
-    testRuntimeOnly("ai.koryki.northwind:koryki-northwind-duckdb:0.1.0")
+    testRuntimeOnly("ai.koryki.northwind:koryki-northwind-duckdb:0.1.2")
 }
 ```
 
@@ -74,7 +74,7 @@ dependencies {
 <dependency>
   <groupId>ai.koryki.northwind</groupId>
   <artifactId>koryki-northwind-duckdb</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.2</version>
   <scope>test</scope>
 </dependency>
 ```
@@ -173,7 +173,7 @@ checks the full history on every push as well.
 
 ## Versions
 
-- `v<version>` tags release `koryki-catalog` and `koryki-northwind-duckdb` to Maven Central. The tag
+- `v<version>` tags release `koryki-northwind-catalog` and `koryki-northwind-duckdb` to Maven Central. The tag
   must match `version` in `gradle.properties`, or the release workflow stops.
 - The corpus is not published: implementations pin a commit or a `v<version>` tag. Its format has a
   version of its own, stated at the top of [`SPEC.md`](SPEC.md).

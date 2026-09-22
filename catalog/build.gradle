@@ -3,7 +3,9 @@ plugins {
     id 'maven-publish'
 }
 
-description = 'Catalog files: db.json (physical schema) and model.json (semantic layer)'
+description = 'Schema catalogs for koryki\'s shared test databases -- db.json (physical schema: ' +
+        'tables, columns, types, keys) and model.json (semantic layer: entities, attributes, ' +
+        'links) -- used to test SQL/KQL query-engine implementations against a common schema.'
 
 dependencies {
     testImplementation platform(libs.junit.bom)
