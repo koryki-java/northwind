@@ -3,7 +3,9 @@ plugins {
     id 'maven-publish'
 }
 
-description = 'The Northwind sample database for DuckDB: DDL, data scripts and the prebuilt database file'
+description = 'The Northwind sample database for DuckDB, part of koryki\'s shared test-data ' +
+        'project: DDL, per-table data scripts, and the prebuilt northwind.duckdb file, used to ' +
+        'test SQL/KQL query engines against a real dataset.'
 
 // The program that builds northwind.duckdb from the scripts. A source set of its own, so neither it
 // nor the DuckDB driver ends up in the published jar or its POM.
