@@ -1,0 +1,7 @@
+Name : TEXT
+median_price : FLOAT
+q1_cont : FLOAT
+q1_disc : DECIMAL
+q3_cont : FLOAT
+q3_disc : DECIMAL
+n : INTEGER

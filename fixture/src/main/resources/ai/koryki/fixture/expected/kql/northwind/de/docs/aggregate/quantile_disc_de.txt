@@ -1,0 +1,4 @@
+// quantile_disc: like quantile_cont, but always one of the actual prices, never interpolated.
+
+FIND produkte p, p kategorien c
+FETCH c.kategorie_name, quantile_disc(0.25, p.preis_je_einheit) lower_quartile
