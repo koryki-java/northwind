@@ -1,0 +1,4 @@
+// percent_rank: where each order's freight sits between the lightest (0) and the heaviest (1) shipped to France.
+FIND orders o
+FILTER o.ship_country = 'France'
+FETCH o.order_id, o.freight, percent_rank() OVER (ORDER o.freight) freight_percentile

@@ -1,0 +1,4 @@
+// quantile_cont: the price a quarter of the way up each category's sorted unit prices, interpolated.
+// ignore=duckdb  DuckDB's quantile_cont/percentile_cont keeps the source column's fixed DECIMAL(18,2) scale and truncates the interpolated result to it -- the true value here is 21.125, PostgreSQL and Oracle both answer that exactly, DuckDB answers 21.12 (round-half-even would coincidentally answer 21.12 too, so this case alone doesn't prove it; the Condiments 0.75 case in aggregate_median_quantile_by_category.kql does: true value 25.875, round-half-even 25.88, DuckDB 25.87). DuckDB's ordered-set aggregates compute in the input's own decimal scale and lose the digit past it, not a rounding-rule choice. Measured 2026-09-27.
+FIND products p, p categories c
+FETCH c.category_name, quantile_cont(0.25, p.unit_price) lower_quartile

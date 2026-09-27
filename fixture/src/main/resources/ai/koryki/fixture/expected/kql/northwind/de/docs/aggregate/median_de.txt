@@ -1,0 +1,4 @@
+// median: the middle unit price of each category's products, once sorted.
+
+FIND produkte p, p kategorien c
+FETCH c.kategorie_name, median(p.preis_je_einheit) median_price

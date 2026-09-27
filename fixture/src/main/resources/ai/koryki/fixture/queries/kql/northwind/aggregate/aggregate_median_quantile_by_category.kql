@@ -1,0 +1,7 @@
+// test
+// ignore=duckdb  q3_cont (Condiments, 0.75) lands on 25.875, the exact interpolated value PostgreSQL and Oracle both answer; DuckDB's quantile_cont keeps unit_price's own DECIMAL(18,2) scale and truncates to 25.87. See docs/aggregate/quantile_cont.kql. Measured 2026-09-27.
+FIND products p, p categories c
+FETCH c.category_name ASC, median(p.unit_price) median_price,
+      quantile_cont(0.25, p.unit_price) q1_cont, quantile_disc(0.25, p.unit_price) q1_disc,
+      quantile_cont(0.75, p.unit_price) q3_cont, quantile_disc(0.75, p.unit_price) q3_disc,
+      count(p) n
