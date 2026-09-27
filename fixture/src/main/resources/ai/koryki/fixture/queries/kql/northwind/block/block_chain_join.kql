@@ -1,0 +1,14 @@
+// a block joining to an earlier sibling block via a relation, exactly as a SQL CTE joins to an
+// earlier CTE -- the join column customer_id is not in ord's own FETCH, so it must be inferred
+// onto ord (the block actually referenced), not onto cust (the block doing the joining)
+
+WITH ord AS (
+FIND orders o
+FETCH to_decimal(o.freight, 16, 8) f
+),
+cust AS (
+FIND customers c, c VIA same_customer ord o
+FETCH c.contact_name, o.f
+)
+FIND cust x
+FETCH x.contact_name, x.f

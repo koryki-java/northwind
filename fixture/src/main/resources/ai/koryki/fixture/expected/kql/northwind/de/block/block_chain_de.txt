@@ -1,0 +1,14 @@
+// a block using an earlier sibling block as its own leading source, the way a SQL CTE may FROM
+// an earlier CTE
+
+WITH ord AS (
+ FIND bestellungen o
+ FETCH to_decimal(o.fracht, 16, 8) f, o.kunden_id i
+),
+heavy AS (
+ FIND ord x
+ FILTER x.f > 50
+ FETCH x.f, x.i
+)
+FIND heavy h
+FETCH h.f, h.i

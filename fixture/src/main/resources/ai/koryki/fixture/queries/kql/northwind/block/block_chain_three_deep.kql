@@ -1,0 +1,19 @@
+// a chain three blocks deep: each block may only use blocks already defined before it, exactly
+// like a SQL WITH-list where a later CTE may FROM any earlier one
+
+WITH ord AS (
+FIND orders o
+FETCH to_decimal(o.freight, 16, 8) f, o.customer_id i
+),
+heavy AS (
+FIND ord x
+FILTER x.f > 50
+FETCH x.f, x.i
+),
+heaviest AS (
+FIND heavy y
+FILTER y.f > 100
+FETCH y.f, y.i
+)
+FIND heaviest z
+FETCH z.f, z.i

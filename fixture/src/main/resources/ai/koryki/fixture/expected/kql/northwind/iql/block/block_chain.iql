@@ -1,0 +1,21 @@
+// a block using an earlier sibling block as its own leading source, the way a SQL CTE may FROM
+// an earlier CTE
+
+WITH ord AS (
+ SELECT
+  orders o
+   OUT to_decimal(o.freight, 16, 8) f 1
+   OUT o.customer_id i 2
+),
+heavy AS (
+ SELECT
+  ord x
+   OUT x.f 1
+   OUT x.i 2
+   FILTER
+     x.f > 50
+)
+SELECT
+ heavy h
+  OUT h.f 1
+  OUT h.i 2

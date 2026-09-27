@@ -1,0 +1,29 @@
+// a chain three blocks deep: each block may only use blocks already defined before it, exactly
+// like a SQL WITH-list where a later CTE may FROM any earlier one
+
+WITH ord AS (
+ SELECT
+  orders o
+   OUT to_decimal(o.freight, 16, 8) f 1
+   OUT o.customer_id i 2
+),
+heavy AS (
+ SELECT
+  ord x
+   OUT x.f 1
+   OUT x.i 2
+   FILTER
+     x.f > 50
+),
+heaviest AS (
+ SELECT
+  heavy y
+   OUT y.f 1
+   OUT y.i 2
+   FILTER
+     y.f > 100
+)
+SELECT
+ heaviest z
+  OUT z.f 1
+  OUT z.i 2
