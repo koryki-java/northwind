@@ -1,0 +1,15 @@
+// a FETCH item's subquery correlated to the outer row -- the inner FILTER reaches back to c,
+// the outer alias, exactly as customers_with_ordercount does through a join instead
+
+SELECT
+ customers c
+  OUT c.company_name 1
+ALL
+ OUT (
+   SELECT
+    orders o
+     OUT count(o.order_id) 1
+   ALL
+    FILTER
+      o.customer_id = c.customer_id
+  ) order_count 2

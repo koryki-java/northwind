@@ -1,0 +1,8 @@
+// a FETCH item can itself be a whole FIND: an uncorrelated scalar subquery, the same total for
+// every row
+
+FIND kunden c
+FETCH c.firma, (
+ FIND bestellungen o
+ FETCH count(o)
+) order_count
