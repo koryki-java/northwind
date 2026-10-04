@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+}
+
+description = 'The Northwind database for Snowflake: DDL, the data of the dialect-neutral tables as ' +
+        'JSON, and the builder that loads them into a Snowflake account. Not published; run from a ' +
+        'checkout.'
+
+sourceSets {
+    builder
+}
+
+dependencies {
+    builderImplementation project(':loader')
+    builderImplementation libs.jackson.databind
+    builderRuntimeOnly libs.snowflake
+    // ExportJson reads the DuckDB database and writes data.json
+    builderRuntimeOnly libs.duckdb
+}
+
+def scripts = 'src/main/resources/ai/koryki/snowflake/databases/northwind/db'
+
+// ./gradlew :snowflake:createDatabase
+//
+// Drops and recreates every Northwind table in the Snowflake database that snowflake.northwind.url
+// points at, signing in with the key pair of snowflake.privatekey. Properties come from
+// ~/.gradle/gradle.properties, as for the koryki core test suites.
+tasks.register('createDatabase', JavaExec) {
+    group = 'application'
+    description = 'Drops and recreates the Northwind tables in the Snowflake database of snowflake.northwind.url.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.snowflake.BuildNorthwind'
+    ['privatekey', 'northwind.url', 'northwind.user'].each { key ->
+        def property = "snowflake.$key".toString()
+        if (project.hasProperty(property)) {
+            systemProperty property, project.property(property)
+        }
+    }
+    inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
+    args file(scripts).path
+}
+
+// ./gradlew :snowflake:exportJson
+//
+// Rewrites build/northwind.json from the committed northwind.duckdb. data.json in the scripts is a
+// copy of that file.
+tasks.register('exportJson', JavaExec) {
+    group = 'application'
+    description = 'Exports the Northwind data of northwind.duckdb to build/northwind.json.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.snowflake.ExportJson'
+    args layout.buildDirectory.file('northwind.json').get().asFile.path,
+            project(':duckdb').file('src/main/resources/ai/koryki/duckdb/databases/northwind/northwind.duckdb').path
+}

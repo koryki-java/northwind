@@ -28,3 +28,12 @@ dependencyResolutionManagement {
 include 'fixture'
 include 'catalog'
 include 'duckdb'
+// The databases of the other dialects: scripts and the builder that runs them. 'loader' is what
+// the builders share.
+include 'loader'
+include 'postgresql'
+include 'mariadb'
+include 'oracle'
+include 'mssql'
+include 'snowflake'
+include 'sqlite'

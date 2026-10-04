@@ -1,0 +1,17 @@
+plugins {
+    id 'java-library'
+}
+
+description = 'What the database builders of the dialect modules share: cutting a SQL script into ' +
+        'statements, and the connection to load into. Not published; the builders run from a ' +
+        'checkout of this repository.'
+
+dependencies {
+    testImplementation platform(libs.junit.bom)
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+test {
+    useJUnitPlatform()
+}

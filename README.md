@@ -9,9 +9,26 @@ corpus. It is a project of its own so that every implementation runs against the
 |---|---|---|
 | [`catalog`](catalog/README.md) | `db.json` (physical schema) and `model.json` (semantic layer) of the test databases | Maven artifact `ai.koryki.northwind:koryki-northwind-catalog` |
 | `duckdb` | the Northwind database for DuckDB: DDL, data scripts and the prebuilt `northwind.duckdb` | Maven artifact `ai.koryki.northwind:koryki-northwind-duckdb` |
+| `postgresql`, `mariadb`, `oracle`, `mssql`, `snowflake` | the Northwind database for that dialect: DDL, data scripts, constraints, and the builder that loads them into a running server (`./gradlew :<dialect>:createDatabase`) | a checkout of this repository, not published |
+| `sqlite` | the Northwind database for SQLite: DDL, data scripts and the `northwind.sqlite` built from them | Maven artifact `ai.koryki.northwind:koryki-northwind-sqlite` |
+| `loader` | what the builders share: cutting a script into statements, and the connection to load into | used by the builders, not published |
 | `fixture` | KQL and IQL queries with their expected SQL, results and rejections per dialect | a checkout of this repository, not published |
 
-The databases of the other dialects are set up by their modules in `core`.
+Everything that creates a Northwind database lives here, so a change to the schema or the data is a
+release of this project and nothing else; `core` only reads the result. Trino has no scripts of its
+own: it reads the MariaDB database.
+
+### Creating a database
+
+The builders take the same properties the test suites of `core` use, from
+`~/.gradle/gradle.properties`: `<dialect>.northwind.url`, `.user` and `.password`
+(Snowflake: `snowflake.northwind.url`, `.user` and the key file `snowflake.privatekey`).
+
+```bash
+./gradlew :postgresql:createDatabase   # also mariadb, oracle, mssql, snowflake
+```
+
+The task **drops and recreates** every Northwind table in the database the URL points at.
 
 ## Maven and Gradle
 

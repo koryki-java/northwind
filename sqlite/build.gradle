@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+description = 'The Northwind database for SQLite: DDL, per-table data scripts and the northwind.sqlite ' +
+        'built from them, used to test SQL/KQL query engines against a real dataset.'
+
+sourceSets {
+    builder
+}
+
+dependencies {
+    builderImplementation project(':loader')
+    builderRuntimeOnly libs.sqlite
+
+    testImplementation libs.sqlite
+    testImplementation platform(libs.junit.bom)
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+test {
+    useJUnitPlatform()
+}
+
+def scripts = 'src/main/resources/ai/koryki/sqlite/databases/northwind/db'
+def builtDatabase = layout.buildDirectory.file('sqlite/northwind.sqlite')
+
+// Built from the scripts on every release rather than committed: a SQLite file is a plain copy of
+// them, and a binary in git would only ever drift from the scripts it came from.
+tasks.register('buildDatabase', JavaExec) {
+    group = 'build'
+    description = 'Builds build/sqlite/northwind.sqlite from the scripts in db/.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.sqlite.BuildNorthwind'
+    inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
+    outputs.file(builtDatabase)
+    args file(scripts).path, builtDatabase.get().asFile.path
+}
+
+// The file lands where the readers in core look for it, next to the scripts.
+tasks.named('processResources') {
+    from(tasks.named('buildDatabase')) {
+        into 'ai/koryki/sqlite/databases/northwind'
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'koryki-northwind-sqlite'
+            pom {
+                name = 'koryki-northwind-sqlite'
+            }
+        }
+    }
+}
