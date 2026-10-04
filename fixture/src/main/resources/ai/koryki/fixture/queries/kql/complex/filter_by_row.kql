@@ -1,0 +1,5 @@
+// A nested column fetched next to a scalar filter: the filter on the key does not care what the
+// other columns hold.
+FIND check_complex t
+FILTER t.nr = 3
+FETCH t.nr, t.tags, t.items
