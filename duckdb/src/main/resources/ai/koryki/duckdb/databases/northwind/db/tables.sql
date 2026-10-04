@@ -292,3 +292,28 @@ CREATE TABLE check_temporal
     interval_year_month INTERVAL,    -- calendar amount (Period); DuckDB has a single INTERVAL type
     interval_day_second INTERVAL     -- exact-time amount (Duration)
 );
+
+-- Complex (nested) types: one column per shape, so that every case of the type parser, the
+-- resolver and the renderer has a fixture. DuckDB-only; the other dialects have no equivalent.
+-- Indexes in KQL are 1-based, matching DuckDB lists.
+CREATE TABLE check_complex
+(
+    nr       SMALLINT NOT NULL,
+    tags     VARCHAR[],                                    -- list of scalars
+    scores   INTEGER[],                                    -- list, numeric element
+    vec      DOUBLE[3],                                    -- fixed-size ARRAY
+    matrix   DOUBLE[3][2],                                 -- fixed arrays nested: 2 rows of DOUBLE[3]
+    dims     STRUCT(w DOUBLE, h DOUBLE),                   -- flat struct
+    address  STRUCT(street VARCHAR, geo STRUCT(lat DOUBLE, lon DOUBLE), phones VARCHAR[]),
+                                                           -- struct holding a struct and a list
+    attrs    MAP(VARCHAR, VARCHAR),                        -- map, text keys
+    counts   MAP(VARCHAR, INTEGER),                        -- map, numeric values
+    lookup   MAP(INTEGER, VARCHAR),                        -- map, integer keys (@1: key or index?)
+    items    STRUCT(sku VARCHAR, qty INTEGER, price DECIMAL(10,2), opts VARCHAR[])[],
+                                                           -- list of structs
+    events   STRUCT(ts TIMESTAMP, day DATE)[],             -- temporal leaves inside a nest
+    deep     MAP(VARCHAR, STRUCT(a INTEGER[], b MAP(INTEGER, VARCHAR[])))[],
+                                                           -- every constructor inside every other
+    doc      JSON,                                         -- JSON: paths are 0-based
+    odd      STRUCT("Odd Name" INTEGER, x INTEGER)         -- quoted, mixed-case field name
+);

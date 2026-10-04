@@ -21,7 +21,7 @@ ai/koryki/databases/<schema>/            shared — one catalog that all dialect
 ai/koryki/<dialect>/databases/<schema>/  per dialect, because the physical types differ
 ```
 
-`<schema>` is `northwind`, `typecheck` or `temporal`; below it live `db.json` and
+`<schema>` is `northwind`, `typecheck`, `temporal` or `complex`; below it live `db.json` and
 `model/<locale>/model.json` with `<locale>` = `en` or `de`.
 
 The difference is not a formality. `northwind` is **dialect-neutral** — its type names are those of
@@ -29,6 +29,8 @@ the standard (`character varying`, `smallint`, `real`), and the same catalog ans
 all eight dialects. `temporal` and `typecheck`, by contrast, exist per dialect with that dialect's
 own type names (`TIMESTAMP`, `INTERVAL`, `NUMBER`), because those very differences are what they
 check.
+`complex` exists for DuckDB only: ARRAY, STRUCT and MAP, nested to any depth, have no counterpart in most
+of the other dialects, and its `dialectType` is the full nested spelling DuckDB prints.
 
 Until July 2026 the shared northwind catalog lived under `ai/koryki/databases/duckdb/northwind/`.
 The path lied: it named a dialect for something everyone reads, and forced every implementation into
