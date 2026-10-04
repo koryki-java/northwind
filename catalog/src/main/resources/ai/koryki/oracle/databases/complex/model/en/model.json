@@ -2,7 +2,7 @@
   "name": "complex",
   "label": null,
   "comment": null,
-  "description": "Demo database for complex types in Oracle. One table with the JSON column.",
+  "description": "Demo database for complex types in Oracle. One table with one column per type shape: collections, object types, JSON.",
   "entities": [
     {
       "name": "check_complex",
@@ -17,10 +17,88 @@
           "description": "Row identifier (primary key)"
         },
         {
+          "name": "tags",
+          "label": "Tags",
+          "comment": null,
+          "description": "List of text values as a VARRAY (ordered, at most 100); elements are addressed 1-based in PL/SQL, in SQL through TABLE()"
+        },
+        {
+          "name": "scores",
+          "label": "Scores",
+          "comment": null,
+          "description": "VARRAY of integers; numeric elements"
+        },
+        {
+          "name": "vec",
+          "label": "Vector",
+          "comment": null,
+          "description": "VARRAY of doubles (three values); a VARRAY has a maximum, not a fixed size"
+        },
+        {
+          "name": "matrix",
+          "label": "Matrix",
+          "comment": null,
+          "description": "A VARRAY of VARRAYs: two rows of three doubles; the first index selects the row"
+        },
+        {
+          "name": "dims",
+          "label": "Dimensions",
+          "comment": null,
+          "description": "Object type cx_dims of width and height"
+        },
+        {
+          "name": "address",
+          "label": "Address",
+          "comment": null,
+          "description": "Object type cx_address holding an object (cx_geo) and a list (phones)"
+        },
+        {
+          "name": "attrs",
+          "label": "Attributes",
+          "comment": null,
+          "description": "Map as a JSON object with text keys; Oracle has no map type"
+        },
+        {
+          "name": "counts",
+          "label": "Counts",
+          "comment": null,
+          "description": "Map as a JSON object with numeric values; Oracle has no map type"
+        },
+        {
+          "name": "lookup",
+          "label": "Lookup",
+          "comment": null,
+          "description": "Map as a JSON object; the integer keys are text, as JSON has no other"
+        },
+        {
+          "name": "items",
+          "label": "Items",
+          "comment": null,
+          "description": "Nested table of object type cx_item: sku, quantity, price and a list of options"
+        },
+        {
+          "name": "events",
+          "label": "Events",
+          "comment": null,
+          "description": "VARRAY of object type cx_event with temporal fields"
+        },
+        {
+          "name": "deep",
+          "label": "Deep",
+          "comment": null,
+          "description": "A list of maps whose values are structures holding a list and a map of lists; JSON as a whole, since it contains maps"
+        },
+        {
           "name": "doc",
           "label": "Document",
           "comment": null,
           "description": "JSON document in the native JSON type; JSON paths count from 0"
+        },
+        {
+          "name": "odd",
+          "label": "Odd",
+          "comment": null,
+          "description": "Object type cx_odd with a mixed-case attribute name that needs quoting"
         }
       ]
     }
