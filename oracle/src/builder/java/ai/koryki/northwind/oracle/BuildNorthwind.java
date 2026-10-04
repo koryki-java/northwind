@@ -57,6 +57,8 @@ public class BuildNorthwind {
 
             Script.executeScript(connection, dir.resolve("data_check_temporal.sql"));
             Script.executeScript(connection, dir.resolve("data_check_type.sql"));
+            // the complex-types test bed, self-contained like the two above
+            Script.executeScript(connection, dir.resolve("data_check_complex.sql"));
 
             connection.commit();
             Script.executeScript(connection, dir.resolve("constraints.sql"));

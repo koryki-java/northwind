@@ -42,6 +42,7 @@ class NorthwindSqliteDatabaseTest {
     private static final List<String> TABLES =
             List.of(
                     "categories",
+                    "check_complex",
                     "countries",
                     "customer_customer_demo",
                     "customer_demographics",

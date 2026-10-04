@@ -97,7 +97,7 @@ class ScriptTest {
                 }
             }
         }
-        // 18 each for postgresql, mariadb, oracle, mssql; 4 for snowflake; 16 for sqlite
-        assertEquals(18 * 4 + 4 + 16, scripts);
+        // 19 each for postgresql, mariadb, oracle, mssql; 5 for snowflake; 17 for sqlite
+        assertEquals(19 * 4 + 5 + 17, scripts);
     }
 }

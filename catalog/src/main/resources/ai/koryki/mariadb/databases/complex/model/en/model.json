@@ -1,0 +1,38 @@
+{
+  "name": "complex",
+  "label": null,
+  "comment": null,
+  "description": "Demo database for complex types in MariaDB. One table with the JSON column.",
+  "entities": [
+    {
+      "name": "check_complex",
+      "label": "Check Complex",
+      "comment": null,
+      "description": null,
+      "attributes": [
+        {
+          "name": "nr",
+          "label": "Nr",
+          "comment": null,
+          "description": "Row identifier (primary key)"
+        },
+        {
+          "name": "doc",
+          "label": "Document",
+          "comment": null,
+          "description": "JSON document (a LONGTEXT with a validity check); JSON paths count from 0"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "name": "same_check",
+      "comment": "both tables refer to the same data record",
+      "description": null,
+      "relations": [
+        "pk_check"
+      ]
+    }
+  ]
+}
