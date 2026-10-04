@@ -1,0 +1,116 @@
+{
+  "name": "complex",
+  "label": null,
+  "comment": null,
+  "description": "Demo database for complex types in Snowflake. One table with one column per type shape: lists, structures (OBJECT), maps, VARIANT, and nestings of them.",
+  "entities": [
+    {
+      "name": "check_complex",
+      "label": "Check Complex",
+      "comment": null,
+      "description": null,
+      "attributes": [
+        {
+          "name": "nr",
+          "label": "Nr",
+          "comment": null,
+          "description": "Row identifier (primary key)"
+        },
+        {
+          "name": "tags",
+          "label": "Tags",
+          "comment": null,
+          "description": "List of text values; elements are addressed 1-based"
+        },
+        {
+          "name": "scores",
+          "label": "Scores",
+          "comment": null,
+          "description": "List of integers; numeric elements for lambda arithmetic"
+        },
+        {
+          "name": "vec",
+          "label": "Vector",
+          "comment": null,
+          "description": "List of three doubles; Snowflake has no fixed-size array"
+        },
+        {
+          "name": "matrix",
+          "label": "Matrix",
+          "comment": null,
+          "description": "List of two lists of three doubles; the first index selects the row"
+        },
+        {
+          "name": "dims",
+          "label": "Dimensions",
+          "comment": null,
+          "description": "Flat structure (OBJECT) of width and height"
+        },
+        {
+          "name": "address",
+          "label": "Address",
+          "comment": null,
+          "description": "Structure (OBJECT) holding a nested structure (geo) and a list (phones)"
+        },
+        {
+          "name": "attrs",
+          "label": "Attributes",
+          "comment": null,
+          "description": "Map from text keys to text values"
+        },
+        {
+          "name": "counts",
+          "label": "Counts",
+          "comment": null,
+          "description": "Map from text keys to integer values"
+        },
+        {
+          "name": "lookup",
+          "label": "Lookup",
+          "comment": null,
+          "description": "Map with integer keys: a numeric selector is a key here, a position in a list"
+        },
+        {
+          "name": "items",
+          "label": "Items",
+          "comment": null,
+          "description": "List of order-line-like structures: sku, quantity, price and a list of options"
+        },
+        {
+          "name": "events",
+          "label": "Events",
+          "comment": null,
+          "description": "List of structures with temporal fields"
+        },
+        {
+          "name": "deep",
+          "label": "Deep",
+          "comment": null,
+          "description": "Four levels: a list of maps whose values are structures holding a list and a map of lists"
+        },
+        {
+          "name": "doc",
+          "label": "Document",
+          "comment": null,
+          "description": "VARIANT document; paths and array indexes count from 0"
+        },
+        {
+          "name": "odd",
+          "label": "Odd",
+          "comment": null,
+          "description": "Structure (OBJECT) with a mixed-case field name that needs quoting"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "name": "same_check",
+      "comment": "both tables refer to the same data record",
+      "description": null,
+      "relations": [
+        "pk_check"
+      ]
+    }
+  ]
+}

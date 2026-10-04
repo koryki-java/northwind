@@ -62,6 +62,8 @@ public class BuildNorthwind {
             // scripts (single INSERTs), not the dialect-neutral JSON batch path.
             Script.executeScript(connection, dir.resolve("data_check_type.sql"));
             Script.executeScript(connection, dir.resolve("data_check_temporal.sql"));
+            // the complex-types test bed, self-contained like the two above
+            Script.executeScript(connection, dir.resolve("data_check_complex.sql"));
 
             importTable(
                     connection,
