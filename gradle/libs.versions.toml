@@ -6,7 +6,7 @@ junit = "6.1.3"
 # Builds duckdb/northwind.duckdb. A newer DuckDB may write a storage format the readers in core
 # cannot open, so this moves only together with core's duckdb version.
 duckdb = "1.5.5.0"
-spotless = "8.10.2"
+spotless = "8.10.3"
 google-java-format = "1.36.1"
 
 [plugins]
