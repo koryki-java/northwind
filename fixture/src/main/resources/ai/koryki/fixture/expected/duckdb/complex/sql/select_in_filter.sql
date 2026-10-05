@@ -5,6 +5,6 @@ SELECT
 FROM
  check_complex t
 WHERE
-  t.scores[2] > 10
- AND
   t.attrs['color'] = 'red'
+ AND
+  t.scores[2] > 10
