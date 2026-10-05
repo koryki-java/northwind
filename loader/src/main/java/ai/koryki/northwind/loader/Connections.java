@@ -44,6 +44,25 @@ public final class Connections {
         return DriverManager.getConnection(required(dialect + ".northwind.url"), props);
     }
 
+    /**
+     * The memory catalog of the Trino whose {@code trino.northwind.url} is configured. The other
+     * Northwind tables are read through the MariaDB connector (the URL ends in {@code
+     * /mariadb/demo}); the complex-types table needs a catalog with nested types, which is the
+     * memory connector's {@code /memory/default}. Same host, same user.
+     */
+    public static Connection trinoMemory() throws SQLException {
+        String url =
+                required("trino.northwind.url")
+                        .replaceFirst("(jdbc:trino://[^/]+).*", "$1/memory/default");
+        Properties props = new Properties();
+        props.setProperty("user", required("trino.northwind.user"));
+        String password = System.getProperty("trino.northwind.password");
+        if (password != null && !password.isBlank()) {
+            props.setProperty("password", password);
+        }
+        return DriverManager.getConnection(url, props);
+    }
+
     /** Snowflake signs in with a key pair, not a password: {@code snowflake.privatekey}. */
     public static Connection snowflake() throws Exception {
         Properties props = new Properties();

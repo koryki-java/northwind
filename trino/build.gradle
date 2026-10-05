@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+description = 'The complex-types test table for Trino: the one Northwind table that cannot live in the ' +
+        'MariaDB catalog the others are read through, created in the memory catalog. Not published; ' +
+        'run from a checkout.'
+
+sourceSets {
+    builder
+}
+
+dependencies {
+    builderImplementation project(':loader')
+    builderRuntimeOnly libs.trino
+}
+
+def scripts = 'src/main/resources/ai/koryki/trino/databases/northwind/db'
+
+// ./gradlew :trino:createDatabase
+//
+// Creates memory.default.check_complex on the Trino of trino.northwind.url (the same host and user as
+// the Northwind tables). The memory connector keeps tables only until Trino restarts.
+tasks.register('createDatabase', JavaExec) {
+    group = 'application'
+    description = 'Creates the complex-types table in the memory catalog of the Trino of trino.northwind.url.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.trino.BuildNorthwind'
+    ['url', 'user', 'password'].each { key ->
+        def property = "trino.northwind.$key".toString()
+        if (project.hasProperty(property)) {
+            systemProperty property, project.property(property)
+        }
+    }
+    inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
+    args file(scripts).path
+}

@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 class ScriptTest {
 
     private static final List<String> DIALECTS =
-            List.of("postgresql", "mariadb", "oracle", "mssql", "snowflake", "sqlite");
+            List.of("postgresql", "mariadb", "oracle", "mssql", "snowflake", "sqlite", "trino");
 
     @Test
     void statementsAreCutAtSemicolons() {
@@ -97,7 +97,8 @@ class ScriptTest {
                 }
             }
         }
-        // 19 each for postgresql, mariadb, oracle, mssql; 5 for snowflake; 17 for sqlite
-        assertEquals(19 * 4 + 5 + 17, scripts);
+        // 19 each for postgresql, mariadb, oracle, mssql; 5 for snowflake; 17 for sqlite; 1 for
+        // trino
+        assertEquals(19 * 4 + 5 + 17 + 1, scripts);
     }
 }
