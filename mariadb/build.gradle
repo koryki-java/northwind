@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+description = 'The Northwind database for MariaDB: DDL, per-table data scripts, constraints, and the ' +
+        'builder that loads them into a running server. Not published; run from a checkout.'
+
+sourceSets {
+    builder
+}
+
+dependencies {
+    builderImplementation project(':loader')
+    builderRuntimeOnly libs.mariadb
+}
+
+def scripts = 'src/main/resources/ai/koryki/mariadb/databases/northwind/db'
+
+// ./gradlew :mariadb:createDatabase
+//
+// Drops and recreates every Northwind table in the database that mariadb.northwind.url points at.
+// url, user and password come from ~/.gradle/gradle.properties, as for the koryki core test suites.
+tasks.register('createDatabase', JavaExec) {
+    group = 'application'
+    description = 'Drops and recreates the Northwind tables in the MariaDB database of mariadb.northwind.url.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.mariadb.BuildNorthwind'
+    ['url', 'user', 'password'].each { key ->
+        def property = "mariadb.northwind.$key".toString()
+        if (project.hasProperty(property)) {
+            systemProperty property, project.property(property)
+        }
+    }
+    inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
+    args file(scripts).path
+}

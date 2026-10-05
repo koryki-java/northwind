@@ -1,0 +1,3 @@
+Nr : INTEGER
+Tags : ARRAY(TEXT)
+Items : ARRAY(STRUCT(sku:TEXT,qty:INTEGER,price:DECIMAL,opts:ARRAY(TEXT)))

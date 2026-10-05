@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here. 
 
+## [unreleased]
+
+### Added
+
+- `check_complex` in the DuckDB database: one column per shape of ARRAY, STRUCT, MAP and JSON,
+  nested up to four levels, three rows (full, empty or NULL containers, NULL elements). Catalog
+  `duckdb/databases/complex` and eight fixture queries with their goldens.
+- The database builders of the other dialects moved here from `koryki-java/core`: modules
+  `postgresql`, `mariadb`, `oracle`, `mssql`, `snowflake` and `sqlite` hold the scripts and a
+  `createDatabase` task each, `loader` the shared script splitter and connection. A schema change no
+  longer needs a release of `core`.
+- `koryki-northwind-sqlite`: the SQLite database, built from the scripts when the artifact is built.
+  `core` no longer carries a committed `northwind.sqlite`.
+
 ## [0.1.2] - 2026-09-22
 
 ### Changed
