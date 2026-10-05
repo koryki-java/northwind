@@ -12,6 +12,9 @@
 --   MAP           -> none: jsonb, so a map is a JSON object here and its keys are text.
 --   JSON          -> jsonb. deep, a list of maps, is jsonb as a whole for the same reason.
 
+DROP VIEW IF EXISTS check_complex_tags;
+DROP VIEW IF EXISTS check_complex_items;
+DROP VIEW IF EXISTS check_complex_events;
 DROP TABLE IF EXISTS check_complex;
 DROP TYPE IF EXISTS cx_dims, cx_address, cx_geo, cx_item, cx_event, cx_odd;
 
@@ -93,3 +96,18 @@ INSERT INTO check_complex VALUES (
     '[1, 2, 3]'::jsonb,
     ROW(NULL, NULL)::cx_odd
 );
+
+-- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of
+-- core generates them): the key of the row, the position in the list from 1, and a column for each field
+-- of the element, or "value". CROSS JOIN LATERAL unnest ... WITH ORDINALITY.
+CREATE OR REPLACE VIEW check_complex_tags AS
+SELECT t.nr, u.ordinal, u.value
+FROM check_complex t CROSS JOIN LATERAL unnest(t.tags) WITH ORDINALITY AS u(value, ordinal);
+
+CREATE OR REPLACE VIEW check_complex_items AS
+SELECT t.nr, u.ordinal, u.sku, u.qty, u.price, u.opts
+FROM check_complex t CROSS JOIN LATERAL unnest(t.items) WITH ORDINALITY AS u(sku, qty, price, opts, ordinal);
+
+CREATE OR REPLACE VIEW check_complex_events AS
+SELECT t.nr, u.ordinal, u.ts, u.day
+FROM check_complex t CROSS JOIN LATERAL unnest(t.events) WITH ORDINALITY AS u(ts, day, ordinal);

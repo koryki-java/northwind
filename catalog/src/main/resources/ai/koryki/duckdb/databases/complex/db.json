@@ -176,6 +176,173 @@
           "pkPos" : 0
         }
       ]
+    },
+    {
+      "name" : "check_complex_tags",
+      "label" : "Check Complex Tags",
+      "comment" : null,
+      "description" : "One row per element of the list check_complex.tags, with its position in it.",
+      "columns" : [
+        {
+          "name" : "nr",
+          "label" : "Nr",
+          "comment" : null,
+          "description" : "Key of the row the element belongs to",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "SMALLINT",
+          "nullable" : false,
+          "pkPos" : 1
+        },
+        {
+          "name" : "ordinal",
+          "label" : "Ordinal",
+          "comment" : null,
+          "description" : "Position of the element in the list, from 1",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "INTEGER",
+          "nullable" : false,
+          "pkPos" : 2
+        },
+        {
+          "name" : "value",
+          "label" : "Value",
+          "comment" : null,
+          "description" : "The element",
+          "typeFamily" : "TEXT",
+          "typeEncoding" : null,
+          "dialectType" : "VARCHAR",
+          "nullable" : true,
+          "pkPos" : 0
+        }
+      ]
+    },
+    {
+      "name" : "check_complex_items",
+      "label" : "Check Complex Items",
+      "comment" : null,
+      "description" : "One row per element of the list check_complex.items, with its position in it.",
+      "columns" : [
+        {
+          "name" : "nr",
+          "label" : "Nr",
+          "comment" : null,
+          "description" : "Key of the row the element belongs to",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "SMALLINT",
+          "nullable" : false,
+          "pkPos" : 1
+        },
+        {
+          "name" : "ordinal",
+          "label" : "Ordinal",
+          "comment" : null,
+          "description" : "Position of the element in the list, from 1",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "INTEGER",
+          "nullable" : false,
+          "pkPos" : 2
+        },
+        {
+          "name" : "sku",
+          "label" : "Sku",
+          "comment" : null,
+          "description" : "The field sku of the element",
+          "typeFamily" : "TEXT",
+          "typeEncoding" : null,
+          "dialectType" : "VARCHAR",
+          "nullable" : true,
+          "pkPos" : 0
+        },
+        {
+          "name" : "qty",
+          "label" : "Qty",
+          "comment" : null,
+          "description" : "The field qty of the element",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "INTEGER",
+          "nullable" : true,
+          "pkPos" : 0
+        },
+        {
+          "name" : "price",
+          "label" : "Price",
+          "comment" : null,
+          "description" : "The field price of the element",
+          "typeFamily" : "DECIMAL",
+          "typeEncoding" : null,
+          "dialectType" : "DECIMAL(10,2)",
+          "nullable" : true,
+          "pkPos" : 0
+        },
+        {
+          "name" : "opts",
+          "label" : "Opts",
+          "comment" : null,
+          "description" : "The field opts of the element",
+          "typeFamily" : "ARRAY",
+          "typeEncoding" : null,
+          "dialectType" : "VARCHAR[]",
+          "nullable" : true,
+          "pkPos" : 0
+        }
+      ]
+    },
+    {
+      "name" : "check_complex_events",
+      "label" : "Check Complex Events",
+      "comment" : null,
+      "description" : "One row per element of the list check_complex.events, with its position in it.",
+      "columns" : [
+        {
+          "name" : "nr",
+          "label" : "Nr",
+          "comment" : null,
+          "description" : "Key of the row the element belongs to",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "SMALLINT",
+          "nullable" : false,
+          "pkPos" : 1
+        },
+        {
+          "name" : "ordinal",
+          "label" : "Ordinal",
+          "comment" : null,
+          "description" : "Position of the element in the list, from 1",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "INTEGER",
+          "nullable" : false,
+          "pkPos" : 2
+        },
+        {
+          "name" : "ts",
+          "label" : "Ts",
+          "comment" : null,
+          "description" : "The field ts of the element",
+          "typeFamily" : "TIMESTAMP",
+          "typeEncoding" : null,
+          "dialectType" : "TIMESTAMP",
+          "nullable" : true,
+          "pkPos" : 0
+        },
+        {
+          "name" : "day",
+          "label" : "Day",
+          "comment" : null,
+          "description" : "The field day of the element",
+          "typeFamily" : "DATE",
+          "typeEncoding" : null,
+          "dialectType" : "DATE",
+          "nullable" : true,
+          "pkPos" : 0
+        }
+      ]
     }
   ],
   "relations" : [
@@ -186,6 +353,48 @@
       "startTable" : "check_complex",
       "endTable" : "check_complex",
       "symmetric" : true,
+      "startColumns" : [
+        "nr"
+      ],
+      "endColumns" : [
+        "nr"
+      ]
+    },
+    {
+      "name" : "tags_of_check_complex",
+      "comment" : "the elements of the list tags",
+      "description" : null,
+      "startTable" : "check_complex_tags",
+      "endTable" : "check_complex",
+      "symmetric" : false,
+      "startColumns" : [
+        "nr"
+      ],
+      "endColumns" : [
+        "nr"
+      ]
+    },
+    {
+      "name" : "items_of_check_complex",
+      "comment" : "the elements of the list items",
+      "description" : null,
+      "startTable" : "check_complex_items",
+      "endTable" : "check_complex",
+      "symmetric" : false,
+      "startColumns" : [
+        "nr"
+      ],
+      "endColumns" : [
+        "nr"
+      ]
+    },
+    {
+      "name" : "events_of_check_complex",
+      "comment" : "the elements of the list events",
+      "description" : null,
+      "startTable" : "check_complex_events",
+      "endTable" : "check_complex",
+      "symmetric" : false,
       "startColumns" : [
         "nr"
       ],

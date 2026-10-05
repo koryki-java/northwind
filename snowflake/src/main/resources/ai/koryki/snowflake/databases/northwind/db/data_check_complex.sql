@@ -9,6 +9,9 @@
 -- driver as JSON text. OBJECT_CONSTRUCT_KEEP_NULL: plain OBJECT_CONSTRUCT would drop the NULL fields
 -- the rows are meant to contain.
 
+DROP VIEW IF EXISTS check_complex_tags;
+DROP VIEW IF EXISTS check_complex_items;
+DROP VIEW IF EXISTS check_complex_events;
 DROP TABLE IF EXISTS check_complex;
 
 CREATE TABLE check_complex (
@@ -83,3 +86,18 @@ SELECT
     (ARRAY_CONSTRUCT(OBJECT_CONSTRUCT_KEEP_NULL('m', OBJECT_CONSTRUCT_KEEP_NULL('a', NULL, 'b', NULL))))::ARRAY(MAP(VARCHAR, OBJECT(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR))))),
     PARSE_JSON('[1, 2, 3]'),
     (OBJECT_CONSTRUCT_KEEP_NULL('Odd Name', NULL, 'x', NULL))::OBJECT("Odd Name" INTEGER, x INTEGER);
+
+-- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of
+-- core generates them): the key of the row, the position in the list from 1, and a column for each field
+-- of the element, or "value". LATERAL FLATTEN.
+CREATE OR REPLACE VIEW check_complex_tags AS
+SELECT t.nr, f.index + 1 AS ordinal, f.value::VARCHAR AS value
+FROM check_complex t, LATERAL FLATTEN(INPUT => t.tags) f;
+
+CREATE OR REPLACE VIEW check_complex_items AS
+SELECT t.nr, f.index + 1 AS ordinal, f.value:sku::VARCHAR AS sku, f.value:qty::INTEGER AS qty, f.value:price::NUMBER(10, 2) AS price, f.value:opts::ARRAY(VARCHAR) AS opts
+FROM check_complex t, LATERAL FLATTEN(INPUT => t.items) f;
+
+CREATE OR REPLACE VIEW check_complex_events AS
+SELECT t.nr, f.index + 1 AS ordinal, f.value:ts::TIMESTAMP_NTZ AS ts, f.value:day::DATE AS day
+FROM check_complex t, LATERAL FLATTEN(INPUT => t.events) f;

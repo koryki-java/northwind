@@ -101,6 +101,108 @@
           "description": "Composite type cx_odd with a mixed-case field name that needs quoting"
         }
       ]
+    },
+    {
+      "name": "check_complex_tags",
+      "label": "Check Complex Tags",
+      "comment": null,
+      "description": "One row per element of the list check_complex.tags, with its position in it.",
+      "attributes": [
+        {
+          "name": "nr",
+          "label": "Nr",
+          "comment": null,
+          "description": "Key of the row the element belongs to"
+        },
+        {
+          "name": "ordinal",
+          "label": "Ordinal",
+          "comment": null,
+          "description": "Position of the element in the list, from 1"
+        },
+        {
+          "name": "value",
+          "label": "Value",
+          "comment": null,
+          "description": "The element"
+        }
+      ]
+    },
+    {
+      "name": "check_complex_items",
+      "label": "Check Complex Items",
+      "comment": null,
+      "description": "One row per element of the list check_complex.items, with its position in it.",
+      "attributes": [
+        {
+          "name": "nr",
+          "label": "Nr",
+          "comment": null,
+          "description": "Key of the row the element belongs to"
+        },
+        {
+          "name": "ordinal",
+          "label": "Ordinal",
+          "comment": null,
+          "description": "Position of the element in the list, from 1"
+        },
+        {
+          "name": "sku",
+          "label": "Sku",
+          "comment": null,
+          "description": "The field sku of the element"
+        },
+        {
+          "name": "qty",
+          "label": "Qty",
+          "comment": null,
+          "description": "The field qty of the element"
+        },
+        {
+          "name": "price",
+          "label": "Price",
+          "comment": null,
+          "description": "The field price of the element"
+        },
+        {
+          "name": "opts",
+          "label": "Opts",
+          "comment": null,
+          "description": "The field opts of the element"
+        }
+      ]
+    },
+    {
+      "name": "check_complex_events",
+      "label": "Check Complex Events",
+      "comment": null,
+      "description": "One row per element of the list check_complex.events, with its position in it.",
+      "attributes": [
+        {
+          "name": "nr",
+          "label": "Nr",
+          "comment": null,
+          "description": "Key of the row the element belongs to"
+        },
+        {
+          "name": "ordinal",
+          "label": "Ordinal",
+          "comment": null,
+          "description": "Position of the element in the list, from 1"
+        },
+        {
+          "name": "ts",
+          "label": "Ts",
+          "comment": null,
+          "description": "The field ts of the element"
+        },
+        {
+          "name": "day",
+          "label": "Day",
+          "comment": null,
+          "description": "The field day of the element"
+        }
+      ]
     }
   ],
   "links": [
@@ -110,6 +212,30 @@
       "description": null,
       "relations": [
         "pk_check"
+      ]
+    },
+    {
+      "name": "tags_of_check_complex",
+      "comment": "the elements of the list tags of a row",
+      "description": null,
+      "relations": [
+        "tags_of_check_complex"
+      ]
+    },
+    {
+      "name": "items_of_check_complex",
+      "comment": "the elements of the list items of a row",
+      "description": null,
+      "relations": [
+        "items_of_check_complex"
+      ]
+    },
+    {
+      "name": "events_of_check_complex",
+      "comment": "the elements of the list events of a row",
+      "description": null,
+      "relations": [
+        "events_of_check_complex"
       ]
     }
   ]

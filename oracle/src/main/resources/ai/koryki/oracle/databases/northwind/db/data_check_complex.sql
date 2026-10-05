@@ -14,6 +14,9 @@
 --                    maps, is JSON as a whole for the same reason.
 --   JSON          -> the native JSON type of 21c and later.
 
+DROP VIEW IF EXISTS check_complex_tags;
+DROP VIEW IF EXISTS check_complex_items;
+DROP VIEW IF EXISTS check_complex_events;
 DROP TABLE IF EXISTS check_complex PURGE;
 DROP TYPE IF EXISTS cx_matrix FORCE;
 DROP TYPE IF EXISTS cx_dbl_list FORCE;
@@ -58,7 +61,7 @@ CREATE TABLE check_complex (
     doc      JSON,              -- JSON: paths count from 0
     odd      cx_odd             -- quoted, mixed-case attribute name
 )
-NESTED TABLE items STORE AS check_complex_items;
+NESTED TABLE items STORE AS check_complex_items_store;
 
 INSERT INTO check_complex VALUES (
     1,
@@ -113,3 +116,18 @@ INSERT INTO check_complex VALUES (
     JSON('[1, 2, 3]'),
     cx_odd(NULL, NULL)
 );
+
+-- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of
+-- core generates them): the key of the row, the position in the list from 1, and a column for each field
+-- of the element, or "value". TABLE() with ROW_NUMBER over ROWNUM for the position.
+CREATE OR REPLACE VIEW check_complex_tags AS
+SELECT t.nr, ROW_NUMBER() OVER (PARTITION BY t.nr ORDER BY ROWNUM) AS ordinal, u.COLUMN_VALUE AS value
+FROM check_complex t, TABLE(t.tags) u;
+
+CREATE OR REPLACE VIEW check_complex_items AS
+SELECT t.nr, ROW_NUMBER() OVER (PARTITION BY t.nr ORDER BY ROWNUM) AS ordinal, u.sku AS sku, u.qty AS qty, u.price AS price, u.opts AS opts
+FROM check_complex t, TABLE(t.items) u;
+
+CREATE OR REPLACE VIEW check_complex_events AS
+SELECT t.nr, ROW_NUMBER() OVER (PARTITION BY t.nr ORDER BY ROWNUM) AS ordinal, u.ts AS ts, u.day AS day
+FROM check_complex t, TABLE(t.events) u;
