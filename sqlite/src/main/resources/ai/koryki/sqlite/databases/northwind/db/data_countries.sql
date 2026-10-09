@@ -12,7 +12,7 @@ CREATE TABLE countries (
 );
 
 --
--- Countries lookup for map visualisations: one row per country appearing in
+-- Countries lookup for map visualiations: one row per country appearing in
 -- customers/suppliers/employees country or orders ship_country.
 -- latitude/longitude are label-point centroids; geometry is a simplified
 -- GeoJSON (Multi)Polygon (derived from Natural Earth 1:110m public-domain

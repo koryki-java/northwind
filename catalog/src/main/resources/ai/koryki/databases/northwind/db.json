@@ -1087,7 +1087,7 @@
   }, {
     "name" : "countries",
     "label" : "Country",
-    "comment" : "Lookup of the countries referenced by customer, supplier, employee and order shipping addresses, with geographic coordinates and outline for map visualisations.",
+    "comment" : "Lookup of the countries referenced by customer, supplier, employee and order shipping addresses, with geographic coordinates and outline for map visualizations.",
     "description" : null,
     "columns" : [ {
       "name" : "country_name",
