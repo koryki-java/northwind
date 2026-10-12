@@ -29,31 +29,35 @@
           "typeFamily" : "JSON",
           "typeEncoding" : null,
           "dialectType" : "JSON",
-          "nested" : [
+          "fields" : [
             {
-              "path" : ".n",
-              "typeFamily" : "INTEGER",
-              "typeEncoding" : null
+              "name" : "n",
+              "typeFamily" : "INTEGER"
             },
             {
-              "path" : ".a.b[]",
-              "typeFamily" : "INTEGER",
-              "typeEncoding" : null
+              "name" : "a",
+              "typeFamily" : "STRUCT",
+              "fields" : [
+                {
+                  "name" : "b",
+                  "typeFamily" : "ARRAY",
+                  "element" : {
+                    "typeFamily" : "INTEGER"
+                  }
+                }
+              ]
             },
             {
-              "path" : ".s",
-              "typeFamily" : "TEXT",
-              "typeEncoding" : null
+              "name" : "s",
+              "typeFamily" : "TEXT"
             },
             {
-              "path" : ".b",
-              "typeFamily" : "BOOLEAN",
-              "typeEncoding" : null
+              "name" : "b",
+              "typeFamily" : "BOOLEAN"
             },
             {
-              "path" : ".d",
-              "typeFamily" : "DECIMAL",
-              "typeEncoding" : null
+              "name" : "d",
+              "typeFamily" : "DECIMAL"
             }
           ],
           "nullable" : true,

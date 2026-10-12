@@ -29,6 +29,10 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "VARCHAR[]",
+          "element" : {
+            "typeFamily" : "TEXT",
+            "dialectType" : "VARCHAR"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -40,6 +44,10 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "INTEGER[]",
+          "element" : {
+            "typeFamily" : "INTEGER",
+            "dialectType" : "INTEGER"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -51,6 +59,11 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "DOUBLE[3]",
+          "element" : {
+            "typeFamily" : "FLOAT",
+            "dialectType" : "DOUBLE"
+          },
+          "length" : 3,
           "nullable" : true,
           "pkPos" : 0
         },
@@ -62,6 +75,15 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "DOUBLE[3][2]",
+          "element" : {
+            "typeFamily" : "ARRAY",
+            "element" : {
+              "typeFamily" : "FLOAT",
+              "dialectType" : "DOUBLE"
+            },
+            "length" : 3
+          },
+          "length" : 2,
           "nullable" : true,
           "pkPos" : 0
         },
@@ -73,6 +95,18 @@
           "typeFamily" : "STRUCT",
           "typeEncoding" : null,
           "dialectType" : "STRUCT(w DOUBLE, h DOUBLE)",
+          "fields" : [
+            {
+              "name" : "w",
+              "typeFamily" : "FLOAT",
+              "dialectType" : "DOUBLE"
+            },
+            {
+              "name" : "h",
+              "typeFamily" : "FLOAT",
+              "dialectType" : "DOUBLE"
+            }
+          ],
           "nullable" : true,
           "pkPos" : 0
         },
@@ -84,6 +118,37 @@
           "typeFamily" : "STRUCT",
           "typeEncoding" : null,
           "dialectType" : "STRUCT(street VARCHAR, geo STRUCT(lat DOUBLE, lon DOUBLE), phones VARCHAR[])",
+          "fields" : [
+            {
+              "name" : "street",
+              "typeFamily" : "TEXT",
+              "dialectType" : "VARCHAR"
+            },
+            {
+              "name" : "geo",
+              "typeFamily" : "STRUCT",
+              "fields" : [
+                {
+                  "name" : "lat",
+                  "typeFamily" : "FLOAT",
+                  "dialectType" : "DOUBLE"
+                },
+                {
+                  "name" : "lon",
+                  "typeFamily" : "FLOAT",
+                  "dialectType" : "DOUBLE"
+                }
+              ]
+            },
+            {
+              "name" : "phones",
+              "typeFamily" : "ARRAY",
+              "element" : {
+                "typeFamily" : "TEXT",
+                "dialectType" : "VARCHAR"
+              }
+            }
+          ],
           "nullable" : true,
           "pkPos" : 0
         },
@@ -95,6 +160,14 @@
           "typeFamily" : "MAP",
           "typeEncoding" : null,
           "dialectType" : "MAP(VARCHAR, VARCHAR)",
+          "key" : {
+            "typeFamily" : "TEXT",
+            "dialectType" : "VARCHAR"
+          },
+          "value" : {
+            "typeFamily" : "TEXT",
+            "dialectType" : "VARCHAR"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -106,6 +179,14 @@
           "typeFamily" : "MAP",
           "typeEncoding" : null,
           "dialectType" : "MAP(VARCHAR, INTEGER)",
+          "key" : {
+            "typeFamily" : "TEXT",
+            "dialectType" : "VARCHAR"
+          },
+          "value" : {
+            "typeFamily" : "INTEGER",
+            "dialectType" : "INTEGER"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -117,6 +198,14 @@
           "typeFamily" : "MAP",
           "typeEncoding" : null,
           "dialectType" : "MAP(INTEGER, VARCHAR)",
+          "key" : {
+            "typeFamily" : "INTEGER",
+            "dialectType" : "INTEGER"
+          },
+          "value" : {
+            "typeFamily" : "TEXT",
+            "dialectType" : "VARCHAR"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -128,6 +217,34 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "STRUCT(sku VARCHAR, qty INTEGER, price DECIMAL(10,2), opts VARCHAR[])[]",
+          "element" : {
+            "typeFamily" : "STRUCT",
+            "fields" : [
+              {
+                "name" : "sku",
+                "typeFamily" : "TEXT",
+                "dialectType" : "VARCHAR"
+              },
+              {
+                "name" : "qty",
+                "typeFamily" : "INTEGER",
+                "dialectType" : "INTEGER"
+              },
+              {
+                "name" : "price",
+                "typeFamily" : "DECIMAL",
+                "dialectType" : "DECIMAL(10,2)"
+              },
+              {
+                "name" : "opts",
+                "typeFamily" : "ARRAY",
+                "element" : {
+                  "typeFamily" : "TEXT",
+                  "dialectType" : "VARCHAR"
+                }
+              }
+            ]
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -139,6 +256,21 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "STRUCT(ts TIMESTAMP, day DATE)[]",
+          "element" : {
+            "typeFamily" : "STRUCT",
+            "fields" : [
+              {
+                "name" : "ts",
+                "typeFamily" : "TIMESTAMP",
+                "dialectType" : "TIMESTAMP"
+              },
+              {
+                "name" : "day",
+                "typeFamily" : "DATE",
+                "dialectType" : "DATE"
+              }
+            ]
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -150,6 +282,41 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "MAP(VARCHAR, STRUCT(a INTEGER[], b MAP(INTEGER, VARCHAR[])))[]",
+          "element" : {
+            "typeFamily" : "MAP",
+            "key" : {
+              "typeFamily" : "TEXT",
+              "dialectType" : "VARCHAR"
+            },
+            "value" : {
+              "typeFamily" : "STRUCT",
+              "fields" : [
+                {
+                  "name" : "a",
+                  "typeFamily" : "ARRAY",
+                  "element" : {
+                    "typeFamily" : "INTEGER",
+                    "dialectType" : "INTEGER"
+                  }
+                },
+                {
+                  "name" : "b",
+                  "typeFamily" : "MAP",
+                  "key" : {
+                    "typeFamily" : "INTEGER",
+                    "dialectType" : "INTEGER"
+                  },
+                  "value" : {
+                    "typeFamily" : "ARRAY",
+                    "element" : {
+                      "typeFamily" : "TEXT",
+                      "dialectType" : "VARCHAR"
+                    }
+                  }
+                }
+              ]
+            }
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -161,31 +328,35 @@
           "typeFamily" : "JSON",
           "typeEncoding" : null,
           "dialectType" : "JSON",
-          "nested" : [
+          "fields" : [
             {
-              "path" : ".n",
-              "typeFamily" : "INTEGER",
-              "typeEncoding" : null
+              "name" : "n",
+              "typeFamily" : "INTEGER"
             },
             {
-              "path" : ".a.b[]",
-              "typeFamily" : "INTEGER",
-              "typeEncoding" : null
+              "name" : "a",
+              "typeFamily" : "STRUCT",
+              "fields" : [
+                {
+                  "name" : "b",
+                  "typeFamily" : "ARRAY",
+                  "element" : {
+                    "typeFamily" : "INTEGER"
+                  }
+                }
+              ]
             },
             {
-              "path" : ".s",
-              "typeFamily" : "TEXT",
-              "typeEncoding" : null
+              "name" : "s",
+              "typeFamily" : "TEXT"
             },
             {
-              "path" : ".b",
-              "typeFamily" : "BOOLEAN",
-              "typeEncoding" : null
+              "name" : "b",
+              "typeFamily" : "BOOLEAN"
             },
             {
-              "path" : ".d",
-              "typeFamily" : "DECIMAL",
-              "typeEncoding" : null
+              "name" : "d",
+              "typeFamily" : "DECIMAL"
             }
           ],
           "nullable" : true,
@@ -199,6 +370,18 @@
           "typeFamily" : "STRUCT",
           "typeEncoding" : null,
           "dialectType" : "STRUCT(\"Odd Name\" INTEGER, x INTEGER)",
+          "fields" : [
+            {
+              "name" : "Odd Name",
+              "typeFamily" : "INTEGER",
+              "dialectType" : "INTEGER"
+            },
+            {
+              "name" : "x",
+              "typeFamily" : "INTEGER",
+              "dialectType" : "INTEGER"
+            }
+          ],
           "nullable" : true,
           "pkPos" : 0
         }
@@ -314,6 +497,10 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "VARCHAR[]",
+          "element" : {
+            "typeFamily" : "TEXT",
+            "dialectType" : "VARCHAR"
+          },
           "nullable" : true,
           "pkPos" : 0
         }

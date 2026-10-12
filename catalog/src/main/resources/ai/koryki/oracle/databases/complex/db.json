@@ -29,6 +29,10 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "ARRAY(VARCHAR2(100))",
+          "element" : {
+            "typeFamily" : "TEXT",
+            "dialectType" : "VARCHAR2(100)"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -40,6 +44,10 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "ARRAY(INTEGER)",
+          "element" : {
+            "typeFamily" : "INTEGER",
+            "dialectType" : "INTEGER"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -51,6 +59,10 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "ARRAY(BINARY_DOUBLE)",
+          "element" : {
+            "typeFamily" : "FLOAT",
+            "dialectType" : "BINARY_DOUBLE"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -62,6 +74,13 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "ARRAY(ARRAY(BINARY_DOUBLE))",
+          "element" : {
+            "typeFamily" : "ARRAY",
+            "element" : {
+              "typeFamily" : "FLOAT",
+              "dialectType" : "BINARY_DOUBLE"
+            }
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -73,6 +92,18 @@
           "typeFamily" : "STRUCT",
           "typeEncoding" : null,
           "dialectType" : "ROW(w BINARY_DOUBLE, h BINARY_DOUBLE)",
+          "fields" : [
+            {
+              "name" : "w",
+              "typeFamily" : "FLOAT",
+              "dialectType" : "BINARY_DOUBLE"
+            },
+            {
+              "name" : "h",
+              "typeFamily" : "FLOAT",
+              "dialectType" : "BINARY_DOUBLE"
+            }
+          ],
           "nullable" : true,
           "pkPos" : 0
         },
@@ -84,6 +115,37 @@
           "typeFamily" : "STRUCT",
           "typeEncoding" : null,
           "dialectType" : "ROW(street VARCHAR2(100), geo ROW(lat BINARY_DOUBLE, lon BINARY_DOUBLE), phones ARRAY(VARCHAR2(100)))",
+          "fields" : [
+            {
+              "name" : "street",
+              "typeFamily" : "TEXT",
+              "dialectType" : "VARCHAR2(100)"
+            },
+            {
+              "name" : "geo",
+              "typeFamily" : "STRUCT",
+              "fields" : [
+                {
+                  "name" : "lat",
+                  "typeFamily" : "FLOAT",
+                  "dialectType" : "BINARY_DOUBLE"
+                },
+                {
+                  "name" : "lon",
+                  "typeFamily" : "FLOAT",
+                  "dialectType" : "BINARY_DOUBLE"
+                }
+              ]
+            },
+            {
+              "name" : "phones",
+              "typeFamily" : "ARRAY",
+              "element" : {
+                "typeFamily" : "TEXT",
+                "dialectType" : "VARCHAR2(100)"
+              }
+            }
+          ],
           "nullable" : true,
           "pkPos" : 0
         },
@@ -128,6 +190,34 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "ARRAY(ROW(sku VARCHAR2(20), qty INTEGER, price NUMBER(10,2), opts ARRAY(VARCHAR2(100))))",
+          "element" : {
+            "typeFamily" : "STRUCT",
+            "fields" : [
+              {
+                "name" : "sku",
+                "typeFamily" : "TEXT",
+                "dialectType" : "VARCHAR2(20)"
+              },
+              {
+                "name" : "qty",
+                "typeFamily" : "INTEGER",
+                "dialectType" : "INTEGER"
+              },
+              {
+                "name" : "price",
+                "typeFamily" : "DECIMAL",
+                "dialectType" : "NUMBER(10,2)"
+              },
+              {
+                "name" : "opts",
+                "typeFamily" : "ARRAY",
+                "element" : {
+                  "typeFamily" : "TEXT",
+                  "dialectType" : "VARCHAR2(100)"
+                }
+              }
+            ]
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -139,6 +229,21 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "ARRAY(ROW(ts TIMESTAMP, day DATE))",
+          "element" : {
+            "typeFamily" : "STRUCT",
+            "fields" : [
+              {
+                "name" : "ts",
+                "typeFamily" : "TIMESTAMP",
+                "dialectType" : "TIMESTAMP"
+              },
+              {
+                "name" : "day",
+                "typeFamily" : "DATE",
+                "dialectType" : "DATE"
+              }
+            ]
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -161,31 +266,35 @@
           "typeFamily" : "JSON",
           "typeEncoding" : null,
           "dialectType" : "JSON",
-          "nested" : [
+          "fields" : [
             {
-              "path" : ".n",
-              "typeFamily" : "INTEGER",
-              "typeEncoding" : null
+              "name" : "n",
+              "typeFamily" : "INTEGER"
             },
             {
-              "path" : ".a.b[]",
-              "typeFamily" : "INTEGER",
-              "typeEncoding" : null
+              "name" : "a",
+              "typeFamily" : "STRUCT",
+              "fields" : [
+                {
+                  "name" : "b",
+                  "typeFamily" : "ARRAY",
+                  "element" : {
+                    "typeFamily" : "INTEGER"
+                  }
+                }
+              ]
             },
             {
-              "path" : ".s",
-              "typeFamily" : "TEXT",
-              "typeEncoding" : null
+              "name" : "s",
+              "typeFamily" : "TEXT"
             },
             {
-              "path" : ".b",
-              "typeFamily" : "BOOLEAN",
-              "typeEncoding" : null
+              "name" : "b",
+              "typeFamily" : "BOOLEAN"
             },
             {
-              "path" : ".d",
-              "typeFamily" : "DECIMAL",
-              "typeEncoding" : null
+              "name" : "d",
+              "typeFamily" : "DECIMAL"
             }
           ],
           "nullable" : true,
@@ -199,6 +308,18 @@
           "typeFamily" : "STRUCT",
           "typeEncoding" : null,
           "dialectType" : "ROW(\"Odd Name\" INTEGER, x INTEGER)",
+          "fields" : [
+            {
+              "name" : "Odd Name",
+              "typeFamily" : "INTEGER",
+              "dialectType" : "INTEGER"
+            },
+            {
+              "name" : "x",
+              "typeFamily" : "INTEGER",
+              "dialectType" : "INTEGER"
+            }
+          ],
           "nullable" : true,
           "pkPos" : 0
         }
@@ -314,6 +435,10 @@
           "typeFamily" : "ARRAY",
           "typeEncoding" : null,
           "dialectType" : "VARCHAR2(100)[]",
+          "element" : {
+            "typeFamily" : "TEXT",
+            "dialectType" : "VARCHAR2(100)"
+          },
           "nullable" : true,
           "pkPos" : 0
         }
