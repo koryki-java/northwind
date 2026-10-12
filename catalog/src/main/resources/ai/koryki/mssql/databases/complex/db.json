@@ -29,6 +29,18 @@
           "typeFamily" : "JSON",
           "typeEncoding" : null,
           "dialectType" : "VARCHAR",
+          "nested" : [
+            {
+              "path" : ".n",
+              "typeFamily" : "INTEGER",
+              "typeEncoding" : null
+            },
+            {
+              "path" : ".a.b[]",
+              "typeFamily" : "INTEGER",
+              "typeEncoding" : null
+            }
+          ],
           "nullable" : true,
           "pkPos" : 0
         }
