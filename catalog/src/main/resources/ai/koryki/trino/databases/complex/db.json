@@ -171,6 +171,21 @@
               "path" : ".a.b[]",
               "typeFamily" : "INTEGER",
               "typeEncoding" : null
+            },
+            {
+              "path" : ".s",
+              "typeFamily" : "TEXT",
+              "typeEncoding" : null
+            },
+            {
+              "path" : ".b",
+              "typeFamily" : "BOOLEAN",
+              "typeEncoding" : null
+            },
+            {
+              "path" : ".d",
+              "typeFamily" : "DECIMAL",
+              "typeEncoding" : null
             }
           ],
           "nullable" : true,
