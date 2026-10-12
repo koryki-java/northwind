@@ -32,6 +32,7 @@
           "fields" : [
             {
               "name" : "n",
+              "label" : "Number",
               "typeFamily" : "INTEGER"
             },
             {
@@ -49,14 +50,17 @@
             },
             {
               "name" : "s",
+              "label" : "Text",
               "typeFamily" : "TEXT"
             },
             {
               "name" : "b",
+              "label" : "Flag",
               "typeFamily" : "BOOLEAN"
             },
             {
               "name" : "d",
+              "label" : "Amount",
               "typeFamily" : "DECIMAL"
             }
           ],

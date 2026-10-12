@@ -30,6 +30,7 @@
           "typeEncoding" : null,
           "dialectType" : "ARRAY(VARCHAR)",
           "element" : {
+            "label" : "Tag",
             "typeFamily" : "TEXT",
             "dialectType" : "VARCHAR"
           },
@@ -45,8 +46,11 @@
           "typeEncoding" : null,
           "dialectType" : "ARRAY(INTEGER)",
           "element" : {
+            "label" : "Score",
             "typeFamily" : "INTEGER",
-            "dialectType" : "INTEGER"
+            "dialectType" : "INTEGER",
+            "unit" : "1",
+            "quantity" : "count"
           },
           "nullable" : true,
           "pkPos" : 0
@@ -60,6 +64,7 @@
           "typeEncoding" : null,
           "dialectType" : "ARRAY(DOUBLE)",
           "element" : {
+            "label" : "Component",
             "typeFamily" : "FLOAT",
             "dialectType" : "DOUBLE"
           },
@@ -95,13 +100,21 @@
           "fields" : [
             {
               "name" : "w",
+              "label" : "Width",
+              "description" : "Width in metres",
               "typeFamily" : "FLOAT",
-              "dialectType" : "DOUBLE"
+              "dialectType" : "DOUBLE",
+              "unit" : "m",
+              "quantity" : "length"
             },
             {
               "name" : "h",
+              "label" : "Height",
+              "description" : "Height in metres",
               "typeFamily" : "FLOAT",
-              "dialectType" : "DOUBLE"
+              "dialectType" : "DOUBLE",
+              "unit" : "m",
+              "quantity" : "length"
             }
           ],
           "nullable" : true,
@@ -118,20 +131,26 @@
           "fields" : [
             {
               "name" : "street",
+              "label" : "Street",
               "typeFamily" : "TEXT",
               "dialectType" : "VARCHAR"
             },
             {
               "name" : "geo",
+              "label" : "Position",
               "typeFamily" : "STRUCT",
               "fields" : [
                 {
                   "name" : "lat",
+                  "label" : "Latitude",
+                  "description" : "Degrees north",
                   "typeFamily" : "FLOAT",
                   "dialectType" : "DOUBLE"
                 },
                 {
                   "name" : "lon",
+                  "label" : "Longitude",
+                  "description" : "Degrees east",
                   "typeFamily" : "FLOAT",
                   "dialectType" : "DOUBLE"
                 }
@@ -139,8 +158,10 @@
             },
             {
               "name" : "phones",
+              "label" : "Phones",
               "typeFamily" : "ARRAY",
               "element" : {
+                "label" : "Phone number",
                 "typeFamily" : "TEXT",
                 "dialectType" : "VARCHAR"
               }
@@ -162,6 +183,7 @@
             "dialectType" : "VARCHAR"
           },
           "value" : {
+            "label" : "Attribute value",
             "typeFamily" : "TEXT",
             "dialectType" : "VARCHAR"
           },
@@ -181,8 +203,11 @@
             "dialectType" : "VARCHAR"
           },
           "value" : {
+            "label" : "Count",
             "typeFamily" : "INTEGER",
-            "dialectType" : "INTEGER"
+            "dialectType" : "INTEGER",
+            "unit" : "1",
+            "quantity" : "count"
           },
           "nullable" : true,
           "pkPos" : 0
@@ -200,6 +225,7 @@
             "dialectType" : "INTEGER"
           },
           "value" : {
+            "label" : "Name",
             "typeFamily" : "TEXT",
             "dialectType" : "VARCHAR"
           },
@@ -219,23 +245,34 @@
             "fields" : [
               {
                 "name" : "sku",
+                "label" : "SKU",
+                "description" : "Article number",
                 "typeFamily" : "TEXT",
                 "dialectType" : "VARCHAR"
               },
               {
                 "name" : "qty",
+                "label" : "Quantity",
                 "typeFamily" : "INTEGER",
-                "dialectType" : "INTEGER"
+                "dialectType" : "INTEGER",
+                "unit" : "1",
+                "quantity" : "count"
               },
               {
                 "name" : "price",
+                "label" : "Unit price",
                 "typeFamily" : "DECIMAL",
-                "dialectType" : "DECIMAL(10,2)"
+                "dialectType" : "DECIMAL(10,2)",
+                "unit" : "EUR",
+                "quantity" : "money",
+                "presentation" : "DECIMALS:2"
               },
               {
                 "name" : "opts",
+                "label" : "Options",
                 "typeFamily" : "ARRAY",
                 "element" : {
+                  "label" : "Option",
                   "typeFamily" : "TEXT",
                   "dialectType" : "VARCHAR"
                 }
@@ -258,11 +295,13 @@
             "fields" : [
               {
                 "name" : "ts",
+                "label" : "Timestamp",
                 "typeFamily" : "TIMESTAMP",
                 "dialectType" : "TIMESTAMP(3)"
               },
               {
                 "name" : "day",
+                "label" : "Day",
                 "typeFamily" : "DATE",
                 "dialectType" : "DATE"
               }
@@ -328,6 +367,7 @@
           "fields" : [
             {
               "name" : "n",
+              "label" : "Number",
               "typeFamily" : "INTEGER"
             },
             {
@@ -345,14 +385,17 @@
             },
             {
               "name" : "s",
+              "label" : "Text",
               "typeFamily" : "TEXT"
             },
             {
               "name" : "b",
+              "label" : "Flag",
               "typeFamily" : "BOOLEAN"
             },
             {
               "name" : "d",
+              "label" : "Amount",
               "typeFamily" : "DECIMAL"
             }
           ],
@@ -370,11 +413,13 @@
           "fields" : [
             {
               "name" : "Odd Name",
+              "label" : "Odd name",
               "typeFamily" : "INTEGER",
               "dialectType" : "INTEGER"
             },
             {
               "name" : "x",
+              "label" : "X",
               "typeFamily" : "INTEGER",
               "dialectType" : "INTEGER"
             }
