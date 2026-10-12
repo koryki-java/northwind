@@ -4,7 +4,7 @@
 SELECT
   t.nr
 , CAST((t.doc ->> '$.n') AS INTEGER) AS n
-, (t.doc -> '$.a.b') AS inner_list
+, CAST((t.doc -> '$.a.b') AS INTEGER[]) AS inner_list
 , CAST((t.doc ->> '$.a.b[0]') AS INTEGER) AS inner_first
 , (t.doc -> '$[0]') AS array_first
 , (t.doc -> '$[#-1]') AS array_last

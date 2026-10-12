@@ -45,6 +45,50 @@
           "pkPos" : 0
         }
       ]
+    },
+    {
+      "name" : "check_complex_doc_a_b",
+      "label" : "Check Complex Doc A B",
+      "comment" : null,
+      "description" : "One row per element of the list check_complex.doc_a_b, with its position in it.",
+      "columns" : [
+        {
+          "name" : "nr",
+          "label" : "Nr",
+          "comment" : null,
+          "description" : "Key of the row the element belongs to",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "SMALLINT",
+          "nullable" : false,
+          "pkPos" : 1,
+          "namePos" : 0
+        },
+        {
+          "name" : "ordinal",
+          "label" : "Ordinal",
+          "comment" : null,
+          "description" : "Position of the element in the list, from 1",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "INTEGER",
+          "nullable" : false,
+          "pkPos" : 2,
+          "namePos" : 0
+        },
+        {
+          "name" : "value",
+          "label" : "Value",
+          "comment" : null,
+          "description" : "The element",
+          "typeFamily" : "INTEGER",
+          "typeEncoding" : null,
+          "dialectType" : "INTEGER",
+          "nullable" : true,
+          "pkPos" : 0,
+          "namePos" : 0
+        }
+      ]
     }
   ],
   "relations" : [
@@ -55,6 +99,20 @@
       "startTable" : "check_complex",
       "endTable" : "check_complex",
       "symmetric" : true,
+      "startColumns" : [
+        "nr"
+      ],
+      "endColumns" : [
+        "nr"
+      ]
+    },
+    {
+      "name" : "doc_a_b_of_check_complex",
+      "comment" : "the elements of the list doc_a_b",
+      "description" : null,
+      "startTable" : "check_complex_doc_a_b",
+      "endTable" : "check_complex",
+      "symmetric" : false,
       "startColumns" : [
         "nr"
       ],
