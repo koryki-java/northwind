@@ -178,6 +178,10 @@
           "typeFamily" : "JSON",
           "typeEncoding" : null,
           "dialectType" : "JSONB",
+          "value" : {
+            "typeFamily" : "TEXT",
+            "label" : "Attribute value"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -189,6 +193,12 @@
           "typeFamily" : "JSON",
           "typeEncoding" : null,
           "dialectType" : "JSONB",
+          "value" : {
+            "typeFamily" : "INTEGER",
+            "label" : "Count",
+            "unit" : "1",
+            "quantity" : "count"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -200,6 +210,13 @@
           "typeFamily" : "JSON",
           "typeEncoding" : null,
           "dialectType" : "JSONB",
+          "key" : {
+            "typeFamily" : "INTEGER"
+          },
+          "value" : {
+            "typeFamily" : "TEXT",
+            "label" : "Name"
+          },
           "nullable" : true,
           "pkPos" : 0
         },
@@ -289,6 +306,31 @@
           "typeFamily" : "JSON",
           "typeEncoding" : null,
           "dialectType" : "JSONB",
+          "element" : {
+            "typeFamily" : "MAP",
+            "value" : {
+              "typeFamily" : "STRUCT",
+              "fields" : [
+                {
+                  "name" : "a",
+                  "typeFamily" : "ARRAY",
+                  "element" : {
+                    "typeFamily" : "INTEGER"
+                  }
+                },
+                {
+                  "name" : "b",
+                  "typeFamily" : "MAP",
+                  "value" : {
+                    "typeFamily" : "ARRAY",
+                    "element" : {
+                      "typeFamily" : "TEXT"
+                    }
+                  }
+                }
+              ]
+            }
+          },
           "nullable" : true,
           "pkPos" : 0
         },
