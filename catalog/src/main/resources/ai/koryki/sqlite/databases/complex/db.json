@@ -1,147 +1,119 @@
 {
-  "name" : "complex",
-  "label" : null,
-  "comment" : null,
   "description" : "Demo database for complex types in SQLite: only the JSON column of the test bed, since SQLite has no array, struct or map type.",
-  "tables" : [
-    {
-      "name" : "check_complex",
-      "label" : "Check Complex",
-      "comment" : null,
-      "description" : null,
-      "columns" : [
-        {
-          "name" : "nr",
-          "label" : "Nr",
-          "comment" : null,
-          "description" : "Row identifier (primary key)",
-          "typeFamily" : "INTEGER",
-          "typeEncoding" : null,
-          "dialectType" : "SMALLINT",
-          "nullable" : false,
-          "pkPos" : 1
+  "name" : "complex",
+  "relations" : [ {
+    "endColumns" : [ "nr" ],
+    "endTable" : "check_complex",
+    "name" : "pk_check",
+    "startColumns" : [ "nr" ],
+    "startTable" : "check_complex",
+    "symmetric" : true
+  }, {
+    "comment" : "the elements of the list doc_a_b",
+    "endColumns" : [ "nr" ],
+    "endTable" : "check_complex",
+    "name" : "doc_a_b_of_check_complex",
+    "startColumns" : [ "nr" ],
+    "startTable" : "check_complex_doc_a_b",
+    "symmetric" : false
+  } ],
+  "tables" : [ {
+    "columns" : [ {
+      "concept" : {
+        "description" : "Row identifier (primary key)",
+        "dialectType" : "SMALLINT",
+        "label" : "Nr",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "nr",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "description" : "JSON document stored as text (the JSON1 functions read it); JSON paths count from 0",
+        "dialectType" : "TEXT",
+        "entries" : {
+          "n" : {
+            "dialectType" : "INTEGER",
+            "label" : "Number",
+            "typeFamily" : "INTEGER"
+          },
+          "a" : {
+            "entries" : {
+              "b" : {
+                "entries" : {
+                  "element" : "INTEGER"
+                },
+                "typeFamily" : "ARRAY"
+              }
+            },
+            "typeFamily" : "STRUCT"
+          },
+          "s" : {
+            "dialectType" : "VARCHAR",
+            "label" : "Text",
+            "typeFamily" : "TEXT"
+          },
+          "b" : {
+            "dialectType" : "BOOLEAN",
+            "label" : "Flag",
+            "typeFamily" : "BOOLEAN"
+          },
+          "d" : {
+            "dialectType" : "DECIMAL",
+            "label" : "Amount",
+            "typeFamily" : "DECIMAL"
+          }
         },
-        {
-          "name" : "doc",
-          "label" : "Document",
-          "comment" : null,
-          "description" : "JSON document stored as text (the JSON1 functions read it); JSON paths count from 0",
-          "typeFamily" : "JSON",
-          "typeEncoding" : null,
-          "dialectType" : "TEXT",
-          "fields" : [
-            {
-              "name" : "n",
-              "label" : "Number",
-              "typeFamily" : "INTEGER"
-            },
-            {
-              "name" : "a",
-              "typeFamily" : "STRUCT",
-              "fields" : [
-                {
-                  "name" : "b",
-                  "typeFamily" : "ARRAY",
-                  "element" : {
-                    "typeFamily" : "INTEGER"
-                  }
-                }
-              ]
-            },
-            {
-              "name" : "s",
-              "label" : "Text",
-              "typeFamily" : "TEXT"
-            },
-            {
-              "name" : "b",
-              "label" : "Flag",
-              "typeFamily" : "BOOLEAN"
-            },
-            {
-              "name" : "d",
-              "label" : "Amount",
-              "typeFamily" : "DECIMAL"
-            }
-          ],
-          "nullable" : true,
-          "pkPos" : 0
-        }
-      ]
-    },
-    {
-      "name" : "check_complex_doc_a_b",
-      "label" : "Check Complex Doc A B",
-      "comment" : null,
-      "description" : "One row per element of the list check_complex.doc_a_b, with its position in it.",
-      "columns" : [
-        {
-          "name" : "nr",
-          "label" : "Nr",
-          "comment" : null,
-          "description" : "Key of the row the element belongs to",
-          "typeFamily" : "INTEGER",
-          "typeEncoding" : null,
-          "dialectType" : "SMALLINT",
-          "nullable" : false,
-          "pkPos" : 1,
-          "namePos" : 0
-        },
-        {
-          "name" : "ordinal",
-          "label" : "Ordinal",
-          "comment" : null,
-          "description" : "Position of the element in the list, from 1",
-          "typeFamily" : "INTEGER",
-          "typeEncoding" : null,
-          "dialectType" : "INTEGER",
-          "nullable" : false,
-          "pkPos" : 2,
-          "namePos" : 0
-        },
-        {
-          "name" : "value",
-          "label" : "Value",
-          "comment" : null,
-          "description" : "The element",
-          "typeFamily" : "INTEGER",
-          "typeEncoding" : null,
-          "dialectType" : "INTEGER",
-          "nullable" : true,
-          "pkPos" : 0,
-          "namePos" : 0
-        }
-      ]
-    }
-  ],
-  "relations" : [
-    {
-      "name" : "pk_check",
-      "comment" : null,
-      "description" : null,
-      "startTable" : "check_complex",
-      "endTable" : "check_complex",
-      "symmetric" : true,
-      "startColumns" : [
-        "nr"
-      ],
-      "endColumns" : [
-        "nr"
-      ]
-    },
-    {
-      "name" : "doc_a_b_of_check_complex",
-      "comment" : "the elements of the list doc_a_b",
-      "description" : null,
-      "startTable" : "check_complex_doc_a_b",
-      "endTable" : "check_complex",
-      "symmetric" : false,
-      "startColumns" : [
-        "nr"
-      ],
-      "endColumns" : [
-        "nr"
-      ]
-    }
-  ]
+        "label" : "Document",
+        "typeEncoding" : "JSON",
+        "typeFamily" : "STRUCT"
+      },
+      "name" : "doc",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "label" : "Check Complex",
+    "name" : "check_complex"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "description" : "Key of the row the element belongs to",
+        "dialectType" : "SMALLINT",
+        "label" : "Nr",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "nr",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "description" : "Position of the element in the list, from 1",
+        "dialectType" : "INTEGER",
+        "label" : "Ordinal",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "ordinal",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 2
+    }, {
+      "concept" : {
+        "description" : "The element",
+        "dialectType" : "INTEGER",
+        "label" : "Value",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "value",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "description" : "One row per element of the list check_complex.doc_a_b, with its position in it.",
+    "label" : "Check Complex Doc A B",
+    "name" : "check_complex_doc_a_b"
+  } ]
 }

@@ -1,153 +1,162 @@
 {
-  "name" : "typecheck",
-  "label" : null,
-  "comment" : null,
   "description" : "Demodatabase for typechecking in mssql",
+  "name" : "typecheck",
+  "relations" : [ {
+    "endColumns" : [ "nr" ],
+    "endTable" : "check_type",
+    "name" : "pk_check",
+    "startColumns" : [ "nr" ],
+    "startTable" : "check_type",
+    "symmetric" : true
+  } ],
   "tables" : [ {
-    "name" : "check_type",
-    "label" : "Check Type",
-    "comment" : null,
-    "description" : null,
     "columns" : [ {
+      "concept" : {
+        "description" : "Row identifier (primary key)",
+        "dialectType" : "SMALLINT",
+        "label" : "Nr",
+        "typeFamily" : "INTEGER"
+      },
       "name" : "nr",
-      "label" : "Nr",
-      "comment" : null,
-      "description" : "Row identifier (primary key)",
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "SMALLINT",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 1
     }, {
+      "concept" : {
+        "description" : "2-byte signed integer (-32,768 to 32,767)",
+        "dialectType" : "SMALLINT",
+        "label" : "type_smallint",
+        "typeFamily" : "INTEGER"
+      },
       "name" : "type_smallint",
-      "label" : "type_smallint",
-      "comment" : null,
-      "description" : "2-byte signed integer (-32,768 to 32,767)",
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "SMALLINT",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "4-byte signed integer (-2^31 to 2^31-1)",
+        "dialectType" : "INT",
+        "label" : "type_integer",
+        "typeFamily" : "INTEGER"
+      },
       "name" : "type_integer",
-      "label" : "type_integer",
-      "comment" : null,
-      "description" : "4-byte signed integer (-2^31 to 2^31-1)",
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "INT",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "8-byte signed integer (-2^63 to 2^63-1)",
+        "dialectType" : "BIGINT",
+        "label" : "type_bigint",
+        "typeFamily" : "INTEGER"
+      },
       "name" : "type_bigint",
-      "label" : "type_bigint",
-      "comment" : null,
-      "description" : "8-byte signed integer (-2^63 to 2^63-1)",
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "BIGINT",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "Fixed-point exact numeric with 18 significant digits and 4 decimal places",
+        "dialectType" : "DECIMAL(18,4)",
+        "label" : "type_decimal",
+        "typeFamily" : "DECIMAL"
+      },
       "name" : "type_decimal",
-      "label" : "type_decimal",
-      "comment" : null,
-      "description" : "Fixed-point exact numeric with 18 significant digits and 4 decimal places",
-      "typeFamily" : "DECIMAL",
-      "typeEncoding" : null,
-      "dialectType" : "DECIMAL(18,4)",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "8-byte IEEE 754 double-precision float (~15 significant digits)",
+        "dialectType" : "FLOAT",
+        "label" : "type_double",
+        "typeFamily" : "FLOAT"
+      },
       "name" : "type_double",
-      "label" : "type_double",
-      "comment" : null,
-      "description" : "8-byte IEEE 754 double-precision float (~15 significant digits)",
-      "typeFamily" : "FLOAT",
-      "typeEncoding" : null,
-      "dialectType" : "FLOAT",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "4-byte IEEE 754 single-precision float (~7 significant digits); less precision than DOUBLE",
+        "dialectType" : "REAL",
+        "label" : "type_float",
+        "typeFamily" : "FLOAT"
+      },
       "name" : "type_float",
-      "label" : "type_float",
-      "comment" : null,
-      "description" : "4-byte IEEE 754 single-precision float (~7 significant digits); less precision than DOUBLE",
-      "typeFamily" : "FLOAT",
-      "typeEncoding" : null,
-      "dialectType" : "REAL",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "Logical true/false value; PostgreSQL has native BOOLEAN",
+        "dialectType" : "BIT",
+        "label" : "type_boolean",
+        "typeFamily" : "BOOLEAN"
+      },
       "name" : "type_boolean",
-      "label" : "type_boolean",
-      "comment" : null,
-      "description" : "Logical true/false value; PostgreSQL has native BOOLEAN",
-      "typeFamily" : "BOOLEAN",
-      "typeEncoding" : null,
-      "dialectType" : "BIT",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "Logical true/false value; PostgreSQL has native BOOLEAN",
+        "dialectType" : "smallint",
+        "label" : "Boolean from integer",
+        "typeEncoding" : "BOOLEAN_FROM_INTEGER",
+        "typeFamily" : "BOOLEAN"
+      },
       "name" : "bool_from_int",
-      "label" : "Boolean from integer",
-      "comment" : null,
-      "description" : "Logical true/false value; PostgreSQL has native BOOLEAN",
-      "typeFamily" : "BOOLEAN",
-      "typeEncoding" : "BOOLEAN_FROM_INTEGER",
-      "dialectType" : "smallint",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "Logical true/false value; PostgreSQL has native BOOLEAN",
+        "dialectType" : "char(1)",
+        "label" : "Boolean from text",
+        "typeEncoding" : "BOOLEAN_FROM_TEXT",
+        "typeFamily" : "BOOLEAN"
+      },
       "name" : "bool_from_text",
-      "label" : "Boolean from text",
-      "comment" : null,
-      "description" : "Logical true/false value; PostgreSQL has native BOOLEAN",
-      "typeFamily" : "BOOLEAN",
-      "typeEncoding" : "BOOLEAN_FROM_TEXT",
-      "dialectType" : "char(1)",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "Calendar date (year, month, day) with no time component",
+        "dialectType" : "DATE",
+        "label" : "type_date",
+        "typeFamily" : "DATE"
+      },
       "name" : "type_date",
-      "label" : "type_date",
-      "comment" : null,
-      "description" : "Calendar date (year, month, day) with no time component",
-      "typeFamily" : "DATE",
-      "typeEncoding" : null,
-      "dialectType" : "DATE",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "Time of day (hour, minute, second, microsecond) with no date component",
+        "dialectType" : "TIME",
+        "label" : "type_time",
+        "typeFamily" : "TIME"
+      },
       "name" : "type_time",
-      "label" : "type_time",
-      "comment" : null,
-      "description" : "Time of day (hour, minute, second, microsecond) with no date component",
-      "typeFamily" : "TIME",
-      "typeEncoding" : null,
-      "dialectType" : "TIME",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
     }, {
+      "concept" : {
+        "description" : "Date and time with microsecond precision; no timezone",
+        "dialectType" : "DATETIME2",
+        "label" : "type_timestamp",
+        "typeFamily" : "TIMESTAMP"
+      },
       "name" : "type_timestamp",
-      "label" : "type_timestamp",
-      "comment" : null,
-      "description" : "Date and time with microsecond precision; no timezone",
-      "typeFamily" : "TIMESTAMP",
-      "typeEncoding" : null,
-      "dialectType" : "DATETIME2",
+      "namePos" : 0,
       "nullable" : false,
       "pkPos" : 0
-    } ]
-  } ],
-  "relations" : [ {
-    "name" : "pk_check",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "check_type",
-    "endTable" : "check_type",
-    "symmetric" : true,
-    "startColumns" : [ "nr" ],
-    "endColumns" : [ "nr" ]
+    } ],
+    "label" : "Check Type",
+    "name" : "check_type"
   } ]
 }
