@@ -20,7 +20,21 @@
           "name": "doc",
           "label": "Document",
           "comment": null,
-          "description": "JSON document (a LONGTEXT with a validity check); JSON paths count from 0"
+          "description": "JSON document (a LONGTEXT with a validity check); JSON paths count from 0",
+          "members": {
+            "n": {
+              "label": "Number"
+            },
+            "s": {
+              "label": "Text"
+            },
+            "b": {
+              "label": "Flag"
+            },
+            "d": {
+              "label": "Amount"
+            }
+          }
         }
       ]
     },

@@ -43,6 +43,7 @@ class NorthwindSqliteDatabaseTest {
             List.of(
                     "categories",
                     "check_complex",
+                    "check_shared",
                     "countries",
                     "customer_customer_demo",
                     "customer_demographics",

@@ -26,7 +26,7 @@
           "name": "time_sec_from_midnight",
           "label": "Time in seconds from midnight",
           "comment": null,
-          "description": ""
+          "description": "TIME encoded seconds from Midnight"
         },
         {
           "name": "ts_new_york",
