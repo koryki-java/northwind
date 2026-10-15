@@ -4,8 +4,32 @@ All notable changes to this project are documented here.
 
 ## [unreleased]
 
+### Changed
+
+- **Breaking:** every `db.json` says what a column is, and what it means, in a `concept` of the
+  column (`typeFamily`, `typeEncoding`, `dialectType`, `label`, `comment`, `description`, `unit`,
+  `quantity`, `presentation`), or in a `conceptRef` naming a concept of the schema's `concepts`.
+  The same fields directly on a column are gone. A reader of the old layout, such as `koryki-core`
+  0.2.1 or the released `koryki-derivation`, no longer reads these catalogs; `koryki-core` and
+  `koryki-derivation` have to be released with them.
+- A concept of a container (ARRAY, STRUCT, MAP, JSON with a declared shape) names its parts in
+  `entries`, each the spelling of a type, the name of a concept, or a concept of its own.
+- The complex and temporal models say in their own words everything their schema says: the
+  attributes carry the wording of the parts of nested columns as `members`, and
+  `time_sec_from_midnight` its description. The German Northwind model has the two labels it left
+  out (`shippers.company_name`, `suppliers.phone`).
+
 ### Added
 
+- `check_shared` on every dialect: a table whose columns `home` and `work`, and the elements of
+  `route`, are one concept `point`, defined once in the `concepts` of the schema and worded once in a
+  `notions` entry of the model, in English and German. DuckDB, PostgreSQL (composite type), Oracle
+  (object type and VARRAY), Trino and Snowflake store it natively, MariaDB, SQL Server and SQLite as
+  JSON. Catalog `<dialect>/databases/shared`, script `data_check_shared.sql`, and a `createShared`
+  task for PostgreSQL, MariaDB, Oracle, SQL Server and Snowflake that creates only that table. On
+  Trino the script runs with `createDatabase`; in SQLite it is part of the built database.
+- `CatalogWordingTest` in the `catalog` module: every model leaves no word of its `db.json`
+  unsaid, for the columns, for the parts of nested columns and for the shared concepts.
 - `check_complex` in the DuckDB database: one column per shape of ARRAY, STRUCT, MAP and JSON,
   nested up to four levels, three rows (full, empty or NULL containers, NULL elements). Catalog
   `duckdb/databases/complex` and eight fixture queries with their goldens.
@@ -52,6 +76,7 @@ specification/implementation manifest attributes, JaCoCo coverage reports, and c
 Spotless (`google-java-format`, AOSP style). Releases are signed in CI with an in-memory PGP key and
 published to Maven Central via the Central Portal.
 
-[Unreleased]: https://github.com/koryki-java/northwind/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/koryki-java/northwind/compare/v0.2.1...HEAD
+[0.1.2]: https://github.com/koryki-java/northwind/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/koryki-java/northwind/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/koryki-java/northwind/releases/tag/v0.1.0
