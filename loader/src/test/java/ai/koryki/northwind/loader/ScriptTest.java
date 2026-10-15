@@ -97,8 +97,8 @@ class ScriptTest {
                 }
             }
         }
-        // 20 each for postgresql and mariadb, 19 each for oracle and mssql; 5 for snowflake; 18 for
-        // sqlite; 2 for trino (the shared bed is the twentieth, the eighteenth and the second)
-        assertEquals(20 * 2 + 19 * 2 + 5 + 18 + 2, scripts);
+        // 20 each for postgresql, mariadb and oracle, 19 for mssql; 5 for snowflake; 18 for sqlite;
+        // 2 for trino (the shared bed is the twentieth, the eighteenth and the second)
+        assertEquals(20 * 3 + 19 + 5 + 18 + 2, scripts);
     }
 }
