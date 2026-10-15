@@ -33,7 +33,7 @@
     "name" : "customers",
     "label" : "Customer",
     "comment" : "Contains information about the company's customers, with fields like company_name, contact_name.",
-    "description" : "The companies Northwind sells to. One row per company, not per person — the contact fields describe a single named person at that company. Country and city are free text and are matched by name against the countries lookup for map visualisations.",
+    "description" : "The companies Northwind sells to. One row per company, not per person — the contact fields describe a single named person at that company. Country and city are free text and are matched by name against the countries lookup for map visualizations.",
     "attributes" : [ {
       "name" : "customer_id",
       "label" : "Id",
@@ -535,7 +535,7 @@
   }, {
     "name" : "countries",
     "label" : "Country",
-    "comment" : "Countries referenced by customer, supplier, employee and order shipping addresses, with geographic coordinates and outline for map visualisations.",
+    "comment" : "Countries referenced by customer, supplier, employee and order shipping addresses, with geographic coordinates and outline for map visualizations.",
     "description" : "Geographic lookup joined by country name, not by a foreign key — the address fields hold free text such as 'UK' or 'USA'. It supplies coordinates and outlines so results can be drawn on a map.",
     "attributes" : [ {
       "name" : "country_name",

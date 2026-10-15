@@ -56,3 +56,18 @@ VALUES (
     '[1, 2, 3]'::JSON,
     {'Odd Name': NULL, 'x': NULL}
 );
+
+-- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of
+-- core generates them): the key of the row, the position in the list from 1, and a column for each field
+-- of the element, or "value". UNNEST ... WITH ORDINALITY.
+CREATE OR REPLACE VIEW check_complex_tags AS
+SELECT t.nr, u.ordinal, u.item AS value
+FROM check_complex t, UNNEST(t.tags) WITH ORDINALITY AS u(item, ordinal);
+
+CREATE OR REPLACE VIEW check_complex_items AS
+SELECT t.nr, u.ordinal, u.item.sku AS sku, u.item.qty AS qty, u.item.price AS price, u.item.opts AS opts
+FROM check_complex t, UNNEST(t.items) WITH ORDINALITY AS u(item, ordinal);
+
+CREATE OR REPLACE VIEW check_complex_events AS
+SELECT t.nr, u.ordinal, u.item.ts AS ts, u.item.day AS day
+FROM check_complex t, UNNEST(t.events) WITH ORDINALITY AS u(item, ordinal);

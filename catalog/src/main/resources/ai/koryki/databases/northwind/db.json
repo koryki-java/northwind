@@ -1,1462 +1,1472 @@
 {
-  "name" : "northwind",
-  "label" : null,
-  "comment" : null,
   "description" : "The northwind database stores salaries for the northwind company.\nNorthwind sells products to other customer companies and buys products from supplier companies.\nNorthwind employees manage orders and ship products via shippers to customers.",
-  "tables" : [ {
-    "name" : "categories",
-    "label" : "Category",
-    "comment" : "Organizes products into different categories.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "category_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key that uniquely identifies a category.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "SMALLINT",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "category_name",
-      "label" : "Name",
-      "comment" : "Name of a category",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 1
-    }, {
-      "name" : "description",
-      "label" : "Description",
-      "comment" : "Description of a category",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "picture",
-      "label" : "Picture",
-      "comment" : "A picture to visualize the category",
-      "description" : null,
-      "typeFamily" : "BLOB",
-      "typeEncoding" : null,
-      "dialectType" : "binary large object",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "root_category_id",
-      "label" : "Root category",
-      "comment" : "Root",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 0
-    }, {
-      "name" : "super_category_id",
-      "label" : "Super",
-      "comment" : "Super category",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "customers",
-    "label" : "Customer",
-    "comment" : "Contains information about the company's customers, with fields like company_name, contact_name.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "customer_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key used to uniquely identify each customer.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "company_name",
-      "label" : "Name",
-      "comment" : "The cusomers company name",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 1
-    }, {
-      "name" : "contact_name",
-      "label" : "Contact",
-      "comment" : "Name of a contact person",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "contact_title",
-      "label" : "Title",
-      "comment" : "The title or role the contact person has in the customer company (e.g. Owner, Sales Representative, Marketing Manager).",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "address",
-      "label" : "Address",
-      "comment" : "The first address line of the customer.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "city",
-      "label" : "City",
-      "comment" : "The city of the customer address.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "region",
-      "label" : "Region",
-      "comment" : "The region of the customer address.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "postal_code",
-      "label" : "Postal code",
-      "comment" : "The postal code of the customer address.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "country",
-      "label" : "Country",
-      "comment" : "The country of the customer address.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "phone",
-      "label" : "Phone",
-      "comment" : "The telephone number to call the contact person.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "mail",
-      "label" : "Mail",
-      "comment" : "Mail of the contact person.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "customer_customer_demo",
-    "label" : "Customer-Demo",
-    "comment" : "Stores the relationships between customer and costomer demographics.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "customer_id",
-      "label" : "Customer Id",
-      "comment" : "A foreign key identifying the customer.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "customer_type_id",
-      "label" : "Type-Id",
-      "comment" : "A foreign key identifying the customer demographic.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 2
-    } ]
-  }, {
-    "name" : "customer_demographics",
-    "label" : "Customer Demographics",
-    "comment" : "A customer democraphics describes customer segments, e.g. Retail, Wholesale, Corporate, etc.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "customer_type_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key used to uniquely identify each customer demographic.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "customer_desc",
-      "label" : "Description",
-      "comment" : "A description to the customer demographic.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0,
-      "namePos" : 1
-    } ]
-  }, {
-    "name" : "employees",
-    "label" : "Employee",
-    "comment" : "Stores employee information, such as their names and titles.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "employee_id",
-      "label" : null,
-      "comment" : "A surrogate primary key used to uniquely identify each employee.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "last_name",
-      "label" : "Last Name",
-      "comment" : "Last name of employee.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 1
-    }, {
-      "name" : "first_name",
-      "label" : "First Name",
-      "comment" : "First name of employee.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 2
-    }, {
-      "name" : "title",
-      "label" : "Title",
-      "comment" : "The title or role the employee has in the company",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "title_of_courtesy",
-      "label" : "Courtesy",
-      "comment" : "The employees courtesy",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "birth_date",
-      "label" : "Date of Birth",
-      "comment" : "The employees date of birth.",
-      "description" : null,
-      "typeFamily" : "DATE",
-      "typeEncoding" : null,
-      "dialectType" : "date",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "hire_date",
-      "label" : "Hire Date",
-      "comment" : "The date the employee was hired.",
-      "description" : null,
-      "typeFamily" : "DATE",
-      "typeEncoding" : null,
-      "dialectType" : "date",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "working_hour_from",
-      "label" : "Workinghour from",
-      "comment" : "Workinghour from.",
-      "description" : null,
-      "typeFamily" : "TIME",
-      "typeEncoding" : null,
-      "dialectType" : "time",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "working_hour_to",
-      "label" : "Workinghour to",
-      "comment" : "Workinghour from.",
-      "description" : null,
-      "typeFamily" : "TIME",
-      "typeEncoding" : null,
-      "dialectType" : "time",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "break_minutes",
-      "label" : "Break minutes",
-      "comment" : "Break minutes.",
-      "description" : null,
-      "typeFamily" : "INTERVAL",
-      "typeEncoding" : null,
-      "dialectType" : "INTERVAL",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "address",
-      "label" : "Address",
-      "comment" : "The address line of the employee.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "city",
-      "label" : "City",
-      "comment" : "The city of the employee address",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "region",
-      "label" : "Region",
-      "comment" : "The region of the employee address.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "postal_code",
-      "label" : "Postal Code",
-      "comment" : "The postal code of the employee address.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "country",
-      "label" : "Country",
-      "comment" : "The country of the employee address",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "home_phone",
-      "label" : "Phone",
-      "comment" : "The telephone number of the employee.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "extension",
-      "label" : "Extension",
-      "comment" : "",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "photo",
-      "label" : "Phota",
-      "comment" : "The portrait photo of the employee",
-      "description" : null,
-      "typeFamily" : "BLOB",
-      "typeEncoding" : null,
-      "dialectType" : "binary large object",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "notes",
-      "label" : "Notes",
-      "comment" : "Notes to the employee",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "reports_to",
-      "label" : "Reports To",
-      "comment" : "A foreign key identifying the supervisor (employee) the employee is reporting to.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "photo_path",
-      "label" : "Path",
-      "comment" : "Path or URL to the photo",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "employee_territories",
-    "label" : "Employee-Territory",
-    "comment" : "Stores the relationships between employees and territories.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "employee_id",
-      "label" : "Employee Id",
-      "comment" : "A foreign key identifying the employee.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "territory_id",
-      "label" : "Territory Id",
-      "comment" : "A foreign key identifying the territory.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 2
-    } ]
-  }, {
-    "name" : "orders",
-    "label" : "Order",
-    "comment" : "Holds records of customer orders, including OrderID, OrderDate, and CustomerID.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "order_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key used to uniquely identify each order.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "customer_id",
-      "label" : "Customer Id",
-      "comment" : "A foreign key identifying the customer.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "employee_id",
-      "label" : "Employee Id",
-      "comment" : "A foreign key identifying the employee.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "order_date",
-      "label" : "Order Date",
-      "comment" : null,
-      "description" : null,
-      "typeFamily" : "DATE",
-      "typeEncoding" : null,
-      "dialectType" : "date",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "required_date",
-      "label" : "Required Date",
-      "comment" : "The date the customer requires the order",
-      "description" : null,
-      "typeFamily" : "DATE",
-      "typeEncoding" : null,
-      "dialectType" : "date",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "shipped_date",
-      "label" : "Shipped Date",
-      "comment" : "The date the order is shipped.",
-      "description" : null,
-      "typeFamily" : "DATE",
-      "typeEncoding" : null,
-      "dialectType" : "date",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "delivered_date",
-      "label" : "Delivered Date",
-      "comment" : "The date the order was delivered.",
-      "description" : null,
-      "typeFamily" : "TIMESTAMP",
-      "typeEncoding" : null,
-      "dialectType" : "timestamp",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "ship_via",
-      "label" : "Via",
-      "comment" : "A foreign key identifying the shipper.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "freight",
-      "label" : "Freight",
-      "comment" : "The shipping freight.",
-      "description" : null,
-      "typeFamily" : "DECIMAL",
-      "typeEncoding" : null,
-      "unit" : "EUR",
-      "dialectType" : "numeric",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "ship_name",
-      "label" : "Ship Name",
-      "comment" : "The name of the company to ship the order to.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "ship_address",
-      "label" : "Ship Address",
-      "comment" : "The address of the company the ship goes to.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "ship_city",
-      "label" : "Ship City",
-      "comment" : "The city of the company the ship goes to.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "ship_region",
-      "label" : "Ship Region",
-      "comment" : "The region of the company the ship goes to.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "ship_postal_code",
-      "label" : "Ship Postal Code",
-      "comment" : null,
-      "description" : "The postal code of the company the ship goes to.",
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "ship_country",
-      "label" : "Ship Country",
-      "comment" : null,
-      "description" : "The country of the company the ship goes to.",
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "order_details",
-    "label" : "Order Details",
-    "comment" : "Links orders to products, detailing which products are included in each order.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "order_id",
-      "label" : "Order Id",
-      "comment" : "A foreign key identifying the order.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "product_id",
-      "label" : "Product Id",
-      "comment" : "A foreign key identifying the product.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 2
-    }, {
-      "name" : "unit_price",
-      "label" : "Unit Price",
-      "comment" : "The unit price valid to the order.",
-      "description" : null,
-      "typeFamily" : "DECIMAL",
-      "typeEncoding" : null,
-      "unit" : "EUR",
-      "quantity" : "unit-price",
-      "dialectType" : "numeric",
-      "nullable" : false,
-      "pkPos" : 0
-    }, {
-      "name" : "quantity",
-      "label" : "Quantity",
-      "comment" : "The quantity of the order.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "quantity" : "count",
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 0
-    }, {
-      "name" : "discount",
-      "label" : "Discount",
-      "comment" : "The discount to the order.",
-      "description" : null,
-      "typeFamily" : "DECIMAL",
-      "typeEncoding" : null,
-      "quantity" : "ratio",
-      "dialectType" : "numeric",
-      "nullable" : false,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "products",
-    "label" : "Product",
-    "comment" : "Stores details about products, including name, supplier, category, and unit price.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "product_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key used to uniquely identify each product.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "product_name",
-      "label" : "Product name",
-      "comment" : "The name of the product.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 1
-    }, {
-      "name" : "supplier_id",
-      "label" : "Supplier Id",
-      "comment" : "A foreign key identifying the supplier.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "category_id",
-      "label" : "Category Id",
-      "comment" : "A foreign key identifying the category.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "quantity_per_unit",
-      "label" : "Quantity per Unit",
-      "comment" : "The quantity per unit the product is sold.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "unit_price",
-      "label" : "Unit price",
-      "comment" : "The unit price the product is sold before discount.",
-      "description" : null,
-      "typeFamily" : "DECIMAL",
-      "typeEncoding" : null,
-      "unit" : "EUR",
-      "dialectType" : "numeric",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "units_in_stock",
-      "label" : "in Stock",
-      "comment" : "The units in stock.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "units_on_order",
-      "label" : "in Order",
-      "comment" : "The units on order.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "reorder_level",
-      "label" : "Reoder Level",
-      "comment" : "Minimum units on stock before ordering new products.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "discontinued",
-      "label" : "Discontinued",
-      "comment" : "Signs whether the product is discontinued",
-      "description" : null,
-      "typeFamily" : "BOOLEAN",
-      "typeEncoding" : "BOOLEAN_FROM_INTEGER",
-      "dialectType" : "integer",
-      "nullable" : false,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "region",
-    "label" : "Region",
-    "comment" : "The region products are sold to.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "region_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key used to uniquely identify each region.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "region_description",
-      "label" : "Description",
-      "comment" : "A description to the region.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 1
-    } ]
-  }, {
-    "name" : "shippers",
-    "label" : "Shipper",
-    "comment" : "Stores information to shippers.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "shipper_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key used to uniquely identify each shipper.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "company_name",
-      "label" : "Name",
-      "comment" : "The name of the shipping company.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 1
-    }, {
-      "name" : "phone",
-      "label" : "Phone",
-      "comment" : "The telephone number.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "suppliers",
-    "label" : "Supplier",
-    "comment" : "Stores information about suppliers delivering products.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "supplier_id",
-      "label" : null,
-      "comment" : "A surrogate primary key used to uniquely identify each supplier.",
-      "description" : "Id",
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "company_name",
-      "label" : "Name",
-      "comment" : "The name of the suppliers company.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 1
-    }, {
-      "name" : "contact_name",
-      "label" : "Contact",
-      "comment" : "The name of the person to get in contact to the supplier.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "contact_title",
-      "label" : "Title",
-      "comment" : "The title or role of the person to get in contact to the supplier.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "address",
-      "label" : "Address",
-      "comment" : "Address of the contact person.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "city",
-      "label" : "City",
-      "comment" : "City of the contact person.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "region",
-      "label" : "Region",
-      "comment" : "Region of the supplier.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "postal_code",
-      "label" : "Postal Code",
-      "comment" : "Postal code of the supplier.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "country",
-      "label" : "Country",
-      "comment" : "Country for the supplier.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "phone",
-      "label" : "Phone",
-      "comment" : "Telephone number of the contact person.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "mail",
-      "label" : "Mail",
-      "comment" : "Mail of the company.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "homepage",
-      "label" : "Homepage",
-      "comment" : "Homepage of the supplier company.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "territories",
-    "label" : "Territory",
-    "comment" : "Stores Territories.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "territory_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key used to uniquely identify each territory.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "territory_description",
-      "label" : "Description",
-      "comment" : "Description of the territory.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0,
-      "namePos" : 1
-    }, {
-      "name" : "region_id",
-      "label" : "Region Id",
-      "comment" : "A foreign key identifying the region.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "us_states",
-    "label" : "US States",
-    "comment" : "Stores US states",
-    "description" : null,
-    "columns" : [ {
-      "name" : "state_id",
-      "label" : "Id",
-      "comment" : "A surrogate primary key used to uniquely identify each us state.",
-      "description" : null,
-      "typeFamily" : "INTEGER",
-      "typeEncoding" : null,
-      "dialectType" : "smallint",
-      "nullable" : false,
-      "pkPos" : 1
-    }, {
-      "name" : "state_name",
-      "label" : "Name",
-      "comment" : "Name of the State.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0,
-      "namePos" : 1
-    }, {
-      "name" : "state_abbr",
-      "label" : "Abbr",
-      "comment" : "Abbreviation to the state.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    }, {
-      "name" : "state_region",
-      "label" : "State-Region",
-      "comment" : "The states region.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    } ]
-  }, {
-    "name" : "countries",
-    "label" : "Country",
-    "comment" : "Lookup of the countries referenced by customer, supplier, employee and order shipping addresses, with geographic coordinates and outline for map visualisations.",
-    "description" : null,
-    "columns" : [ {
-      "name" : "country_name",
-      "label" : "Name",
-      "comment" : "The country name as used in the address columns (e.g. 'Germany', 'UK', 'USA').",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 1,
-      "namePos" : 1
-    }, {
-      "name" : "iso_code",
-      "label" : "ISO Code",
-      "comment" : "The ISO 3166-1 alpha-2 code of the country.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0
-    }, {
-      "name" : "continent",
-      "label" : "Continent",
-      "comment" : "The continent the country belongs to.",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : false,
-      "pkPos" : 0
-    }, {
-      "name" : "latitude",
-      "label" : "Latitude",
-      "comment" : "Latitude of the country label point (centroid), in degrees.",
-      "description" : null,
-      "typeFamily" : "DECIMAL",
-      "typeEncoding" : null,
-      "dialectType" : "numeric",
-      "nullable" : false,
-      "pkPos" : 0
-    }, {
-      "name" : "longitude",
-      "label" : "Longitude",
-      "comment" : "Longitude of the country label point (centroid), in degrees.",
-      "description" : null,
-      "typeFamily" : "DECIMAL",
-      "typeEncoding" : null,
-      "dialectType" : "numeric",
-      "nullable" : false,
-      "pkPos" : 0
-    }, {
-      "name" : "geometry",
-      "label" : "Geometry",
-      "comment" : "Simplified country outline as a GeoJSON (Multi)Polygon, for choropleth maps (DRAW spatial).",
-      "description" : null,
-      "typeFamily" : "TEXT",
-      "typeEncoding" : null,
-      "dialectType" : "character varying",
-      "nullable" : true,
-      "pkPos" : 0
-    } ]
-  } ],
+  "name" : "northwind",
   "relations" : [ {
+    "endColumns" : [ "category_id" ],
+    "endTable" : "categories",
     "name" : "pk_categories",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "categories",
-    "endTable" : "categories",
-    "symmetric" : true,
     "startColumns" : [ "category_id" ],
-    "endColumns" : [ "category_id" ]
+    "startTable" : "categories",
+    "symmetric" : true
   }, {
+    "endColumns" : [ "category_id" ],
+    "endTable" : "categories",
     "name" : "fk_categories_categories_root",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "categories",
-    "endTable" : "categories",
-    "symmetric" : false,
     "startColumns" : [ "root_category_id" ],
-    "endColumns" : [ "category_id" ]
-  }, {
-    "name" : "fk_categories_categories_super",
-    "comment" : null,
-    "description" : null,
     "startTable" : "categories",
+    "symmetric" : false
+  }, {
+    "endColumns" : [ "category_id" ],
     "endTable" : "categories",
-    "symmetric" : false,
+    "name" : "fk_categories_categories_super",
     "startColumns" : [ "super_category_id" ],
-    "endColumns" : [ "category_id" ]
+    "startTable" : "categories",
+    "symmetric" : false
   }, {
+    "endColumns" : [ "customer_id" ],
+    "endTable" : "customers",
     "name" : "pk_customers",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "customers",
-    "endTable" : "customers",
-    "symmetric" : true,
     "startColumns" : [ "customer_id" ],
-    "endColumns" : [ "customer_id" ]
+    "startTable" : "customers",
+    "symmetric" : true
   }, {
-    "name" : "pk_customer_customer_demo",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "customer_customer_demo",
+    "endColumns" : [ "customer_id", "customer_type_id" ],
     "endTable" : "customer_customer_demo",
-    "symmetric" : true,
+    "name" : "pk_customer_customer_demo",
     "startColumns" : [ "customer_id", "customer_type_id" ],
-    "endColumns" : [ "customer_id", "customer_type_id" ]
+    "startTable" : "customer_customer_demo",
+    "symmetric" : true
   }, {
+    "endColumns" : [ "customer_id" ],
+    "endTable" : "customers",
     "name" : "fk_customer_customer_demo_customers",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "customer_customer_demo",
-    "endTable" : "customers",
-    "symmetric" : true,
     "startColumns" : [ "customer_id" ],
-    "endColumns" : [ "customer_id" ]
+    "startTable" : "customer_customer_demo",
+    "symmetric" : true
   }, {
+    "endColumns" : [ "customer_type_id" ],
+    "endTable" : "customer_demographics",
     "name" : "fk_customer_customer_demo_customer_demographics",
-    "comment" : null,
-    "description" : null,
+    "startColumns" : [ "customer_type_id" ],
     "startTable" : "customer_customer_demo",
-    "endTable" : "customer_demographics",
-    "symmetric" : true,
-    "startColumns" : [ "customer_type_id" ],
-    "endColumns" : [ "customer_type_id" ]
+    "symmetric" : true
   }, {
+    "endColumns" : [ "customer_type_id" ],
+    "endTable" : "customer_demographics",
     "name" : "pk_customer_demographics",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "customer_demographics",
-    "endTable" : "customer_demographics",
-    "symmetric" : true,
     "startColumns" : [ "customer_type_id" ],
-    "endColumns" : [ "customer_type_id" ]
+    "startTable" : "customer_demographics",
+    "symmetric" : true
   }, {
+    "endColumns" : [ "employee_id" ],
+    "endTable" : "employees",
     "name" : "pk_employees",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "employees",
-    "endTable" : "employees",
-    "symmetric" : true,
     "startColumns" : [ "employee_id" ],
-    "endColumns" : [ "employee_id" ]
+    "startTable" : "employees",
+    "symmetric" : true
   }, {
+    "endColumns" : [ "employee_id" ],
+    "endTable" : "employees",
     "name" : "fk_employees_employees",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "employees",
-    "endTable" : "employees",
-    "symmetric" : false,
     "startColumns" : [ "reports_to" ],
-    "endColumns" : [ "employee_id" ]
-  }, {
-    "name" : "pk_employee_territories",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "employee_territories",
-    "endTable" : "employee_territories",
-    "symmetric" : true,
-    "startColumns" : [ "employee_id", "territory_id" ],
-    "endColumns" : [ "employee_id", "territory_id" ]
-  }, {
-    "name" : "fk_employee_territories_employees",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "employee_territories",
-    "endTable" : "employees",
-    "symmetric" : true,
-    "startColumns" : [ "employee_id" ],
-    "endColumns" : [ "employee_id" ]
-  }, {
-    "name" : "fk_employee_territories_territories",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "employee_territories",
-    "endTable" : "territories",
-    "symmetric" : true,
-    "startColumns" : [ "territory_id" ],
-    "endColumns" : [ "territory_id" ]
-  }, {
-    "name" : "pk_orders",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "orders",
-    "endTable" : "orders",
-    "symmetric" : true,
-    "startColumns" : [ "order_id" ],
-    "endColumns" : [ "order_id" ]
-  }, {
-    "name" : "fk_orders_customers",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "orders",
-    "endTable" : "customers",
-    "symmetric" : true,
-    "startColumns" : [ "customer_id" ],
-    "endColumns" : [ "customer_id" ]
-  }, {
-    "name" : "fk_orders_employees",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "orders",
-    "endTable" : "employees",
-    "symmetric" : true,
-    "startColumns" : [ "employee_id" ],
-    "endColumns" : [ "employee_id" ]
-  }, {
-    "name" : "fk_orders_shippers",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "orders",
-    "endTable" : "shippers",
-    "symmetric" : true,
-    "startColumns" : [ "ship_via" ],
-    "endColumns" : [ "shipper_id" ]
-  }, {
-    "name" : "pk_order_details",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "order_details",
-    "endTable" : "order_details",
-    "symmetric" : true,
-    "startColumns" : [ "order_id", "product_id" ],
-    "endColumns" : [ "order_id", "product_id" ]
-  }, {
-    "name" : "fk_order_details_orders",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "order_details",
-    "endTable" : "orders",
-    "symmetric" : true,
-    "startColumns" : [ "order_id" ],
-    "endColumns" : [ "order_id" ]
-  }, {
-    "name" : "fk_order_details_products",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "order_details",
-    "endTable" : "products",
-    "symmetric" : true,
-    "startColumns" : [ "product_id" ],
-    "endColumns" : [ "product_id" ]
-  }, {
-    "name" : "pk_products",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "products",
-    "endTable" : "products",
-    "symmetric" : true,
-    "startColumns" : [ "product_id" ],
-    "endColumns" : [ "product_id" ]
-  }, {
-    "name" : "fk_products_categories",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "products",
-    "endTable" : "categories",
-    "symmetric" : true,
-    "startColumns" : [ "category_id" ],
-    "endColumns" : [ "category_id" ]
-  }, {
-    "name" : "fk_products_suppliers",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "products",
-    "endTable" : "suppliers",
-    "symmetric" : true,
-    "startColumns" : [ "supplier_id" ],
-    "endColumns" : [ "supplier_id" ]
-  }, {
-    "name" : "pk_region",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "region",
-    "endTable" : "region",
-    "symmetric" : true,
-    "startColumns" : [ "region_id" ],
-    "endColumns" : [ "region_id" ]
-  }, {
-    "name" : "pk_shippers",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "shippers",
-    "endTable" : "shippers",
-    "symmetric" : true,
-    "startColumns" : [ "shipper_id" ],
-    "endColumns" : [ "shipper_id" ]
-  }, {
-    "name" : "pk_suppliers",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "suppliers",
-    "endTable" : "suppliers",
-    "symmetric" : true,
-    "startColumns" : [ "supplier_id" ],
-    "endColumns" : [ "supplier_id" ]
-  }, {
-    "name" : "pk_territories",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "territories",
-    "endTable" : "territories",
-    "symmetric" : true,
-    "startColumns" : [ "territory_id" ],
-    "endColumns" : [ "territory_id" ]
-  }, {
-    "name" : "fk_territories_region",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "territories",
-    "endTable" : "region",
-    "symmetric" : true,
-    "startColumns" : [ "region_id" ],
-    "endColumns" : [ "region_id" ]
-  }, {
-    "name" : "pk_usstates",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "us_states",
-    "endTable" : "us_states",
-    "symmetric" : true,
-    "startColumns" : [ "state_id" ],
-    "endColumns" : [ "state_id" ]
-  }, {
-    "name" : "pk_countries",
-    "comment" : null,
-    "description" : null,
-    "startTable" : "countries",
-    "endTable" : "countries",
-    "symmetric" : true,
-    "startColumns" : [ "country_name" ],
-    "endColumns" : [ "country_name" ]
-  }, {
-    "name" : "fk_customers_countries",
-    "comment" : "the customer address country references the countries lookup by name",
-    "description" : null,
-    "startTable" : "customers",
-    "endTable" : "countries",
-    "symmetric" : false,
-    "startColumns" : [ "country" ],
-    "endColumns" : [ "country_name" ]
-  }, {
-    "name" : "fk_suppliers_countries",
-    "comment" : "the supplier address country references the countries lookup by name",
-    "description" : null,
-    "startTable" : "suppliers",
-    "endTable" : "countries",
-    "symmetric" : false,
-    "startColumns" : [ "country" ],
-    "endColumns" : [ "country_name" ]
-  }, {
-    "name" : "fk_employees_countries",
-    "comment" : "the employee address country references the countries lookup by name",
-    "description" : null,
     "startTable" : "employees",
-    "endTable" : "countries",
-    "symmetric" : false,
-    "startColumns" : [ "country" ],
-    "endColumns" : [ "country_name" ]
+    "symmetric" : false
   }, {
-    "name" : "fk_orders_countries",
-    "comment" : "the order ship-to country references the countries lookup by name",
-    "description" : null,
+    "endColumns" : [ "employee_id", "territory_id" ],
+    "endTable" : "employee_territories",
+    "name" : "pk_employee_territories",
+    "startColumns" : [ "employee_id", "territory_id" ],
+    "startTable" : "employee_territories",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "employee_id" ],
+    "endTable" : "employees",
+    "name" : "fk_employee_territories_employees",
+    "startColumns" : [ "employee_id" ],
+    "startTable" : "employee_territories",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "territory_id" ],
+    "endTable" : "territories",
+    "name" : "fk_employee_territories_territories",
+    "startColumns" : [ "territory_id" ],
+    "startTable" : "employee_territories",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "order_id" ],
+    "endTable" : "orders",
+    "name" : "pk_orders",
+    "startColumns" : [ "order_id" ],
     "startTable" : "orders",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "customer_id" ],
+    "endTable" : "customers",
+    "name" : "fk_orders_customers",
+    "startColumns" : [ "customer_id" ],
+    "startTable" : "orders",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "employee_id" ],
+    "endTable" : "employees",
+    "name" : "fk_orders_employees",
+    "startColumns" : [ "employee_id" ],
+    "startTable" : "orders",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "shipper_id" ],
+    "endTable" : "shippers",
+    "name" : "fk_orders_shippers",
+    "startColumns" : [ "ship_via" ],
+    "startTable" : "orders",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "order_id", "product_id" ],
+    "endTable" : "order_details",
+    "name" : "pk_order_details",
+    "startColumns" : [ "order_id", "product_id" ],
+    "startTable" : "order_details",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "order_id" ],
+    "endTable" : "orders",
+    "name" : "fk_order_details_orders",
+    "startColumns" : [ "order_id" ],
+    "startTable" : "order_details",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "product_id" ],
+    "endTable" : "products",
+    "name" : "fk_order_details_products",
+    "startColumns" : [ "product_id" ],
+    "startTable" : "order_details",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "product_id" ],
+    "endTable" : "products",
+    "name" : "pk_products",
+    "startColumns" : [ "product_id" ],
+    "startTable" : "products",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "category_id" ],
+    "endTable" : "categories",
+    "name" : "fk_products_categories",
+    "startColumns" : [ "category_id" ],
+    "startTable" : "products",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "supplier_id" ],
+    "endTable" : "suppliers",
+    "name" : "fk_products_suppliers",
+    "startColumns" : [ "supplier_id" ],
+    "startTable" : "products",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "region_id" ],
+    "endTable" : "region",
+    "name" : "pk_region",
+    "startColumns" : [ "region_id" ],
+    "startTable" : "region",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "shipper_id" ],
+    "endTable" : "shippers",
+    "name" : "pk_shippers",
+    "startColumns" : [ "shipper_id" ],
+    "startTable" : "shippers",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "supplier_id" ],
+    "endTable" : "suppliers",
+    "name" : "pk_suppliers",
+    "startColumns" : [ "supplier_id" ],
+    "startTable" : "suppliers",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "territory_id" ],
+    "endTable" : "territories",
+    "name" : "pk_territories",
+    "startColumns" : [ "territory_id" ],
+    "startTable" : "territories",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "region_id" ],
+    "endTable" : "region",
+    "name" : "fk_territories_region",
+    "startColumns" : [ "region_id" ],
+    "startTable" : "territories",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "state_id" ],
+    "endTable" : "us_states",
+    "name" : "pk_usstates",
+    "startColumns" : [ "state_id" ],
+    "startTable" : "us_states",
+    "symmetric" : true
+  }, {
+    "endColumns" : [ "country_name" ],
     "endTable" : "countries",
-    "symmetric" : false,
+    "name" : "pk_countries",
+    "startColumns" : [ "country_name" ],
+    "startTable" : "countries",
+    "symmetric" : true
+  }, {
+    "comment" : "the customer address country references the countries lookup by name",
+    "endColumns" : [ "country_name" ],
+    "endTable" : "countries",
+    "name" : "fk_customers_countries",
+    "startColumns" : [ "country" ],
+    "startTable" : "customers",
+    "symmetric" : false
+  }, {
+    "comment" : "the supplier address country references the countries lookup by name",
+    "endColumns" : [ "country_name" ],
+    "endTable" : "countries",
+    "name" : "fk_suppliers_countries",
+    "startColumns" : [ "country" ],
+    "startTable" : "suppliers",
+    "symmetric" : false
+  }, {
+    "comment" : "the employee address country references the countries lookup by name",
+    "endColumns" : [ "country_name" ],
+    "endTable" : "countries",
+    "name" : "fk_employees_countries",
+    "startColumns" : [ "country" ],
+    "startTable" : "employees",
+    "symmetric" : false
+  }, {
+    "comment" : "the order ship-to country references the countries lookup by name",
+    "endColumns" : [ "country_name" ],
+    "endTable" : "countries",
+    "name" : "fk_orders_countries",
     "startColumns" : [ "ship_country" ],
-    "endColumns" : [ "country_name" ]
+    "startTable" : "orders",
+    "symmetric" : false
+  } ],
+  "tables" : [ {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key that uniquely identifies a category.",
+        "dialectType" : "SMALLINT",
+        "label" : "Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "category_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "Name of a category",
+        "dialectType" : "character varying",
+        "label" : "Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "category_name",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Description of a category",
+        "dialectType" : "character varying",
+        "label" : "Description",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "description",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "A picture to visualize the category",
+        "dialectType" : "binary large object",
+        "label" : "Picture",
+        "typeFamily" : "BLOB"
+      },
+      "name" : "picture",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Root",
+        "dialectType" : "smallint",
+        "label" : "Root category",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "root_category_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Super category",
+        "dialectType" : "smallint",
+        "label" : "Super",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "super_category_id",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "Organizes products into different categories.",
+    "label" : "Category",
+    "name" : "categories"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each customer.",
+        "dialectType" : "character varying",
+        "label" : "Id",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "customer_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "The cusomers company name",
+        "dialectType" : "character varying",
+        "label" : "Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "company_name",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Name of a contact person",
+        "dialectType" : "character varying",
+        "label" : "Contact",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "contact_name",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The title or role the contact person has in the customer company (e.g. Owner, Sales Representative, Marketing Manager).",
+        "dialectType" : "character varying",
+        "label" : "Title",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "contact_title",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The first address line of the customer.",
+        "dialectType" : "character varying",
+        "label" : "Address",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "address",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The city of the customer address.",
+        "dialectType" : "character varying",
+        "label" : "City",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "city",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The region of the customer address.",
+        "dialectType" : "character varying",
+        "label" : "Region",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "region",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The postal code of the customer address.",
+        "dialectType" : "character varying",
+        "label" : "Postal code",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "postal_code",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The country of the customer address.",
+        "dialectType" : "character varying",
+        "label" : "Country",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "country",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The telephone number to call the contact person.",
+        "dialectType" : "character varying",
+        "label" : "Phone",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "phone",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Mail of the contact person.",
+        "dialectType" : "character varying",
+        "label" : "Mail",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "mail",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "Contains information about the company's customers, with fields like company_name, contact_name.",
+    "label" : "Customer",
+    "name" : "customers"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A foreign key identifying the customer.",
+        "dialectType" : "character varying",
+        "label" : "Customer Id",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "customer_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the customer demographic.",
+        "dialectType" : "character varying",
+        "label" : "Type-Id",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "customer_type_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 2
+    } ],
+    "comment" : "Stores the relationships between customer and costomer demographics.",
+    "label" : "Customer-Demo",
+    "name" : "customer_customer_demo"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each customer demographic.",
+        "dialectType" : "character varying",
+        "label" : "Id",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "customer_type_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "A description to the customer demographic.",
+        "dialectType" : "character varying",
+        "label" : "Description",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "customer_desc",
+      "namePos" : 1,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "A customer democraphics describes customer segments, e.g. Retail, Wholesale, Corporate, etc.",
+    "label" : "Customer Demographics",
+    "name" : "customer_demographics"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each employee.",
+        "dialectType" : "smallint",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "employee_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "Last name of employee.",
+        "dialectType" : "character varying",
+        "label" : "Last Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "last_name",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "First name of employee.",
+        "dialectType" : "character varying",
+        "label" : "First Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "first_name",
+      "namePos" : 2,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The title or role the employee has in the company",
+        "dialectType" : "character varying",
+        "label" : "Title",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "title",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The employees courtesy",
+        "dialectType" : "character varying",
+        "label" : "Courtesy",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "title_of_courtesy",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The employees date of birth.",
+        "dialectType" : "date",
+        "label" : "Date of Birth",
+        "typeFamily" : "DATE"
+      },
+      "name" : "birth_date",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The date the employee was hired.",
+        "dialectType" : "date",
+        "label" : "Hire Date",
+        "typeFamily" : "DATE"
+      },
+      "name" : "hire_date",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Workinghour from.",
+        "dialectType" : "time",
+        "label" : "Workinghour from",
+        "typeFamily" : "TIME"
+      },
+      "name" : "working_hour_from",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Workinghour from.",
+        "dialectType" : "time",
+        "label" : "Workinghour to",
+        "typeFamily" : "TIME"
+      },
+      "name" : "working_hour_to",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Break minutes.",
+        "dialectType" : "INTERVAL",
+        "label" : "Break minutes",
+        "typeFamily" : "INTERVAL"
+      },
+      "name" : "break_minutes",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The address line of the employee.",
+        "dialectType" : "character varying",
+        "label" : "Address",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "address",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The city of the employee address",
+        "dialectType" : "character varying",
+        "label" : "City",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "city",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The region of the employee address.",
+        "dialectType" : "character varying",
+        "label" : "Region",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "region",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The postal code of the employee address.",
+        "dialectType" : "character varying",
+        "label" : "Postal Code",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "postal_code",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The country of the employee address",
+        "dialectType" : "character varying",
+        "label" : "Country",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "country",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The telephone number of the employee.",
+        "dialectType" : "character varying",
+        "label" : "Phone",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "home_phone",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "",
+        "dialectType" : "character varying",
+        "label" : "Extension",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "extension",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The portrait photo of the employee",
+        "dialectType" : "binary large object",
+        "label" : "Phota",
+        "typeFamily" : "BLOB"
+      },
+      "name" : "photo",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Notes to the employee",
+        "dialectType" : "character varying",
+        "label" : "Notes",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "notes",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the supervisor (employee) the employee is reporting to.",
+        "dialectType" : "smallint",
+        "label" : "Reports To",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "reports_to",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Path or URL to the photo",
+        "dialectType" : "character varying",
+        "label" : "Path",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "photo_path",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "Stores employee information, such as their names and titles.",
+    "label" : "Employee",
+    "name" : "employees"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A foreign key identifying the employee.",
+        "dialectType" : "smallint",
+        "label" : "Employee Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "employee_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the territory.",
+        "dialectType" : "character varying",
+        "label" : "Territory Id",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "territory_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 2
+    } ],
+    "comment" : "Stores the relationships between employees and territories.",
+    "label" : "Employee-Territory",
+    "name" : "employee_territories"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each order.",
+        "dialectType" : "smallint",
+        "label" : "Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "order_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the customer.",
+        "dialectType" : "character varying",
+        "label" : "Customer Id",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "customer_id",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the employee.",
+        "dialectType" : "smallint",
+        "label" : "Employee Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "employee_id",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "dialectType" : "date",
+        "label" : "Order Date",
+        "typeFamily" : "DATE"
+      },
+      "name" : "order_date",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The date the customer requires the order",
+        "dialectType" : "date",
+        "label" : "Required Date",
+        "typeFamily" : "DATE"
+      },
+      "name" : "required_date",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The date the order is shipped.",
+        "dialectType" : "date",
+        "label" : "Shipped Date",
+        "typeFamily" : "DATE"
+      },
+      "name" : "shipped_date",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The date the order was delivered.",
+        "dialectType" : "timestamp",
+        "label" : "Delivered Date",
+        "typeFamily" : "TIMESTAMP"
+      },
+      "name" : "delivered_date",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the shipper.",
+        "dialectType" : "smallint",
+        "label" : "Via",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "ship_via",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The shipping freight.",
+        "dialectType" : "numeric",
+        "label" : "Freight",
+        "typeFamily" : "DECIMAL",
+        "unit" : "EUR"
+      },
+      "name" : "freight",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The name of the company to ship the order to.",
+        "dialectType" : "character varying",
+        "label" : "Ship Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "ship_name",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The address of the company the ship goes to.",
+        "dialectType" : "character varying",
+        "label" : "Ship Address",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "ship_address",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The city of the company the ship goes to.",
+        "dialectType" : "character varying",
+        "label" : "Ship City",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "ship_city",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The region of the company the ship goes to.",
+        "dialectType" : "character varying",
+        "label" : "Ship Region",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "ship_region",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "description" : "The postal code of the company the ship goes to.",
+        "dialectType" : "character varying",
+        "label" : "Ship Postal Code",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "ship_postal_code",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "description" : "The country of the company the ship goes to.",
+        "dialectType" : "character varying",
+        "label" : "Ship Country",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "ship_country",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "Holds records of customer orders, including OrderID, OrderDate, and CustomerID.",
+    "label" : "Order",
+    "name" : "orders"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A foreign key identifying the order.",
+        "dialectType" : "smallint",
+        "label" : "Order Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "order_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the product.",
+        "dialectType" : "smallint",
+        "label" : "Product Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "product_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 2
+    }, {
+      "concept" : {
+        "comment" : "The unit price valid to the order.",
+        "dialectType" : "numeric",
+        "label" : "Unit Price",
+        "quantity" : "unit-price",
+        "typeFamily" : "DECIMAL",
+        "unit" : "EUR"
+      },
+      "name" : "unit_price",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The quantity of the order.",
+        "dialectType" : "smallint",
+        "label" : "Quantity",
+        "quantity" : "count",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "quantity",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The discount to the order.",
+        "dialectType" : "numeric",
+        "label" : "Discount",
+        "quantity" : "ratio",
+        "typeFamily" : "DECIMAL"
+      },
+      "name" : "discount",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    } ],
+    "comment" : "Links orders to products, detailing which products are included in each order.",
+    "label" : "Order Details",
+    "name" : "order_details"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each product.",
+        "dialectType" : "smallint",
+        "label" : "Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "product_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "The name of the product.",
+        "dialectType" : "character varying",
+        "label" : "Product name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "product_name",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the supplier.",
+        "dialectType" : "smallint",
+        "label" : "Supplier Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "supplier_id",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the category.",
+        "dialectType" : "smallint",
+        "label" : "Category Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "category_id",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The quantity per unit the product is sold.",
+        "dialectType" : "character varying",
+        "label" : "Quantity per Unit",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "quantity_per_unit",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The unit price the product is sold before discount.",
+        "dialectType" : "numeric",
+        "label" : "Unit price",
+        "typeFamily" : "DECIMAL",
+        "unit" : "EUR"
+      },
+      "name" : "unit_price",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The units in stock.",
+        "dialectType" : "smallint",
+        "label" : "in Stock",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "units_in_stock",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The units on order.",
+        "dialectType" : "smallint",
+        "label" : "in Order",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "units_on_order",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Minimum units on stock before ordering new products.",
+        "dialectType" : "smallint",
+        "label" : "Reoder Level",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "reorder_level",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Signs whether the product is discontinued",
+        "dialectType" : "integer",
+        "label" : "Discontinued",
+        "typeEncoding" : "BOOLEAN_FROM_INTEGER",
+        "typeFamily" : "BOOLEAN"
+      },
+      "name" : "discontinued",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    } ],
+    "comment" : "Stores details about products, including name, supplier, category, and unit price.",
+    "label" : "Product",
+    "name" : "products"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each region.",
+        "dialectType" : "smallint",
+        "label" : "Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "region_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "A description to the region.",
+        "dialectType" : "character varying",
+        "label" : "Description",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "region_description",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 0
+    } ],
+    "comment" : "The region products are sold to.",
+    "label" : "Region",
+    "name" : "region"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each shipper.",
+        "dialectType" : "smallint",
+        "label" : "Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "shipper_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "The name of the shipping company.",
+        "dialectType" : "character varying",
+        "label" : "Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "company_name",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The telephone number.",
+        "dialectType" : "character varying",
+        "label" : "Phone",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "phone",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "Stores information to shippers.",
+    "label" : "Shipper",
+    "name" : "shippers"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each supplier.",
+        "description" : "Id",
+        "dialectType" : "smallint",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "supplier_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "The name of the suppliers company.",
+        "dialectType" : "character varying",
+        "label" : "Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "company_name",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The name of the person to get in contact to the supplier.",
+        "dialectType" : "character varying",
+        "label" : "Contact",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "contact_name",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The title or role of the person to get in contact to the supplier.",
+        "dialectType" : "character varying",
+        "label" : "Title",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "contact_title",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Address of the contact person.",
+        "dialectType" : "character varying",
+        "label" : "Address",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "address",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "City of the contact person.",
+        "dialectType" : "character varying",
+        "label" : "City",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "city",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Region of the supplier.",
+        "dialectType" : "character varying",
+        "label" : "Region",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "region",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Postal code of the supplier.",
+        "dialectType" : "character varying",
+        "label" : "Postal Code",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "postal_code",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Country for the supplier.",
+        "dialectType" : "character varying",
+        "label" : "Country",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "country",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Telephone number of the contact person.",
+        "dialectType" : "character varying",
+        "label" : "Phone",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "phone",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Mail of the company.",
+        "dialectType" : "character varying",
+        "label" : "Mail",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "mail",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Homepage of the supplier company.",
+        "dialectType" : "character varying",
+        "label" : "Homepage",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "homepage",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "Stores information about suppliers delivering products.",
+    "label" : "Supplier",
+    "name" : "suppliers"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each territory.",
+        "dialectType" : "character varying",
+        "label" : "Id",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "territory_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "Description of the territory.",
+        "dialectType" : "character varying",
+        "label" : "Description",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "territory_description",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "A foreign key identifying the region.",
+        "dialectType" : "smallint",
+        "label" : "Region Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "region_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    } ],
+    "comment" : "Stores Territories.",
+    "label" : "Territory",
+    "name" : "territories"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "A surrogate primary key used to uniquely identify each us state.",
+        "dialectType" : "smallint",
+        "label" : "Id",
+        "typeFamily" : "INTEGER"
+      },
+      "name" : "state_id",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "Name of the State.",
+        "dialectType" : "character varying",
+        "label" : "Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "state_name",
+      "namePos" : 1,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Abbreviation to the state.",
+        "dialectType" : "character varying",
+        "label" : "Abbr",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "state_abbr",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The states region.",
+        "dialectType" : "character varying",
+        "label" : "State-Region",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "state_region",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "Stores US states",
+    "label" : "US States",
+    "name" : "us_states"
+  }, {
+    "columns" : [ {
+      "concept" : {
+        "comment" : "The country name as used in the address columns (e.g. 'Germany', 'UK', 'USA').",
+        "dialectType" : "character varying",
+        "label" : "Name",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "country_name",
+      "namePos" : 1,
+      "nullable" : false,
+      "pkPos" : 1
+    }, {
+      "concept" : {
+        "comment" : "The ISO 3166-1 alpha-2 code of the country.",
+        "dialectType" : "character varying",
+        "label" : "ISO Code",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "iso_code",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "The continent the country belongs to.",
+        "dialectType" : "character varying",
+        "label" : "Continent",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "continent",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Latitude of the country label point (centroid), in degrees.",
+        "dialectType" : "numeric",
+        "label" : "Latitude",
+        "typeFamily" : "DECIMAL"
+      },
+      "name" : "latitude",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Longitude of the country label point (centroid), in degrees.",
+        "dialectType" : "numeric",
+        "label" : "Longitude",
+        "typeFamily" : "DECIMAL"
+      },
+      "name" : "longitude",
+      "namePos" : 0,
+      "nullable" : false,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "comment" : "Simplified country outline as a GeoJSON (Multi)Polygon, for choropleth maps (DRAW spatial).",
+        "dialectType" : "character varying",
+        "label" : "Geometry",
+        "typeFamily" : "TEXT"
+      },
+      "name" : "geometry",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    } ],
+    "comment" : "Lookup of the countries referenced by customer, supplier, employee and order shipping addresses, with geographic coordinates and outline for map visualizations.",
+    "label" : "Country",
+    "name" : "countries"
   } ]
 }
