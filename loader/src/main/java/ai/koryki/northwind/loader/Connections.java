@@ -41,7 +41,8 @@ public final class Connections {
         Properties props = new Properties();
         props.setProperty("user", required(dialect + ".northwind.user"));
         props.setProperty("password", required(dialect + ".northwind.password"));
-        return DriverManager.getConnection(required(dialect + ".northwind.url"), props);
+        String url = required(dialect + ".northwind.url");
+        return DriverManager.getConnection(url, props);
     }
 
     /**
