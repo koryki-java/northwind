@@ -32,9 +32,9 @@ import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Every model says in its own words what its db.json says: the label, comment and description of
- * each column, and of each part of a nested column, are in the attribute and in its members.
- * What a model leaves out is read from the schema, in the language of the schema, so a German
- * heading that shows an English word is one nobody wrote.
+ * each column, and of each part of a nested column, are in the attribute and in its members. What a
+ * model leaves out is read from the schema, in the language of the schema, so a German heading that
+ * shows an English word is one nobody wrote.
  *
  * <p>The same rule as {@code WordingAudit} in koryki-core, written against the JSON because this
  * repository depends on nothing of koryki: core's own {@code CatalogWordingTest} holds the shipped
@@ -75,15 +75,22 @@ class CatalogWordingTest {
         if (entries == null) {
             return;
         }
-        entries.properties().forEach(entry -> {
-            if (!entry.getValue().isObject()) {
-                return; // a type spelling or the name of a concept: the notion words it
-            }
-            JsonNode member = members == null ? null : members.get(entry.getKey());
-            String path = where + "/" + entry.getKey();
-            compare(path, entry.getValue(), member, gaps);
-            parts(path, entry.getValue(), member == null ? null : member.get("members"), gaps);
-        });
+        entries.properties()
+                .forEach(
+                        entry -> {
+                            if (!entry.getValue().isObject()) {
+                                return; // a type spelling or the name of a concept: the notion
+                                // words it
+                            }
+                            JsonNode member = members == null ? null : members.get(entry.getKey());
+                            String path = where + "/" + entry.getKey();
+                            compare(path, entry.getValue(), member, gaps);
+                            parts(
+                                    path,
+                                    entry.getValue(),
+                                    member == null ? null : member.get("members"),
+                                    gaps);
+                        });
     }
 
     private static List<String> gapsOf(Path modelFile) throws IOException {
@@ -94,7 +101,10 @@ class CatalogWordingTest {
             String tableName = table.get("name").asString();
             JsonNode entity = null;
             for (JsonNode e : model.get("entities")) {
-                String of = e.hasNonNull("table") ? e.get("table").asString() : e.get("name").asString();
+                String of =
+                        e.hasNonNull("table")
+                                ? e.get("table").asString()
+                                : e.get("name").asString();
                 if (of.equals(tableName)) {
                     entity = e;
                 }
@@ -107,7 +117,8 @@ class CatalogWordingTest {
                 JsonNode concept = column.get("concept");
                 if (concept == null && column.hasNonNull("conceptRef")) {
                     JsonNode shared = db.get("concepts");
-                    concept = shared == null ? null : shared.get(column.get("conceptRef").asString());
+                    concept =
+                            shared == null ? null : shared.get(column.get("conceptRef").asString());
                 }
                 if (concept == null) {
                     continue;
@@ -115,7 +126,10 @@ class CatalogWordingTest {
                 String columnName = column.get("name").asString();
                 JsonNode attribute = null;
                 for (JsonNode a : entity.get("attributes")) {
-                    String of = a.hasNonNull("column") ? a.get("column").asString() : a.get("name").asString();
+                    String of =
+                            a.hasNonNull("column")
+                                    ? a.get("column").asString()
+                                    : a.get("name").asString();
                     if (of.equals(columnName)) {
                         attribute = a;
                     }
@@ -135,12 +149,19 @@ class CatalogWordingTest {
         JsonNode shared = db.get("concepts");
         if (shared != null) {
             JsonNode notions = model.get("notions");
-            shared.properties().forEach(concept -> {
-                JsonNode notion = notions == null ? null : notions.get(concept.getKey());
-                String where = "concept:" + concept.getKey();
-                compare(where, concept.getValue(), notion, gaps);
-                parts(where, concept.getValue(), notion == null ? null : notion.get("members"), gaps);
-            });
+            shared.properties()
+                    .forEach(
+                            concept -> {
+                                JsonNode notion =
+                                        notions == null ? null : notions.get(concept.getKey());
+                                String where = "concept:" + concept.getKey();
+                                compare(where, concept.getValue(), notion, gaps);
+                                parts(
+                                        where,
+                                        concept.getValue(),
+                                        notion == null ? null : notion.get("members"),
+                                        gaps);
+                            });
         }
         return gaps;
     }
@@ -149,7 +170,10 @@ class CatalogWordingTest {
     void everyModelLeavesNoWordToItsSchema() throws IOException {
         List<Path> models;
         try (Stream<Path> walk = Files.walk(RESOURCES)) {
-            models = walk.filter(p -> p.getFileName().toString().equals("model.json")).sorted().toList();
+            models =
+                    walk.filter(p -> p.getFileName().toString().equals("model.json"))
+                            .sorted()
+                            .toList();
         }
         assertFalse(models.isEmpty());
 
