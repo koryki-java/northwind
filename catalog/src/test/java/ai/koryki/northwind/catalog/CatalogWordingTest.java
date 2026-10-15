@@ -103,7 +103,12 @@ class CatalogWordingTest {
                 continue;
             }
             for (JsonNode column : table.get("columns")) {
+                // the column's own concept, or the shared one it refers to
                 JsonNode concept = column.get("concept");
+                if (concept == null && column.hasNonNull("conceptRef")) {
+                    JsonNode shared = db.get("concepts");
+                    concept = shared == null ? null : shared.get(column.get("conceptRef").asString());
+                }
                 if (concept == null) {
                     continue;
                 }
@@ -120,8 +125,22 @@ class CatalogWordingTest {
                 }
                 String where = tableName + "." + columnName;
                 compare(where, concept, attribute, gaps);
-                parts(where, concept, attribute.get("members"), gaps);
+                // the parts of a shared concept are its notion's to say, unless the attribute has
+                // members of its own, which replace the notion's and have to say every part
+                if (column.has("concept") || attribute.hasNonNull("members")) {
+                    parts(where, concept, attribute.get("members"), gaps);
+                }
             }
+        }
+        JsonNode shared = db.get("concepts");
+        if (shared != null) {
+            JsonNode notions = model.get("notions");
+            shared.properties().forEach(concept -> {
+                JsonNode notion = notions == null ? null : notions.get(concept.getKey());
+                String where = "concept:" + concept.getKey();
+                compare(where, concept.getValue(), notion, gaps);
+                parts(where, concept.getValue(), notion == null ? null : notion.get("members"), gaps);
+            });
         }
         return gaps;
     }
