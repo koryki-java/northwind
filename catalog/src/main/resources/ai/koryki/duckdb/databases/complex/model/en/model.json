@@ -20,19 +20,34 @@
           "name": "tags",
           "label": "Tags",
           "comment": null,
-          "description": "List of text values; elements are addressed 1-based"
+          "description": "List of text values; elements are addressed 1-based",
+          "members": {
+            "element": {
+              "label": "Tag"
+            }
+          }
         },
         {
           "name": "scores",
           "label": "Scores",
           "comment": null,
-          "description": "List of integers; numeric elements for lambda arithmetic"
+          "description": "List of integers; numeric elements for lambda arithmetic",
+          "members": {
+            "element": {
+              "label": "Score"
+            }
+          }
         },
         {
           "name": "vec",
           "label": "Vector",
           "comment": null,
-          "description": "Fixed-size array of three doubles"
+          "description": "Fixed-size array of three doubles",
+          "members": {
+            "element": {
+              "label": "Component"
+            }
+          }
         },
         {
           "name": "matrix",
@@ -44,43 +59,130 @@
           "name": "dims",
           "label": "Dimensions",
           "comment": null,
-          "description": "Struct of width and height"
+          "description": "Struct of width and height",
+          "members": {
+            "w": {
+              "label": "Width",
+              "description": "Width in metres"
+            },
+            "h": {
+              "label": "Height",
+              "description": "Height in metres"
+            }
+          }
         },
         {
           "name": "address",
           "label": "Address",
           "comment": null,
-          "description": "Struct holding a nested struct (geo) and a list (phones)"
+          "description": "Struct holding a nested struct (geo) and a list (phones)",
+          "members": {
+            "street": {
+              "label": "Street"
+            },
+            "geo": {
+              "label": "Position",
+              "members": {
+                "lat": {
+                  "label": "Latitude",
+                  "description": "Degrees north"
+                },
+                "lon": {
+                  "label": "Longitude",
+                  "description": "Degrees east"
+                }
+              }
+            },
+            "phones": {
+              "label": "Phones",
+              "members": {
+                "element": {
+                  "label": "Phone number"
+                }
+              }
+            }
+          }
         },
         {
           "name": "attrs",
           "label": "Attributes",
           "comment": null,
-          "description": "Map from text keys to text values"
+          "description": "Map from text keys to text values",
+          "members": {
+            "value": {
+              "label": "Attribute value"
+            }
+          }
         },
         {
           "name": "counts",
           "label": "Counts",
           "comment": null,
-          "description": "Map from text keys to integer values"
+          "description": "Map from text keys to integer values",
+          "members": {
+            "value": {
+              "label": "Count"
+            }
+          }
         },
         {
           "name": "lookup",
           "label": "Lookup",
           "comment": null,
-          "description": "Map with integer keys: a numeric selector is a key here, a position in a list"
+          "description": "Map with integer keys: a numeric selector is a key here, a position in a list",
+          "members": {
+            "value": {
+              "label": "Name"
+            }
+          }
         },
         {
           "name": "items",
           "label": "Items",
           "comment": null,
-          "description": "List of order-line-like structs: sku, quantity, price and a list of options"
+          "description": "List of order-line-like structs: sku, quantity, price and a list of options",
+          "members": {
+            "element": {
+              "members": {
+                "sku": {
+                  "label": "SKU",
+                  "description": "Article number"
+                },
+                "qty": {
+                  "label": "Quantity"
+                },
+                "price": {
+                  "label": "Unit price"
+                },
+                "opts": {
+                  "label": "Options",
+                  "members": {
+                    "element": {
+                      "label": "Option"
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         {
           "name": "events",
           "label": "Events",
           "comment": null,
-          "description": "List of structs with temporal fields"
+          "description": "List of structs with temporal fields",
+          "members": {
+            "element": {
+              "members": {
+                "ts": {
+                  "label": "Timestamp"
+                },
+                "day": {
+                  "label": "Day"
+                }
+              }
+            }
+          }
         },
         {
           "name": "deep",
@@ -92,13 +194,35 @@
           "name": "doc",
           "label": "Document",
           "comment": null,
-          "description": "JSON document; JSON paths count from 0, selectors count from 1"
+          "description": "JSON document; JSON paths count from 0, selectors count from 1",
+          "members": {
+            "n": {
+              "label": "Number"
+            },
+            "s": {
+              "label": "Text"
+            },
+            "b": {
+              "label": "Flag"
+            },
+            "d": {
+              "label": "Amount"
+            }
+          }
         },
         {
           "name": "odd",
           "label": "Odd",
           "comment": null,
-          "description": "Struct with a mixed-case field name that needs quoting"
+          "description": "Struct with a mixed-case field name that needs quoting",
+          "members": {
+            "Odd Name": {
+              "label": "Odd name"
+            },
+            "x": {
+              "label": "X"
+            }
+          }
         }
       ]
     },

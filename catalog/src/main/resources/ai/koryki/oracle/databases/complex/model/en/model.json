@@ -20,19 +20,34 @@
           "name": "tags",
           "label": "Tags",
           "comment": null,
-          "description": "List of text values as a VARRAY (ordered, at most 100); elements are addressed 1-based in PL/SQL, in SQL through TABLE()"
+          "description": "List of text values as a VARRAY (ordered, at most 100); elements are addressed 1-based in PL/SQL, in SQL through TABLE()",
+          "members": {
+            "element": {
+              "label": "Tag"
+            }
+          }
         },
         {
           "name": "scores",
           "label": "Scores",
           "comment": null,
-          "description": "VARRAY of integers; numeric elements"
+          "description": "VARRAY of integers; numeric elements",
+          "members": {
+            "element": {
+              "label": "Score"
+            }
+          }
         },
         {
           "name": "vec",
           "label": "Vector",
           "comment": null,
-          "description": "VARRAY of doubles (three values); a VARRAY has a maximum, not a fixed size"
+          "description": "VARRAY of doubles (three values); a VARRAY has a maximum, not a fixed size",
+          "members": {
+            "element": {
+              "label": "Component"
+            }
+          }
         },
         {
           "name": "matrix",
@@ -44,43 +59,130 @@
           "name": "dims",
           "label": "Dimensions",
           "comment": null,
-          "description": "Object type cx_dims of width and height"
+          "description": "Object type cx_dims of width and height",
+          "members": {
+            "w": {
+              "label": "Width",
+              "description": "Width in metres"
+            },
+            "h": {
+              "label": "Height",
+              "description": "Height in metres"
+            }
+          }
         },
         {
           "name": "address",
           "label": "Address",
           "comment": null,
-          "description": "Object type cx_address holding an object (cx_geo) and a list (phones)"
+          "description": "Object type cx_address holding an object (cx_geo) and a list (phones)",
+          "members": {
+            "street": {
+              "label": "Street"
+            },
+            "geo": {
+              "label": "Position",
+              "members": {
+                "lat": {
+                  "label": "Latitude",
+                  "description": "Degrees north"
+                },
+                "lon": {
+                  "label": "Longitude",
+                  "description": "Degrees east"
+                }
+              }
+            },
+            "phones": {
+              "label": "Phones",
+              "members": {
+                "element": {
+                  "label": "Phone number"
+                }
+              }
+            }
+          }
         },
         {
           "name": "attrs",
           "label": "Attributes",
           "comment": null,
-          "description": "Map as a JSON object with text keys; Oracle has no map type"
+          "description": "Map as a JSON object with text keys; Oracle has no map type",
+          "members": {
+            "value": {
+              "label": "Attribute value"
+            }
+          }
         },
         {
           "name": "counts",
           "label": "Counts",
           "comment": null,
-          "description": "Map as a JSON object with numeric values; Oracle has no map type"
+          "description": "Map as a JSON object with numeric values; Oracle has no map type",
+          "members": {
+            "value": {
+              "label": "Count"
+            }
+          }
         },
         {
           "name": "lookup",
           "label": "Lookup",
           "comment": null,
-          "description": "Map as a JSON object; the integer keys are text, as JSON has no other"
+          "description": "Map as a JSON object; the integer keys are text, as JSON has no other",
+          "members": {
+            "value": {
+              "label": "Name"
+            }
+          }
         },
         {
           "name": "items",
           "label": "Items",
           "comment": null,
-          "description": "Nested table of object type cx_item: sku, quantity, price and a list of options"
+          "description": "Nested table of object type cx_item: sku, quantity, price and a list of options",
+          "members": {
+            "element": {
+              "members": {
+                "sku": {
+                  "label": "SKU",
+                  "description": "Article number"
+                },
+                "qty": {
+                  "label": "Quantity"
+                },
+                "price": {
+                  "label": "Unit price"
+                },
+                "opts": {
+                  "label": "Options",
+                  "members": {
+                    "element": {
+                      "label": "Option"
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         {
           "name": "events",
           "label": "Events",
           "comment": null,
-          "description": "VARRAY of object type cx_event with temporal fields"
+          "description": "VARRAY of object type cx_event with temporal fields",
+          "members": {
+            "element": {
+              "members": {
+                "ts": {
+                  "label": "Timestamp"
+                },
+                "day": {
+                  "label": "Day"
+                }
+              }
+            }
+          }
         },
         {
           "name": "deep",
@@ -92,13 +194,35 @@
           "name": "doc",
           "label": "Document",
           "comment": null,
-          "description": "JSON document in the native JSON type; JSON paths count from 0"
+          "description": "JSON document in the native JSON type; JSON paths count from 0",
+          "members": {
+            "n": {
+              "label": "Number"
+            },
+            "s": {
+              "label": "Text"
+            },
+            "b": {
+              "label": "Flag"
+            },
+            "d": {
+              "label": "Amount"
+            }
+          }
         },
         {
           "name": "odd",
           "label": "Odd",
           "comment": null,
-          "description": "Object type cx_odd with a mixed-case attribute name that needs quoting"
+          "description": "Object type cx_odd with a mixed-case attribute name that needs quoting",
+          "members": {
+            "Odd Name": {
+              "label": "Odd name"
+            },
+            "x": {
+              "label": "X"
+            }
+          }
         }
       ]
     },
