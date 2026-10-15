@@ -40,6 +40,27 @@ All notable changes to this project are documented here.
 - `koryki-northwind-sqlite`: the SQLite database, built from the scripts when the artifact is built.
   `core` no longer carries a committed `northwind.sqlite`.
 
+## [0.2.1] - 2026-09-27
+
+### Added
+
+- Block-chain fixtures: a block that uses an earlier sibling block as its leading source, the way a
+  SQL CTE may select from an earlier CTE. Three queries, `block_chain`, `block_chain_join` and
+  `block_chain_three_deep`, with their SQL, CSV and German translation goldens.
+
+## [0.2.0] - 2026-09-27
+
+### Added
+
+- Fixtures for the aggregate functions `median`, `quantile_cont` and `quantile_disc` and for the
+  window function `percent_rank`, among the function docs, with two queries over the categories
+  (`aggregate_median_quantile_by_category`, `window_percent_rank_revenue_per_category`); SQL, CSV and
+  German translation goldens for each.
+
+### Changed
+
+- `jackson-databind` 3.2.2 to 3.2.3.
+
 ## [0.1.2] - 2026-09-22
 
 ### Changed
@@ -77,6 +98,8 @@ Spotless (`google-java-format`, AOSP style). Releases are signed in CI with an i
 published to Maven Central via the Central Portal.
 
 [Unreleased]: https://github.com/koryki-java/northwind/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/koryki-java/northwind/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/koryki-java/northwind/compare/v0.1.2...v0.2.0
 [0.1.2]: https://github.com/koryki-java/northwind/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/koryki-java/northwind/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/koryki-java/northwind/releases/tag/v0.1.0
