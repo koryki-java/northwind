@@ -1,0 +1,77 @@
+{
+  "concepts" : {
+    "point" : {
+      "comment" : "A point on the earth.",
+      "description" : "A point on the earth by its latitude and longitude in degrees; the same concept for every column that holds one.",
+      "dialectType" : "ROW(lat DOUBLE, lon DOUBLE)",
+      "entries" : {
+        "lat" : {
+          "description" : "Degrees north of the equator.",
+          "dialectType" : "DOUBLE",
+          "label" : "Latitude",
+          "typeFamily" : "FLOAT"
+        },
+        "lon" : {
+          "description" : "Degrees east of the prime meridian.",
+          "dialectType" : "DOUBLE",
+          "label" : "Longitude",
+          "typeFamily" : "FLOAT"
+        }
+      },
+      "label" : "Position",
+      "typeFamily" : "STRUCT"
+    }
+  },
+  "description" : "Demo database for a concept that columns share: three columns of one table hold a position, and the position is defined once, in the concepts of the schema.",
+  "name" : "shared",
+  "relations" : [],
+  "tables" : [
+    {
+      "columns" : [
+        {
+          "concept" : {
+            "description" : "Row identifier (primary key)",
+            "dialectType" : "SMALLINT",
+            "label" : "Nr",
+            "typeFamily" : "INTEGER"
+          },
+          "name" : "nr",
+          "namePos" : 0,
+          "nullable" : false,
+          "pkPos" : 1
+        },
+        {
+          "conceptRef" : "point",
+          "name" : "home",
+          "namePos" : 0,
+          "nullable" : true,
+          "pkPos" : 0
+        },
+        {
+          "conceptRef" : "point",
+          "name" : "work",
+          "namePos" : 0,
+          "nullable" : true,
+          "pkPos" : 0
+        },
+        {
+          "concept" : {
+            "description" : "The positions of a journey in order; every element is a position.",
+            "dialectType" : "ARRAY(ROW(lat DOUBLE, lon DOUBLE))",
+            "entries" : {
+              "element" : "point"
+            },
+            "label" : "Route",
+            "typeFamily" : "ARRAY"
+          },
+          "name" : "route",
+          "namePos" : 0,
+          "nullable" : true,
+          "pkPos" : 0
+        }
+      ],
+      "label" : "Check Shared",
+      "name" : "check_shared"
+    }
+  ]
+}

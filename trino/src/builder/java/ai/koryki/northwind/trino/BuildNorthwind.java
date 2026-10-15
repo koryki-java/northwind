@@ -24,7 +24,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Creates the complex-types table in the memory catalog of Trino from the script in {@code db/}.
+ * Creates the complex-types tables in the memory catalog of Trino from the scripts in {@code db/}.
  * Run through the {@code createDatabase} task of this module.
  */
 public class BuildNorthwind {
@@ -37,6 +37,7 @@ public class BuildNorthwind {
 
         try (Connection connection = Connections.trinoMemory()) {
             Script.executeScript(connection, dir.resolve("data_check_complex.sql"));
+            Script.executeScript(connection, dir.resolve("data_check_shared.sql"));
         }
     }
 }
