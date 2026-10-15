@@ -1,0 +1,63 @@
+{
+  "name": "shared",
+  "label": null,
+  "comment": null,
+  "description": "Demo database for a concept that columns share.",
+  "entities": [
+    {
+      "name": "check_shared",
+      "label": "Check Shared",
+      "comment": null,
+      "description": null,
+      "table": "check_shared",
+      "attributes": [
+        {
+          "name": "nr",
+          "label": "Nr",
+          "comment": null,
+          "description": "Row identifier (primary key)",
+          "column": "nr"
+        },
+        {
+          "name": "home",
+          "label": "Home",
+          "comment": "Where the row lives.",
+          "description": "The position of the home.",
+          "column": "home"
+        },
+        {
+          "name": "work",
+          "label": "Work",
+          "comment": "Where the row works.",
+          "description": "The position of the workplace.",
+          "column": "work"
+        },
+        {
+          "name": "route",
+          "label": "Route",
+          "comment": "The way between them.",
+          "description": "The positions of a journey in order; every element is a position.",
+          "column": "route"
+        }
+      ]
+    }
+  ],
+  "links": [],
+  "notions": {
+    "point": {
+      "label": "Position",
+      "comment": "A point on the earth.",
+      "description": "A point on the earth by its latitude and longitude in degrees; the same concept for every column that holds one.",
+      "members": {
+        "lat": {
+          "label": "Latitude",
+          "description": "Degrees north of the equator."
+        },
+        "lon": {
+          "label": "Longitude",
+          "description": "Degrees east of the prime meridian."
+        }
+      }
+    }
+  }
+}

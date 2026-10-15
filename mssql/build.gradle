@@ -35,3 +35,23 @@ tasks.register('createDatabase', JavaExec) {
     inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
     args file(scripts).path
 }
+
+// ./gradlew :mssql:createShared
+//
+// Creates check_shared, the table of the bed with a concept that columns share, in the database that
+// mssql.northwind.url points at. The rest of the Northwind tables stay as they are.
+tasks.register('createShared', JavaExec) {
+    group = 'application'
+    description = 'Creates the check_shared table in the database of mssql.northwind.url.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.mssql.BuildShared'
+    ['url', 'user', 'password'].each { key ->
+        def property = "mssql.northwind.$key".toString()
+        if (project.hasProperty(property)) {
+            systemProperty property, project.property(property)
+        }
+    }
+    inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
+    args file(scripts).path
+}

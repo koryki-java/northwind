@@ -20,7 +20,21 @@
           "name": "doc",
           "label": "Document",
           "comment": null,
-          "description": "JSON document stored as text (the JSON1 functions read it); JSON paths count from 0"
+          "description": "JSON document stored as text (the JSON1 functions read it); JSON paths count from 0",
+          "members": {
+            "n": {
+              "label": "Number"
+            },
+            "s": {
+              "label": "Text"
+            },
+            "b": {
+              "label": "Flag"
+            },
+            "d": {
+              "label": "Amount"
+            }
+          }
         }
       ]
     },

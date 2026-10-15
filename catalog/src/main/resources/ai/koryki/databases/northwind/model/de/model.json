@@ -507,7 +507,7 @@
       "column" : "shipper_id"
     }, {
       "name" : "firma",
-      "label" : null,
+      "label" : "Firma",
       "comment" : "Firmenname des Spediteur",
       "description" : "Name des Spediteurs, wie er in Auswertungen erscheint.",
       "column" : "company_name"
@@ -580,7 +580,7 @@
       "column" : "country"
     }, {
       "name" : "telefon",
-      "label" : null,
+      "label" : "Telefon",
       "comment" : "Telefonnummer der Kontaktperson des Herstellers",
       "description" : "Kontaktnummer beim Hersteller.",
       "column" : "phone"

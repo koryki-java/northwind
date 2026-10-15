@@ -54,3 +54,23 @@ tasks.register('exportJson', JavaExec) {
     args layout.buildDirectory.file('northwind.json').get().asFile.path,
             project(':duckdb').file('src/main/resources/ai/koryki/duckdb/databases/northwind/northwind.duckdb').path
 }
+
+// ./gradlew :snowflake:createShared
+//
+// Creates check_shared, the table of the bed with a concept that columns share, in the Snowflake database
+// that snowflake.northwind.url points at. The rest of the Northwind tables stay as they are.
+tasks.register('createShared', JavaExec) {
+    group = 'application'
+    description = 'Creates the check_shared table in the Snowflake database of snowflake.northwind.url.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.snowflake.BuildShared'
+    ['privatekey', 'northwind.url', 'northwind.user'].each { key ->
+        def property = "snowflake.$key".toString()
+        if (project.hasProperty(property)) {
+            systemProperty property, project.property(property)
+        }
+    }
+    inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
+    args file(scripts).path
+}

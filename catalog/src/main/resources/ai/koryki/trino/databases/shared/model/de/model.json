@@ -1,0 +1,65 @@
+{
+  "name": "shared",
+  "label": null,
+  "comment": null,
+  "description": "Demodatenbank für ein Konzept, das Spalten gemeinsam haben.",
+  "entities": [
+    {
+      "name": "geteilt",
+      "label": "Geteilt",
+      "comment": null,
+      "description": null,
+      "table": "check_shared",
+      "attributes": [
+        {
+          "name": "nr",
+          "label": "Nr",
+          "comment": null,
+          "description": "Zeilenkennung (Primärschlüssel)",
+          "column": "nr"
+        },
+        {
+          "name": "heim",
+          "label": "Wohnort",
+          "comment": "Wo die Zeile wohnt.",
+          "description": "Die Position des Wohnorts.",
+          "column": "home"
+        },
+        {
+          "name": "arbeit",
+          "label": "Arbeitsplatz",
+          "comment": "Wo die Zeile arbeitet.",
+          "description": "Die Position des Arbeitsplatzes.",
+          "column": "work"
+        },
+        {
+          "name": "strecke",
+          "label": "Strecke",
+          "comment": "Der Weg dazwischen.",
+          "description": "Die Positionen einer Reise in Reihenfolge; jedes Element ist eine Position.",
+          "column": "route"
+        }
+      ]
+    }
+  ],
+  "links": [],
+  "notions": {
+    "point": {
+      "label": "Position",
+      "comment": "Ein Punkt auf der Erde.",
+      "description": "Ein Punkt auf der Erde mit Breiten- und Längengrad in Grad; dasselbe Konzept für jede Spalte, die einen hält.",
+      "members": {
+        "lat": {
+          "name": "breitengrad",
+          "label": "Breite",
+          "description": "Grad nördlich des Äquators."
+        },
+        "lon": {
+          "name": "laengengrad",
+          "label": "Länge",
+          "description": "Grad östlich des Nullmeridians."
+        }
+      }
+    }
+  }
+}
