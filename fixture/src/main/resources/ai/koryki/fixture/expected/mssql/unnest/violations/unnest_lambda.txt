@@ -1,0 +1,2 @@
+unsupported: Function [2:32-2:65]: function 'list_filter' is not supported by this dialect — lists are not supported by this dialect yet
+schema.unknown-column: Field [2:44-2:52]: unknown column 'scores' on check_complex

@@ -1,0 +1,1 @@
+schema.unknown-column: Field [2:32-2:40]: unknown column 'events' on check_complex

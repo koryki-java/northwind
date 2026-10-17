@@ -1,0 +1,2 @@
+schema.unknown-column: Field [2:34-2:41]: unknown column 'items' on check_complex
+unsupported: Source [2:27-2:44]: SQL Server cannot filter the rows of an outer unnest (i): its outer join takes no condition. Filter after the join, or use an inner join

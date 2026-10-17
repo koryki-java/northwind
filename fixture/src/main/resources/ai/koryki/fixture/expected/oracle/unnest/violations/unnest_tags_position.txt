@@ -1,0 +1,1 @@
+unsupported: Field [4:13-4:22]: Oracle has no position for the elements of a collection in a lateral join: 'ordinal' is not available on g
