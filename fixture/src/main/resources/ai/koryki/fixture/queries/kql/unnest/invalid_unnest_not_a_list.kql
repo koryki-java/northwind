@@ -1,0 +1,3 @@
+// What unnest is given must be a list.
+FIND check_complex t, t unnest(t.nr) i
+FETCH t.nr

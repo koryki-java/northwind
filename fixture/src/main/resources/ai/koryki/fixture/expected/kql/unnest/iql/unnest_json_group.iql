@@ -1,0 +1,9 @@
+// The elements of the JSON array are rows: a count, a sum and an extreme over them.
+
+SELECT
+ check_complex t
+  JOIN  unnest(t.doc@a@b) b
+    OUT count(b.value) elements 1
+    OUT sum(b.value) total 2
+    OUT max(b.value) biggest 3
+  OWNER

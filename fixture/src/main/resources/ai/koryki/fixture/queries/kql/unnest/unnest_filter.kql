@@ -1,0 +1,4 @@
+// A filter on the rows of an inner unnest keeps the matching elements.
+FIND check_complex t, t unnest(t.items) i
+FILTER i.qty > 1
+FETCH t.nr, i.sku

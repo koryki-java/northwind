@@ -1,0 +1,3 @@
+// A row whose document has no array there has no rows; the outer form keeps it.
+FIND check_complex t, t + unnest(t.doc@a@b) b
+FETCH t.nr, b.value

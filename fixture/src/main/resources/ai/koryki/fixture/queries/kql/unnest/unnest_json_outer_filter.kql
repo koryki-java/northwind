@@ -1,0 +1,4 @@
+// A condition on the rows of an outer unnest of JSON keeps every parent. SQL Server takes none there.
+FIND check_complex t, t + unnest(t.doc@a@b) b
+FILTER b.value > 5
+FETCH t.nr, b.value

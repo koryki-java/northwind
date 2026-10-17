@@ -1,0 +1,3 @@
+// A struct list with temporal fields: the fields keep their types.
+FIND check_complex t, t unnest(t.events) e
+FETCH t.nr, e.day

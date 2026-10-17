@@ -1,0 +1,1 @@
+schema.unknown-column: Field [3:32-3:38]: unknown column 'tags' on check_complex

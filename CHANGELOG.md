@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here. 
 
+## [0.4.0] - 2026-10-17
+
+### Added
+
+- The schema `unnest` of the fixture corpus: seventeen queries that all eight dialects run over their
+  complex bed, and nine `invalid_*` queries that must be refused. A list of structs and a list of
+  scalars made into rows, with the position of the element, aggregated and filtered, in the outer
+  form, from what a lambda made, from the rows of an earlier unnest, and the array that the catalog
+  declares inside JSON. The results are shared; the SQL, and what a dialect cannot do, are per
+  dialect (`expected/<dialect>/unnest/sql` and `violations`): SQLite, MariaDB and SQL Server have no
+  lists and reject the queries that read one, Oracle has no position for a collection's elements,
+  and Trino, Snowflake, Oracle and SQL Server take no condition on the rows of an outer unnest.
+  Snowflake `FLATTEN` leaves a NULL element out, which `unnest_tags` and `unnest_tags_position` say
+  with `// ignore=snowflake`. [`SPEC.md`](SPEC.md) describes the schema; the format version stays 1.
+  It is for `koryki-core` 0.4.0, which reads a list made into rows as a source.
+
 ## [0.2.3] - 2026-10-15
 
 ### Changed
@@ -111,6 +127,7 @@ specification/implementation manifest attributes, JaCoCo coverage reports, and c
 Spotless (`google-java-format`, AOSP style). Releases are signed in CI with an in-memory PGP key and
 published to Maven Central via the Central Portal.
 
+[0.4.0]: https://github.com/koryki-java/northwind/compare/v0.2.3...v0.4.0
 [0.2.3]: https://github.com/koryki-java/northwind/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/koryki-java/northwind/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/koryki-java/northwind/compare/v0.2.0...v0.2.1

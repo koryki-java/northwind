@@ -1,0 +1,4 @@
+// A filter on the rows of the JSON array keeps the matching elements.
+FIND check_complex t, t unnest(t.doc@a@b) b
+FILTER b.value > 5
+FETCH t.nr, b.value

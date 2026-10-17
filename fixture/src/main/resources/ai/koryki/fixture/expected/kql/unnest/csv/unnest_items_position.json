@@ -1,0 +1,4 @@
+Nr : INTEGER
+ordinal : INTEGER
+SKU : TEXT
+total : DECIMAL

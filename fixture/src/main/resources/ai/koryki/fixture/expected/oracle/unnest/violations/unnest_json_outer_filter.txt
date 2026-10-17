@@ -1,0 +1,1 @@
+unsupported: Source [2:27-2:46]: Oracle cannot filter the rows of an outer unnest (b): its outer join takes no condition. Filter after the join, or use an inner join

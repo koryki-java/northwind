@@ -1,0 +1,10 @@
+// A filter on the rows of the JSON array keeps the matching elements.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(t.doc@a@b) b
+    OUT b.value 2
+    FILTER
+      b.value > 5
+  OWNER

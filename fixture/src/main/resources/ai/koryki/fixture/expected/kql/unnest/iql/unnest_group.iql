@@ -1,0 +1,10 @@
+// Revenue by sku, the analysis a list column alone cannot answer.
+
+SELECT
+ check_complex t
+  JOIN  unnest(t.items) i
+    OUT i.sku 1
+    OUT count(i.sku) lines 2
+    OUT sum(multiply(i.qty, i.price)) revenue 3
+    GROUP i.sku 1
+  OWNER

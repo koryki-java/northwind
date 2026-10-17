@@ -1,0 +1,9 @@
+// The position counts the NULL element too, and Snowflake FLATTEN does not have it.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(t.tags) g
+    OUT g.ordinal 2
+    OUT g.value 3
+  OWNER

@@ -1,0 +1,3 @@
+// Revenue by sku, the analysis a list column alone cannot answer.
+FIND check_complex t, t unnest(t.items) i
+FETCH i.sku, count(i.sku) lines, sum(i.qty * i.price) revenue

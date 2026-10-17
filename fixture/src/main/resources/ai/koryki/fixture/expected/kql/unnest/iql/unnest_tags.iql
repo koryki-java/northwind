@@ -1,0 +1,8 @@
+// A list of scalars: the one column is value. Snowflake FLATTEN leaves a NULL element out.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(t.tags) g
+    OUT g.value 2
+  OWNER

@@ -44,7 +44,9 @@ expected/<dialect>/<schema>/sql/…/<name>.sql         SQL — per dialect
 expected/<dialect>/<schema>/violations/…/<name>.txt  what the dialect rejects — per dialect
 ```
 
-`<schema>` is `northwind`, `typecheck`, `temporal` or `casts`. `<dialect>` is the name of a database:
+`<schema>` is `northwind`, `typecheck`, `temporal`, `casts` or `unnest`; `complex` has shared queries
+too, which DuckDB alone runs (the other dialects have a complex bed of their own, with its queries in
+`koryki-java/core`). `<dialect>` is the name of a database:
 every directory under `expected/` other than `kql` and `iql` is one (`duckdb`, `mariadb`, `mssql`,
 `oracle`, `postgresql`, `snowflake`, `sqlite`, `trino`). In that position `kql` stands for
 "dialect-independent", and `iql` for the expectations belonging to the IQL sources rather than to
@@ -168,6 +170,27 @@ and formatter, so another implementation checks them only if it provides those.
 - `<message>` is the reference implementation's English description of the error.
 - Lines appear in the order the reference implementation's validator reports them, which is not
   source order. Compare them as a multiset.
+
+## The schema `unnest`
+
+`unnest` is the one schema that all eight dialects run over the same bed, the complex-types bed
+`check_complex` of each dialect: a list made into rows, `FIND check_complex t, t unnest(t.items) i`.
+Its queries read the lists the bed has (`items`, `tags`, `events`, `scores`) and the JSON array
+the catalog declares in `doc` (`.a.b[]`), so a dialect either runs a query or says why it cannot, with
+a violation golden:
+
+- the three engines without lists (SQLite, MariaDB, SQL Server) have no `items`, `tags`, `events` or
+  `scores` column, and reject those queries as `unknown column`; they run the `unnest_json*` queries;
+- Oracle has no position for the elements of a collection in a lateral join and rejects every query
+  that reads `ordinal`; Trino, Snowflake, Oracle and SQL Server cannot put a condition on the rows of
+  an outer unnest into its join and reject `unnest_outer_filter` and `unnest_json_outer_filter`;
+- Snowflake `FLATTEN` leaves a NULL element out, so `unnest_tags` and `unnest_tags_position` carry
+  `// ignore=snowflake`: same SQL, different result.
+
+The queries whose name starts with `invalid` must be refused wherever they are parsed: another
+function as a source, `unnest` as the first source, in an expression, in `EXISTS`, with `VIA`, of
+something that is no list, of JSON that is not declared as an array, `count(i)` of its alias, and
+from an alias that is not there.
 
 ## Why CSV is shared but SQL is not
 
