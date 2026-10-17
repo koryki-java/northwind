@@ -1,0 +1,8 @@
+// A struct list with temporal fields: the fields keep their types.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(t.events) e
+    OUT e.day 2
+  OWNER

@@ -1,0 +1,3 @@
+// The elements of the JSON array are rows: a count, a sum and an extreme over them.
+FIND check_complex t, t unnest(t.doc@a@b) b
+FETCH count(b.value) elements, sum(b.value) total, max(b.value) biggest

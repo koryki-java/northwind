@@ -1,0 +1,11 @@
+// The list of an element is read from the rows of the earlier unnest.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(t.items) i
+    OUT i.sku 2
+     JOIN  unnest(i.opts) o
+       OUT o.value 3
+     OWNER
+  OWNER

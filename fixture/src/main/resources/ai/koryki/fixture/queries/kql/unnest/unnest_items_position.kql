@@ -1,0 +1,3 @@
+// The position of the element in its list, from 1. Oracle has none for a collection in a lateral join.
+FIND check_complex t, t unnest(t.items) i
+FETCH t.nr, i.ordinal, i.sku, i.qty * i.price total

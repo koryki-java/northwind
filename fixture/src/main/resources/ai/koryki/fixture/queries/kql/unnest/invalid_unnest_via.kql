@@ -1,0 +1,3 @@
+// A list made into rows is joined to the source it comes from: no VIA, no columns.
+FIND check_complex t, t VIA same_check unnest(t.items) i
+FETCH t.nr

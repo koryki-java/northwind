@@ -1,0 +1,3 @@
+// unnest makes rows, so it is a source and no value in an expression.
+FIND check_complex t
+FETCH t.nr, unnest(t.items)

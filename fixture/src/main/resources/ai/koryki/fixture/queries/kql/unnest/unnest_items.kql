@@ -1,0 +1,3 @@
+// A list of structs made into rows: one row for each element, with its fields as columns.
+FIND check_complex t, t unnest(t.items) i
+FETCH t.nr, i.sku, i.qty * i.price total

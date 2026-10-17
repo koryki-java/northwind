@@ -1,0 +1,4 @@
+// A list of scalars: the one column is value. Snowflake FLATTEN leaves a NULL element out.
+// ignore=snowflake
+FIND check_complex t, t unnest(t.tags) g
+FETCH t.nr, g.value

@@ -1,0 +1,4 @@
+// unnest cannot start an EXISTS.
+FIND check_complex t
+FILTER EXISTS (t unnest(t.items) i)
+FETCH t.nr

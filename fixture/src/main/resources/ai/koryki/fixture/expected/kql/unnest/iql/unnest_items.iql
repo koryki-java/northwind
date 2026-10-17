@@ -1,0 +1,9 @@
+// A list of structs made into rows: one row for each element, with its fields as columns.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(t.items) i
+    OUT i.sku 2
+    OUT multiply(i.qty, i.price) total 3
+  OWNER

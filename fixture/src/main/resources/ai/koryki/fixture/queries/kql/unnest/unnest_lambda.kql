@@ -1,0 +1,3 @@
+// The list may be what a lambda made.
+FIND check_complex t, t unnest(list_filter(t.scores, x -> x > 5)) s
+FETCH t.nr, s.value

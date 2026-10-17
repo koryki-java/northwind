@@ -1,0 +1,3 @@
+// JSON that the catalog does not declare as an array is no list.
+FIND check_complex t, t unnest(t.doc) b
+FETCH b.value

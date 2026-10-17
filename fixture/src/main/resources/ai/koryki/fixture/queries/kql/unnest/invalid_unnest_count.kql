@@ -1,0 +1,3 @@
+// The rows have no key to count: count a field of the element.
+FIND check_complex t, t unnest(t.items) i
+FETCH count(i)

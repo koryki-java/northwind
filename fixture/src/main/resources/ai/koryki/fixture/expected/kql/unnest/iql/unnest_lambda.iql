@@ -1,0 +1,8 @@
+// The list may be what a lambda made.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(list_filter(t.scores, x -> x > 5)) s
+    OUT s.value 2
+  OWNER

@@ -1,0 +1,3 @@
+// The list comes from a source that has to be there.
+FIND check_complex t, x unnest(t.items) i
+FETCH t.nr

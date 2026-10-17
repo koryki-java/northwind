@@ -1,0 +1,3 @@
+// The outer form keeps the row whose list is empty or NULL, with NULLs for the element.
+FIND check_complex t, t + unnest(t.items) i
+FETCH t.nr, i.sku

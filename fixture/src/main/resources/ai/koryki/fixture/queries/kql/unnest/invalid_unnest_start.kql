@@ -1,0 +1,3 @@
+// A list is made into rows after the source it comes from, not as the first source.
+FIND unnest(t.items) i
+FETCH i.sku

@@ -1,0 +1,3 @@
+// The list of an element is read from the rows of the earlier unnest.
+FIND check_complex t, t unnest(t.items) i, i unnest(i.opts) o
+FETCH t.nr, i.sku, o.value

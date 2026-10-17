@@ -1,0 +1,4 @@
+// A condition on the rows of an outer unnest belongs to the join, and keeps every parent. Trino, Snowflake, Oracle and SQL Server take none there.
+FIND check_complex t, t + unnest(t.items) i
+FILTER i.qty > 1
+FETCH t.nr, i.sku

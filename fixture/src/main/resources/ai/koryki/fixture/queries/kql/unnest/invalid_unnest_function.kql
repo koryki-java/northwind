@@ -1,0 +1,3 @@
+// Only unnest makes a list into rows; any other call is no source.
+FIND check_complex t, t explode(t.items) i
+FETCH t.nr

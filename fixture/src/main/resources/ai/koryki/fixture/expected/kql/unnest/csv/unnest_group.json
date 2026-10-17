@@ -1,0 +1,3 @@
+SKU : TEXT
+lines : INTEGER
+revenue : DECIMAL

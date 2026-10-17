@@ -1,0 +1,8 @@
+// A row whose document has no array there has no rows; the outer form keeps it.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN OPTIONAL  unnest(t.doc@a@b) b
+    OUT b.value 2
+  OWNER

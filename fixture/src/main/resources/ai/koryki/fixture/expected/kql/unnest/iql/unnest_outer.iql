@@ -1,0 +1,8 @@
+// The outer form keeps the row whose list is empty or NULL, with NULLs for the element.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN OPTIONAL  unnest(t.items) i
+    OUT i.sku 2
+  OWNER

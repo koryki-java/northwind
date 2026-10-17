@@ -1,0 +1,10 @@
+// The position of the element in its list, from 1. Oracle has none for a collection in a lateral join.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(t.items) i
+    OUT i.ordinal 2
+    OUT i.sku 3
+    OUT multiply(i.qty, i.price) total 4
+  OWNER
