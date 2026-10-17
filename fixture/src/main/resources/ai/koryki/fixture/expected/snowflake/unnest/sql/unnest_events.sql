@@ -1,0 +1,7 @@
+-- A struct list with temporal fields: the fields keep their types.
+SELECT
+  t.nr
+, e.VALUE:day::DATE
+FROM
+ check_complex t
+  , LATERAL FLATTEN(INPUT => t.events) e
