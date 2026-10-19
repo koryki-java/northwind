@@ -55,3 +55,23 @@ tasks.register('createShared', JavaExec) {
     inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
     args file(scripts).path
 }
+
+// ./gradlew :mssql:createComplex
+//
+// Creates check_complex, the table of the complex-types bed, in the database that
+// mssql.northwind.url points at. The rest of the Northwind tables stay as they are.
+tasks.register('createComplex', JavaExec) {
+    group = 'application'
+    description = 'Creates the check_complex table in the database of mssql.northwind.url.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.mssql.BuildComplex'
+    ['url', 'user', 'password'].each { key ->
+        def property = "mssql.northwind.$key".toString()
+        if (project.hasProperty(property)) {
+            systemProperty property, project.property(property)
+        }
+    }
+    inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
+    args file(scripts).path
+}
