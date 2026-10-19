@@ -1,0 +1,14 @@
+// One row per branch of a native list of structs, with its fields and a field of the struct inside.
+// (On Snowflake the latitude of row 3, which has no position, comes back as the text "null" - a JSON
+// null of the untyped value FLATTEN yields, not an SQL NULL - where the other dialects have an empty
+// cell. Its SQL is still checked.)
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN  unnest(t.branches) b
+    OUT b.street 2
+    OUT b.city 3
+    OUT b.zip 4
+    OUT b.geo@lat latitude 5
+  OWNER

@@ -1,0 +1,10 @@
+// A client without branches stays in the answer when the list is unnested with +, the outer form: row 2
+// has an empty list and comes back once, with empty fields. unnest_branches leaves it out.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  JOIN OPTIONAL  unnest(t.branches) b
+    OUT b.street 2
+    OUT b.city 3
+  OWNER

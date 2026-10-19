@@ -1,0 +1,5 @@
+// A JSON array of objects is not a list: a list is what the catalog declares the elements of and a
+// selector reaches (t.doc@a@b), and a list of objects stays JSON. So neither the size nor a lambda over
+// the elements is possible; the native list branches answers both (lambda_branches).
+FIND check_complex t
+FETCH t.nr, list_size(t.branches_json) branches, list_transform(t.branches_json, b -> b@city) cities

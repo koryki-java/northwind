@@ -1,0 +1,4 @@
+Nr : INTEGER
+first_city : TEXT
+second_zip : TEXT
+fourth_city : TEXT

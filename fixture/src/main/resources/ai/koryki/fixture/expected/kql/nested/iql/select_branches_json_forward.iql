@@ -1,0 +1,10 @@
+// select_branches_json without what some dialects cannot read from JSON: the position from the end
+// (Trino and Snowflake have none in JSON, see select_branches_json) and the latitude (Oracle, see
+// there). What every dialect with a JSON column can answer, asked from the start.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  OUT t.branches_json@1@city first_city 2
+  OUT t.branches_json@2@zip second_zip 3
+  OUT t.branches_json@4@city fourth_city 4

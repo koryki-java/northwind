@@ -1,0 +1,12 @@
+// The branches of a row, as a native list of structs: an element by position from the start and from the end,
+// a field of it, a field of a struct inside it, and a position that is not there. select_branches_json asks
+// the same of the same data and must give the same rows.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  OUT t.branches@1@city first_city 2
+  OUT t.branches@-1@city last_city 3
+  OUT t.branches@1@geo@lat first_lat 4
+  OUT t.branches@2@zip second_zip 5
+  OUT t.branches@4@city fourth_city 6

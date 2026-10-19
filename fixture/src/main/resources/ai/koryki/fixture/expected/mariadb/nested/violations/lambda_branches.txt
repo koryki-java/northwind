@@ -1,0 +1,4 @@
+unsupported: Function [3:13-3:34]: function 'list_size' is not supported by this dialect — lists are not supported by this dialect yet
+unsupported: Function [3:45-3:84]: function 'list_transform' is not supported by this dialect — lists are not supported by this dialect yet
+schema.unknown-column: Field [3:23-3:33]: unknown column 'branches' on check_complex
+schema.unknown-column: Field [3:60-3:70]: unknown column 'branches' on check_complex

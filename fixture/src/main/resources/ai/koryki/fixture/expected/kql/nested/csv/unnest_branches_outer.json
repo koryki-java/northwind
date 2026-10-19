@@ -1,0 +1,3 @@
+Nr : INTEGER
+Street : TEXT
+City : TEXT

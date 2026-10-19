@@ -44,7 +44,7 @@ expected/<dialect>/<schema>/sql/…/<name>.sql         SQL — per dialect
 expected/<dialect>/<schema>/violations/…/<name>.txt  what the dialect rejects — per dialect
 ```
 
-`<schema>` is `northwind`, `typecheck`, `temporal`, `casts` or `unnest`; `complex` has shared queries
+`<schema>` is `northwind`, `typecheck`, `temporal`, `casts`, `unnest` or `nested`; `complex` has shared queries
 too, which DuckDB alone runs (the other dialects have a complex bed of their own, with its queries in
 `koryki-java/core`). `<dialect>` is the name of a database:
 every directory under `expected/` other than `kql` and `iql` is one (`duckdb`, `mariadb`, `mssql`,
@@ -191,6 +191,32 @@ The queries whose name starts with `invalid` must be refused wherever they are p
 function as a source, `unnest` as the first source, in an expression, in `EXISTS`, with `VIA`, of
 something that is no list, of JSON that is not declared as an array, `count(i)` of its alias, and
 from an alias that is not there.
+
+## The schema `nested`
+
+`nested` is the second schema that all eight dialects run over the complex-types bed: selectors,
+lambdas and a list made into rows over the two `branches` columns of `check_complex`, the same list of
+addresses (each with a position struct inside) stored twice, as a native list of structs (`branches`)
+and as a JSON array of objects the catalog declares (`branches_json`). Row 1 holds three branches,
+row 2 an empty list and row 3 one branch with NULL parts, so a position beyond the list, an empty list
+and a NULL part are all asked.
+
+`select_branches` and `select_branches_json` are one question on the two storages, and their results
+are one and the same file; a test of this repository holds them to it. As in `unnest`, a dialect
+either runs a query or says why it cannot, with a violation golden:
+
+- SQLite and MariaDB have no native list, so the queries that read `branches` are rejected as
+  `unknown column`; they run the JSON ones;
+- Trino and Snowflake have no position from the end in JSON and reject `select_branches_json`
+  (`select_branches_json_forward` asks the rest from the start); Oracle has no position for the
+  elements of a collection and rejects `unnest_branches` (`unnest_branches_fields` asks the same
+  without it);
+- `select_branches_json` carries `// ignore=oracle` (a JSON number is read as text and cast, which
+  fails on a session whose decimal separator is a comma) and `unnest_branches_fields` carries
+  `// ignore=snowflake` (a NULL inside the struct comes back as the text `null`): same SQL, different
+  result;
+- `invalid_lambda_branches_json` must be refused: a JSON array of objects is not a list, so neither
+  `list_size` nor a lambda is possible on it.
 
 ## Why CSV is shared but SQL is not
 

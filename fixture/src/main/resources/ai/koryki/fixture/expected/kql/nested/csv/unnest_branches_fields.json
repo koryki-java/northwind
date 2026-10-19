@@ -1,0 +1,5 @@
+Nr : INTEGER
+Street : TEXT
+City : TEXT
+Zip code : TEXT
+latitude : FLOAT
