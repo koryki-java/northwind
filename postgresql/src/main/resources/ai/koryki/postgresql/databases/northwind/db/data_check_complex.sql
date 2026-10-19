@@ -16,7 +16,7 @@ DROP VIEW IF EXISTS check_complex_tags;
 DROP VIEW IF EXISTS check_complex_items;
 DROP VIEW IF EXISTS check_complex_events;
 DROP TABLE IF EXISTS check_complex;
-DROP TYPE IF EXISTS cx_dims, cx_address, cx_geo, cx_item, cx_event, cx_odd;
+DROP TYPE IF EXISTS cx_dims, cx_address, cx_geo, cx_item, cx_event, cx_odd, cx_branch;
 
 CREATE TYPE cx_dims AS (w DOUBLE PRECISION, h DOUBLE PRECISION);
 CREATE TYPE cx_geo AS (lat DOUBLE PRECISION, lon DOUBLE PRECISION);
@@ -24,6 +24,7 @@ CREATE TYPE cx_address AS (street TEXT, geo cx_geo, phones TEXT[]);
 CREATE TYPE cx_item AS (sku TEXT, qty INTEGER, price NUMERIC(10,2), opts TEXT[]);
 CREATE TYPE cx_event AS (ts TIMESTAMP, day DATE);
 CREATE TYPE cx_odd AS ("Odd Name" INTEGER, x INTEGER);
+CREATE TYPE cx_branch AS (street TEXT, city TEXT, zip TEXT, geo cx_geo);
 
 CREATE TABLE check_complex (
     nr       SMALLINT NOT NULL PRIMARY KEY,
@@ -40,7 +41,9 @@ CREATE TABLE check_complex (
     events   cx_event[],             -- list of structs with temporal fields
     deep     JSONB,                  -- every constructor inside every other; a list of maps, so jsonb
     doc      JSONB,                  -- JSON: paths count from 0, arrays from 1
-    odd      cx_odd                  -- quoted, mixed-case field name
+    odd      cx_odd,                 -- quoted, mixed-case field name
+    branches cx_branch[],            -- list of structs holding a struct: the same shape twice, as an array
+    branches_json JSONB              -- and as a JSON array of objects, declared in the catalog
 );
 
 INSERT INTO check_complex VALUES (
@@ -58,7 +61,13 @@ INSERT INTO check_complex VALUES (
     ARRAY[ROW(TIMESTAMP '2026-05-17 14:30:45', DATE '2026-05-17')::cx_event],
     '[{"m": {"a": [1, 2], "b": {"1": ["q", "r"]}}}]'::jsonb,
     '{"a": {"b": [5, 6]}, "n": 1}'::jsonb,
-    ROW(1, 2)::cx_odd
+    ROW(1, 2)::cx_odd,
+    ARRAY[ROW('Hafenstrasse 4', 'Hamburg', '20457', ROW(53.54, 9.99)::cx_geo)::cx_branch,
+          ROW('Domshof 2', 'Bremen', '28195', ROW(53.08, 8.81)::cx_geo)::cx_branch,
+          ROW('Holstenstrasse 9', 'Kiel', '24103', ROW(54.32, 10.14)::cx_geo)::cx_branch],
+    '[{"street": "Hafenstrasse 4", "city": "Hamburg", "zip": "20457", "geo": {"lat": 53.54, "lon": 9.99}},
+      {"street": "Domshof 2", "city": "Bremen", "zip": "28195", "geo": {"lat": 53.08, "lon": 8.81}},
+      {"street": "Holstenstrasse 9", "city": "Kiel", "zip": "24103", "geo": {"lat": 54.32, "lon": 10.14}}]'::jsonb
 );
 
 INSERT INTO check_complex VALUES (
@@ -76,7 +85,9 @@ INSERT INTO check_complex VALUES (
     ARRAY[]::cx_event[],
     '[]'::jsonb,
     NULL,
-    NULL
+    NULL,
+    ARRAY[]::cx_branch[],
+    '[]'::jsonb
 );
 
 INSERT INTO check_complex VALUES (
@@ -94,7 +105,9 @@ INSERT INTO check_complex VALUES (
     ARRAY[ROW(NULL, DATE '2026-01-01')::cx_event],
     '[{"m": {"a": null, "b": null}}]'::jsonb,
     '[1, 2, 3]'::jsonb,
-    ROW(NULL, NULL)::cx_odd
+    ROW(NULL, NULL)::cx_odd,
+    ARRAY[ROW(NULL, 'Luebeck', NULL, ROW(NULL, NULL)::cx_geo)::cx_branch],
+    '[{"street": null, "city": "Luebeck", "zip": null, "geo": {"lat": null, "lon": null}}]'::jsonb
 );
 
 -- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of

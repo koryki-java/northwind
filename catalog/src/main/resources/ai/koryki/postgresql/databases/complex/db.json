@@ -447,6 +447,113 @@
       "namePos" : 0,
       "nullable" : true,
       "pkPos" : 0
+    }, {
+      "concept" : {
+        "description" : "List of addresses, each with a position inside: the same data as branches_json, as a native list",
+        "dialectType" : "ROW(street TEXT, city TEXT, zip TEXT, geo ROW(lat DOUBLE PRECISION, lon DOUBLE PRECISION))[]",
+        "entries" : {
+          "element" : {
+            "entries" : {
+              "street" : {
+                "dialectType" : "TEXT",
+                "label" : "Street",
+                "typeFamily" : "TEXT"
+              },
+              "city" : {
+                "dialectType" : "TEXT",
+                "label" : "City",
+                "typeFamily" : "TEXT"
+              },
+              "zip" : {
+                "comment" : "Postal code. Text, never summed.",
+                "dialectType" : "TEXT",
+                "label" : "Zip code",
+                "typeFamily" : "TEXT"
+              },
+              "geo" : {
+                "entries" : {
+                  "lat" : {
+                    "dialectType" : "DOUBLE PRECISION",
+                    "label" : "Latitude",
+                    "typeFamily" : "FLOAT",
+                    "unit" : "deg"
+                  },
+                  "lon" : {
+                    "dialectType" : "DOUBLE PRECISION",
+                    "label" : "Longitude",
+                    "typeFamily" : "FLOAT",
+                    "unit" : "deg"
+                  }
+                },
+                "label" : "Position",
+                "typeFamily" : "STRUCT"
+              }
+            },
+            "label" : "Branch",
+            "typeFamily" : "STRUCT"
+          }
+        },
+        "label" : "Branches",
+        "typeFamily" : "ARRAY"
+      },
+      "name" : "branches",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
+    }, {
+      "concept" : {
+        "description" : "JSON array of address objects: the same data as branches, stored as JSON; JSON paths count from 0, selectors count from 1",
+        "dialectType" : "JSONB",
+        "entries" : {
+          "element" : {
+            "entries" : {
+              "street" : {
+                "dialectType" : "TEXT",
+                "label" : "Street",
+                "typeFamily" : "TEXT"
+              },
+              "city" : {
+                "dialectType" : "TEXT",
+                "label" : "City",
+                "typeFamily" : "TEXT"
+              },
+              "zip" : {
+                "comment" : "Postal code. Text, never summed.",
+                "dialectType" : "TEXT",
+                "label" : "Zip code",
+                "typeFamily" : "TEXT"
+              },
+              "geo" : {
+                "entries" : {
+                  "lat" : {
+                    "dialectType" : "DOUBLE PRECISION",
+                    "label" : "Latitude",
+                    "typeFamily" : "FLOAT",
+                    "unit" : "deg"
+                  },
+                  "lon" : {
+                    "dialectType" : "DOUBLE PRECISION",
+                    "label" : "Longitude",
+                    "typeFamily" : "FLOAT",
+                    "unit" : "deg"
+                  }
+                },
+                "label" : "Position",
+                "typeFamily" : "STRUCT"
+              }
+            },
+            "label" : "Branch",
+            "typeFamily" : "STRUCT"
+          }
+        },
+        "label" : "Branches as JSON",
+        "typeEncoding" : "JSON",
+        "typeFamily" : "ARRAY"
+      },
+      "name" : "branches_json",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
     } ],
     "label" : "Check Complex",
     "name" : "check_complex"

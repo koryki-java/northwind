@@ -18,6 +18,8 @@ DROP VIEW IF EXISTS check_complex_tags;
 DROP VIEW IF EXISTS check_complex_items;
 DROP VIEW IF EXISTS check_complex_events;
 DROP TABLE IF EXISTS check_complex PURGE;
+DROP TYPE IF EXISTS cx_branch_list FORCE;
+DROP TYPE IF EXISTS cx_branch FORCE;
 DROP TYPE IF EXISTS cx_matrix FORCE;
 DROP TYPE IF EXISTS cx_dbl_list FORCE;
 DROP TYPE IF EXISTS cx_int_list FORCE;
@@ -43,6 +45,8 @@ CREATE TYPE cx_item_tab AS TABLE OF cx_item;
 CREATE TYPE cx_event AS OBJECT (ts TIMESTAMP, day DATE);
 CREATE TYPE cx_event_list AS VARRAY(100) OF cx_event;
 CREATE TYPE cx_odd AS OBJECT ("Odd Name" INTEGER, x INTEGER);
+CREATE TYPE cx_branch AS OBJECT (street VARCHAR2(100), city VARCHAR2(100), zip VARCHAR2(100), geo cx_geo);
+CREATE TYPE cx_branch_list AS VARRAY(100) OF cx_branch;
 
 CREATE TABLE check_complex (
     nr       SMALLINT NOT NULL PRIMARY KEY,
@@ -59,7 +63,9 @@ CREATE TABLE check_complex (
     events   cx_event_list,     -- list of structs with temporal fields
     deep     JSON,              -- every constructor inside every other; a list of maps, so JSON
     doc      JSON,              -- JSON: paths count from 0
-    odd      cx_odd             -- quoted, mixed-case attribute name
+    odd      cx_odd,            -- quoted, mixed-case attribute name
+    branches cx_branch_list,    -- list of structs holding a struct: the same shape twice, as a VARRAY
+    branches_json JSON          -- and as a JSON array of objects, declared in the catalog
 )
 NESTED TABLE items STORE AS check_complex_items_store;
 
@@ -78,7 +84,14 @@ INSERT INTO check_complex VALUES (
     cx_event_list(cx_event(TIMESTAMP '2026-05-17 14:30:45', DATE '2026-05-17')),
     JSON('[{"m": {"a": [1, 2], "b": {"1": ["q", "r"]}}}]'),
     JSON('{"a": {"b": [5, 6]}, "n": 1}'),
-    cx_odd(1, 2)
+    cx_odd(1, 2),
+    cx_branch_list(
+        cx_branch('Hafenstrasse 4', 'Hamburg', '20457', cx_geo(53.54, 9.99)),
+        cx_branch('Domshof 2', 'Bremen', '28195', cx_geo(53.08, 8.81)),
+        cx_branch('Holstenstrasse 9', 'Kiel', '24103', cx_geo(54.32, 10.14))),
+    JSON('[{"street": "Hafenstrasse 4", "city": "Hamburg", "zip": "20457", "geo": {"lat": 53.54, "lon": 9.99}},
+      {"street": "Domshof 2", "city": "Bremen", "zip": "28195", "geo": {"lat": 53.08, "lon": 8.81}},
+      {"street": "Holstenstrasse 9", "city": "Kiel", "zip": "24103", "geo": {"lat": 54.32, "lon": 10.14}}]')
 );
 
 INSERT INTO check_complex VALUES (
@@ -96,7 +109,9 @@ INSERT INTO check_complex VALUES (
     cx_event_list(),
     JSON('[]'),
     NULL,
-    NULL
+    NULL,
+    cx_branch_list(),
+    JSON('[]')
 );
 
 INSERT INTO check_complex VALUES (
@@ -114,7 +129,9 @@ INSERT INTO check_complex VALUES (
     cx_event_list(cx_event(NULL, DATE '2026-01-01')),
     JSON('[{"m": {"a": null, "b": null}}]'),
     JSON('[1, 2, 3]'),
-    cx_odd(NULL, NULL)
+    cx_odd(NULL, NULL),
+    cx_branch_list(cx_branch(NULL, 'Luebeck', NULL, cx_geo(NULL, NULL))),
+    JSON('[{"street": null, "city": "Luebeck", "zip": null, "geo": {"lat": null, "lon": null}}]')
 );
 
 -- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of

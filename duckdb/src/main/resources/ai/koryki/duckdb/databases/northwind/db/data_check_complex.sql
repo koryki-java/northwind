@@ -1,8 +1,10 @@
 -- Three rows: fully populated, empty/NULL containers, NULL elements inside containers.
+-- branches and branches_json hold the same three branches in row 1, an empty list in row 2 and one
+-- branch with NULL parts in row 3 - the two columns must answer every question the same way.
 -- Maps hold at most two keys, inserted in a fixed order, so rendered rows are stable.
 INSERT INTO check_complex (
     nr, tags, scores, vec, matrix, dims, address, attrs, counts, lookup,
-    items, events, deep, doc, odd
+    items, events, deep, doc, odd, branches, branches_json
 )
 VALUES (
     1,
@@ -20,7 +22,13 @@ VALUES (
     [{'ts': TIMESTAMP '2026-05-17 14:30:45', 'day': DATE '2026-05-17'}],
     [MAP {'m': {'a': [1, 2], 'b': MAP {1: ['q', 'r']}}}],
     '{"a": {"b": [5, 6]}, "n": 1}'::JSON,
-    {'Odd Name': 1, 'x': 2}
+    {'Odd Name': 1, 'x': 2},
+    [{'street': 'Hafenstrasse 4', 'city': 'Hamburg', 'zip': '20457', 'geo': {'lat': 53.54, 'lon': 9.99}},
+     {'street': 'Domshof 2', 'city': 'Bremen', 'zip': '28195', 'geo': {'lat': 53.08, 'lon': 8.81}},
+     {'street': 'Holstenstrasse 9', 'city': 'Kiel', 'zip': '24103', 'geo': {'lat': 54.32, 'lon': 10.14}}],
+    '[{"street": "Hafenstrasse 4", "city": "Hamburg", "zip": "20457", "geo": {"lat": 53.54, "lon": 9.99}},
+      {"street": "Domshof 2", "city": "Bremen", "zip": "28195", "geo": {"lat": 53.08, "lon": 8.81}},
+      {"street": "Holstenstrasse 9", "city": "Kiel", "zip": "24103", "geo": {"lat": 54.32, "lon": 10.14}}]'::JSON
 ),
 (
     2,
@@ -37,7 +45,9 @@ VALUES (
     [],
     [],
     NULL,
-    NULL
+    NULL,
+    [],
+    '[]'::JSON
 ),
 (
     3,
@@ -54,7 +64,9 @@ VALUES (
     [{'ts': NULL, 'day': DATE '2026-01-01'}],
     [MAP {'m': {'a': NULL, 'b': NULL}}],
     '[1, 2, 3]'::JSON,
-    {'Odd Name': NULL, 'x': NULL}
+    {'Odd Name': NULL, 'x': NULL},
+    [{'street': NULL, 'city': 'Luebeck', 'zip': NULL, 'geo': {'lat': NULL, 'lon': NULL}}],
+    '[{"street": null, "city": "Luebeck", "zip": null, "geo": {"lat": null, "lon": null}}]'::JSON
 );
 
 -- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of

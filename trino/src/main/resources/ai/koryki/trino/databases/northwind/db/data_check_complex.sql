@@ -28,7 +28,9 @@ CREATE TABLE check_complex (
     events   ARRAY(ROW(ts TIMESTAMP(3), day DATE)),
     deep     ARRAY(MAP(VARCHAR, ROW(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR))))),
     doc      JSON,
-    odd      ROW("Odd Name" INTEGER, x INTEGER)
+    odd      ROW("Odd Name" INTEGER, x INTEGER),
+    branches ARRAY(ROW(street VARCHAR, city VARCHAR, zip VARCHAR, geo ROW(lat DOUBLE, lon DOUBLE))),
+    branches_json JSON
 );
 
 INSERT INTO check_complex VALUES (
@@ -46,7 +48,13 @@ INSERT INTO check_complex VALUES (
     CAST(ARRAY[ROW(TIMESTAMP '2026-05-17 14:30:45', DATE '2026-05-17')] AS ARRAY(ROW(ts TIMESTAMP(3), day DATE))),
     CAST(ARRAY[MAP(ARRAY['m'], ARRAY[ROW(ARRAY[1, 2], MAP(ARRAY[1], ARRAY[ARRAY['q', 'r']]))])] AS ARRAY(MAP(VARCHAR, ROW(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR)))))),
     JSON '{"a": {"b": [5, 6]}, "n": 1}',
-    CAST(ROW(1, 2) AS ROW("Odd Name" INTEGER, x INTEGER))
+    CAST(ROW(1, 2) AS ROW("Odd Name" INTEGER, x INTEGER)),
+    CAST(ARRAY[ROW('Hafenstrasse 4', 'Hamburg', '20457', ROW(53.54, 9.99)),
+               ROW('Domshof 2', 'Bremen', '28195', ROW(53.08, 8.81)),
+               ROW('Holstenstrasse 9', 'Kiel', '24103', ROW(54.32, 10.14))] AS ARRAY(ROW(street VARCHAR, city VARCHAR, zip VARCHAR, geo ROW(lat DOUBLE, lon DOUBLE)))),
+    JSON '[{"street": "Hafenstrasse 4", "city": "Hamburg", "zip": "20457", "geo": {"lat": 53.54, "lon": 9.99}},
+           {"street": "Domshof 2", "city": "Bremen", "zip": "28195", "geo": {"lat": 53.08, "lon": 8.81}},
+           {"street": "Holstenstrasse 9", "city": "Kiel", "zip": "24103", "geo": {"lat": 54.32, "lon": 10.14}}]'
 );
 
 INSERT INTO check_complex VALUES (
@@ -64,7 +72,9 @@ INSERT INTO check_complex VALUES (
     CAST(ARRAY[] AS ARRAY(ROW(ts TIMESTAMP(3), day DATE))),
     CAST(ARRAY[] AS ARRAY(MAP(VARCHAR, ROW(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR)))))),
     NULL,
-    NULL
+    NULL,
+    CAST(ARRAY[] AS ARRAY(ROW(street VARCHAR, city VARCHAR, zip VARCHAR, geo ROW(lat DOUBLE, lon DOUBLE)))),
+    JSON '[]'
 );
 
 INSERT INTO check_complex VALUES (
@@ -82,7 +92,9 @@ INSERT INTO check_complex VALUES (
     CAST(ARRAY[ROW(NULL, DATE '2026-01-01')] AS ARRAY(ROW(ts TIMESTAMP(3), day DATE))),
     CAST(ARRAY[MAP(ARRAY['m'], ARRAY[ROW(NULL, NULL)])] AS ARRAY(MAP(VARCHAR, ROW(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR)))))),
     JSON '[1, 2, 3]',
-    CAST(ROW(NULL, NULL) AS ROW("Odd Name" INTEGER, x INTEGER))
+    CAST(ROW(NULL, NULL) AS ROW("Odd Name" INTEGER, x INTEGER)),
+    CAST(ARRAY[ROW(NULL, 'Luebeck', NULL, ROW(NULL, NULL))] AS ARRAY(ROW(street VARCHAR, city VARCHAR, zip VARCHAR, geo ROW(lat DOUBLE, lon DOUBLE)))),
+    JSON '[{"street": null, "city": "Luebeck", "zip": null, "geo": {"lat": null, "lon": null}}]'
 );
 
 -- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of
