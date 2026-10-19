@@ -1,0 +1,5 @@
+Nr : INTEGER
+ordinal : INTEGER
+Street : TEXT
+City : TEXT
+Zip code : TEXT

@@ -315,5 +315,9 @@ CREATE TABLE check_complex
     deep     MAP(VARCHAR, STRUCT(a INTEGER[], b MAP(INTEGER, VARCHAR[])))[],
                                                            -- every constructor inside every other
     doc      JSON,                                         -- JSON: paths are 0-based
-    odd      STRUCT("Odd Name" INTEGER, x INTEGER)         -- quoted, mixed-case field name
+    odd      STRUCT("Odd Name" INTEGER, x INTEGER),        -- quoted, mixed-case field name
+    branches STRUCT(street VARCHAR, city VARCHAR, zip VARCHAR, geo STRUCT(lat DOUBLE, lon DOUBLE))[],
+                                                           -- list of structs holding a struct: the same
+                                                           -- shape twice, as a native list and as JSON
+    branches_json JSON                                     -- JSON array of objects, declared in the catalog
 );

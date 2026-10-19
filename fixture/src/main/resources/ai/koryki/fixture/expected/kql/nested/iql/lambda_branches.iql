@@ -1,0 +1,7 @@
+// A lambda over the elements of a native list of structs: the size of the list, and the city of every branch.
+
+SELECT
+ check_complex t
+  OUT t.nr 1
+  OUT list_size(t.branches) branches 2
+  OUT list_transform(t.branches, b -> b@city) cities 3

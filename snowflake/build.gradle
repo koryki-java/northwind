@@ -74,3 +74,23 @@ tasks.register('createShared', JavaExec) {
     inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
     args file(scripts).path
 }
+
+// ./gradlew :snowflake:createComplex
+//
+// Creates check_complex, the table of the complex-types bed, in the Snowflake database
+// that snowflake.northwind.url points at. The rest of the Northwind tables stay as they are.
+tasks.register('createComplex', JavaExec) {
+    group = 'application'
+    description = 'Creates the check_complex table in the Snowflake database of snowflake.northwind.url.'
+
+    classpath = sourceSets.builder.runtimeClasspath
+    mainClass = 'ai.koryki.northwind.snowflake.BuildComplex'
+    ['privatekey', 'northwind.url', 'northwind.user'].each { key ->
+        def property = "snowflake.$key".toString()
+        if (project.hasProperty(property)) {
+            systemProperty property, project.property(property)
+        }
+    }
+    inputs.dir(scripts).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName('scripts')
+    args file(scripts).path
+}

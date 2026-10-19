@@ -1,0 +1,5 @@
+schema.unknown-column: Field [5:13-5:23]: unknown column 'branches' on check_complex
+schema.unknown-column: Field [5:43-5:53]: unknown column 'branches' on check_complex
+schema.unknown-column: Field [5:73-5:83]: unknown column 'branches' on check_complex
+schema.unknown-column: Field [6:7-6:17]: unknown column 'branches' on check_complex
+schema.unknown-column: Field [6:36-6:46]: unknown column 'branches' on check_complex

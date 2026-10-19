@@ -1,0 +1,1 @@
+unsupported: Expression [5:48-5:71]: Snowflake has no position from the end in JSON: @-1

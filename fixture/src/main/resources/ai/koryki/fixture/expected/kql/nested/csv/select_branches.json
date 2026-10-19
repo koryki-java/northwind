@@ -1,0 +1,6 @@
+Nr : INTEGER
+first_city : TEXT
+last_city : TEXT
+first_lat : FLOAT
+second_zip : TEXT
+fourth_city : TEXT

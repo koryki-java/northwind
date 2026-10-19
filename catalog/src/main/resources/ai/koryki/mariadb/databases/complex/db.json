@@ -74,6 +74,60 @@
       "namePos" : 0,
       "nullable" : true,
       "pkPos" : 0
+    }, {
+      "concept" : {
+        "description" : "JSON array of address objects: the same data as branches, stored as JSON; JSON paths count from 0, selectors count from 1",
+        "dialectType" : "JSON",
+        "entries" : {
+          "element" : {
+            "entries" : {
+              "street" : {
+                "dialectType" : "VARCHAR",
+                "label" : "Street",
+                "typeFamily" : "TEXT"
+              },
+              "city" : {
+                "dialectType" : "VARCHAR",
+                "label" : "City",
+                "typeFamily" : "TEXT"
+              },
+              "zip" : {
+                "comment" : "Postal code. Text, never summed.",
+                "dialectType" : "VARCHAR",
+                "label" : "Zip code",
+                "typeFamily" : "TEXT"
+              },
+              "geo" : {
+                "entries" : {
+                  "lat" : {
+                    "dialectType" : "DOUBLE",
+                    "label" : "Latitude",
+                    "typeFamily" : "FLOAT",
+                    "unit" : "deg"
+                  },
+                  "lon" : {
+                    "dialectType" : "DOUBLE",
+                    "label" : "Longitude",
+                    "typeFamily" : "FLOAT",
+                    "unit" : "deg"
+                  }
+                },
+                "label" : "Position",
+                "typeFamily" : "STRUCT"
+              }
+            },
+            "label" : "Branch",
+            "typeFamily" : "STRUCT"
+          }
+        },
+        "label" : "Branches as JSON",
+        "typeEncoding" : "JSON",
+        "typeFamily" : "ARRAY"
+      },
+      "name" : "branches_json",
+      "namePos" : 0,
+      "nullable" : true,
+      "pkPos" : 0
     } ],
     "label" : "Check Complex",
     "name" : "check_complex"

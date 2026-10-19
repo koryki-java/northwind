@@ -1,0 +1,4 @@
+// A client without branches stays in the answer when the list is unnested with +, the outer form: row 2
+// has an empty list and comes back once, with empty fields. unnest_branches leaves it out.
+FIND check_complex t, t + unnest(t.branches) b
+FETCH t.nr, b.street, b.city

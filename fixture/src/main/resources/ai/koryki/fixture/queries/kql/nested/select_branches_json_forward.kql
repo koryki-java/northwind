@@ -1,0 +1,6 @@
+// select_branches_json without the position from the end, which Trino, Snowflake and SQL Server do not
+// have in JSON (see select_branches_json). What every dialect with a JSON column can answer, asked
+// from the start.
+FIND check_complex t
+FETCH t.nr, t.branches_json@1@city first_city, t.branches_json@1@geo@lat first_lat,
+      t.branches_json@2@zip second_zip, t.branches_json@4@city fourth_city

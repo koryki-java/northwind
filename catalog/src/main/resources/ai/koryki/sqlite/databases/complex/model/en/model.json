@@ -35,6 +35,42 @@
               "label": "Amount"
             }
           }
+        },
+        {
+          "name": "branches_json",
+          "label": "Branches as JSON",
+          "comment": null,
+          "description": "The same addresses, stored as a JSON array",
+          "members": {
+            "element": {
+              "label": "Branch",
+              "members": {
+                "street": {
+                  "label": "Street"
+                },
+                "city": {
+                  "label": "City"
+                },
+                "zip": {
+                  "label": "Zip code",
+                  "comment": "Postal code. Text, never summed."
+                },
+                "geo": {
+                  "label": "Position",
+                  "members": {
+                    "lat": {
+                      "label": "Latitude",
+                      "description": "Degrees north"
+                    },
+                    "lon": {
+                      "label": "Longitude",
+                      "description": "Degrees east"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       ]
     },

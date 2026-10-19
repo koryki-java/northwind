@@ -29,7 +29,9 @@ CREATE TABLE check_complex (
     events   ARRAY(OBJECT(ts TIMESTAMP_NTZ, day DATE)),  -- list of structs with temporal fields
     deep     ARRAY(MAP(VARCHAR, OBJECT(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR))))),  -- every constructor inside every other
     doc      VARIANT,  -- JSON; paths count from 0, like every Snowflake array
-    odd      OBJECT("Odd Name" INTEGER, x INTEGER)  -- quoted, mixed-case field name
+    odd      OBJECT("Odd Name" INTEGER, x INTEGER),  -- quoted, mixed-case field name
+    branches ARRAY(OBJECT(street VARCHAR, city VARCHAR, zip VARCHAR, geo OBJECT(lat DOUBLE, lon DOUBLE))),  -- list of structs holding a struct: the same shape twice, as a typed array
+    branches_json VARIANT  -- and as a JSON array of objects, declared in the catalog
 );
 
 
@@ -49,7 +51,9 @@ SELECT
     (ARRAY_CONSTRUCT(OBJECT_CONSTRUCT_KEEP_NULL('ts', '2026-05-17 14:30:45'::TIMESTAMP_NTZ, 'day', '2026-05-17'::DATE)))::ARRAY(OBJECT(ts TIMESTAMP_NTZ, day DATE)),
     (ARRAY_CONSTRUCT(OBJECT_CONSTRUCT_KEEP_NULL('m', OBJECT_CONSTRUCT_KEEP_NULL('a', ARRAY_CONSTRUCT(1, 2), 'b', OBJECT_CONSTRUCT_KEEP_NULL('1', ARRAY_CONSTRUCT('q', 'r'))))))::ARRAY(MAP(VARCHAR, OBJECT(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR))))),
     PARSE_JSON('{"a": {"b": [5, 6]}, "n": 1}'),
-    (OBJECT_CONSTRUCT_KEEP_NULL('Odd Name', 1, 'x', 2))::OBJECT("Odd Name" INTEGER, x INTEGER);
+    (OBJECT_CONSTRUCT_KEEP_NULL('Odd Name', 1, 'x', 2))::OBJECT("Odd Name" INTEGER, x INTEGER),
+    (ARRAY_CONSTRUCT(OBJECT_CONSTRUCT_KEEP_NULL('street', 'Hafenstrasse 4', 'city', 'Hamburg', 'zip', '20457', 'geo', OBJECT_CONSTRUCT_KEEP_NULL('lat', 53.54, 'lon', 9.99)), OBJECT_CONSTRUCT_KEEP_NULL('street', 'Domshof 2', 'city', 'Bremen', 'zip', '28195', 'geo', OBJECT_CONSTRUCT_KEEP_NULL('lat', 53.08, 'lon', 8.81)), OBJECT_CONSTRUCT_KEEP_NULL('street', 'Holstenstrasse 9', 'city', 'Kiel', 'zip', '24103', 'geo', OBJECT_CONSTRUCT_KEEP_NULL('lat', 54.32, 'lon', 10.14))))::ARRAY(OBJECT(street VARCHAR, city VARCHAR, zip VARCHAR, geo OBJECT(lat DOUBLE, lon DOUBLE))),
+    PARSE_JSON('[{"street": "Hafenstrasse 4", "city": "Hamburg", "zip": "20457", "geo": {"lat": 53.54, "lon": 9.99}}, {"street": "Domshof 2", "city": "Bremen", "zip": "28195", "geo": {"lat": 53.08, "lon": 8.81}}, {"street": "Holstenstrasse 9", "city": "Kiel", "zip": "24103", "geo": {"lat": 54.32, "lon": 10.14}}]');
 
 INSERT INTO check_complex
 SELECT
@@ -67,7 +71,9 @@ SELECT
     (ARRAY_CONSTRUCT())::ARRAY(OBJECT(ts TIMESTAMP_NTZ, day DATE)),
     (ARRAY_CONSTRUCT())::ARRAY(MAP(VARCHAR, OBJECT(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR))))),
     NULL,
-    NULL;
+    NULL,
+    (ARRAY_CONSTRUCT())::ARRAY(OBJECT(street VARCHAR, city VARCHAR, zip VARCHAR, geo OBJECT(lat DOUBLE, lon DOUBLE))),
+    PARSE_JSON('[]');
 
 INSERT INTO check_complex
 SELECT
@@ -85,7 +91,9 @@ SELECT
     (ARRAY_CONSTRUCT(OBJECT_CONSTRUCT_KEEP_NULL('ts', NULL, 'day', '2026-01-01'::DATE)))::ARRAY(OBJECT(ts TIMESTAMP_NTZ, day DATE)),
     (ARRAY_CONSTRUCT(OBJECT_CONSTRUCT_KEEP_NULL('m', OBJECT_CONSTRUCT_KEEP_NULL('a', NULL, 'b', NULL))))::ARRAY(MAP(VARCHAR, OBJECT(a ARRAY(INTEGER), b MAP(INTEGER, ARRAY(VARCHAR))))),
     PARSE_JSON('[1, 2, 3]'),
-    (OBJECT_CONSTRUCT_KEEP_NULL('Odd Name', NULL, 'x', NULL))::OBJECT("Odd Name" INTEGER, x INTEGER);
+    (OBJECT_CONSTRUCT_KEEP_NULL('Odd Name', NULL, 'x', NULL))::OBJECT("Odd Name" INTEGER, x INTEGER),
+    (ARRAY_CONSTRUCT(OBJECT_CONSTRUCT_KEEP_NULL('street', NULL, 'city', 'Luebeck', 'zip', NULL, 'geo', OBJECT_CONSTRUCT_KEEP_NULL('lat', NULL, 'lon', NULL))))::ARRAY(OBJECT(street VARCHAR, city VARCHAR, zip VARCHAR, geo OBJECT(lat DOUBLE, lon DOUBLE))),
+    PARSE_JSON('[{"street": null, "city": "Luebeck", "zip": null, "geo": {"lat": null, "lon": null}}]');
 
 -- The lists of check_complex flattened into one row per element (FlattenViews in the tools module of
 -- core generates them): the key of the row, the position in the list from 1, and a column for each field

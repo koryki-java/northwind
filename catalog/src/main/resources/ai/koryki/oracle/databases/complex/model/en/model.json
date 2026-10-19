@@ -223,6 +223,78 @@
               "label": "X"
             }
           }
+        },
+        {
+          "name": "branches",
+          "label": "Branches",
+          "comment": null,
+          "description": "List of addresses with a position inside, stored as a native list",
+          "members": {
+            "element": {
+              "label": "Branch",
+              "members": {
+                "street": {
+                  "label": "Street"
+                },
+                "city": {
+                  "label": "City"
+                },
+                "zip": {
+                  "label": "Zip code",
+                  "comment": "Postal code. Text, never summed."
+                },
+                "geo": {
+                  "label": "Position",
+                  "members": {
+                    "lat": {
+                      "label": "Latitude",
+                      "description": "Degrees north"
+                    },
+                    "lon": {
+                      "label": "Longitude",
+                      "description": "Degrees east"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "branches_json",
+          "label": "Branches as JSON",
+          "comment": null,
+          "description": "The same addresses, stored as a JSON array",
+          "members": {
+            "element": {
+              "label": "Branch",
+              "members": {
+                "street": {
+                  "label": "Street"
+                },
+                "city": {
+                  "label": "City"
+                },
+                "zip": {
+                  "label": "Zip code",
+                  "comment": "Postal code. Text, never summed."
+                },
+                "geo": {
+                  "label": "Position",
+                  "members": {
+                    "lat": {
+                      "label": "Latitude",
+                      "description": "Degrees north"
+                    },
+                    "lon": {
+                      "label": "Longitude",
+                      "description": "Degrees east"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       ]
     },
