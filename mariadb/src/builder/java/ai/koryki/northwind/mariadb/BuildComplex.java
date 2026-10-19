@@ -8,8 +8,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Creates check_complex, the table of the complex-types bed, from its self-contained script. The rest
- * of the Northwind tables stay as they are. Run through the {@code createComplex} task of this module.
+ * Creates check_complex, the table of the complex-types bed, from its self-contained script. The
+ * rest of the Northwind tables stay as they are. Run through the {@code createComplex} task of this
+ * module.
  */
 public class BuildComplex {
 
