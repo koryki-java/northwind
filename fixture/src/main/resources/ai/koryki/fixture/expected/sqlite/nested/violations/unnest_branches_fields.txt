@@ -1,1 +1,1 @@
-schema.unknown-column: Field [6:32-6:42]: unknown column 'branches' on check_complex
+schema.unknown-column: Field [3:32-3:42]: unknown column 'branches' on check_complex

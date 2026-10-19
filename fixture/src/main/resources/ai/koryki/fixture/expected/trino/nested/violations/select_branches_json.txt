@@ -1,1 +1,1 @@
-unsupported: Expression [9:48-9:71]: Trino has no position from the end in JSON: @-1
+unsupported: Expression [5:48-5:71]: Trino has no position from the end in JSON: @-1

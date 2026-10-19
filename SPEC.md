@@ -205,16 +205,12 @@ and a NULL part are all asked.
 are one and the same file; a test of this repository holds them to it. As in `unnest`, a dialect
 either runs a query or says why it cannot, with a violation golden:
 
-- SQLite and MariaDB have no native list, so the queries that read `branches` are rejected as
-  `unknown column`; they run the JSON ones;
-- Trino and Snowflake have no position from the end in JSON and reject `select_branches_json`
-  (`select_branches_json_forward` asks the rest from the start); Oracle has no position for the
-  elements of a collection and rejects `unnest_branches` (`unnest_branches_fields` asks the same
-  without it);
-- `select_branches_json` carries `// ignore=oracle` (a JSON number is read as text and cast, which
-  fails on a session whose decimal separator is a comma) and `unnest_branches_fields` carries
-  `// ignore=snowflake` (a NULL inside the struct comes back as the text `null`): same SQL, different
-  result;
+- SQLite, MariaDB and SQL Server have no native list, so the queries that read `branches` are rejected
+  as `unknown column`; they run the JSON ones;
+- Trino, Snowflake and SQL Server have no position from the end in JSON and reject
+  `select_branches_json` (`select_branches_json_forward` asks the rest from the start); Oracle has no
+  position for the elements of a collection and rejects `unnest_branches` (`unnest_branches_fields`
+  asks the same without it);
 - `invalid_lambda_branches_json` must be refused: a JSON array of objects is not a list, so neither
   `list_size` nor a lambda is possible on it.
 
