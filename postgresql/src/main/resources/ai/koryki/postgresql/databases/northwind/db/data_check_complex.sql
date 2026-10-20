@@ -46,6 +46,20 @@ CREATE TABLE check_complex (
     branches_json JSONB              -- and as a JSON array of objects, declared in the catalog
 );
 
+-- The two kinds of index a WHERE clause on these columns can use, so that the engine tests can ask
+-- the planner (EXPLAIN) whether the SQL the transpiler writes is one an index can serve. The names
+-- are what ComplexIndexPlanTest looks for.
+--
+-- btree on an extracted value: serves a comparison of exactly this expression. The jsonb ->> gives
+-- text, so the integer index is on the cast -- the SQL has to cast the same way to match it.
+CREATE INDEX idx_check_complex_attrs_color ON check_complex USING btree ((attrs ->> 'color'));
+CREATE INDEX idx_check_complex_doc_n ON check_complex USING btree (((doc ->> 'n')::integer));
+-- GIN serves containment: @> on an array, @> ? @? @@ on jsonb. It does not serve ->> = 'x', which is
+-- the only form the transpiler writes for a selection on jsonb, so these two exist to show that.
+CREATE INDEX idx_check_complex_tags_gin ON check_complex USING gin (tags);
+CREATE INDEX idx_check_complex_attrs_gin ON check_complex USING gin (attrs);
+CREATE INDEX idx_check_complex_doc_gin ON check_complex USING gin (doc jsonb_path_ops);
+
 INSERT INTO check_complex VALUES (
     1,
     ARRAY['red', 'green', 'blue'],

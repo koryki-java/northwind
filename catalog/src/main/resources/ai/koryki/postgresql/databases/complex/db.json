@@ -555,6 +555,49 @@
       "nullable" : true,
       "pkPos" : 0
     } ],
+    "indexes" : [ {
+      "keys" : [ {
+        "column" : "nr"
+      } ],
+      "method" : "btree",
+      "name" : "check_complex_pkey",
+      "unique" : true
+    }, {
+      "keys" : [ {
+        "as" : "TEXT",
+        "column" : "attrs",
+        "path" : [ "color" ]
+      } ],
+      "method" : "btree",
+      "name" : "idx_check_complex_attrs_color"
+    }, {
+      "keys" : [ {
+        "column" : "attrs"
+      } ],
+      "method" : "gin",
+      "name" : "idx_check_complex_attrs_gin"
+    }, {
+      "keys" : [ {
+        "column" : "doc"
+      } ],
+      "method" : "gin",
+      "name" : "idx_check_complex_doc_gin",
+      "opclass" : "jsonb_path_ops"
+    }, {
+      "keys" : [ {
+        "as" : "INTEGER",
+        "column" : "doc",
+        "path" : [ "n" ]
+      } ],
+      "method" : "btree",
+      "name" : "idx_check_complex_doc_n"
+    }, {
+      "keys" : [ {
+        "column" : "tags"
+      } ],
+      "method" : "gin",
+      "name" : "idx_check_complex_tags_gin"
+    } ],
     "label" : "Check Complex",
     "name" : "check_complex"
   }, {
