@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here. 
 
+## [Unreleased]
+
+### Added
+
+- Every published module ships a CycloneDX 1.6 SBOM as `<artifact>-<version>-cyclonedx.json` next to its
+  jar, signed with the rest of the release. The modules are data and scripts without runtime
+  dependencies, so the lists of components are empty: the file says exactly that. It carries a
+  generation time and a serial number, so it is not reproducible.
+
 ## [0.4.0] - 2026-10-17
 
 ### Added

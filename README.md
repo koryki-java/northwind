@@ -192,6 +192,10 @@ checks the full history on every push as well.
 
 - `v<version>` tags release `koryki-northwind-catalog` and `koryki-northwind-duckdb` to Maven Central. The tag
   must match `version` in `gradle.properties`, or the release workflow stops.
+- Every published module ships a CycloneDX 1.6 bill of materials as
+  `<artifact>-<version>-cyclonedx.json` next to its jar. It lists the module's own runtime dependencies
+  (not the libraries of its tests) and is signed like every other file of the release. It carries a
+  generation time and a serial number, so two builds of the same sources give different SBOMs.
 - The corpus is not published: implementations pin a commit or a `v<version>` tag. Its format has a
   version of its own, stated at the top of [`SPEC.md`](SPEC.md).
 
