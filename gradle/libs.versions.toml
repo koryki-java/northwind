@@ -13,8 +13,8 @@ mariadb = "3.5.10"
 oracle = "23.26.4.0.0"
 mssql = "13.6.2.jre11"
 snowflake = "4.4.1"
-trino = "483"
-sqlite = "3.54.1.0"
+trino = "484"
+sqlite = "3.54.4.0"
 google-java-format = "1.36.1"
 
 [plugins]

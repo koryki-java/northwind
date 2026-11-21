@@ -1,0 +1,17 @@
+// A row limit on a branch of a set operation limits that branch, not the whole compound: the
+// first and the last branch are limited (and ordered, or the three rows would be any three), the
+// middle one is not. The customer ids are plain upper-case ASCII, so that every database sorts
+// them the same way and the three rows are the same ones everywhere.
+FIND customers c1
+FILTER c1.customer_id LIKE 'A%'
+FETCH c1.customer_id id ASC
+LIMIT 3
+UNION
+FIND customers c2
+FILTER c2.customer_id LIKE 'B%'
+FETCH c2.customer_id id
+UNION
+FIND customers c3
+FILTER c3.customer_id LIKE 'C%'
+FETCH c3.customer_id id ASC
+LIMIT 3
