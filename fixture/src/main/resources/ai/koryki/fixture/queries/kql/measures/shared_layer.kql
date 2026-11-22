@@ -1,0 +1,6 @@
+// Three measures of one table share one distinct layer.
+// The average is rounded to two decimals: Austria's mean is exactly 184.7875, a tie at the
+// precision the results are compared at, and a database that sums doubles in parallel (Trino) gets
+// a different last bit from run to run and rounds the tie either way.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH c.country, agg(o.total_freight) freight, agg(o.order_count) orders, round(agg(o.avg_freight), 2) average

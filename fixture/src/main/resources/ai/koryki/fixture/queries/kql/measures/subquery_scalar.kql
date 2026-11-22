@@ -1,0 +1,4 @@
+// A scalar sub-query that reads a measure: orders above the average freight of all orders, counted per country. The sub-query and the main query are rewritten one after the other, each with blocks of its own.
+FIND customers c, c VIA same_customer orders o
+FILTER o.freight > (FIND orders x FETCH agg(x.avg_freight))
+FETCH c.country ASC, agg(o.order_count) ordercount

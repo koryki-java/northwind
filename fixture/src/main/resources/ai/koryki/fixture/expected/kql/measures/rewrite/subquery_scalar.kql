@@ -1,0 +1,4 @@
+FIND customers c, c VIA same_customer orders o
+ FILTER o.freight > (FIND orders x
+ FETCH avg(x.freight) avg_freight)
+ FETCH c.country country ASC, count(o.order_id) ordercount

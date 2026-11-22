@@ -44,7 +44,7 @@ expected/<dialect>/<schema>/sql/…/<name>.sql         SQL — per dialect
 expected/<dialect>/<schema>/violations/…/<name>.txt  what the dialect rejects — per dialect
 ```
 
-`<schema>` is `northwind`, `typecheck`, `temporal`, `casts`, `unnest` or `nested`; `complex` has shared queries
+`<schema>` is `northwind`, `typecheck`, `temporal`, `casts`, `unnest`, `nested` or `measures`; `complex` has shared queries
 too, which DuckDB alone runs (the other dialects have a complex bed of their own, with its queries in
 `koryki-java/core`). `<dialect>` is the name of a database:
 every directory under `expected/` other than `kql` and `iql` is one (`duckdb`, `mariadb`, `mssql`,
@@ -213,6 +213,30 @@ either runs a query or says why it cannot, with a violation golden:
   asks the same without it);
 - `invalid_lambda_branches_json` must be refused: a JSON array of objects is not a list, so neither
   `list_size` nor a lambda is possible on it.
+
+## The schema `measures`
+
+`measures` tests the `agg()` rewriter of `koryki-java/measures` (KQL with `agg(alias.measure)` in, plain KQL out). The
+measures themselves are catalog data: `catalog/src/main/resources/ai/koryki/databases/northwind/measures.json`, beside
+`db.json`, keyed by table. A query reads them as `agg(o.total_freight)`; no engine of the core runs these queries,
+because the rewriter comes first.
+
+The rewriter's output is an ordinary KQL query, so it carries the usual goldens, and three more:
+
+```
+queries/kql/measures/<name>.kql                      the query, with agg()
+expected/kql/measures/rewrite/<name>.kql             the plain KQL the rewriter returns (compared exactly)
+expected/kql/measures/provenance/<name>.txt          one line per output column that is exactly one agg(): `<header> : <table>.<measure>`
+expected/kql/measures/csv/<name>.csv, .json          result and column types of the rewritten query, shared by all dialects
+expected/<dialect>/measures/sql/<name>.sql           its SQL on that dialect
+expected/kql/measures/refusal/<name>.txt             a query named `invalid*`: the rewriter's reason, one line per violation
+```
+
+A query whose name starts with `invalid` is one the rewriter refuses; unlike elsewhere it has a golden, the reason.
+Every dialect runs `expected/kql/measures/rewrite/*.kql` as its queries for this schema, over the shared `northwind`
+bed, and checks its rows against the shared CSV: PostgreSQL, MariaDB, Oracle, Trino, SQLite and SQL Server do, and all nine
+queries run on each of them (no violation golden). Snowflake has no SQL golden yet; SQL Server also runs all nine. The goldens of the
+rewriter itself (`rewrite`, `provenance`, `refusal`) and the DuckDB goldens are written by the `measures` project.
 
 ## Why CSV is shared but SQL is not
 

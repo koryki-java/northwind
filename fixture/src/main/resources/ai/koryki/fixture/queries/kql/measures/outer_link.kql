@@ -1,0 +1,3 @@
+// An outer link: customers without orders stay, with 0 orders and a NULL sum. A measure counts the rows of its table, not the NULL-padded row.
+FIND customers c, c VIA same_customer + orders o
+FETCH c.company_name, agg(o.order_count) ordercount, agg(o.total_freight) freight

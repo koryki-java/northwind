@@ -1,0 +1,4 @@
+// A row filter on the order lines restricts the orders, and each order is still counted once.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FILTER c.country = 'Germany' AND od.product_id < 30
+FETCH c.country, agg(o.total_freight) freight, agg(od.units) units

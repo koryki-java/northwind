@@ -1,0 +1,6 @@
+// FULL keeps the rows without a partner on both sides, where + keeps them on one. Employees joined
+// to their supervisor: the employee without one is in the result (as + would have it), and so is
+// every supervisor-side row that no employee matched.
+
+FIND mitarbeiter e, e VIA berichtet_an FULL mitarbeiter m
+FETCH count() joined_rows

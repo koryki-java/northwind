@@ -1,0 +1,4 @@
+country : TEXT
+region : TEXT
+freight : DECIMAL
+units : INTEGER

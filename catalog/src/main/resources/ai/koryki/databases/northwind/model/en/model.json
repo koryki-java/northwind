@@ -570,6 +570,11 @@
     } ]
   } ],
   "links" : [ {
+    "name" : "same_city_later_hire",
+    "comment" : "The employee and a colleague of the same city who was hired later.",
+    "description" : "Joins employees to employees: the second alias works in the same city and was hired later than the first. Not a key: the condition of the relation is in the catalog.",
+    "relations" : [ "cond_employees_city_hired_later" ]
+  }, {
     "name" : "same_product",
     "comment" : "both tables refer to the same product data record",
     "description" : "Joins a line item to the product it sells.",

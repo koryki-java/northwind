@@ -1,0 +1,2 @@
+big : orders.big_freight
+total : orders.total_freight

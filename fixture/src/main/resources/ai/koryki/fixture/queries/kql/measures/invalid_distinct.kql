@@ -1,0 +1,3 @@
+// Refused: FETCH DISTINCT.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH DISTINCT c.country, agg(o.total_freight)

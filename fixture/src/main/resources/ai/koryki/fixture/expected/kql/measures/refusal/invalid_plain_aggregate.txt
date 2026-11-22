@@ -1,0 +1,1 @@
+a plain aggregate next to agg() is not supported: 'sum(o.freight)'

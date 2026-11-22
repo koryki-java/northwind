@@ -1,0 +1,12 @@
+// A filter on the alias of a FULL join belongs in the ON clause, as for +. It restricts which rows
+// match, so the rows that do not match stay on both sides: this is not the inner join of the
+// supervisors with that title.
+
+SELECT
+ employees e
+  JOIN FULL reports_to employees m
+    FILTER
+      m.title = 'Sales Manager'
+  OWNER
+ALL
+ OUT count() joined_rows 1

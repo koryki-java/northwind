@@ -1,0 +1,5 @@
+WITH
+countryfreight AS (FIND customers c, c VIA same_customer orders o
+ FETCH c.country country, sum(o.freight) freight)
+FIND countryfreight f
+FETCH avg(f.freight) avgfreight, max(f.freight) maxfreight

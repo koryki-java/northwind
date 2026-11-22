@@ -1,0 +1,3 @@
+total_freight : orders.total_freight
+u : order_details.units
+half ~ orders.total_freight

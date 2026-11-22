@@ -1,0 +1,5 @@
+// CROSS pairs every row with every row and takes no condition: every shipper with every category.
+// The marker stands where + stands, and it is written without VIA and without columns.
+
+FIND shippers s, s CROSS categories c
+FETCH count() pairs

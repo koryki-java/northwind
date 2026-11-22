@@ -1,0 +1,4 @@
+country : TEXT
+freight : DECIMAL
+orders : INTEGER
+average : FLOAT

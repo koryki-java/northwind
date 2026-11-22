@@ -1,0 +1,3 @@
+// Refused: the alias is not in the query.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH c.country, agg(z.total_freight)

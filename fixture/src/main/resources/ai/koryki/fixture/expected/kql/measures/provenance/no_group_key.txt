@@ -1,0 +1,3 @@
+freight : orders.total_freight
+units : order_details.units
+revenue : order_details.revenue

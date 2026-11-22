@@ -1,0 +1,4 @@
+// A set operation: each branch that reads a measure is rewritten where it stands.
+FIND orders o FETCH 'total' metric, agg(o.total_freight) amount
+UNIONALL
+FIND orders o FETCH 'big' metric, agg(o.big_freight) amount

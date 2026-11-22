@@ -1,0 +1,3 @@
+freight : DECIMAL
+units : INTEGER
+revenue : DECIMAL

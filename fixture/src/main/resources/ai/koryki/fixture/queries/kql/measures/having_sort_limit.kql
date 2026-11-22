@@ -1,0 +1,5 @@
+// A predicate on a measure becomes HAVING; sort and limit stay on the outer query.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FILTER c.country <> 'Brazil' AND agg(o.total_freight) > 10000
+FETCH c.country, agg(o.total_freight) freight DESC, agg(od.units) units
+LIMIT 5

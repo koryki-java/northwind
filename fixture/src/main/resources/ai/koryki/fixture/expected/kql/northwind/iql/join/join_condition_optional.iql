@@ -1,0 +1,13 @@
+// The same condition-relationship as an optional link: employees without a later-hired colleague in
+// their city stay, with no partner. A FILTER on the optional alias belongs in the ON clause.
+
+SELECT
+ employees e
+  OUT e.last_name 1
+  GROUP e.last_name 1
+  ORDER e.last_name ASC 1
+  JOIN OPTIONAL same_city_later_hire employees l
+    OUT count(l.employee_id) later_sales_representatives 2
+    FILTER
+      l.title = 'Sales Representative'
+  OWNER

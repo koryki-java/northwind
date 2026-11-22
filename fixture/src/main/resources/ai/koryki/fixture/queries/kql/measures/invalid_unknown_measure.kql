@@ -1,0 +1,3 @@
+// Refused: the table has no such measure.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH c.country, agg(o.nothing)

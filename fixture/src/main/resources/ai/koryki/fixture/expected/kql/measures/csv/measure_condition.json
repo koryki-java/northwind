@@ -1,0 +1,3 @@
+country : TEXT
+big : DECIMAL
+total : DECIMAL

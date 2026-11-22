@@ -1,0 +1,12 @@
+// Two FULL joins in a row: employees, their supervisors, and the supervisors' supervisors. The
+// second join is on the first one's supervisor, which is missing in the rows the first join padded;
+// those rows find no partner, and the employees nobody supervises are kept by the second join too.
+
+SELECT
+ employees e
+  JOIN FULL reports_to employees m
+     JOIN FULL reports_to employees n
+     OWNER
+  OWNER
+ALL
+ OUT count() joined_rows 1

@@ -1,0 +1,27 @@
+WITH
+aggd1 AS (
+ FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+ FETCH DISTINCT o.order_id i1, c.country k1, c.region k2, o.freight c1),
+aggm1s2 AS (FIND aggd1 x FETCH x.k1 k1, x.k2 k2, sum(x.c1) v1),
+aggm1s1 AS (FIND aggd1 x FETCH x.k1 k1, sum(x.c1) v1),
+aggm1s0 AS (FIND aggd1 x FETCH sum(x.c1) v1),
+aggd2 AS (
+ FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+ FETCH DISTINCT od.order_id i1, od.product_id i2, c.country k1, c.region k2, od.quantity c1),
+aggm2s2 AS (FIND aggd2 x FETCH x.k1 k1, x.k2 k2, sum(x.c1) v2),
+aggm2s1 AS (FIND aggd2 x FETCH x.k1 k1, sum(x.c1) v2),
+aggm2s0 AS (FIND aggd2 x FETCH sum(x.c1) v2),
+aggu AS (FIND aggm1s2 a FETCH 2 g, a.k1 k1, a.k2 k2, a.v1 v1, to_integer(NULL) v2
+ UNIONALL
+ FIND aggm2s2 a FETCH 2 g, a.k1 k1, a.k2 k2, to_decimal(NULL, 18, 4) v1, a.v2 v2
+ UNIONALL
+ FIND aggm1s1 a FETCH 1 g, a.k1 k1, to_text(to_integer(NULL)) k2, a.v1 v1, to_integer(NULL) v2
+ UNIONALL
+ FIND aggm2s1 a FETCH 1 g, a.k1 k1, to_text(to_integer(NULL)) k2, to_decimal(NULL, 18, 4) v1, a.v2 v2
+ UNIONALL
+ FIND aggm1s0 a FETCH 0 g, to_text(to_integer(NULL)) k1, to_text(to_integer(NULL)) k2, a.v1 v1, to_integer(NULL) v2
+ UNIONALL
+ FIND aggm2s0 a FETCH 0 g, to_text(to_integer(NULL)) k1, to_text(to_integer(NULL)) k2, to_decimal(NULL, 18, 4) v1, a.v2 v2),
+aggr AS (FIND aggu t FETCH t.g g, t.k1 k1, t.k2 k2, max(t.v1) v1, max(t.v2) v2)
+FIND aggr r
+ FETCH r.k1 country ASC, r.k2 region ASC, r.v1 freight, r.v2 units

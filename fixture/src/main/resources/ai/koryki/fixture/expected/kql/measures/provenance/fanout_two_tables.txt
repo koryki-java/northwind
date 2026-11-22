@@ -1,0 +1,2 @@
+freight : orders.total_freight
+units : order_details.units

@@ -1,0 +1,6 @@
+// A relationship with a condition: same_city_later_hire is not a key but a comparison of columns
+// (start.city = end.city AND start.hire_date < end.hire_date), declared once in the catalog. Each
+// employee with the colleagues of the same city who were hired after them.
+
+FIND mitarbeiter e, e VIA spaeter_eingestellt_gleiche_stadt mitarbeiter l
+FETCH e.nachname ASC, l.nachname later_colleague ASC
