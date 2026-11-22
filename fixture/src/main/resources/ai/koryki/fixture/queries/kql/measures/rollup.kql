@@ -1,0 +1,3 @@
+// ROLLUP with agg(): each measure is evaluated again for every grouping set (country and region, country, none), so a total is not a sum of subtotals of a fanned-out join. The NULL region of a country is told apart from its subtotal.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH c.country ASC, c.region ASC, agg(o.total_freight) freight, agg(od.units) units ROLLUP

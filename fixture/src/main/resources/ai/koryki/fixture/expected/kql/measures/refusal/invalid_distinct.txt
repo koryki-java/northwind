@@ -1,1 +1,1 @@
-FETCH DISTINCT and ROLLUP are not supported with agg() yet
+FETCH DISTINCT is not supported with agg() yet
