@@ -1,0 +1,13 @@
+WITH
+q1aggd1 AS (
+ FIND orders x
+ FETCH DISTINCT x.order_id i1, x.freight c1),
+q1aggm1 AS (FIND q1aggd1 x FETCH avg(x.c1) v1),
+q2aggd1 AS (
+ FIND customers c, c VIA same_customer orders o
+ FILTER o.freight > (FIND q1aggm1 t
+ FETCH max(t.v1) avg_freight)
+ FETCH DISTINCT o.order_id i1, c.country k1, o.order_id c1),
+q2aggm1 AS (FIND q2aggd1 x FETCH x.k1 k1, count(x.c1) v1)
+FIND q2aggm1 t
+ FETCH t.k1 country ASC, max(t.v1) ordercount

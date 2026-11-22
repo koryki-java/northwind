@@ -1,0 +1,4 @@
+// A WITH block of the user that reads a measure: the blocks of the rewrite are put in front of it, and the main query reads its result like any block.
+WITH countryfreight AS (FIND customers c, c VIA same_customer orders o FETCH c.country country, agg(o.total_freight) freight)
+FIND countryfreight f
+FETCH avg(f.freight) avgfreight, max(f.freight) maxfreight
