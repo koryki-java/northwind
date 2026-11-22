@@ -26,7 +26,7 @@ SELECT
   t.k1 AS country
 , max(t.v1) AS freight
 , max(t.v2) AS orders
-, max(t.v3) AS average
+, round(max(t.v3), 2) AS average
 FROM
  aggm1 t
 GROUP BY
