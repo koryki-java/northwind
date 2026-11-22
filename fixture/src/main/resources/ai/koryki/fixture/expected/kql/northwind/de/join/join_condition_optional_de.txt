@@ -1,0 +1,6 @@
+// The same condition-relationship as an optional link: employees without a later-hired colleague in
+// their city stay, with no partner. A FILTER on the optional alias belongs in the ON clause.
+
+FIND mitarbeiter e, e VIA spaeter_eingestellt_gleiche_stadt + mitarbeiter l
+FILTER l.titel = 'Sales Representative'
+FETCH e.nachname ASC, count(l.mitarbeiter_id) later_sales_representatives

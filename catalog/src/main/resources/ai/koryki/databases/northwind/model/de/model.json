@@ -680,6 +680,13 @@
     } ]
   } ],
   "links" : [ {
+    "name" : "spaeter_eingestellt_gleiche_stadt",
+    "label" : null,
+    "canonical" : "same_city_later_hire",
+    "comment" : "Der Mitarbeiter und ein später eingestellter Kollege derselben Stadt.",
+    "description" : "Verbindet employees mit employees: der zweite Alias arbeitet in derselben Stadt und wurde später eingestellt als der erste. Kein Schlüssel: die Bedingung der Relation steht im Katalog.",
+    "relations" : [ "cond_employees_city_hired_later" ]
+  }, {
     "name" : "gleiches_produkt",
     "label" : null,
     "canonical" : "same_product",

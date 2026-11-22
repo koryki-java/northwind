@@ -65,6 +65,15 @@
     "startTable" : "employees",
     "symmetric" : true
   }, {
+    "comment" : "An employee and the colleagues of the same city who were hired later.",
+    "condition" : "start.city = end.city AND start.hire_date < end.hire_date",
+    "endColumns" : [ ],
+    "endTable" : "employees",
+    "name" : "cond_employees_city_hired_later",
+    "startColumns" : [ ],
+    "startTable" : "employees",
+    "symmetric" : false
+  }, {
     "endColumns" : [ "employee_id" ],
     "endTable" : "employees",
     "name" : "fk_employees_employees",

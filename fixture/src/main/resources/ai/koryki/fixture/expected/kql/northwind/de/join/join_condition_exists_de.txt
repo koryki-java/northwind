@@ -1,0 +1,8 @@
+// The condition-relationship as the correlation of an EXISTS: employees for whom a colleague of the
+// same city was hired later.
+
+FIND mitarbeiter e
+FILTER 
+ EXISTS (e VIA spaeter_eingestellt_gleiche_stadt mitarbeiter l
+ )
+FETCH e.nachname ASC
