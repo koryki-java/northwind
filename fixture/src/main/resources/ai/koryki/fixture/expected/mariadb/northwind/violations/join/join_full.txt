@@ -1,0 +1,1 @@
+unsupported: Join [5:19-5:52]: FULL JOIN is not supported by this database: use + for a LEFT join and swap the sides for a RIGHT join
