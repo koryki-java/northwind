@@ -1,0 +1,6 @@
+// Two FULL joins in a row: employees, their supervisors, and the supervisors' supervisors. The
+// second join is on the first one's supervisor, which is missing in the rows the first join padded;
+// those rows find no partner, and the employees nobody supervises are kept by the second join too.
+
+FIND mitarbeiter e, e VIA berichtet_an FULL mitarbeiter m, m VIA berichtet_an FULL mitarbeiter n
+FETCH count() joined_rows
