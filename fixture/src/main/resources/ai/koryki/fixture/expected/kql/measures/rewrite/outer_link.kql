@@ -1,0 +1,7 @@
+WITH
+aggd1 AS (
+ FIND customers c, c VIA same_customer + orders o
+ FETCH DISTINCT o.order_id i1, c.company_name k1, o.order_id c1, o.freight c2),
+aggm1 AS (FIND aggd1 x FETCH x.k1 k1, count(x.c1) v1, sum(x.c2) v2)
+FIND aggm1 t
+ FETCH t.k1 company_name, max(t.v1) ordercount, max(t.v2) freight
