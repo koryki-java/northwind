@@ -1,0 +1,12 @@
+// GROUP BY ROLLUP: subtotal rows per country plus a grand total.
+// Dialect note — SQLite has no ROLLUP at all and must reject this before execution
+// (SqliteValidator). MariaDB spells it as a trailing WITH ROLLUP and runs it.
+
+SELECT
+ customers c
+  OUT c.country 1
+  GROUP c.country 1
+  JOIN same_customer orders o
+    OUT count(o.order_id) 2
+  OWNER
+ROLLUP
