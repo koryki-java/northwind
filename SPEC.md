@@ -233,8 +233,10 @@ expected/kql/measures/refusal/<name>.txt             a query named `invalid*`: t
 ```
 
 A query whose name starts with `invalid` is one the rewriter refuses; unlike elsewhere it has a golden, the reason.
-Any dialect can run `expected/kql/measures/rewrite/*.kql` as its queries for this schema; the implementation of this
-repository's reference run is DuckDB (`expected/duckdb/measures`).
+Every dialect runs `expected/kql/measures/rewrite/*.kql` as its queries for this schema, over the shared `northwind`
+bed, and checks its rows against the shared CSV: PostgreSQL, MariaDB, Oracle, Trino and SQLite do, and all nine
+queries run on each of them (no violation golden). SQL Server and Snowflake have no SQL golden yet. The goldens of the
+rewriter itself (`rewrite`, `provenance`, `refusal`) and the DuckDB goldens are written by the `measures` project.
 
 ## Why CSV is shared but SQL is not
 
