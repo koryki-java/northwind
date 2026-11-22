@@ -1,0 +1,1 @@
+agg(o.nothing): table 'orders' has no measure 'nothing'

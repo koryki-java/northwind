@@ -1,0 +1,1 @@
+a FETCH item that reads a measure also reads a column: agg(o.total_freight) + o.freight

@@ -1,0 +1,4 @@
+// A measure inside a scalar expression: the ratio of two measures of one table.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FILTER c.country = 'Germany'
+FETCH c.country, agg(o.total_freight) / agg(o.order_count) per_order

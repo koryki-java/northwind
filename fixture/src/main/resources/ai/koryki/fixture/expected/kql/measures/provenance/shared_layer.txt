@@ -1,0 +1,3 @@
+freight : orders.total_freight
+orders : orders.order_count
+average : orders.avg_freight

@@ -1,0 +1,3 @@
+// Three measures of one table share one distinct layer.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH c.country, agg(o.total_freight) freight, agg(o.order_count) orders, agg(o.avg_freight) average

@@ -1,0 +1,53 @@
+{
+  "tables": {
+    "orders": [
+      {
+        "name": "total_freight",
+        "label": "Total freight",
+        "expression": "sum(freight)",
+        "concept": {
+          "typeFamily": "DECIMAL"
+        }
+      },
+      {
+        "name": "order_count",
+        "label": "Orders",
+        "expression": "count(order_id)"
+      },
+      {
+        "name": "avg_freight",
+        "label": "Average freight",
+        "expression": "avg(freight)",
+        "concept": {
+          "typeFamily": "DECIMAL"
+        }
+      },
+      {
+        "name": "big_freight",
+        "label": "Freight of orders above 100",
+        "expression": "sum(case(freight > 100, freight))",
+        "concept": {
+          "typeFamily": "DECIMAL"
+        }
+      }
+    ],
+    "order_details": [
+      {
+        "name": "units",
+        "label": "Units sold",
+        "expression": "sum(quantity)",
+        "concept": {
+          "typeFamily": "INTEGER"
+        }
+      },
+      {
+        "name": "revenue",
+        "label": "Revenue",
+        "expression": "sum(unit_price * quantity)",
+        "concept": {
+          "typeFamily": "DECIMAL"
+        }
+      }
+    ]
+  }
+}

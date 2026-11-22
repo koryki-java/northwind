@@ -1,0 +1,3 @@
+// Refused: a query with WITH blocks of its own.
+WITH a AS (FIND orders o FETCH o.order_id)
+FIND orders o FETCH agg(o.total_freight)

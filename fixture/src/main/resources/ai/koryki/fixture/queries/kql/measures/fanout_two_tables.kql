@@ -1,0 +1,3 @@
+// Two measures of two tables over a join that repeats the orders: each counts its own rows once.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH c.country, agg(o.total_freight) freight, agg(od.units) units

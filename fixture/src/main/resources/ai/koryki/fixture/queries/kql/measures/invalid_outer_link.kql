@@ -1,0 +1,3 @@
+// Refused: an outer link.
+FIND customers c, c VIA same_customer + orders o
+FETCH c.country, agg(o.total_freight)

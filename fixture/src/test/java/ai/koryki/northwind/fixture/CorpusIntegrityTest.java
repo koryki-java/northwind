@@ -57,7 +57,12 @@ class CorpusIntegrityTest {
                             "csv", List.of(".csv", ".json"),
                             "sql", List.of(".sql"),
                             "iql", List.of(".iql"),
-                            "de", List.of("_de.txt")));
+                            "de", List.of("_de.txt"),
+                            // schema "measures": what the agg() rewriter returns, where each
+                            // output column comes from, and why it refuses a query
+                            "rewrite", List.of(".kql"),
+                            "provenance", List.of(".txt"),
+                            "refusal", List.of(".txt")));
 
     private static final Goldens IQL_GOLDENS =
             new Goldens(IQL, ".iql", Map.of("sql", List.of(".sql")));

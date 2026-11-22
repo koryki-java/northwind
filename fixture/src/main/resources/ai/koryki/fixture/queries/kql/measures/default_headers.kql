@@ -1,0 +1,4 @@
+// An agg alone is named after its measure; a key keeps the name of its attribute.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FILTER c.country = 'Germany'
+FETCH c.country, o.ship_city city, agg(o.total_freight), agg(od.units) u, agg(o.total_freight) / 2 half
