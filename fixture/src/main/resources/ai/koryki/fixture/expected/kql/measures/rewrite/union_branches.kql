@@ -1,14 +1,5 @@
-WITH
-q1aggd1 AS (
- FIND orders o
- FETCH DISTINCT o.order_id i1, 'total' k1, o.freight c1),
-q1aggm1 AS (FIND q1aggd1 x FETCH x.k1 k1, sum(x.c1) v1),
-q2aggd1 AS (
- FIND orders o
- FETCH DISTINCT o.order_id i1, 'big' k1, o.freight c1),
-q2aggm1 AS (FIND q2aggd1 x FETCH x.k1 k1, sum(case(x.c1 > 100, x.c1)) v1)
-FIND q1aggm1 t
- FETCH t.k1 metric, max(t.v1) amount
+FIND orders o
+ FETCH 'total' metric, sum(o.freight) amount
 UNIONALL
-FIND q2aggm1 t
- FETCH t.k1 metric, max(t.v1) amount
+FIND orders o
+ FETCH 'big' metric, sum(case(o.freight > 100, o.freight)) amount
