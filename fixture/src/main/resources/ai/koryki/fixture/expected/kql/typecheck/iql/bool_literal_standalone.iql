@@ -1,0 +1,11 @@
+// A boolean literal is a condition on its own. Engines without a boolean value say it as a
+// comparison (1 = 1); the rest write the keyword.
+
+SELECT
+ check_type t
+  OUT t.nr 1
+ALL
+ FILTER
+   TRUE
+  AND
+   NOT FALSE

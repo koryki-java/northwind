@@ -1,0 +1,9 @@
+// A boolean literal inside an IN list takes the encoding of the column on its left.
+
+SELECT
+ check_type t
+  OUT t.nr 1
+  FILTER
+    t.bool_from_text IN (TRUE, FALSE)
+   AND
+    t.bool_from_int IN ((TRUE))

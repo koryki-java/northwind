@@ -1,0 +1,4 @@
+Nr : INTEGER
+native : BOOLEAN
+from_int : BOOLEAN
+from_text : BOOLEAN
