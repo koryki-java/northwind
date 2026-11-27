@@ -1,0 +1,4 @@
+// FALSE, and the negated forms: <> and NOT, against the same three storage forms.
+FIND check_type t
+FILTER t.type_boolean <> FALSE AND t.bool_from_int <> FALSE AND NOT t.bool_from_text = FALSE
+FETCH t.nr

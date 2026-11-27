@@ -1,0 +1,5 @@
+// A boolean literal is a condition on its own. Engines without a boolean value say it as a
+// comparison (1 = 1); the rest write the keyword.
+FIND check_type t
+FILTER TRUE AND NOT FALSE
+FETCH t.nr

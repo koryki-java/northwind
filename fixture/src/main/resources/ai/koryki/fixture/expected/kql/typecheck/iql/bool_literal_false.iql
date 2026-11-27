@@ -1,0 +1,11 @@
+// FALSE, and the negated forms: <> and NOT, against the same three storage forms.
+
+SELECT
+ check_type t
+  OUT t.nr 1
+  FILTER
+    NOT t.bool_from_text = FALSE
+   AND
+    t.bool_from_int <> FALSE
+   AND
+    t.type_boolean <> FALSE

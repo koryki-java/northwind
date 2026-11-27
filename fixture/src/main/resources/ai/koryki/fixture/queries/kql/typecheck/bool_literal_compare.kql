@@ -1,0 +1,6 @@
+// TRUE and FALSE against the three ways a boolean is stored: a native BOOLEAN column, one held as
+// 0/1 (BOOLEAN_FROM_INTEGER) and one held as 'Y'/'N' (BOOLEAN_FROM_TEXT). The literal is written
+// the way the column stores it, so the query does not say how a dialect keeps its booleans.
+FIND check_type t
+FILTER t.type_boolean = TRUE AND t.bool_from_int = TRUE AND t.bool_from_text = TRUE
+FETCH t.nr, t.type_boolean native, t.bool_from_int from_int, t.bool_from_text from_text

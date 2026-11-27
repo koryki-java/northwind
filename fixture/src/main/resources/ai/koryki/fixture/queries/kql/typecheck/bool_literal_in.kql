@@ -1,0 +1,4 @@
+// A boolean literal inside an IN list takes the encoding of the column on its left.
+FIND check_type t
+FILTER t.bool_from_int IN (TRUE) AND t.bool_from_text IN (TRUE, FALSE)
+FETCH t.nr
