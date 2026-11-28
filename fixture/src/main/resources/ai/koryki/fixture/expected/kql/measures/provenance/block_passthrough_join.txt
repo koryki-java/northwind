@@ -1,0 +1,1 @@
+freight : orders.total_freight

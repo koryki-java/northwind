@@ -1,1 +1,0 @@
-ROLLUP needs plain columns as group keys, not expressions

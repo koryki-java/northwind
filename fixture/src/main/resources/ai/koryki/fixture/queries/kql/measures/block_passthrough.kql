@@ -1,0 +1,5 @@
+// A measure passed through two WITH blocks and evaluated by agg() in the query that reads them: the blocks stay, the first one fetches the rows' value, agg() becomes the aggregate over that column.
+WITH shipped AS (FIND orders o FETCH o.ship_country country, o.total_freight freight, o.order_count orders),
+ passed AS (FIND shipped s FETCH s.country country, s.freight freight, s.orders orders)
+FIND passed p
+FETCH p.country ASC, agg(p.freight) freight, agg(p.orders) orders

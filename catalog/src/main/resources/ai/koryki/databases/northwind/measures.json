@@ -65,6 +65,28 @@
         }
       },
       {
+        "name": "revenue_germany",
+        "label": "Revenue of German customers",
+        "description": "Revenue of the line items whose order belongs to a customer in Germany: reads the country of the customer of the order of the line item, a chain of two tables the measure joins",
+        "expression": "sum(case(c.country = 'Germany', unit_price * quantity))",
+        "joins": [
+          {
+            "alias": "o",
+            "entity": "orders",
+            "via": "same_order"
+          },
+          {
+            "alias": "c",
+            "entity": "customers",
+            "via": "same_customer",
+            "from": "o"
+          }
+        ],
+        "concept": {
+          "typeFamily": "DECIMAL"
+        }
+      },
+      {
         "name": "revenue_per_order",
         "label": "Revenue per order",
         "description": "Revenue divided by the number of orders in the query: a derived measure of two tables",
