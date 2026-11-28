@@ -11,7 +11,7 @@ spotless = "8.11.0"
 cyclonedx = "3.6.1"
 # The JDBC drivers the database builders load with; aligned with koryki-java/core.
 postgresql = "42.7.14"
-mariadb = "3.5.10"
+mariadb = "4.0.0"
 oracle = "23.26.4.0.0"
 mssql = "13.6.2.jre11"
 snowflake = "4.4.1"
