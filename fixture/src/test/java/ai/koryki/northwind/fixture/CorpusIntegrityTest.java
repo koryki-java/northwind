@@ -73,6 +73,7 @@ class CorpusIntegrityTest {
                     ".kql",
                     Map.of(
                             "sql", List.of(".sql"),
+                            "flatsql", List.of(".sql"),
                             "violations", List.of(".txt")));
 
     @BeforeAll

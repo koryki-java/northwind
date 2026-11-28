@@ -41,6 +41,7 @@ expected/kql/<schema>/iql/…/<name>.iql               the query serialized as I
 expected/kql/<schema>/de/…/<name>_de.txt             the query translated to German
 expected/iql/<schema>/sql/…/<name>.sql               SQL generated from the IQL sources
 expected/<dialect>/<schema>/sql/…/<name>.sql         SQL — per dialect
+expected/<dialect>/<schema>/flatsql/…/<name>.sql   the SQL of the rewrite with blocks expanded (AggRewriter.flat()), only where it differs
 expected/<dialect>/<schema>/violations/…/<name>.txt  what the dialect rejects — per dialect
 ```
 
