@@ -1,7 +1,2 @@
-WITH
-aggd1 AS (
- FIND products p, p VIA same_product order_details od, od VIA same_order + orders aggj1_1, aggj1_1 VIA same_customer + customers aggj1_2
- FETCH DISTINCT od.order_id i1, od.product_id i2, p.category_id k1, od.unit_price c1, od.quantity c2, aggj1_2.country c3),
-aggm1 AS (FIND aggd1 x FETCH x.k1 k1, sum(case(x.c3 = 'Germany', x.c1 * x.c2)) v1, sum(x.c2) v2)
-FIND aggm1 t
- FETCH t.k1 category, max(t.v1) germany, max(t.v2) units
+FIND products p, p VIA same_product order_details od, od VIA same_order + orders aggj1_1, aggj1_1 VIA same_customer + customers aggj1_2
+ FETCH p.category_id category, sum(case(aggj1_2.country = 'Germany', od.unit_price * od.quantity)) germany, sum(od.quantity) units
