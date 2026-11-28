@@ -1,0 +1,3 @@
+country : TEXT
+beverage_revenue : DECIMAL
+freight : DECIMAL

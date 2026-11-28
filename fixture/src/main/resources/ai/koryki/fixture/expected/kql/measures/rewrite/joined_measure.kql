@@ -1,0 +1,14 @@
+WITH
+aggd1 AS (
+ FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od, od VIA same_product + products aggj1_1
+ FETCH DISTINCT od.order_id i1, od.product_id i2, c.country k1, od.unit_price c1, od.quantity c2, aggj1_1.category_id c3),
+aggm1 AS (FIND aggd1 x FETCH x.k1 k1, sum(case(x.c3 = 1, x.c1 * x.c2)) v1),
+aggd2 AS (
+ FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+ FETCH DISTINCT o.order_id i1, c.country k1, o.freight c1),
+aggm2 AS (FIND aggd2 x FETCH x.k1 k1, sum(x.c1) v2),
+aggu AS (FIND aggm1 a FETCH a.k1 k1, a.v1 v1, to_decimal(NULL, 18, 4) v2
+ UNIONALL
+ FIND aggm2 a FETCH a.k1 k1, to_decimal(NULL, 18, 4) v1, a.v2 v2)
+FIND aggu t
+ FETCH t.k1 country, max(t.v1) beverage_revenue, max(t.v2) freight
