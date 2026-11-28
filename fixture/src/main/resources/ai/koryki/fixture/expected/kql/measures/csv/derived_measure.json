@@ -1,0 +1,2 @@
+country : TEXT
+revenue_per_order : FLOAT

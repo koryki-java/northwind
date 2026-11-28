@@ -1,0 +1,5 @@
+// A measure that joins a table of its own: revenue of the beverages. order_details.beverage_revenue
+// reads products.category_id through same_product. The query joins no product, and its join to the line
+// items repeats an order, which does not count a line item twice.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH c.country country, agg(od.beverage_revenue) beverage_revenue, agg(o.total_freight) freight

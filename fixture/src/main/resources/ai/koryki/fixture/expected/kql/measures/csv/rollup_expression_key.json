@@ -1,0 +1,4 @@
+country : TEXT
+yr : INTEGER
+freight : DECIMAL
+units : INTEGER

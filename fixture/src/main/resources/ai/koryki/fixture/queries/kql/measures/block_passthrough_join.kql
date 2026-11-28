@@ -1,0 +1,4 @@
+// A measure passed through a WITH block that joins: the orders repeat for each of their lines, so the block is expanded and the measure is counted once per order (the layers).
+WITH lines AS (FIND orders o, o VIA same_order order_details od FETCH o.ship_country country, o.total_freight freight)
+FIND lines l
+FETCH l.country ASC, agg(l.freight) freight

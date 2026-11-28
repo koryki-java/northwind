@@ -1,0 +1,2 @@
+germany : order_details.revenue_germany
+units : order_details.units
