@@ -1,0 +1,5 @@
+// A derived measure: a stored ratio of the measures of two tables.
+// order_details.revenue_per_order is agg(order_details.revenue) / agg(orders.order_count). Each order
+// is counted once, however many line items the join repeats it for.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH c.country country, agg(od.revenue_per_order) revenue_per_order

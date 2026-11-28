@@ -1,0 +1,3 @@
+// A measure that joins a chain of tables: order_details.revenue_germany reads the country of the customer of the order of the line item (order_details to orders to customers). The query joins neither, and groups by a product.
+FIND products p, p VIA same_product order_details od
+FETCH p.category_id category, agg(od.revenue_germany) germany, agg(od.units) units

@@ -1,3 +1,0 @@
-// Refused: a ROLLUP key that is an expression has no type to pad the totals with.
-FIND customers c, c VIA same_customer orders o
-FETCH upper(c.country) k, agg(o.total_freight) freight ROLLUP

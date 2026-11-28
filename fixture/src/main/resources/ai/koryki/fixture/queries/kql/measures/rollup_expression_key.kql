@@ -1,0 +1,3 @@
+// ROLLUP over group keys that are expressions, not columns: a text and a number made from a date. The rows of the totals carry a NULL of the type the expression has.
+FIND customers c, c VIA same_customer orders o, o VIA same_order order_details od
+FETCH upper(c.country) country, year(o.order_date) yr, agg(o.total_freight) freight, agg(od.units) units ROLLUP

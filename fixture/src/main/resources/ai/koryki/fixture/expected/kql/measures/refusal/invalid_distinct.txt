@@ -1,1 +1,1 @@
-FETCH DISTINCT is not supported with agg() yet
+FETCH DISTINCT with ROLLUP is not supported: a total row can equal a group whose key is NULL

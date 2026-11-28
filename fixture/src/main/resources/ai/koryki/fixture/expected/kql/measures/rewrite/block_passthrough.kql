@@ -1,0 +1,5 @@
+WITH
+shipped AS (FIND orders o FETCH o.ship_country country, o.freight freight, o.order_id orders),
+passed AS (FIND shipped s FETCH s.country country, s.freight freight, s.orders orders)
+FIND passed p
+FETCH p.country country ASC, sum(p.freight) freight, count(p.orders) orders
